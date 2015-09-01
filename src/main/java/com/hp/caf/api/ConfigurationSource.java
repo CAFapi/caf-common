@@ -80,6 +80,7 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
             return config;
         } else {
             incrementErrors();
+            LOG.error("Configuration constraint violations found: {}", violations);
             throw new ConfigurationException("Configuration file failed validation");
         }
     }
