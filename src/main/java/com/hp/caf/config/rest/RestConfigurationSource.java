@@ -18,6 +18,7 @@ import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
+import javax.naming.Name;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
@@ -102,11 +103,11 @@ public class RestConfigurationSource extends ConfigurationSource
      * down to a more general configuration.
      */
     @Override
-    protected InputStream getConfigurationStream(final Class configClass, final String relativePath)
+    protected InputStream getConfigurationStream(final Class configClass, final Name relativePath)
             throws ConfigurationException
     {
         try {
-            return remoteCall(relativePath, configClass.getSimpleName()).getBody().in();
+            return remoteCall(relativePath.toString(), configClass.getSimpleName()).getBody().in();
         } catch (HttpConfigurationException e) {
             throw new ConfigurationException("No configuration at path: " + relativePath, e);
         } catch (IOException | InterruptedException e) {
