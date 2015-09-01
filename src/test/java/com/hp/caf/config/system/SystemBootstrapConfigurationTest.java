@@ -85,10 +85,10 @@ public class SystemBootstrapConfigurationTest
     {
         String testApp = "test/app";
         System.setProperty(SystemBootstrapConfiguration.ENV_MARATHON_APP_ID, testApp);
-        Assert.assertEquals(testApp, sysbsc.getServicePath().getPath());
+        Assert.assertEquals(testApp, sysbsc.getServicePath().toString());
         String testApp2 = "test/app2";
         System.setProperty(BootstrapConfiguration.CONFIG_APP_NAME, testApp2);
-        Assert.assertEquals(testApp2, sysbsc.getServicePath().getPath());
+        Assert.assertEquals(testApp2, sysbsc.getServicePath().toString());
     }
 
 
