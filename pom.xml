@@ -6,7 +6,7 @@
 
     <groupId>com.hp.caf.config</groupId>
     <artifactId>config-file</artifactId>
-    <version>6.0</version>
+    <version>6.1-SNAPSHOT</version>
     
     <parent>
         <groupId>com.hp.caf</groupId>
