@@ -11,6 +11,7 @@ import com.hp.caf.api.ServicePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.naming.Name;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystems;
@@ -59,15 +60,22 @@ public class FileConfigurationSource extends ConfigurationSource
 
 
     @Override
-    protected InputStream getConfigurationStream(final Class configClass, final String relativePath)
+    public HealthResult healthCheck()
+    {
+        return HealthResult.RESULT_HEALTHY;
+    }
+
+
+    @Override
+    protected InputStream getConfigurationStream(final Class configClass, final Name relativePath)
             throws ConfigurationException
     {
-        String configFile = configClass.getSimpleName() + FILE_EXTENSION;
+        String configFile = nameToFile(configClass, relativePath);
         Path p;
         if ( configPath != null ) {
-            p = configPath.resolve(relativePath).resolve(configFile);
+            p = configPath.resolve(configFile);
         } else {
-            p = Paths.get(relativePath).resolve(configFile);
+            p = Paths.get(configFile);
         }
         LOG.debug("Getting configuration for {} from {}", configClass.getSimpleName(), p);
         try {
@@ -78,9 +86,20 @@ public class FileConfigurationSource extends ConfigurationSource
     }
 
 
-    @Override
-    public HealthResult healthCheck()
+    /**
+     * Convert a (partial) ServicePath into a file name to access. The file names are
+     * in the format "config_group_subgroup_appid_ConfigurationClass.conf".
+     * @param configClass the configuration class to try and acquire
+     * @param servicePath the partial or complete ServicePath in Name format
+     * @return the constructed file name to try and access
+     */
+    private String nameToFile(final Class configClass, final Name servicePath)
     {
-        return HealthResult.RESULT_HEALTHY;
+        StringBuilder builder = new StringBuilder("config");
+        for ( int i = 0 ; i < servicePath.size() ; i++ ) {
+            builder.append("_").append(servicePath.get(i));
+        }
+        builder.append("_").append(configClass.getSimpleName()).append(FILE_EXTENSION);
+        return builder.toString();
     }
 }

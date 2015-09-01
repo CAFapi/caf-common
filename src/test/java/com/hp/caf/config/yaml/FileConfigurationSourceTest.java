@@ -32,6 +32,8 @@ public class FileConfigurationSourceTest
     public TemporaryFolder tempDir = new TemporaryFolder();
     private Path temp;
     private final Codec codec = new YamlCodec();
+    private final String groupName = "testApp";
+    private final String appId = "testWorker";
     private ServicePath id;
 
 
@@ -40,7 +42,7 @@ public class FileConfigurationSourceTest
             throws IOException, InvalidNameException
     {
         temp = tempDir.newFolder().toPath();
-        id = new ServicePath("testApp/testWorker");
+        id = new ServicePath(groupName + "/" + appId);
     }
 
 
@@ -51,9 +53,8 @@ public class FileConfigurationSourceTest
         TestFileConfig tyc = new TestFileConfig();
         final String comparisonString = "test456";
         tyc.setTestString(comparisonString);
-        String name = TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
-        Files.createDirectories(temp.resolve(id.getPath()));
-        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getPath()).resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        String name = "config_" + groupName + "_" + appId + "_" + TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(tyc), StandardCharsets.UTF_8));
         }
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
@@ -72,9 +73,8 @@ public class FileConfigurationSourceTest
         TestFileConfig tyc = new TestFileConfig();
         final String comparisonString = "test456";
         tyc.setTestString(comparisonString);
-        String name = TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
-        Files.createDirectories(temp.resolve(id.getRoot()));
-        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getGroup()).resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        String name = "config_" + groupName + "_" + TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(tyc), StandardCharsets.UTF_8));
         }
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
@@ -94,13 +94,12 @@ public class FileConfigurationSourceTest
         InnerConfig innerConfig = new InnerConfig();
         final int testInt = 90;
         innerConfig.setTestValue(testInt);
-        String rootName = RootConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
-        String innerName = InnerConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
-        Files.createDirectories(temp.resolve(id.getPath()));
-        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getPath()).resolve(rootName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        String rootName = "config_" + groupName + "_" + appId + "_" + RootConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        String innerName = "config_" + groupName + "_" + appId + "_" + InnerConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(rootName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(rootConfig), StandardCharsets.UTF_8));
         }
-        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getPath()).resolve(innerName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(innerName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(innerConfig), StandardCharsets.UTF_8));
         }
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
@@ -128,9 +127,8 @@ public class FileConfigurationSourceTest
     {
         TestFileConfig tyc = new TestFileConfig();
         tyc.setTestString("");
-        String name = TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
-        Files.createDirectories(temp.resolve(id.getPath()));
-        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getPath()).resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        String name = "config_" + groupName + "_" + appId + "_" + TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(tyc), StandardCharsets.UTF_8));
         }
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
