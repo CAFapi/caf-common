@@ -79,18 +79,21 @@ public final class ServicePath implements Iterable<String>
 
 
     /**
-     * @return the full service path, as a String
+     * @return the full service path
      */
-    public String getPath()
+    public Name getPath()
     {
-        return pathName.toString();
+        return pathName;
     }
 
 
+    /**
+     * @return the full service path, as a String
+     */
     @Override
     public String toString()
     {
-        return getPath();
+        return getPath().toString();
     }
 
 
