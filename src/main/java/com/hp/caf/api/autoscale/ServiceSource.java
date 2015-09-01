@@ -14,6 +14,7 @@ public abstract class ServiceSource implements HealthReporter
 {
     /**
      * @return services that the autoscaler should validate and scale
+     * @throws ScalerException if the services cannot be acquired
      */
     public abstract Set<ScalingConfiguration> getServices()
         throws ScalerException;

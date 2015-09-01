@@ -26,6 +26,7 @@ public abstract class WorkerQueue implements HealthReporter
     /**
      * Open queues to start accepting tasks and results.
      * @param callback the callback to use when registering new tasks
+     * @throws QueueException if the queue cannot be started
      */
     public abstract void start(final NewTaskCallback callback)
         throws QueueException;

@@ -11,6 +11,7 @@ public abstract class WorkerFactory
      * @param classifier the classifier indicating the type of message it is
      * @param version the api version of the task's message
      * @param status the status of the task
+     * @param data the raw serialised task data
      * @param context provides access to task specific context, may be null
      * @return a new Worker instance that will perform work upon the taskData
      * @throws WorkerException if a new Worker could not be created

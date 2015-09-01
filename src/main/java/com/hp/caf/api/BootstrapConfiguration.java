@@ -68,6 +68,7 @@ public abstract class BootstrapConfiguration
 
     /**
      * @return an object representing the fully qualified service path of this instance
+     * @throws ConfigurationException if the ServicePath cannot be acquired
      */
     public abstract ServicePath getServicePath()
         throws ConfigurationException;

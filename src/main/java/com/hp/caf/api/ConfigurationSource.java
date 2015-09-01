@@ -133,10 +133,11 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
     /**
      * Acquire and return a stream of the serialised data from the transport source.
      * @param configClass the configuration class to be acquired
+     * @param relativePath the partial service path that defines the scope to try and acquire the configuration in
      * @return the stream containing the serailised configuration of the class
      * @throws ConfigurationException if the stream cannot be acquired
      */
-    protected abstract InputStream getConfigurationStream(final Class configClass, final String relativePath)
+    protected abstract InputStream getConfigurationStream(final Class configClass, final Name relativePath)
             throws ConfigurationException;
 
 
@@ -185,7 +186,7 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
     {
         Iterator<Name> it = getServicePath().descendingPathIterator();
         while ( it.hasNext() ) {
-            try (InputStream in = getConfigurationStream(configClass, it.next().toString())) {
+            try (InputStream in = getConfigurationStream(configClass, it.next())) {
                 T deser = getCodec().deserialise(in, configClass);
                 return getCipher().decrypt(deser);
             } catch (ConfigurationException e ) {
