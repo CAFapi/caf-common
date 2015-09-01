@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import javax.naming.InvalidNameException;
+import javax.naming.Name;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -79,13 +80,13 @@ public class ServicePathTest
             throws InvalidNameException
     {
         ServicePath sp = new ServicePath("/group/Subgroup/name/");
-        Iterator<String> it = sp.descendingPathIterator();
+        Iterator<Name> it = sp.descendingPathIterator();
         Assert.assertTrue(it.hasNext());
-        Assert.assertEquals("group/Subgroup/name", it.next());
+        Assert.assertEquals("group/Subgroup/name", it.next().toString());
         Assert.assertTrue(it.hasNext());
-        Assert.assertEquals("group/Subgroup", it.next());
+        Assert.assertEquals("group/Subgroup", it.next().toString());
         Assert.assertTrue(it.hasNext());
-        Assert.assertEquals("group", it.next());
+        Assert.assertEquals("group", it.next().toString());
         Assert.assertFalse(it.hasNext());
     }
 
@@ -95,7 +96,7 @@ public class ServicePathTest
         throws InvalidNameException
     {
         ServicePath sp = new ServicePath("/group/name");
-        Iterator<String> it = sp.descendingPathIterator();
+        Iterator<Name> it = sp.descendingPathIterator();
         it.next();
         it.next();
         it.next();

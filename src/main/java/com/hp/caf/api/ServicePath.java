@@ -118,7 +118,7 @@ public final class ServicePath implements Iterable<String>
     /**
      * @return an Iterator where each element is the entire service path up to the (decrementing) index
      */
-    public Iterator<String> descendingPathIterator()
+    public Iterator<Name> descendingPathIterator()
     {
         return new DescendingPathIterator(pathName);
     }
@@ -155,7 +155,7 @@ public final class ServicePath implements Iterable<String>
     }
 
 
-    public static class DescendingPathIterator implements Iterator<String>
+    public static class DescendingPathIterator implements Iterator<Name>
     {
         private final Name name;
         private int count;
@@ -176,12 +176,12 @@ public final class ServicePath implements Iterable<String>
 
 
         @Override
-        public String next()
+        public Name next()
         {
             if ( count <= 0 ) {
                 throw new NoSuchElementException("Element beyond end of iteration");
             } else {
-                return name.getPrefix(count--).toString();
+                return name.getPrefix(count--);
             }
         }
     }

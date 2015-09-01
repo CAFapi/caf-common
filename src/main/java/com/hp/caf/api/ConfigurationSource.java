@@ -4,6 +4,7 @@ package com.hp.caf.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.naming.Name;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -181,9 +182,9 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
     private <T> T getConfig(final Class<T> configClass)
             throws ConfigurationException
     {
-        Iterator<String> it = getServicePath().descendingPathIterator();
+        Iterator<Name> it = getServicePath().descendingPathIterator();
         while ( it.hasNext() ) {
-            try (InputStream in = getConfigurationStream(configClass, it.next())) {
+            try (InputStream in = getConfigurationStream(configClass, it.next().toString())) {
                 T deser = getCodec().deserialise(in, configClass);
                 return getCipher().decrypt(deser);
             } catch (ConfigurationException e ) {
