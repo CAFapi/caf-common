@@ -86,6 +86,32 @@ public class FileConfigurationSourceTest
     }
 
 
+    @Test
+    public void testGetRecursiveConfiguration()
+        throws IOException, ConfigurationException, CodecException
+    {
+        RootConfig rootConfig = new RootConfig();
+        InnerConfig innerConfig = new InnerConfig();
+        final int testInt = 90;
+        innerConfig.setTestValue(testInt);
+        String rootName = RootConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        String innerName = InnerConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        Files.createDirectories(temp.resolve(id.getPath()));
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getPath()).resolve(rootName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+            writer.write(new String(codec.serialise(rootConfig), StandardCharsets.UTF_8));
+        }
+        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(id.getPath()).resolve(innerName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+            writer.write(new String(codec.serialise(innerConfig), StandardCharsets.UTF_8));
+        }
+        BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
+        Mockito.when(bc.isConfigurationPresent(FileConfigurationSource.CONFIG_PATH)).thenReturn(true);
+        Mockito.when(bc.getConfiguration(FileConfigurationSource.CONFIG_PATH)).thenReturn(temp.toString());
+        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(bc), id, codec);
+        RootConfig result = ycp.getConfiguration(RootConfig.class);
+        Assert.assertEquals(testInt, result.getInnerConfig().getTestValue());
+    }
+
+
     @Test(expected = ConfigurationException.class)
     public void testMissingConfiguration()
         throws ConfigurationException
