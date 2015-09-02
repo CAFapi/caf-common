@@ -1,9 +1,9 @@
-package com.hp.caf.codec;
+package com.hpe.caf.codec;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.CodecException;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.CodecException;
 import com.ning.compress.lzf.LZFInputStream;
 import com.ning.compress.lzf.LZFOutputStream;
 
