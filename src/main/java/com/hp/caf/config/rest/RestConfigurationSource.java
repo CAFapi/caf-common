@@ -8,6 +8,7 @@ import com.hp.caf.api.ConfigurationException;
 import com.hp.caf.api.ConfigurationSource;
 import com.hp.caf.api.HealthResult;
 import com.hp.caf.api.HealthStatus;
+import com.hp.caf.api.Name;
 import com.hp.caf.api.ServicePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,6 @@ import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
-import javax.naming.Name;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
