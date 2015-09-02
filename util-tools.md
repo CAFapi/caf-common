@@ -22,7 +22,7 @@
  classpath. The syntax for using the utility is as follows:
 
 ```
- java -cp "*" com.hp.caf.util.EncryptData data
+ java -cp "*" com.hpe.caf.util.EncryptData data
 ```
 
 ## The GenerateConfig tool
@@ -38,7 +38,7 @@
  using the utility is as follows:
 
 ```
- java -cp "*" com.hp.caf.util.GenerateConfig fully.qualified.class.name
+ java -cp "*" com.hpe.caf.util.GenerateConfig fully.qualified.class.name
 ```
 
 
