@@ -115,4 +115,14 @@ public class NameTest
         Name name = new Name(input);
         name.getPrefix(4);
     }
+
+
+    @Test
+    public void testEquals()
+    {
+        String input = "/a/b/c";
+        Name name = new Name(input);
+        Name otherName = new Name(input);
+        Assert.assertTrue(name.equals(otherName));
+    }
 }
