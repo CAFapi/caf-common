@@ -1,10 +1,10 @@
-package com.hp.caf.cipher.jasypt;
+package com.hpe.caf.cipher.jasypt;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Cipher;
-import com.hp.caf.api.CipherException;
-import com.hp.caf.api.CipherProvider;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Cipher;
+import com.hpe.caf.api.CipherException;
+import com.hpe.caf.api.CipherProvider;
 
 
 public class JasyptCipherProvider implements CipherProvider

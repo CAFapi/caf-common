@@ -1,7 +1,7 @@
-package com.hp.caf.cipher.jasypt;
+package com.hpe.caf.cipher.jasypt;
 
 
-import com.hp.caf.api.Encrypted;
+import com.hpe.caf.api.Encrypted;
 
 
 public class TestEncryptedConfiguration
