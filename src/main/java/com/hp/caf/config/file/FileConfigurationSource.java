@@ -7,11 +7,11 @@ import com.hp.caf.api.Codec;
 import com.hp.caf.api.ConfigurationException;
 import com.hp.caf.api.ConfigurationSource;
 import com.hp.caf.api.HealthResult;
+import com.hp.caf.api.Name;
 import com.hp.caf.api.ServicePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.naming.Name;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystems;
@@ -96,8 +96,8 @@ public class FileConfigurationSource extends ConfigurationSource
     private String nameToFile(final Class configClass, final Name servicePath)
     {
         StringBuilder builder = new StringBuilder("config");
-        for ( int i = 0 ; i < servicePath.size() ; i++ ) {
-            builder.append("_").append(servicePath.get(i));
+        for(String component : servicePath) {
+            builder.append("_").append(component);
         }
         builder.append("_").append(configClass.getSimpleName()).append(FILE_EXTENSION);
         return builder.toString();
