@@ -1,8 +1,8 @@
-package com.hp.caf.cipher;
+package com.hpe.caf.cipher;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Cipher;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Cipher;
 
 
 /**
