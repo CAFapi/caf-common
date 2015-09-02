@@ -1,7 +1,7 @@
-package com.hp.caf.config.yaml;
+package com.hpe.caf.config.yaml;
 
 
-import com.hp.caf.api.Configuration;
+import com.hpe.caf.api.Configuration;
 
 import javax.validation.Valid;
 

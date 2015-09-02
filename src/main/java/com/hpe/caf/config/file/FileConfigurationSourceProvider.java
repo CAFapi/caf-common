@@ -1,13 +1,13 @@
-package com.hp.caf.config.file;
+package com.hpe.caf.config.file;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.ConfigurationException;
-import com.hp.caf.api.ConfigurationSource;
-import com.hp.caf.api.Cipher;
-import com.hp.caf.api.ConfigurationSourceProvider;
-import com.hp.caf.api.ServicePath;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.ConfigurationSource;
+import com.hpe.caf.api.Cipher;
+import com.hpe.caf.api.ConfigurationSourceProvider;
+import com.hpe.caf.api.ServicePath;
 
 
 public class FileConfigurationSourceProvider implements ConfigurationSourceProvider

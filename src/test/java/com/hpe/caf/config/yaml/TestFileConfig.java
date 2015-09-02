@@ -1,4 +1,4 @@
-package com.hp.caf.config.yaml;
+package com.hpe.caf.config.yaml;
 
 
 import org.hibernate.validator.constraints.NotBlank;

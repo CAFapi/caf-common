@@ -1,15 +1,15 @@
-package com.hp.caf.config.yaml;
+package com.hpe.caf.config.yaml;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.CodecException;
-import com.hp.caf.api.ConfigurationException;
-import com.hp.caf.api.ConfigurationSource;
-import com.hp.caf.api.ServicePath;
-import com.hp.caf.cipher.NullCipher;
-import com.hp.caf.codec.YamlCodec;
-import com.hp.caf.config.file.FileConfigurationSource;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.CodecException;
+import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.ConfigurationSource;
+import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.cipher.NullCipher;
+import com.hpe.caf.codec.YamlCodec;
+import com.hpe.caf.config.file.FileConfigurationSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

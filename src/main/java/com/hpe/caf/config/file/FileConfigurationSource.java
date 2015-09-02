@@ -1,14 +1,14 @@
-package com.hp.caf.config.file;
+package com.hpe.caf.config.file;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Cipher;
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.ConfigurationException;
-import com.hp.caf.api.ConfigurationSource;
-import com.hp.caf.api.HealthResult;
-import com.hp.caf.api.Name;
-import com.hp.caf.api.ServicePath;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Cipher;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.ConfigurationSource;
+import com.hpe.caf.api.HealthResult;
+import com.hpe.caf.api.Name;
+import com.hpe.caf.api.ServicePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
