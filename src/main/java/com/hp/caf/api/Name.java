@@ -31,6 +31,17 @@ public class Name implements Iterable<String>
 
 
     /**
+     * Createa a new Name from a list of tokens.
+     * @param components the parts that will make up the Name, already tokenized into a List
+     */
+    public Name(final List<String> components)
+    {
+        this.components = components;
+        strRepresentation = String.join("/", components);
+    }
+
+
+    /**
      * @return the number of tokenized components of this Name
      */
     public int size()
@@ -65,11 +76,7 @@ public class Name implements Iterable<String>
         if ( upperIndex < 0 || upperIndex > components.size() ) {
             throw new IllegalArgumentException("Index out of bounds");
         }
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < upperIndex; i++) {
-            builder.append("/").append(getIndex(i));
-        }
-        return new Name(builder.toString());
+        return new Name(components.subList(0, upperIndex));
     }
 
 
