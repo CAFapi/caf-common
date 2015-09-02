@@ -1,9 +1,7 @@
 package com.hp.caf.api;
 
 
-import javax.naming.CompositeName;
 import javax.naming.InvalidNameException;
-import javax.naming.Name;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -33,7 +31,7 @@ public final class ServicePath implements Iterable<String>
             throws InvalidNameException
     {
         Objects.requireNonNull(path);
-        pathName = new CompositeName(path.replaceAll("^/+|/+$", ""));
+        pathName = new Name(path);
         if ( pathName.size() < 2 ) {
             throw new InvalidNameException("At minimum, a service must have a group");
         }
@@ -52,7 +50,7 @@ public final class ServicePath implements Iterable<String>
      */
     public String getRoot()
     {
-        return pathName.get(0);
+        return pathName.getIndex(0);
     }
 
 
@@ -63,7 +61,7 @@ public final class ServicePath implements Iterable<String>
      */
     public String getLeaf()
     {
-        return pathName.get(pathName.size() - 1);
+        return pathName.getIndex(pathName.size() - 1);
     }
 
 
@@ -74,7 +72,7 @@ public final class ServicePath implements Iterable<String>
      */
     public String getGroup()
     {
-        return pathName.get(pathName.size() - 2);
+        return pathName.getIndex(pathName.size() - 2);
     }
 
 
@@ -105,7 +103,7 @@ public final class ServicePath implements Iterable<String>
     @Override
     public Iterator<String> iterator()
     {
-        return new NameIterator(pathName);
+        return pathName.iterator();
     }
 
 
@@ -114,7 +112,7 @@ public final class ServicePath implements Iterable<String>
      */
     public Iterator<String> groupIterator()
     {
-        return new NameIterator(pathName.getPrefix(pathName.size() - 1));
+        return pathName.getPrefix(pathName.size() - 1).iterator();
     }
 
 
@@ -124,37 +122,6 @@ public final class ServicePath implements Iterable<String>
     public Iterator<Name> descendingPathIterator()
     {
         return new DescendingPathIterator(pathName);
-    }
-
-
-    public static class NameIterator implements Iterator<String>
-    {
-        private final Name name;
-        private int count = 0;
-
-
-        public NameIterator(final Name name)
-        {
-            this.name = Objects.requireNonNull(name);
-        }
-
-
-        @Override
-        public boolean hasNext()
-        {
-            return count < name.size();
-        }
-
-
-        @Override
-        public String next()
-        {
-            if ( count >= name.size() ) {
-                throw new NoSuchElementException("Element beyond end of iteration");
-            } else {
-                return name.get(count++);
-            }
-        }
     }
 
 

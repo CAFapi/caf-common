@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import javax.naming.InvalidNameException;
-import javax.naming.Name;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
