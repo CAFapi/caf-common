@@ -1,10 +1,10 @@
-package com.hp.caf.util;
+package com.hpe.caf.util;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Cipher;
-import com.hp.caf.api.CipherProvider;
-import com.hp.caf.config.system.SystemBootstrapConfiguration;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Cipher;
+import com.hpe.caf.api.CipherProvider;
+import com.hpe.caf.config.system.SystemBootstrapConfiguration;
 
 
 /**
