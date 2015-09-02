@@ -1,8 +1,8 @@
-package com.hp.caf.codec;
+package com.hpe.caf.codec;
 
 
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.CodecException;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.CodecException;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.error.YAMLException;
 

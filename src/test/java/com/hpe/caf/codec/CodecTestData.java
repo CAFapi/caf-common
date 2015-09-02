@@ -1,4 +1,4 @@
-package com.hp.caf.codec;
+package com.hpe.caf.codec;
 
 
 public class CodecTestData
