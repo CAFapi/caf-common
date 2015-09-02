@@ -25,11 +25,13 @@ import java.nio.file.Paths;
  * This is a ConfigurationProvider that reads from a local disk file.
  * If the bootstrap parameter config.path is set, it will read the config
  * files from the specified directory, otherwise it will use the working dir.
+ *
+ * If retrieving the configuration class "TestConfiguration", using the
+ * ServicePath /a/b, it will expect the file to be called "cfg_a_b_TestConfiguration".
  */
 public class FileConfigurationSource extends ConfigurationSource
 {
     public static final String CONFIG_PATH = "config.path";
-    public static final String FILE_EXTENSION = ".conf";
     private Path configPath;
     private static final Logger LOG = LoggerFactory.getLogger(FileConfigurationSource.class);
 
@@ -88,18 +90,18 @@ public class FileConfigurationSource extends ConfigurationSource
 
     /**
      * Convert a (partial) ServicePath into a file name to access. The file names are
-     * in the format "config_group_subgroup_appid_ConfigurationClass.conf".
+     * in the format "cfg_group_subgroup_appid_ConfigurationClass".
      * @param configClass the configuration class to try and acquire
      * @param servicePath the partial or complete ServicePath in Name format
      * @return the constructed file name to try and access
      */
     private String nameToFile(final Class configClass, final Name servicePath)
     {
-        StringBuilder builder = new StringBuilder("config");
+        StringBuilder builder = new StringBuilder("cfg");
         for(String component : servicePath) {
             builder.append("_").append(component);
         }
-        builder.append("_").append(configClass.getSimpleName()).append(FILE_EXTENSION);
+        builder.append("_").append(configClass.getSimpleName());
         return builder.toString();
     }
 }

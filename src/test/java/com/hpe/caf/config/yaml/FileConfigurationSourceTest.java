@@ -53,7 +53,7 @@ public class FileConfigurationSourceTest
         TestFileConfig tyc = new TestFileConfig();
         final String comparisonString = "test456";
         tyc.setTestString(comparisonString);
-        String name = "config_" + groupName + "_" + appId + "_" + TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        String name = "cfg_" + groupName + "_" + appId + "_" + TestFileConfig.class.getSimpleName();
         try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(tyc), StandardCharsets.UTF_8));
         }
@@ -73,7 +73,7 @@ public class FileConfigurationSourceTest
         TestFileConfig tyc = new TestFileConfig();
         final String comparisonString = "test456";
         tyc.setTestString(comparisonString);
-        String name = "config_" + groupName + "_" + TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        String name = "cfg_" + groupName + "_" + TestFileConfig.class.getSimpleName();
         try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(tyc), StandardCharsets.UTF_8));
         }
@@ -94,8 +94,8 @@ public class FileConfigurationSourceTest
         InnerConfig innerConfig = new InnerConfig();
         final int testInt = 90;
         innerConfig.setTestValue(testInt);
-        String rootName = "config_" + groupName + "_" + appId + "_" + RootConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
-        String innerName = "config_" + groupName + "_" + appId + "_" + InnerConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        String rootName = "cfg_" + groupName + "_" + appId + "_" + RootConfig.class.getSimpleName();
+        String innerName = "cfg_" + groupName + "_" + appId + "_" + InnerConfig.class.getSimpleName();
         try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(rootName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(rootConfig), StandardCharsets.UTF_8));
         }
@@ -127,7 +127,7 @@ public class FileConfigurationSourceTest
     {
         TestFileConfig tyc = new TestFileConfig();
         tyc.setTestString("");
-        String name = "config_" + groupName + "_" + appId + "_" + TestFileConfig.class.getSimpleName() + FileConfigurationSource.FILE_EXTENSION;
+        String name = "cfg_" + groupName + "_" + appId + "_" + TestFileConfig.class.getSimpleName();
         try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(name), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(tyc), StandardCharsets.UTF_8));
         }
