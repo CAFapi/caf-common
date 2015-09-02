@@ -1,9 +1,9 @@
-package com.hp.caf.config.system;
+package com.hpe.caf.config.system;
 
 
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.ConfigurationException;
-import com.hp.caf.api.ServicePath;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.ServicePath;
 
 import javax.naming.InvalidNameException;
 import java.util.Objects;
