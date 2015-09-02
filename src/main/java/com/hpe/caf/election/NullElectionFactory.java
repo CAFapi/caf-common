@@ -1,9 +1,9 @@
-package com.hp.caf.election;
+package com.hpe.caf.election;
 
 
-import com.hp.caf.api.Election;
-import com.hp.caf.api.ElectionCallback;
-import com.hp.caf.api.ElectionFactory;
+import com.hpe.caf.api.Election;
+import com.hpe.caf.api.ElectionCallback;
+import com.hpe.caf.api.ElectionFactory;
 
 
 public class NullElectionFactory extends ElectionFactory

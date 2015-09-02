@@ -1,9 +1,9 @@
-package com.hp.caf.election;
+package com.hpe.caf.election;
 
 
-import com.hp.caf.api.ConfigurationSource;
-import com.hp.caf.api.ElectionFactory;
-import com.hp.caf.api.ElectionFactoryProvider;
+import com.hpe.caf.api.ConfigurationSource;
+import com.hpe.caf.api.ElectionFactory;
+import com.hpe.caf.api.ElectionFactoryProvider;
 
 
 public class NullElectionFactoryProvider implements ElectionFactoryProvider
