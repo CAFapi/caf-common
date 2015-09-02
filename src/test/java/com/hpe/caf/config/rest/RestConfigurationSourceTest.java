@@ -1,15 +1,15 @@
-package com.hp.caf.config.rest;
+package com.hpe.caf.config.rest;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hp.caf.api.BootstrapConfiguration;
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.ConfigurationException;
-import com.hp.caf.api.ConfigurationSource;
-import com.hp.caf.api.HealthStatus;
-import com.hp.caf.api.ServicePath;
-import com.hp.caf.cipher.NullCipher;
-import com.hp.caf.codec.JsonCodec;
+import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.ConfigurationSource;
+import com.hpe.caf.api.HealthStatus;
+import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.cipher.NullCipher;
+import com.hpe.caf.codec.JsonCodec;
 import io.dropwizard.testing.junit.DropwizardClientRule;
 import org.hibernate.validator.constraints.NotBlank;
 import org.junit.ClassRule;
