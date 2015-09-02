@@ -1,10 +1,10 @@
-package com.hp.caf.codec;
+package com.hpe.caf.codec;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hp.caf.api.Codec;
-import com.hp.caf.api.CodecException;
+import com.hpe.caf.api.Codec;
+import com.hpe.caf.api.CodecException;
 
 import java.io.IOException;
 import java.io.InputStream;
