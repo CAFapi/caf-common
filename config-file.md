@@ -19,11 +19,19 @@
 
 ## Usage
 
- This module is very simple. Simply put your serialised configuration data into
- files (ending in `.conf`). The root name of the file should match the class
- name of the configuration object that is required. This means that if you
- perform the operation `getConfiguration(MyConfiguration.class)` then there
- should be a file called `MyConfiguration.conf`.
+ This module expects flat configuration files in the specified directory to be
+ named in the following format. They will always be prefixed with "cfg", and
+ have underscore delimited sections consisting of the groups, subgroups and
+ service name of the application's `ServicePath`, then finally the simplified
+ class name of the configuration object that is being acquired. This means
+ that acquiring the configuration class `TestConfiguration` within an
+ application with a `ServicePath` of `group/subgroup/service` would prompt the
+ module to look for the file `cfg_group_subgroup_service_TestConfiguration`.
+
+ This module fully supports hierarchical and recursive configuration. If the
+ file above is not found it will proceed to drop the top level of the
+ `ServicePath` (eg. it will open `cfg_group_subgroup_TestConfiguration`) and
+ carry on down until a file is returned.
 
 
 ## Failure modes
