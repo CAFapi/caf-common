@@ -6,7 +6,7 @@
 
     <groupId>com.hpe.caf</groupId>
     <artifactId>caf-maven</artifactId>
-    <version>3</version>
+    <version>4</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -27,6 +27,7 @@
         <maven.failsafe.version>2.18.1</maven.failsafe.version>
         <maven.compiler.version>3.3</maven.compiler.version>
         <docker.maven.version>0.13.3</docker.maven.version>
+        <tini.version>0.6</tini.version>
     </properties>
 
     <build>
