@@ -6,19 +6,19 @@
 
     <groupId>com.hpe.caf.election</groupId>
     <artifactId>election-null</artifactId>
-    <version>7.0-SNAPSHOT</version>
+    <version>7.0</version>
     
     <parent>
         <groupId>com.hpe.caf</groupId>
         <artifactId>caf-maven</artifactId>
-        <version>3</version>
+        <version>4</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.hpe.caf</groupId>
             <artifactId>caf-api</artifactId>
-            <version>7.0-SNAPSHOT</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
