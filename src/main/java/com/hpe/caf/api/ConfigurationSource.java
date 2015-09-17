@@ -79,8 +79,8 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
             return config;
         } else {
             incrementErrors();
-            LOG.error("Configuration constraint violations found: {}", violations);
-            throw new ConfigurationException("Configuration file failed validation");
+            LOG.error("Configuration constraint violations found for {}: {}", configClass.getSimpleName(), violations);
+            throw new ConfigurationException("Configuration validation failed for " + configClass.getSimpleName());
         }
     }
 
@@ -165,7 +165,7 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
                     LOG.debug("Didn't find any overriding configuration", e);
                 } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
                     incrementErrors();
-                    throw new ConfigurationException("Failed to get complete configuration", e);
+                    throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             }
         }
@@ -192,11 +192,11 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
                 LOG.trace("No configuration at this path level", e);
             } catch (CipherException | CodecException | IOException e) {
                 incrementErrors();
-                throw new ConfigurationException("Failed to get configuration", e);
+                throw new ConfigurationException("Failed to get configuration for " + configClass.getSimpleName(), e);
             }
         }
         incrementErrors();
-        throw new ConfigurationException("No configuration found");
+        throw new ConfigurationException("No configuration found for " + configClass.getSimpleName());
     }
 
 
