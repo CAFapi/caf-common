@@ -1,8 +1,10 @@
 package com.hpe.caf.api;
 
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 
 /**
@@ -10,6 +12,7 @@ import java.lang.annotation.RetentionPolicy;
  * a SecurityProvider can decrypt. The field that possesses this annotation must also
  * have the appropriate getter and setter methods that match Java convention.
  */
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Encrypted
 {
