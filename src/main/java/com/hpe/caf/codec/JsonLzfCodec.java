@@ -4,6 +4,7 @@ package com.hpe.caf.codec;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
+import com.hpe.caf.api.DecodeMethod;
 import com.ning.compress.lzf.LZFInputStream;
 import com.ning.compress.lzf.LZFOutputStream;
 
@@ -20,16 +21,24 @@ import java.io.InputStream;
  */
 public class JsonLzfCodec extends Codec
 {
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper strictMapper;
+    private final ObjectMapper lenientMapper;
+
+
+    public JsonLzfCodec()
+    {
+        strictMapper = ObjectMapperFactory.getStrictMapper();
+        lenientMapper = ObjectMapperFactory.getLenientMapper();
+    }
 
 
     @Override
-    public <T> T deserialise(final byte[] data, final Class<T> clazz)
+    public <T> T deserialise(final byte[] data, final Class<T> clazz, final DecodeMethod method)
             throws CodecException
     {
         try (ByteArrayInputStream bis = new ByteArrayInputStream(data);
              LZFInputStream lzf = new LZFInputStream(bis)) {
-            return mapper.readValue(lzf, clazz);
+            return getMapper(method).readValue(lzf, clazz);
         } catch (IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
@@ -37,11 +46,11 @@ public class JsonLzfCodec extends Codec
 
 
     @Override
-    public <T> T deserialise(final InputStream stream, final Class<T> clazz)
+    public <T> T deserialise(final InputStream stream, final Class<T> clazz, final DecodeMethod method)
             throws CodecException
     {
         try (LZFInputStream lzf = new LZFInputStream(stream)) {
-            return mapper.readValue(lzf, clazz);
+            return getMapper(method).readValue(lzf, clazz);
         } catch (IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
@@ -54,10 +63,16 @@ public class JsonLzfCodec extends Codec
     {
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
              LZFOutputStream lzf = new LZFOutputStream(bos)) {
-            mapper.writeValue(lzf, object);
+            getMapper(DecodeMethod.getDefault()).writeValue(lzf, object);
             return bos.toByteArray();
         } catch (IOException e) {
             throw new CodecException("Failed to serialise", e);
         }
+    }
+
+
+    protected ObjectMapper getMapper(final DecodeMethod method)
+    {
+        return method == DecodeMethod.STRICT ? strictMapper : lenientMapper;
     }
 }
