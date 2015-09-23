@@ -9,11 +9,11 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
- * Utility app for generating configuration files. It can generate either json or yaml format
- * configuration files from a basic Java object on the classpath, and will output to stdout.
+ * Utility app for generating configuration files. It will use whichever implementation of Codec
+ * is present on the classpath, and will output the result to stdout.
  *
  * Example usage:
- * java -cp "*" com.hp.caf.util.GenerateConfig com.hp.caf.worker.queue.RabbitWorkerQueueConfiguration
+ * java -cp "*" com.hpe.caf.util.GenerateConfig com.hp.caf.worker.queue.RabbitWorkerQueueConfiguration
  */
 public final class GenerateConfig
 {
@@ -24,7 +24,7 @@ public final class GenerateConfig
         throws ClassNotFoundException, NoSuchMethodException, CodecException, InstantiationException, IllegalAccessException, InvocationTargetException, ComponentLoaderException
     {
         if ( args.length < 1 ) {
-            System.err.println("Usage: java -cp * com.hp.caf.util.GenerateConfig configClassName");
+            System.err.println("Usage: java -cp * com.hpe.caf.util.GenerateConfig configClassName");
         } else {
             String className = args[0];
             try {

@@ -12,7 +12,7 @@ import com.hpe.caf.config.system.SystemBootstrapConfiguration;
  * generated encrypted passwords to put in configuration files. The desired SecurityProvider
  * must be present on the classpath.
  *
- * Usage: java -cp "*" com.hp.caf.util.EncryptData data
+ * Usage: java -cp "*" com.hpe.caf.util.EncryptData data
  */
 public final class EncryptData
 {
@@ -23,7 +23,7 @@ public final class EncryptData
             throws Exception
     {
         if ( args.length < 1 ) {
-            System.err.println("Usage: java -cp * com.hp.caf.util.EncryptData data");
+            System.err.println("Usage: java -cp * com.hpe.caf.util.EncryptData data");
             System.exit(1);
         }
 
