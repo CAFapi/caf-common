@@ -11,26 +11,58 @@ import java.io.InputStream;
 public abstract class Codec
 {
     /**
-     * Deserialise the given data into the specified class.
+     * Deserialise the given data into the specified class using the default decode method.
      * @param data the serialised data
      * @param clazz the class the serialised data represents
      * @param <T> the class the serialised data represents
      * @return an instance of the class specified represented by the data
      * @throws CodecException if the data could not be deserialised
      */
-    public abstract <T> T deserialise(final byte[] data, final Class<T> clazz)
-        throws CodecException;
+    public final <T> T deserialise(final byte[] data, final Class<T> clazz)
+        throws CodecException
+    {
+        return deserialise(data, clazz, DecodeMethod.getDefault());
+    }
 
 
     /**
      * Deserialise the given data into the specified class.
+     * @param data the serialised data
+     * @param clazz the class the serialised data represents
+     * @param method specifies whether to use strict or lenient decoding during deserialisation
+     * @param <T> the class the serialised data represents
+     * @return an instance of the class specified represented by the data
+     * @throws CodecException if the data could not be deserialised
+     */
+    public abstract <T> T deserialise(final byte[] data, final Class<T> clazz, final DecodeMethod method)
+        throws CodecException;
+
+
+    /**
+     * Deserialise the given data into the specified class using the default decode method.
      * @param stream the serialised data as a stream
      * @param clazz the class the serialised data represents
      * @param <T> the class the serialised data represents
      * @return an instance of the class specified represented by the data
      * @throws CodecException if the data could not be deserialised
      */
-    public abstract <T> T deserialise(final InputStream stream, final Class<T> clazz)
+    public final <T> T deserialise(final InputStream stream, final Class<T> clazz)
+        throws CodecException
+    {
+        return deserialise(stream, clazz, DecodeMethod.getDefault());
+    }
+
+
+    /**
+     * Deserialise the given data into the specified class using the default decode method.
+     * @param stream the serialised data as a stream
+     * @param clazz the class the serialised data represents
+     * @param method specifies whether to use strict or lenient decoding during deserialisation
+     * @param <T> the class the serialised data represents
+     * @return an instance of the class specified represented by the data
+     * @throws CodecException if the data could not be deserialised
+     */
+    public abstract <T> T deserialise(final InputStream stream, final Class<T> clazz, final DecodeMethod method)
         throws CodecException;
 
 
