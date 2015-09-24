@@ -5,12 +5,14 @@ package com.hpe.caf.api;
  * A bootstrap configuration is a method of providing basic, initial startup configuration.
  * This is more crude than a full ConfigurationProvider, and only supports trivial key/value
  * lookups.
+ * @since 4.0
  */
 public abstract class BootstrapConfiguration
 {
     /**
      * Application identifier configuration parameter key.
      * This must be in the format /a/b.
+     * @since 6.0
      */
     public static final String CONFIG_APP_NAME = "caf.appname";
 
@@ -28,6 +30,7 @@ public abstract class BootstrapConfiguration
      * @param key the config parameter to lookup
      * @return the value of the config parameter
      * @throws ConfigurationException if the configuration parameter is not set
+     * @since 6.0
      */
     public abstract String getConfiguration(final String key)
         throws ConfigurationException;
@@ -38,6 +41,7 @@ public abstract class BootstrapConfiguration
      * @param key the config parameter to lookup
      * @return the value of the config parameter as an integer
      * @throws ConfigurationException if the configuration parameter is not set
+     * @since 6.0
      */
     public abstract int getConfigurationInteger(final String key)
         throws ConfigurationException;
@@ -51,6 +55,7 @@ public abstract class BootstrapConfiguration
      * @param max the upper bound of the integer to be returned
      * @return the value of the config parameter as an integer, between the limits specified
      * @throws ConfigurationException if the configuration parameter is not set
+     * @since 6.0
      */
     public abstract int getConfigurationInteger(final String key, final int min, final int max)
         throws ConfigurationException;
@@ -61,6 +66,7 @@ public abstract class BootstrapConfiguration
      * @param key the config parameter to lookup
      * @return the value of the config parameter as an integer
      * @throws ConfigurationException if the configuration parameter is not set
+     * @since 6.0
      */
     public abstract boolean getConfigurationBoolean(final String key)
         throws ConfigurationException;
@@ -69,6 +75,7 @@ public abstract class BootstrapConfiguration
     /**
      * @return an object representing the fully qualified service path of this instance
      * @throws ConfigurationException if the ServicePath cannot be acquired
+     * @since 6.0
      */
     public abstract ServicePath getServicePath()
         throws ConfigurationException;

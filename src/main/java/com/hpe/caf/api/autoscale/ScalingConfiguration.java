@@ -10,6 +10,7 @@ import java.util.Objects;
 /**
  * This object is returned by a ServiceSource and used by the autoscale application
  * in determining how to scale a service.
+ * @since 5.0
  */
 public final class ScalingConfiguration
 {
@@ -19,6 +20,7 @@ public final class ScalingConfiguration
     public static final String KEY_MIN_INSTANCES = "autoscale.mininstances";
     public static final String KEY_MAX_INSTANCES = "autoscale.maxinstances";
     public static final String KEY_SCALING_PROFILE = "autoscale.profile";
+    /** @since 6.0 **/
     public static final String KEY_BACKOFF_AMOUNT = "autoscale.backoff";
     /**
      * The unique id of the service
@@ -149,12 +151,14 @@ public final class ScalingConfiguration
     }
 
 
+    /** @since 6.0 **/
     public int getBackoffAmount()
     {
         return backoffAmount;
     }
 
 
+    /** @since 6.0 **/
     public void setBackoffAmount(final int backoffAmount)
     {
         this.backoffAmount = backoffAmount;

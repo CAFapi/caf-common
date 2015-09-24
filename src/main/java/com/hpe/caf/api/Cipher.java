@@ -11,6 +11,7 @@ import java.util.Objects;
 
 /**
  * Provides a method of encrypting and decrypting string data, such as passwords.
+ * @since 4.0
  */
 public abstract class Cipher
 {

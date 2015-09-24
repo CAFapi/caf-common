@@ -5,6 +5,7 @@ package com.hpe.caf.api;
  * Dictates the decoding method for a Codec, specifying whether the Codec should
  * perform strict decoding or be more lenient which can help in being tolerant to
  * data from a subtly different class version of the object.
+ * @since 8.0
  */
 public enum DecodeMethod
 {

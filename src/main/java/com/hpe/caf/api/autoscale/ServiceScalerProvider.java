@@ -6,6 +6,7 @@ import com.hpe.caf.api.ConfigurationSource;
 
 /**
  * Provides a method for acquiring a ServiceScaler. Implementations must have a no-arg constructor.
+ * @since 5.0
  */
 public interface ServiceScalerProvider
 {

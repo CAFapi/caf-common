@@ -16,6 +16,7 @@ import java.util.Objects;
  * Valid path: /a/b/c/ (leading and terminating slashes will be removed)
  * Invalid path: /a/b//c/ (empty naming groups are not allowed)
  * Invalid path: /a (no group)
+ * @since 6.0
  */
 public final class ServicePath implements Iterable<String>
 {
@@ -118,6 +119,7 @@ public final class ServicePath implements Iterable<String>
 
     /**
      * @return an Iterator where each element is the entire service path up to the (decrementing) index
+     * @since 7.0
      */
     public Iterator<Name> descendingPathIterator()
     {
@@ -125,6 +127,9 @@ public final class ServicePath implements Iterable<String>
     }
 
 
+    /**
+     * @since 7.0
+     */
     public static class DescendingPathIterator implements Iterator<Name>
     {
         private final Name name;

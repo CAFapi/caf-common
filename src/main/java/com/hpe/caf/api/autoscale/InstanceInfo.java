@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Contains information about the instances of a currently running service.
+ * @since 5.0
  */
 public final class InstanceInfo
 {

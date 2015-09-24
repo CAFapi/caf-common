@@ -6,6 +6,7 @@ import java.util.Objects;
 
 /**
  * Allows interaction with the election process of an individual service election.
+ * @since 5.0
  */
 public abstract class Election
 {

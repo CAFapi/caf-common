@@ -7,6 +7,7 @@ import java.io.InputStream;
 /**
  * A Codec specifies methods to serialise data from a Java object to byte format,
  * and deserialise data from byte format back into a specified Java class.
+ * @since 4.0
  */
 public abstract class Codec
 {
@@ -33,6 +34,7 @@ public abstract class Codec
      * @param <T> the class the serialised data represents
      * @return an instance of the class specified represented by the data
      * @throws CodecException if the data could not be deserialised
+     * @since 8.0
      */
     public abstract <T> T deserialise(final byte[] data, final Class<T> clazz, final DecodeMethod method)
         throws CodecException;
@@ -61,6 +63,7 @@ public abstract class Codec
      * @param <T> the class the serialised data represents
      * @return an instance of the class specified represented by the data
      * @throws CodecException if the data could not be deserialised
+     * @since 8.0
      */
     public abstract <T> T deserialise(final InputStream stream, final Class<T> clazz, final DecodeMethod method)
         throws CodecException;

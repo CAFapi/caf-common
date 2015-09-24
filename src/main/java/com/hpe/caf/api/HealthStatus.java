@@ -3,6 +3,7 @@ package com.hpe.caf.api;
 
 /**
  * The overall, concise status of the health of a service.
+ * @since 1.0
  */
 public enum HealthStatus
 {

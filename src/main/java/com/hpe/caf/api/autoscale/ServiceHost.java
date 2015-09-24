@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Information about the host for a specific service.
+ * @since 5.0
  */
 public final class ServiceHost
 {

@@ -3,6 +3,7 @@ package com.hpe.caf.api.autoscale;
 
 /**
  * The type of recommendations a WorkloadAnalyser can make.
+ * @since 5.0
  */
 public enum ScalingOperation
 {

@@ -25,6 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * retrieving application-specific configuration. The configuration itself will be
  * provided by a simple Java object, which will be retrieved from some data source and
  * deserialised by a codec.
+ * @since 4.0
  */
 public abstract class ConfigurationSource implements HealthReporter, ConfigurationMetricsReporter
 {
@@ -45,6 +46,7 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
      * @param cipher for decrypting information in a configuration file
      * @param servicePath to localise configuration for this service
      * @param codec provides a mechanism to deserialise the configuration format
+     * @since 6.0
      */
     public ConfigurationSource(final BootstrapConfiguration bootstrapProvider, final Cipher cipher, final ServicePath servicePath,
             final Codec codec)
@@ -91,6 +93,10 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
     public abstract void shutdown();
 
 
+    /**
+     * {@inheritDoc}
+     * @since 6.0
+     */
     @Override
     public final int getConfigurationRequests()
     {
@@ -98,6 +104,10 @@ public abstract class ConfigurationSource implements HealthReporter, Configurati
     }
 
 
+    /**
+     * {@inheritDoc}
+     * @since 6.0
+     */
     @Override
     public final int getConfigurationErrors()
     {

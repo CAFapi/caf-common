@@ -7,6 +7,7 @@ import com.hpe.caf.api.HealthReporter;
 /**
  * A ServiceScaler is a class that actively triggers or performs the up or
  * down scaling of a service on a platform.
+ * @since 5.0
  */
 public abstract class ServiceScaler implements HealthReporter
 {

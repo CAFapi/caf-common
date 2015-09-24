@@ -2,7 +2,8 @@ package com.hpe.caf.api;
 
 
 /**
- * Provides metrics for a ConfigurationProvider.
+ * Provides metrics for a ConfigurationSource.
+ * @since 1.0
  */
 public interface ConfigurationMetricsReporter
 {

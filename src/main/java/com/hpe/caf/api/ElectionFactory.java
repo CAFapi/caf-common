@@ -3,6 +3,7 @@ package com.hpe.caf.api;
 
 /**
  * Factory class for returning Election objects for a specific service election.
+ * @since 5.0
  */
 public abstract class ElectionFactory
 {
