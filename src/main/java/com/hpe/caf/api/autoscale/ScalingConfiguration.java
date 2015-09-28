@@ -151,14 +151,20 @@ public final class ScalingConfiguration
     }
 
 
-    /** @since 6.0 **/
+    /**
+     * @return the number of intervals to skip scaling computations following a scaling request.
+     * @since 6.0
+     */
     public int getBackoffAmount()
     {
         return backoffAmount;
     }
 
 
-    /** @since 6.0 **/
+    /**
+     * @param backoffAmount the number of intervals to skip scaling computations following a scaling request.
+     * @since 6.0
+     */
     public void setBackoffAmount(final int backoffAmount)
     {
         this.backoffAmount = backoffAmount;
