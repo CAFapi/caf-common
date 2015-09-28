@@ -21,7 +21,7 @@ public final class GenerateConfig
 
 
     public static void main(final String[] args)
-        throws ClassNotFoundException, NoSuchMethodException, CodecException, InstantiationException, IllegalAccessException, InvocationTargetException, ComponentLoaderException
+        throws ClassNotFoundException, NoSuchMethodException, CodecException, InstantiationException, IllegalAccessException, InvocationTargetException, ModuleLoaderException
     {
         if ( args.length < 1 ) {
             System.err.println("Usage: java -cp * com.hpe.caf.util.GenerateConfig configClassName");
@@ -29,7 +29,7 @@ public final class GenerateConfig
             String className = args[0];
             try {
                 Class clazz = Class.forName(className);
-                Codec codec = ComponentLoader.getService(Codec.class);
+                Codec codec = ModuleLoader.getService(Codec.class);
                 System.out.println(new String(codec.serialise(clazz.getConstructor().newInstance()), StandardCharsets.UTF_8));
             } catch (ClassNotFoundException e) {
                 System.err.println("Class not found on classpath: " + className);
@@ -37,7 +37,7 @@ public final class GenerateConfig
             } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | CodecException e) {
                 System.err.println("Failed to generate configuration");
                 throw e;
-            } catch (ComponentLoaderException e) {
+            } catch (ModuleLoaderException e) {
                 System.err.println("Could not load codec component");
                 throw e;
             }

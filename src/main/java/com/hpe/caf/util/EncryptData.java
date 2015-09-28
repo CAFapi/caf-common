@@ -27,7 +27,7 @@ public final class EncryptData
             System.exit(1);
         }
 
-        CipherProvider factory = ComponentLoader.getService(CipherProvider.class);
+        CipherProvider factory = ModuleLoader.getService(CipherProvider.class);
         BootstrapConfiguration bc = new SystemBootstrapConfiguration();
         Cipher sp = factory.getCipher(bc);
         System.out.println(sp.encrypt(args[0]));
