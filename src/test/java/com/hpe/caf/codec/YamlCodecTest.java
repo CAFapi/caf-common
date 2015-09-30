@@ -50,4 +50,15 @@ public class YamlCodecTest
         byte[] stuff = codec.serialise(test);
         codec.deserialise(stuff, CodecTestData.class, DecodeMethod.LENIENT);
     }
+
+
+    @Test
+    public void testPrivateSerialisation()
+        throws CodecException
+    {
+        Codec codec = new YamlCodec();
+        PrivateCodecTestData data = new PrivateCodecTestData(VERIFY_STRING);
+        byte[] stuff = codec.serialise(data);
+        Assert.assertEquals(VERIFY_STRING, codec.deserialise(stuff, PrivateCodecTestData.class).getTestData());
+    }
 }

@@ -6,6 +6,7 @@ import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.error.YAMLException;
+import org.yaml.snakeyaml.introspector.BeanAccess;
 import org.yaml.snakeyaml.representer.Representer;
 
 import java.io.ByteArrayInputStream;
@@ -28,8 +29,10 @@ public class YamlCodec extends Codec
     {
         Representer lenient = new Representer();
         lenient.getPropertyUtils().setSkipMissingProperties(true);
+        lenient.getPropertyUtils().setBeanAccess(BeanAccess.FIELD);
         Representer strict = new Representer();
         strict.getPropertyUtils().setSkipMissingProperties(false);
+        strict.getPropertyUtils().setBeanAccess(BeanAccess.FIELD);
         lenientYaml = new Yaml(lenient);
         strictYaml = new Yaml(strict);
     }
