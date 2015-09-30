@@ -51,4 +51,14 @@ public class JsonCodecTest
         codec.deserialise(stuff, CodecTestData.class, DecodeMethod.LENIENT);
     }
 
+
+    @Test
+    public void testPrivateSerialisation()
+        throws CodecException
+    {
+        Codec codec = new JsonCodec();
+        PrivateCodecTestData data = new PrivateCodecTestData(VERIFY_STRING);
+        byte[] stuff = codec.serialise(data);
+        Assert.assertEquals(VERIFY_STRING, codec.deserialise(stuff, PrivateCodecTestData.class).getTestData());
+    }
 }

@@ -1,6 +1,8 @@
 package com.hpe.caf.codec;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,6 +21,7 @@ public final class ObjectMapperFactory
     public static ObjectMapper getStrictMapper()
     {
         ObjectMapper strictMapper = new ObjectMapper();
+        strictMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         strictMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         strictMapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, true);
         strictMapper.configure(DeserializationFeature.FAIL_ON_READING_DUP_TREE_KEY, true);
@@ -32,6 +35,7 @@ public final class ObjectMapperFactory
     public static ObjectMapper getLenientMapper()
     {
         ObjectMapper lenientMapper = new ObjectMapper();
+        lenientMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         lenientMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         lenientMapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
         lenientMapper.configure(DeserializationFeature.FAIL_ON_READING_DUP_TREE_KEY, false);
