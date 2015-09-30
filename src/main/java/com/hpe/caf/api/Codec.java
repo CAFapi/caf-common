@@ -6,7 +6,10 @@ import java.io.InputStream;
 
 /**
  * A Codec specifies methods to serialise data from a Java object to byte format,
- * and deserialise data from byte format back into a specified Java class.
+ * and deserialise data from byte format back into a specified Java class. The Codec
+ * should support strict and lenient decoding (the former being for backwards-compatible
+ * deserialisation, such as ignoring unknown fields) and it should be able to modify
+ * fields without needing public setters.
  * @since 4.0
  */
 public abstract class Codec
