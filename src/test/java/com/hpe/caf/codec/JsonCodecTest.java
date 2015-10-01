@@ -61,4 +61,15 @@ public class JsonCodecTest
         byte[] stuff = codec.serialise(data);
         Assert.assertEquals(VERIFY_STRING, codec.deserialise(stuff, PrivateCodecTestData.class).getTestData());
     }
+
+
+    @Test
+    public void testGetterVisibility()
+        throws CodecException
+    {
+        Codec codec = new JsonCodec();
+        RandomGetterTestData test = new RandomGetterTestData(VERIFY_STRING);
+        byte[] stuff = codec.serialise(test);
+        Assert.assertEquals(VERIFY_STRING, codec.deserialise(stuff, RandomGetterTestData.class).getTestData());
+    }
 }
