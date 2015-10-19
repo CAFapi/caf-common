@@ -31,7 +31,9 @@ import java.nio.file.Paths;
  */
 public class FileConfigurationSource extends CafConfigurationSource
 {
-    public static final String CONFIG_PATH = "config.path";
+    public static final String CONFIG_PATH = "CONFIG_PATH";
+    @Deprecated
+    public static final String OLD_CONFIG_PATH = "config.path";
     private Path configPath;
     private static final Logger LOG = LoggerFactory.getLogger(FileConfigurationSource.class);
 
@@ -39,16 +41,14 @@ public class FileConfigurationSource extends CafConfigurationSource
     /**
      * {@inheritDoc}
      */
-    public FileConfigurationSource(final BootstrapConfiguration bootstrapProvider, final Cipher cipher, final ServicePath servicePath, final Codec codec)
+    public FileConfigurationSource(final BootstrapConfiguration bootstrap, final Cipher cipher, final ServicePath servicePath, final Codec codec)
             throws ConfigurationException
     {
-        super(bootstrapProvider, cipher, servicePath, codec);
-        if ( bootstrapProvider.isConfigurationPresent(CONFIG_PATH) ) {
-            try {
-                configPath = FileSystems.getDefault().getPath(bootstrapProvider.getConfiguration(CONFIG_PATH));
-            } catch (InvalidPathException e) {
-                throw new ConfigurationException("Invalid configuration path", e);
-            }
+        super(bootstrap, cipher, servicePath, codec);
+        try {
+            configPath = FileSystems.getDefault().getPath(getConfigPath(bootstrap));
+        } catch (InvalidPathException e) {
+            throw new ConfigurationException("Invalid configuration path", e);
         }
         LOG.debug("Initialised");
     }
@@ -103,5 +103,20 @@ public class FileConfigurationSource extends CafConfigurationSource
         }
         builder.append("_").append(configClass.getSimpleName());
         return builder.toString();
+    }
+
+
+    private String getConfigPath(final BootstrapConfiguration bootstrap)
+        throws ConfigurationException
+    {
+        String ret;
+        if ( bootstrap.isConfigurationPresent(CONFIG_PATH) ) {
+            ret = bootstrap.getConfiguration(CONFIG_PATH);
+        } else if ( bootstrap.isConfigurationPresent(OLD_CONFIG_PATH) ) {
+            ret = bootstrap.getConfiguration(OLD_CONFIG_PATH);
+        } else {
+            throw new ConfigurationException("Configuration parameter CONFIG_PATH not present");
+        }
+        return ret;
     }
 }
