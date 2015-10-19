@@ -14,7 +14,7 @@ import java.io.InputStream;
 /**
  * Implementation of Codec that supports serialisation and deserialisation to and form JSON format.
  */
-public class JsonCodec extends Codec
+public class JsonCodec implements Codec
 {
     private final ObjectMapper strictMapper;
     private final ObjectMapper lenientMapper;
