@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
  *
  * The strict version does not allow missing properties, whereas the lenient version does.
  */
-public class YamlCodec extends Codec
+public class YamlCodec implements Codec
 {
     private final Yaml strictYaml;
     private final Yaml lenientYaml;
