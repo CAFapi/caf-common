@@ -73,6 +73,8 @@ public class SystemBootstrapConfiguration implements BootstrapConfiguration
         try {
             if ( isConfigurationPresent(BootstrapConfiguration.CONFIG_APP_NAME) ) {
                 path = new ServicePath(getConfiguration(BootstrapConfiguration.CONFIG_APP_NAME));
+            } else if ( isConfigurationPresent(BootstrapConfiguration.OLD_CONFIG_APP_NAME) ) {
+                path = new ServicePath(getConfiguration(BootstrapConfiguration.OLD_CONFIG_APP_NAME));
             } else {
                 path = new ServicePath(getConfiguration(ENV_MARATHON_APP_ID));
             }
