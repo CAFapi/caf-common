@@ -19,7 +19,7 @@ import java.io.InputStream;
  * that itself is compressed with a high-speed LZF algorithm. In some crude tests, this was resulting
  * in data that was approximately 60% of the original JSON size with negligible performance impact.
  */
-public class JsonLzfCodec extends Codec
+public class JsonLzfCodec implements Codec
 {
     private final ObjectMapper strictMapper;
     private final ObjectMapper lenientMapper;
