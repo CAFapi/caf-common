@@ -18,7 +18,8 @@ public class JasyptCipher implements Cipher
     /**
      * The keyword used to encrypt and decrypt data.
      */
-    public static final String CONFIG_SECURITY_PASS = "cipher.pass";
+    public static final String CONFIG_SECURITY_PASS = "CIPHER_PASS";
+
     /**
      * This is PBE with MD5 and DES encryption.
      */
