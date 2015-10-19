@@ -26,20 +26,6 @@ public class JasyptCipherTest
     }
 
 
-    @Test
-    public void jasyptClassTest()
-            throws ConfigurationException, CipherException
-    {
-        BootstrapConfiguration boot = Mockito.mock(BootstrapConfiguration.class);
-        Mockito.when(boot.getConfiguration(JasyptCipher.CONFIG_SECURITY_PASS)).thenReturn(PASS);
-        Cipher sp = new JasyptCipher(boot);
-        String myString = "test456";
-        TestEncryptedConfiguration conf = new TestEncryptedConfiguration();
-        conf.setTestConfig(sp.encrypt(myString));
-        Assert.assertEquals(myString, sp.decrypt(conf).getTestConfig());
-    }
-
-
     @Test(expected = CipherException.class)
     public void jasyptExceptionTest()
         throws ConfigurationException, CipherException

@@ -13,7 +13,7 @@ import org.jasypt.util.text.BasicTextEncryptor;
  * text encryption/decryption capabilities. The strong encryptor is not used
  * to avoid licensing/export issues.
  */
-public class JasyptCipher extends Cipher
+public class JasyptCipher implements Cipher
 {
     /**
      * The keyword used to encrypt and decrypt data.
@@ -33,7 +33,6 @@ public class JasyptCipher extends Cipher
     public JasyptCipher(final BootstrapConfiguration bootstrap)
             throws CipherException
     {
-        super(bootstrap);
         try {
             codec.setPassword(bootstrap.getConfiguration(CONFIG_SECURITY_PASS));
         } catch (ConfigurationException e) {
