@@ -15,9 +15,13 @@ public interface BootstrapConfiguration
     /**
      * Application identifier configuration parameter key.
      * This must be in the format /a/b.
-     * @since 6.0
      */
-    String CONFIG_APP_NAME = "caf.appname";
+    String CONFIG_APP_NAME = "CAF_APPNAME";
+    /**
+     * Old application identifier configuration parameter key.
+     */
+    @Deprecated
+    String OLD_CONFIG_APP_NAME = "caf.appname";
 
 
     /**
