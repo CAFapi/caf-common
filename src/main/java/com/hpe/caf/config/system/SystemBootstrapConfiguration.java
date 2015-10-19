@@ -3,7 +3,7 @@ package com.hpe.caf.config.system;
 
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.ConfigurationException;
-import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.naming.ServicePath;
 
 import javax.naming.InvalidNameException;
 import java.util.Objects;
@@ -13,7 +13,7 @@ import java.util.Objects;
  * Provides bootstrap configuration from Java system properties and environment variables.
  * Note that system properties will always override if present.
  */
-public class SystemBootstrapConfiguration extends BootstrapConfiguration
+public class SystemBootstrapConfiguration implements BootstrapConfiguration
 {
     public static final String ENV_MARATHON_APP_ID = "MARATHON_APP_ID";
 
