@@ -1,4 +1,4 @@
-package com.hpe.caf.config.yaml;
+package com.hpe.caf.config.file;
 
 
 import com.hpe.caf.api.BootstrapConfiguration;
@@ -6,10 +6,9 @@ import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.ConfigurationException;
 import com.hpe.caf.api.ConfigurationSource;
-import com.hpe.caf.api.ServicePath;
 import com.hpe.caf.cipher.NullCipher;
 import com.hpe.caf.codec.YamlCodec;
-import com.hpe.caf.config.file.FileConfigurationSource;
+import com.hpe.caf.naming.ServicePath;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -60,7 +59,7 @@ public class FileConfigurationSourceTest
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(bc.isConfigurationPresent(FileConfigurationSource.CONFIG_PATH)).thenReturn(true);
         Mockito.when(bc.getConfiguration(FileConfigurationSource.CONFIG_PATH)).thenReturn(temp.toString());
-        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(bc), id, codec);
+        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(), id, codec);
         TestFileConfig result = ycp.getConfiguration(TestFileConfig.class);
         Assert.assertEquals(tyc.getTestString(), result.getTestString());
     }
@@ -80,7 +79,7 @@ public class FileConfigurationSourceTest
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(bc.isConfigurationPresent(FileConfigurationSource.CONFIG_PATH)).thenReturn(true);
         Mockito.when(bc.getConfiguration(FileConfigurationSource.CONFIG_PATH)).thenReturn(temp.toString());
-        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(bc), id, codec);
+        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(), id, codec);
         TestFileConfig result = ycp.getConfiguration(TestFileConfig.class);
         Assert.assertEquals(tyc.getTestString(), result.getTestString());
     }
@@ -105,7 +104,7 @@ public class FileConfigurationSourceTest
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(bc.isConfigurationPresent(FileConfigurationSource.CONFIG_PATH)).thenReturn(true);
         Mockito.when(bc.getConfiguration(FileConfigurationSource.CONFIG_PATH)).thenReturn(temp.toString());
-        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(bc), id, codec);
+        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(), id, codec);
         RootConfig result = ycp.getConfiguration(RootConfig.class);
         Assert.assertEquals(testInt, result.getInnerConfig().getTestValue());
     }
@@ -116,7 +115,7 @@ public class FileConfigurationSourceTest
         throws ConfigurationException
     {
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
-        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(bc), id, codec);
+        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(), id, codec);
         ycp.getConfiguration(TestFileConfig.class);
     }
 
@@ -134,7 +133,7 @@ public class FileConfigurationSourceTest
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(bc.isConfigurationPresent(FileConfigurationSource.CONFIG_PATH)).thenReturn(true);
         Mockito.when(bc.getConfiguration(FileConfigurationSource.CONFIG_PATH)).thenReturn(temp.toString());
-        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(bc), id, codec);
+        ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(), id, codec);
         TestFileConfig result = ycp.getConfiguration(TestFileConfig.class);
     }
 

@@ -1,4 +1,4 @@
-package com.hpe.caf.config.yaml;
+package com.hpe.caf.config.file;
 
 
 public class InnerConfig

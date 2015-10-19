@@ -2,13 +2,13 @@ package com.hpe.caf.config.file;
 
 
 import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.CafConfigurationSource;
 import com.hpe.caf.api.Cipher;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.ConfigurationException;
-import com.hpe.caf.api.ConfigurationSource;
 import com.hpe.caf.api.HealthResult;
-import com.hpe.caf.api.Name;
-import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.naming.Name;
+import com.hpe.caf.naming.ServicePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ import java.nio.file.Paths;
  * If retrieving the configuration class "TestConfiguration", using the
  * ServicePath /a/b, it will expect the file to be called "cfg_a_b_TestConfiguration".
  */
-public class FileConfigurationSource extends ConfigurationSource
+public class FileConfigurationSource extends CafConfigurationSource
 {
     public static final String CONFIG_PATH = "config.path";
     private Path configPath;
