@@ -7,9 +7,10 @@ import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.ConfigurationException;
 import com.hpe.caf.api.ConfigurationSource;
 import com.hpe.caf.api.HealthStatus;
-import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.api.ManagedConfigurationSource;
 import com.hpe.caf.cipher.NullCipher;
 import com.hpe.caf.codec.JsonCodec;
+import com.hpe.caf.naming.ServicePath;
 import io.dropwizard.testing.junit.DropwizardClientRule;
 import org.hibernate.validator.constraints.NotBlank;
 import org.junit.ClassRule;
@@ -79,7 +80,7 @@ public class RestConfigurationSourceTest
     {
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
-        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(WORKER), codec);
+        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         TestConfig result = rcp.getConfiguration(TestConfig.class);
         assertEquals(DEFAULT_TEST_STRING, result.getTestData());
     }
@@ -95,7 +96,7 @@ public class RestConfigurationSourceTest
     {
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
-        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(WORKER), codec);
+        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         AppWideTestConfig result = rcp.getConfiguration(AppWideTestConfig.class);
         assertEquals(ALTERNATE_TEST_STRING, result.getTestData());
     }
@@ -107,7 +108,7 @@ public class RestConfigurationSourceTest
     {
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
-        RestConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(INVALID_WORKER), codec);
+        RestConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(INVALID_WORKER), codec);
         rcp.setRetries(0);
         TestConfig result = rcp.getConfiguration(TestConfig.class);
     }
@@ -123,7 +124,7 @@ public class RestConfigurationSourceTest
     {
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
-        RestConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(WORKER), codec);
+        RestConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         rcp.setRetries(0);
         rcp.getConfiguration(OtherTestConfig.class);
     }
@@ -138,7 +139,7 @@ public class RestConfigurationSourceTest
             throws ConfigurationException, InvalidNameException
     {
         BootstrapConfiguration bc = getBootstrap();
-        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(WORKER), codec);
+        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         rcp.getConfiguration(OtherTestConfig.class);
     }
 
@@ -153,7 +154,7 @@ public class RestConfigurationSourceTest
     {
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
-        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(WORKER), codec);
+        ManagedConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         assertEquals(HealthStatus.HEALTHY, rcp.healthCheck().getStatus());
     }
 
@@ -169,7 +170,7 @@ public class RestConfigurationSourceTest
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
         Mockito.when(bc.getConfiguration(Mockito.eq(RestConfigurationSource.CONFIG_REST_HOST))).thenReturn( "http://1.1.1.1:9999");
-        ConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(bc), getId(WORKER), codec);
+        ManagedConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         assertEquals(HealthStatus.UNHEALTHY, rcp.healthCheck().getStatus());
     }
 

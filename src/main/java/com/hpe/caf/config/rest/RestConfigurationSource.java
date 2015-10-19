@@ -2,14 +2,14 @@ package com.hpe.caf.config.rest;
 
 
 import com.hpe.caf.api.BootstrapConfiguration;
+import com.hpe.caf.api.CafConfigurationSource;
 import com.hpe.caf.api.Cipher;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.ConfigurationException;
-import com.hpe.caf.api.ConfigurationSource;
 import com.hpe.caf.api.HealthResult;
 import com.hpe.caf.api.HealthStatus;
-import com.hpe.caf.api.Name;
-import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.naming.Name;
+import com.hpe.caf.naming.ServicePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit.ErrorHandler;
@@ -33,7 +33,7 @@ import java.net.URL;
  * that is to say, if you were requesting the configuration for the backend class TestWorker, with service path group/subgroup/name
  * on the endpoint localhost:8080, it would request the JSON from http://localhost:8080/config/group/subgroup/name/TestWorker
  */
-public class RestConfigurationSource extends ConfigurationSource
+public class RestConfigurationSource extends CafConfigurationSource
 {
     public static final String CONFIG_REST_HOST = "config.rest.host";
     private URL httpServer;
