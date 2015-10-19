@@ -4,17 +4,19 @@ package com.hpe.caf.election;
 import com.hpe.caf.api.Election;
 import com.hpe.caf.api.ElectionCallback;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-public class NullElection extends Election
+public class NullElection implements Election
 {
     private final AtomicBoolean elected = new AtomicBoolean(false);
+    private final ElectionCallback callback;
 
 
-    public NullElection(final String reference, final ElectionCallback callback)
+    public NullElection(final ElectionCallback callback)
     {
-        super(reference, callback);
+        this.callback = Objects.requireNonNull(callback);
     }
 
 
@@ -22,7 +24,7 @@ public class NullElection extends Election
     public void enter()
     {
         if ( elected.compareAndSet(false, true) ) {
-            getCallback().elected();
+            callback.elected();
         }
     }
 
@@ -31,7 +33,7 @@ public class NullElection extends Election
     public void withdraw()
     {
         if ( elected.compareAndSet(true, false) ) {
-            getCallback().rejected();
+            callback.rejected();
         }
     }
 
@@ -40,7 +42,7 @@ public class NullElection extends Election
     public void resign()
     {
         if ( elected.compareAndSet(true, false) ) {
-            getCallback().rejected();
+            callback.rejected();
         }
     }
 }
