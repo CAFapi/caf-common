@@ -11,6 +11,6 @@ public final class NullCipherProvider implements CipherProvider
     @Override
     public Cipher getCipher(final BootstrapConfiguration bootstrapConfiguration)
     {
-        return new NullCipher(bootstrapConfiguration);
+        return new NullCipher();
     }
 }
