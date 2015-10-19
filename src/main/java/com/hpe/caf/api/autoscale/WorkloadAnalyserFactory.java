@@ -6,9 +6,9 @@ import com.hpe.caf.api.HealthReporter;
 
 /**
  * Creates WorkloadAnalyser instances for a specific target and profile.
- * @since 5.0
+ * @since 9.0
  */
-public abstract class WorkloadAnalyserFactory implements HealthReporter
+public interface WorkloadAnalyserFactory extends HealthReporter
 {
     /**
      * Instantiate a new WorkloadAnalyser for a specific target and profile.
@@ -16,5 +16,5 @@ public abstract class WorkloadAnalyserFactory implements HealthReporter
      * @param scalingProfile the name of the profile to use for scaling
      * @return a new WorkloadAnalyser instance for the given scaling target and profile
      */
-    public abstract WorkloadAnalyser getAnalyser(final String scalingTarget, final String scalingProfile);
+    WorkloadAnalyser getAnalyser(String scalingTarget, String scalingProfile);
 }

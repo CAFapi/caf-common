@@ -7,9 +7,9 @@ import com.hpe.caf.api.HealthReporter;
 /**
  * A ServiceScaler is a class that actively triggers or performs the up or
  * down scaling of a service on a platform.
- * @since 5.0
+ * @since 9.0
  */
-public abstract class ServiceScaler implements HealthReporter
+public interface ServiceScaler extends HealthReporter
 {
     /**
      * Scale up a service.
@@ -17,7 +17,7 @@ public abstract class ServiceScaler implements HealthReporter
      * @param amount the number of instances to scale up by
      * @throws ScalerException if the scaling operation cannot be performed
      */
-    public abstract void scaleUp(final String service, final int amount)
+    void scaleUp(String service, int amount)
         throws ScalerException;
 
 
@@ -27,7 +27,7 @@ public abstract class ServiceScaler implements HealthReporter
      * @param amount the number of instances to scale down by
      * @throws ScalerException if the scaling operation cannot be performed
      */
-    public abstract void scaleDown(final String service, final int amount)
+    void scaleDown(String service, int amount)
         throws ScalerException;
 
 
@@ -37,6 +37,6 @@ public abstract class ServiceScaler implements HealthReporter
      * @return an object containing information about the instances running
      * @throws ScalerException if the information could not be retrieved
      */
-    public abstract InstanceInfo getInstanceInfo(final String service)
+    InstanceInfo getInstanceInfo(String service)
         throws ScalerException;
 }

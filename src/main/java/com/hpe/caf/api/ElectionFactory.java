@@ -3,9 +3,9 @@ package com.hpe.caf.api;
 
 /**
  * Factory class for returning Election objects for a specific service election.
- * @since 5.0
+ * @since 9.0
  */
-public abstract class ElectionFactory
+public interface ElectionFactory
 {
     /**
      * Request a handle class used to interact with a particular service election.
@@ -13,5 +13,5 @@ public abstract class ElectionFactory
      * @param callback the object that will be called upon the instance being elected/unelected
      * @return an object to interact with for a specific election
      */
-    public abstract Election getElection(final String serviceReference, final ElectionCallback callback);
+    Election getElection(String serviceReference, ElectionCallback callback);
 }

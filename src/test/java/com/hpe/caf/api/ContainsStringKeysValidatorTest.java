@@ -1,6 +1,6 @@
 package com.hpe.caf.api;
 
-import com.hpe.caf.api.ContainsStringKeys;
+
 import org.junit.Assert;
 import org.junit.Test;
 

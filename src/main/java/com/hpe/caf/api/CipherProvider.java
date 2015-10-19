@@ -13,6 +13,6 @@ public interface CipherProvider
      * @return a new Cipher instance
      * @throws CipherException if the Cipher instance could not be created
      */
-    Cipher getCipher(final BootstrapConfiguration bootstrapConfiguration)
+    Cipher getCipher(BootstrapConfiguration bootstrapConfiguration)
         throws CipherException;
 }

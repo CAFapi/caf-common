@@ -2,7 +2,7 @@ package com.hpe.caf.api.autoscale;
 
 
 import com.hpe.caf.api.ConfigurationSource;
-import com.hpe.caf.api.ServicePath;
+import com.hpe.caf.naming.ServicePath;
 
 
 /**

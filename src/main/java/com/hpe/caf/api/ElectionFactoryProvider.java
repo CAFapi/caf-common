@@ -13,6 +13,6 @@ public interface ElectionFactoryProvider
      * @return a new ElectionFactory instance
      * @throws ElectionException if the ElectionFactory could not be created
      */
-    ElectionFactory getElectionManager(final ConfigurationSource configurationSource)
+    ElectionFactory getElectionManager(ConfigurationSource configurationSource)
         throws ElectionException;
 }
