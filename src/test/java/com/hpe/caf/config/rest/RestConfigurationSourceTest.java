@@ -66,6 +66,7 @@ public class RestConfigurationSourceTest
     private void setRestEndpoint(final BootstrapConfiguration bs)
             throws ConfigurationException
     {
+        Mockito.when(bs.isConfigurationPresent(Mockito.eq(RestConfigurationSource.CONFIG_REST_HOST))).thenReturn(true);
         Mockito.when(bs.getConfiguration(Mockito.eq(RestConfigurationSource.CONFIG_REST_HOST))).thenReturn(drop.baseUri().toString());
     }
 
@@ -169,6 +170,7 @@ public class RestConfigurationSourceTest
     {
         BootstrapConfiguration bc = getBootstrap();
         setRestEndpoint(bc);
+        Mockito.when(bc.isConfigurationPresent(Mockito.eq(RestConfigurationSource.CONFIG_REST_HOST))).thenReturn(true);
         Mockito.when(bc.getConfiguration(Mockito.eq(RestConfigurationSource.CONFIG_REST_HOST))).thenReturn( "http://1.1.1.1:9999");
         ManagedConfigurationSource rcp = new RestConfigurationSource(bc, new NullCipher(), getId(WORKER), codec);
         assertEquals(HealthStatus.UNHEALTHY, rcp.healthCheck().getStatus());

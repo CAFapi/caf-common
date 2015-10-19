@@ -35,7 +35,9 @@ import java.net.URL;
  */
 public class RestConfigurationSource extends CafConfigurationSource
 {
-    public static final String CONFIG_REST_HOST = "config.rest.host";
+    public static final String CONFIG_REST_HOST = "CONFIG_REST_HOST";
+    @Deprecated
+    public static final String OLD_CONFIG_REST_HOST = "config.rest.host";
     private URL httpServer;
     private RemoteRestConfiguration remote;
     private int retries = 5;
@@ -46,13 +48,13 @@ public class RestConfigurationSource extends CafConfigurationSource
      * {@inheritDoc}
      * This ConfigurationProvider requires config.rest.host to be available from the bootstrap configuration.
      */
-    public RestConfigurationSource(final BootstrapConfiguration bootstrapProvider, final Cipher cipher, final ServicePath servicePath,
+    public RestConfigurationSource(final BootstrapConfiguration bootstrap, final Cipher cipher, final ServicePath servicePath,
             final Codec codec)
             throws ConfigurationException
     {
-        super(bootstrapProvider, cipher, servicePath, codec);
+        super(bootstrap, cipher, servicePath, codec);
         try {
-            httpServer = new URL(bootstrapProvider.getConfiguration(CONFIG_REST_HOST));
+            httpServer = new URL(getConfigHost(bootstrap));
             LOG.debug("REST host is {}", httpServer);
         } catch (MalformedURLException e) {
             throw new ConfigurationException("Invalid endpoint URL", e);
@@ -143,6 +145,21 @@ public class RestConfigurationSource extends CafConfigurationSource
                 i++;
             }
         }
+    }
+
+
+    private String getConfigHost(final BootstrapConfiguration bootstrap)
+        throws ConfigurationException
+    {
+        String ret;
+        if ( bootstrap.isConfigurationPresent(CONFIG_REST_HOST) ) {
+            ret = bootstrap.getConfiguration(CONFIG_REST_HOST);
+        } else if ( bootstrap.isConfigurationPresent(OLD_CONFIG_REST_HOST) ) {
+            ret = bootstrap.getConfiguration(OLD_CONFIG_REST_HOST);
+        } else {
+            throw new ConfigurationException("Configuration parameter CONFIG_REST_HOST not present");
+        }
+        return ret;
     }
 
 
