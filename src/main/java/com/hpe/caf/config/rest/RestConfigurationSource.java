@@ -35,7 +35,7 @@ import java.net.URL;
  */
 public class RestConfigurationSource extends CafConfigurationSource
 {
-    public static final String CONFIG_REST_HOST = "CONFIG_REST_HOST";
+    public static final String CONFIG_REST_HOST = "CAF_CONFIG_HOST";
     @Deprecated
     public static final String OLD_CONFIG_REST_HOST = "config.rest.host";
     private URL httpServer;
