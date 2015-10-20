@@ -31,7 +31,7 @@ import java.nio.file.Paths;
  */
 public class FileConfigurationSource extends CafConfigurationSource
 {
-    public static final String CONFIG_PATH = "CONFIG_PATH";
+    public static final String CONFIG_PATH = "CAF_CONFIG_PATH";
     @Deprecated
     public static final String OLD_CONFIG_PATH = "config.path";
     private Path configPath;
@@ -115,7 +115,7 @@ public class FileConfigurationSource extends CafConfigurationSource
         } else if ( bootstrap.isConfigurationPresent(OLD_CONFIG_PATH) ) {
             ret = bootstrap.getConfiguration(OLD_CONFIG_PATH);
         } else {
-            throw new ConfigurationException("Configuration parameter CONFIG_PATH not present");
+            throw new ConfigurationException("Configuration parameter " + CONFIG_PATH + " not present");
         }
         return ret;
     }
