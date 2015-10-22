@@ -6,19 +6,19 @@
 
     <groupId>com.hpe.caf</groupId>
     <artifactId>caf-utils</artifactId>
-    <version>9.0-SNAPSHOT</version>
+    <version>10.0-SNAPSHOT</version>
     
     <parent>
         <groupId>com.hpe.caf</groupId>
         <artifactId>caf-maven</artifactId>
-        <version>8</version>
+        <version>9</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.hpe.caf</groupId>
             <artifactId>caf-api</artifactId>
-            <version>9.0-SNAPSHOT</version>
+            <version>10.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.hpe.caf.util</groupId>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.hpe.caf.config</groupId>
             <artifactId>config-system</artifactId>
-            <version>9.0-SNAPSHOT</version>
+            <version>10.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
