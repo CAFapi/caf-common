@@ -6,36 +6,33 @@
 
     <groupId>com.hpe.caf.cipher</groupId>
     <artifactId>cipher-jasypt</artifactId>
-    <version>10.0</version>
-    
+    <version>10.1-SNAPSHOT</version>
+
     <parent>
         <groupId>com.hpe.caf</groupId>
         <artifactId>caf-maven</artifactId>
-        <version>9</version>
+        <version>14-SNAPSHOT</version>
+        <relativePath>../caf-maven</relativePath>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.hpe.caf</groupId>
             <artifactId>caf-api</artifactId>
-            <version>10.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
-            <version>1.9.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${mockito.core.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
