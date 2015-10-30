@@ -324,6 +324,57 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Cambridge Nexus Central Repository Proxy</name>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/central</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>cmbg-maven-releases</id>
+            <name>Cambridge Nexus Releases</name>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>cmbg-maven-thirdparty</id>
+            <name>Cambridge Nexus 3rd Party</name>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/thirdparty</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>cmbg-maven-snapshots</id>
+            <name>Cambridge Nexus Snapshots</name>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>HPEreleases</id>
+            <name>HPE Sunnyvale Artifactory Releases</name>
+            <url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory/libs-release-local</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>HPEsnapshots</id>
+            <name>HPE Sunnyvale Artifactory Snapshots</name>
+            <url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory/libs-snapshot-local</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>integration-test</id>
