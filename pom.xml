@@ -513,6 +513,13 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>cafstor-release</id>
+            <url>http://16.73.32.104:8081/nexus/content/repositories/cafstor</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <profiles>
