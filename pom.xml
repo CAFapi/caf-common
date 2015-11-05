@@ -85,4 +85,9 @@
         </plugins>
     </build>
 
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://cafbuilder.hpswlabs.hp.com:8080/job/caf-utils/</url>
+    </ciManagement>
+
 </project>
