@@ -24,4 +24,9 @@
         </dependency>
     </dependencies>
 
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://cafbuilder.hpswlabs.hp.com:8080/job/cipher-null/</url>
+    </ciManagement>
+
 </project>
