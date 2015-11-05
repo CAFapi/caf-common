@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.hpe.caf</groupId>
         <artifactId>caf-maven</artifactId>
-        <version>14-SNAPSHOT</version>
+        <version>14</version>
         <relativePath>../caf-maven</relativePath>
     </parent>
 
@@ -28,10 +28,12 @@
         <dependency>
             <groupId>com.hpe.caf.util</groupId>
             <artifactId>util-ref</artifactId>
+	    <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.hpe.caf.util</groupId>
             <artifactId>util-naming</artifactId>
+	    <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
