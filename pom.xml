@@ -400,6 +400,12 @@
     <profiles>
         <profile>
             <id>integration-test</id>
+            <activation>
+                <property>
+                    <name>CAF_BUILD_TYPE</name>
+                    <value>official</value>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -462,6 +468,12 @@
 
         <profile>
             <id>cmbg</id>
+            <activation>
+                <property>
+                    <name>CAF_BUILD_TYPE</name>
+                    <value>official</value>
+                </property>
+            </activation>
             <distributionManagement>
                 <repository>
                     <id>cmbg-maven-releases</id>
