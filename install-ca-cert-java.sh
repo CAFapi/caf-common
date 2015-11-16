@@ -8,8 +8,13 @@ then
         exit 1
     fi
 
-    cd /usr/lib/ssl/certs/java
-    keytool -noprompt -keystore cacerts -storepass changeit -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
+    # Determine OS version
+    distribution=`awk -F= '/^ID=/{print $2}' /etc/os-release`
+    if [ "$distribution" == "debian" ]; then
+        keytool -noprompt -keystore /usr/lib/ssl/certs/java/cacerts -storepass changeit -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
+    else
+        keytool -noprompt -keystore /etc/pki/java/cacerts -storepass changeit -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
+    fi
 
 else
     echo "Not installing CA Certificate for Java"
