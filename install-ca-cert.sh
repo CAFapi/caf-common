@@ -9,15 +9,20 @@ then
     fi
 
     # Determine OS version
-    distribution=`awk -F= '/^ID=/{print $2}' /etc/os-release`
-    if [ "$distribution" == "debian" ]; then
+    if [ -e /usr/sbin/update-ca-certificates ]; then
+        echo "Installing CA Certificate on Debian"
         cp -v $MESOS_SANDBOX/$SSL_CA_CRT /usr/local/share/ca-certificates/ssl-ca-cert.crt
         update-ca-certificates
     else
-        cp -v $MESOS_SANDBOX/$SSL_CA_CRT /etc/pki/ca-trust/source/anchors/ssl-ca-cert.crt
-        update-ca-trust
+        if [ -e /usr/bin/update-ca-trust ]; then
+            echo "Installing CA Certificate on CentOS"
+            cp -v $MESOS_SANDBOX/$SSL_CA_CRT /etc/pki/ca-trust/source/anchors/ssl-ca-cert.crt
+            update-ca-trust
+        else
+            echo "Not installing CA Certificate. Unsupported OS."
+        fi
     fi
 
 else
-    echo "Not installing CA Certificate @ /usr/local/share/ca-certificates"
+    echo "Not installing CA Certificate."
 fi

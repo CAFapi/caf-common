@@ -9,11 +9,17 @@ then
     fi
 
     # Determine OS version
-    distribution=`awk -F= '/^ID=/{print $2}' /etc/os-release`
-    if [ "$distribution" == "debian" ]; then
-        keytool -noprompt -keystore /usr/lib/ssl/certs/java/cacerts -storepass changeit -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
+    JAVA_KEYSTORE_PASSWORD=${JAVA_KEYSTORE_PASSWORD:-changeit}
+    if [ -e /usr/lib/ssl/certs/java/cacerts ]; then
+        echo "Importing CA cert into Java Keystore on Debian";
+        keytool -noprompt -keystore /usr/lib/ssl/certs/java/cacerts -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
     else
-        keytool -noprompt -keystore /etc/pki/java/cacerts -storepass changeit -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
+        if [ -e /etc/pki/java/cacerts ]; then
+            echo "Importing CA cert into Java Keystore on CentOS";
+            keytool -noprompt -keystore /etc/pki/java/cacerts -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert -file $MESOS_SANDBOX/$SSL_CA_CRT
+        else
+            echo "Not installing CA Certificate for Java. Unsupported OS."
+        fi
     fi
 
 else
