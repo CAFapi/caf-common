@@ -22,15 +22,7 @@ public class DatabaseProperties {
     protected Environment environment;
 
     public String getConnectionString(){
-        String connectionString = this.environment.getProperty("db.connection");
-        if(connectionString == null || connectionString.isEmpty()){
-            return connectionString;
-        }
-//        else if (!connectionString.contains(dbNamePlaceholder)) {
-//            return connectionString;
-//        }
-//        return connectionString.replace(dbNamePlaceholder,getDBName());
-        return connectionString;
+      return this.environment.getProperty("db.connection");
     }
 
     public String getUser(){
@@ -43,28 +35,6 @@ public class DatabaseProperties {
 
     public String getDBName(){
         return this.environment.getProperty("db.name");
-    }
-
-    public String getBaseConnectionString(){
-        // this can be used to get the connection string, without the DB name present, in order to create
-        // the DB.
-        String baseConnectionString = this.environment.getProperty("db.connection");
-        if (baseConnectionString == null || baseConnectionString.isEmpty()){
-            return baseConnectionString;
-        }
-        // otherwise, read up to this point, and chop off the rest.
-        return parseConnection(baseConnectionString);
-    }
-
-    public String parseConnection(String originalString){
-//        check for presence of the <dbname> place holder.
-        if ( !originalString.contains(dbNamePlaceholder)) {
-            throw new RuntimeException("Unable to create a new DB without db.connection containing the <dbname> placeholder.");
-        }
-
-        int index = originalString.lastIndexOf(dbNamePlaceholder);
-
-        return originalString.substring(0, index);
     }
 
 }

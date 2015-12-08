@@ -31,7 +31,7 @@ public class Application {
 
     private LogLevel logLevel = LogLevel.WARNING;
 
-    @Option(name = "-db.connection", usage = "Specifies the connection string to the database. Must include the placeholder <dbname>.")
+    @Option(name = "-db.connection", usage = "Specifies the connection string to the database service. e.g. postgresql://localhost:3307/")
     private String connectionString;
 
     @Option(name = "-db.user", usage = "Specifies the username to access the database.")
@@ -43,7 +43,7 @@ public class Application {
     @Option(name = "-db.name", usage = "Specifies the name of the database to be created or updated.")
     private String dbName;
 
-    private String baseConnectionString;
+    private String fullConnectionString;
 
     private DatabaseProperties properties = loadProperties(DatabaseProperties.class);
 
@@ -78,8 +78,8 @@ public class Application {
     private void checkArgs() {
         if (properties != null) {
             dbName = dbName != null ? dbName : properties.getDBName();
-            connectionString = checkConnection(connectionString); //connectionString != null ? connectionString : properties.getConnectionString();
-//            baseConnectionString = properties.getBaseConnectionString();
+            connectionString = connectionString != null ? connectionString : properties.getConnectionString();
+            fullConnectionString = joinDBConnection(connectionString,dbName);
             username = username != null ? username : properties.getUser();
             password = password != null ? password : properties.getPass();
         } else if (connectionString == null || username == null || password == null) {
@@ -97,7 +97,7 @@ public class Application {
             System.out.println();
 
             BasicDataSource basicDataSourceNoDB = new BasicDataSource();
-            basicDataSourceNoDB.setUrl(baseConnectionString);
+            basicDataSourceNoDB.setUrl(connectionString);
             basicDataSourceNoDB.setUsername(username);
             basicDataSourceNoDB.setPassword(password);
 
@@ -112,7 +112,7 @@ public class Application {
             System.out.println("about to perform DB installation from scratch.");
 
             BasicDataSource basicDataSourceNoDB = new BasicDataSource();
-            basicDataSourceNoDB.setUrl(baseConnectionString);
+            basicDataSourceNoDB.setUrl(connectionString);
             basicDataSourceNoDB.setUsername(username);
             basicDataSourceNoDB.setPassword(password);
 
@@ -128,7 +128,7 @@ public class Application {
     private void updateDB() throws SQLException, LiquibaseException {
         System.out.println("About to perform DB update.");
         try(BasicDataSource dataSource = new BasicDataSource()) {
-            dataSource.setUrl(connectionString);
+            dataSource.setUrl(fullConnectionString);
             dataSource.setUsername(username);
             dataSource.setPassword(password);
             try (java.sql.Connection c = dataSource.getConnection()) {
@@ -156,7 +156,7 @@ public class Application {
 
     private boolean checkDBExists() throws SQLException {
         try (BasicDataSource dataSource = new BasicDataSource()) {
-            dataSource.setUrl(connectionString);
+            dataSource.setUrl(fullConnectionString);
             dataSource.setUsername(username);
             dataSource.setPassword(password);
             try (Connection c = dataSource.getConnection()) {
@@ -167,19 +167,23 @@ public class Application {
         }
     }
 
-    private String checkConnection(String connectionString) {
-        if (connectionString == null) {
-            connectionString = properties.getConnectionString();
+    private String joinDBConnection(String connectionString, String dbName) {
+        if(connectionString!=null && dbName != null){
+            if(connectionString.endsWith("/") && !dbName.startsWith("/")) {
+                return connectionString + dbName;
+            }
+            else if(!connectionString.endsWith("/") && dbName.startsWith("/")){
+                return connectionString+dbName;
+            }
+            else if(!connectionString.endsWith("/") && !dbName.startsWith("/")){
+                return connectionString+"/"+dbName;
+            }
+            else if(connectionString.endsWith("/") && dbName.startsWith("/")){
+                int index = connectionString.lastIndexOf("/");
+                return connectionString.substring(0,index) + dbName;
+            }
         }
-        if (dbName == null) {
-            throw new RuntimeException("You must specify the db.name property in either the properties file or as a cmd line argument");
-        }
-        if (connectionString.contains(dbNamePlaceholder)) {
-            int index = connectionString.lastIndexOf(dbNamePlaceholder);
-            baseConnectionString = connectionString.substring(0, index);
-            return connectionString.replace(dbNamePlaceholder, dbName);
-        }
-        throw new RuntimeException("The database connection string must include the placeholder database name: " + dbNamePlaceholder);
+        throw new RuntimeException("Must specify both db.connection and db.name");
     }
 
 }
