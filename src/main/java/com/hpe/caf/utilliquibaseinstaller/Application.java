@@ -173,9 +173,13 @@ public class Application {
                 return connectionString + dbName;
             }
             else if(!connectionString.endsWith("/") && dbName.startsWith("/")){
+                //Connection string must end with a /
+                this.connectionString = connectionString+"/";
                 return connectionString+dbName;
             }
             else if(!connectionString.endsWith("/") && !dbName.startsWith("/")){
+                //Connection string must end with a /
+                this.connectionString = connectionString+"/";
                 return connectionString+"/"+dbName;
             }
             else if(connectionString.endsWith("/") && dbName.startsWith("/")){
