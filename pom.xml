@@ -404,8 +404,9 @@
             </releases>
         </repository>
         <repository>
-            <id>cafstor-release</id>
-            <url>http://renexus.englab.local:8081/nexus/content/repositories/cafstor</url>
+            <id>renexus-releases</id>
+            <name>Southborough Nexus Releases</name>
+            <url>http://renexus.englab.local:8081/nexus/content/repositories/releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
