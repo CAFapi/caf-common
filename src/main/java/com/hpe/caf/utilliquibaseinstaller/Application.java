@@ -29,6 +29,7 @@ public class Application {
     @Option(name = "-fd", usage = "Enables the deletion of existing database for a fresh install.")
     private boolean allowDBDeletion;
 
+    @Option(name = "-log", usage = "Specifies the logging level of the installer")
     private LogLevel logLevel = LogLevel.WARNING;
 
     @Option(name = "-db.connection", usage = "Specifies the connection string to the database service. e.g. postgresql://localhost:3307/")
