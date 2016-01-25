@@ -418,6 +418,25 @@
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Cambridge Nexus Central Repository Proxy</name>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/central</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>cmbg-maven-releases</id>
+            <name>Cambridge Nexus Releases</name>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <profiles>
         <profile>
             <id>integration-test</id>
