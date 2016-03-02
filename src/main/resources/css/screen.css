@@ -652,7 +652,7 @@
   font-style: italic;
 }
 .swagger-section .swagger-ui-wrap .markdown h3 {
-  color: #547f00;
+  color: #01a982;
 }
 .swagger-section .swagger-ui-wrap .markdown h4 {
   color: #666666;
@@ -1296,8 +1296,8 @@
   cursor: pointer;
 }
 .swagger-section #header {
-  background-color: #89bf04;
-  padding: 14px;
+  background-color: #333333;
+  padding: 40px;
 }
 .swagger-section #input_baseUrl {
   width: 400px;
@@ -1328,7 +1328,9 @@
   padding: 6px 8px;
   font-size: 0.9em;
   color: white;
-  background-color: #547f00;
+  background-color: #01a982;
+  border-color: #01a982;
+  color: #ffffff;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
@@ -1337,14 +1339,16 @@
   border-radius: 4px;
 }
 .swagger-section #explore:hover {
-  background-color: #547f00;
+  background-color: #018f6e;
+  border-color:#018f6e;
+  color: #ffffff;
 }
 .swagger-section #header #logo {
   font-size: 1.5em;
   font-weight: bold;
   text-decoration: none;
-  background: transparent url(../images/logo_small.png) no-repeat left center;
-  padding: 20px 0 20px 40px;
+  background: transparent url(../images/hpelight_logo.png) no-repeat left center;
+  padding: 20px 0 30px 200px;
   color: white;
 }
 .swagger-section #content_message {
