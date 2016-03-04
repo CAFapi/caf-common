@@ -6,4 +6,5 @@ package com.hpe.caf.util;
  */
 public interface MultipleTestInterface
 {
+    String getNumber();
 }
