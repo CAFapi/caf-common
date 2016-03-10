@@ -5,6 +5,7 @@
   <title>CAF Service API</title>
   <link rel="icon" type="image/png" href="images/hpelogo.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="images/hpelogo.png" sizes="16x16" />
+  <link id="hpe-swagger-contract" rel="external" href="api-docs/swagger.yaml" />
   <link href='css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
   <link href='css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
   <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
@@ -36,7 +37,7 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "../api-docs/swagger.yaml";
+        url = document.getElementById("hpe-swagger-contract").href;
       }
 
       hljs.configure({
