@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Provides a unique identifier representing the current process.
  */
-public class ProcessIdentifier {
+public final class ProcessIdentifier {
     /**
      * A unique identifier for the current process.
      */
@@ -16,6 +16,12 @@ public class ProcessIdentifier {
      */
     static {
         processId = UUID.randomUUID();
+    }
+
+    /**
+     * Ensure this class can't be instantiated (it is intended to be static)
+     */
+    private ProcessIdentifier() {
     }
 
     /**
