@@ -8,7 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Created by Michael.McAlynn on 03/03/2016.
+ * Allows retrieval of a module based on the Interface that it implements and its simple name.
+ * @since 1.1
  */
 public final class ModuleProvider {
     private static final ModuleProvider theInstance = new ModuleProvider();
