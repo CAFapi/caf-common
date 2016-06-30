@@ -19,11 +19,6 @@ copy_certs() {
 
 if [ -n "$MESOS_SANDBOX" ] && [ -n "$SSL_CA_CRT" ]
 then
-    if ! [ -e $MESOS_SANDBOX/$SSL_CA_CRT ]
-    then
-        echo "CA Certificate at '$MESOS_SANDBOX/$SSL_CA_CRT' not found"
-        exit 1
-    fi
 
     # Determine OS version
     if [ -e /usr/sbin/update-ca-certificates ]; then
