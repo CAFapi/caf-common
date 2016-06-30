@@ -13,14 +13,12 @@ then
         echo "Installing CA Certificate on Debian"
         cp -v $MESOS_SANDBOX/$SSL_CA_CRT /usr/local/share/ca-certificates/ssl-ca-cert.crt
         update-ca-certificates
+    elif [ -e /usr/bin/update-ca-trust ]; then
+        echo "Installing CA Certificate on CentOS"
+        cp -v $MESOS_SANDBOX/$SSL_CA_CRT /etc/pki/ca-trust/source/anchors/ssl-ca-cert.crt
+        update-ca-trust
     else
-        if [ -e /usr/bin/update-ca-trust ]; then
-            echo "Installing CA Certificate on CentOS"
-            cp -v $MESOS_SANDBOX/$SSL_CA_CRT /etc/pki/ca-trust/source/anchors/ssl-ca-cert.crt
-            update-ca-trust
-        else
-            echo "Not installing CA Certificate. Unsupported OS."
-        fi
+        echo "Not installing CA Certificate. Unsupported OS."
     fi
 
 else
