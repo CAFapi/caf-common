@@ -1,13 +1,13 @@
 #!/bin/bash
 
-storePass="changeit"
-caKeystorePath="/usr/lib/ssl/certs/java"
+JAVA_KEYSTORE_PASSWORD=${JAVA_KEYSTORE_PASSWORD:-changeit}
 
-if [ -n "$MESOS_SANDBOX" ] && [ -n "$SSL_CA_CRT" ]
-then
+import_java_cert() {
+    echo "Importing CA cert into Java Keystore on $1"
+    keytool -noprompt -keystore $2 -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert -file $3
+}
 
-    cd $caKeystorePath
-    
+import_java_certs() {
     IFS=',' read -a caFiles <<< "$SSL_CA_CRT"
 
     for caFile in "${caFiles[@]}"
@@ -18,11 +18,22 @@ then
             echo "Aborting further Java CA certificate load attempts."
             exit 1
         fi
-        
-        keytool -noprompt -keystore cacerts -storepass $storePass -importcert -alias $caFile -file $MESOS_SANDBOX/$caFile
+
+        import_java_cert $1 $2 $MESOS_SANDBOX/$caFile
         echo "CA Certificate '$caFile' added to cacerts"
     done
+}
 
+if [ -n "$MESOS_SANDBOX" ] && [ -n "$SSL_CA_CRT" ]
+then
+    # Determine OS version
+    if [ -e /usr/lib/ssl/certs/java/cacerts ]; then
+        import_java_certs "Debian" /usr/lib/ssl/certs/java/cacerts
+    elif [ -e /etc/pki/java/cacerts ]; then
+        import_java_certs "CentOS" /etc/pki/java/cacerts
+    else
+        echo "Not installing CA Certificate for Java. Unsupported OS."
+    fi
 else
-    echo "Not installing CA Certificate(s) for Java"
+    echo "Not installing CA Certificate for Java"
 fi
