@@ -6,7 +6,7 @@
 
     <groupId>com.hpe.caf</groupId>
     <artifactId>caf-maven</artifactId>
-    <version>17-SNAPSHOT</version>
+    <version>18-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <dependencyManagement>
