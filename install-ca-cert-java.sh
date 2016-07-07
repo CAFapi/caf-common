@@ -4,12 +4,13 @@ JAVA_KEYSTORE_PASSWORD=${JAVA_KEYSTORE_PASSWORD:-changeit}
 
 import_java_cert() {
     echo "Importing CA cert into Java Keystore on $1"
-    keytool -noprompt -keystore $2 -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert -file $3
+    keytool -noprompt -keystore $2 -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert-$4 -file $3
 }
 
 import_java_certs() {
     IFS=',' read -a caFiles <<< "$SSL_CA_CRT"
 
+    index=0
     for caFile in "${caFiles[@]}"
     do
         if ! [ -e $MESOS_SANDBOX/$caFile ]
@@ -19,7 +20,8 @@ import_java_certs() {
             exit 1
         fi
 
-        import_java_cert $1 $2 $MESOS_SANDBOX/$caFile
+        import_java_cert $1 $2 $MESOS_SANDBOX/$caFile $index
+	    (( index++ ))
         echo "CA Certificate '$caFile' added to cacerts"
     done
 }
