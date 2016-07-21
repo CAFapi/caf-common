@@ -489,7 +489,6 @@
             <activation>
                 <property>
                     <name>CAF_BUILD_TYPE</name>
-                    <value>official</value>
                 </property>
             </activation>
             <build>
