@@ -312,6 +312,7 @@
         <tini.version>0.9.0</tini.version>
         <marathon.client.version>0.4.9</marathon.client.version>
         <docker.dev.repo>rh7-artifactory.hpswlabs.hp.com:8443</docker.dev.repo>
+        <corporate.repository.manager.url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory</corporate.repository.manager.url>
     </properties>
 
     <build>
