@@ -450,7 +450,7 @@
         <repository>
             <id>HPEsnapshots</id>
             <name>HPE Sunnyvale Artifactory Snapshots</name>
-            <url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory/libs-snapshot-local</url>
+            <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-snapshot-local</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
