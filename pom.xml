@@ -410,7 +410,7 @@
         <repository>
             <id>central</id>
             <name>Cambridge Nexus Central Repository Proxy</name>
-            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/central</url>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/central</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -418,7 +418,7 @@
         <repository>
             <id>cmbg-maven-releases</id>
             <name>Cambridge Nexus Releases</name>
-            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/releases</url>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -426,7 +426,7 @@
         <repository>
             <id>cmbg-maven-thirdparty</id>
             <name>Cambridge Nexus 3rd Party</name>
-            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/thirdparty</url>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/thirdparty</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -434,7 +434,7 @@
         <repository>
             <id>cmbg-maven-snapshots</id>
             <name>Cambridge Nexus Snapshots</name>
-            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/snapshots</url>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -469,7 +469,7 @@
         <pluginRepository>
             <id>central</id>
             <name>Cambridge Nexus Central Repository Proxy</name>
-            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/central</url>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/central</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -477,7 +477,7 @@
         <pluginRepository>
             <id>cmbg-maven-releases</id>
             <name>Cambridge Nexus Releases</name>
-            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/releases</url>
+            <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -564,12 +564,12 @@
                 <repository>
                     <id>cmbg-maven-releases</id>
                     <name>Internal Releases</name>
-                    <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/releases</url>
+                    <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/releases</url>
                 </repository>
                 <snapshotRepository>
                     <id>cmbg-maven-snapshots</id>
                     <name>Internal Snapshots</name>
-                    <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/snapshots</url>
+                    <url>http://cmbg-maven.autonomy.com/nexus/content/repositories/snapshots</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
@@ -579,12 +579,12 @@
                 <repository>
                     <id>HPEreleases</id>
                     <name>Internal Releases</name>
-                    <url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory/libs-release-local</url>
+                    <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-release-local</url>
                 </repository>
                 <snapshotRepository>
                     <id>HPEsnapshots</id>
                     <name>Internal Snapshots</name>
-                    <url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory/libs-snapshot-local</url>
+                    <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-snapshot-local</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
