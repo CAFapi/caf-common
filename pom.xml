@@ -311,7 +311,7 @@
         <docker.maven.version>0.13.6</docker.maven.version>
         <tini.version>0.9.0</tini.version>
         <marathon.client.version>0.4.9</marathon.client.version>
-        <docker.dev.repo>rh7-artifactory.hpswlabs.hp.com:8443</docker.dev.repo>
+        <docker.dev.repo>rh7-artifactory.svs.hpeswlab.net:8443</docker.dev.repo>
         <corporate.repository.manager.url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory</corporate.repository.manager.url>
     </properties>
 
@@ -442,7 +442,7 @@
         <repository>
             <id>HPEreleases</id>
             <name>HPE Sunnyvale Artifactory Releases</name>
-            <url>http://rh7-artifactory.hpswlabs.hp.com:8081/artifactory/libs-release-local</url>
+            <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-release-local</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
