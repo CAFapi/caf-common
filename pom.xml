@@ -357,17 +357,17 @@
                         <goals>
                             <goal>execute</goal>
                         </goals>
+                        <configuration>
+                            <scripts>
+                                <script><![CDATA[
+                                    if (project.properties['git.branch'].allWhitespace) {
+                                        project.properties.setProperty('git.branch', 'unknown');
+                                    }
+                                ]]></script>
+                            </scripts>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <scripts>
-                        <script><![CDATA[
-                            if (project.properties['git.branch'].allWhitespace) {
-                                project.properties.setProperty('git.branch', 'unknown');
-                            }
-                        ]]></script>
-                    </scripts>
-                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
