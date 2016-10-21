@@ -205,7 +205,7 @@
             <dependency>
                 <groupId>net.jodah</groupId>
                 <artifactId>lyra</artifactId>
-                <version>0.5.2</version>
+                <version>0.5.3</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
