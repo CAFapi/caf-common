@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hpe.caf-common</groupId>
+    <artifactId>caf-common</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    
+    <modules>
+        <module>caf-api</module>
+        <module>caf-maven</module>
+        <module>caf-utils</module>
+        <module>cipher-jasypt</module>
+        <module>cipher-null</module>
+        <module>codec-json</module>
+        <module>codec-yaml</module>
+        <module>codec-json-lzf</module>
+        <module>config-caf</module>
+        <module>config-file</module>
+        <module>config-rest</module>
+        <module>config-system</module>
+        <module>container-cert-script</module>
+        <module>election-null</module>
+        <module>swagger-ui</module>
+        <module>util-jerseycompat</module>
+        <module>util-liquibase-installer</module>
+        <module>util-moduleloader</module>
+        <module>util-naming</module>
+        <module>util-process-identifier</module>
+    </modules>
+    
+    <!-- This aggregator project is only used for building so we don't want to install or deploy the POM -->
+    <properties>
+        <maven.install.skip>true</maven.install.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+    
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://cafbuilder.hpeswlab.net:8080/job/caf-common/</url>
+    </ciManagement>
+
+</project>
