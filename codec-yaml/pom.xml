@@ -31,10 +31,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <ciManagement>
-        <system>hudson</system>
-        <url>http://cafbuilder.hpeswlab.net:8080/job/codec-yaml/</url>
-    </ciManagement>
-
+	
 </project>

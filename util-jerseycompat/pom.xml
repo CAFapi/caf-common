@@ -28,9 +28,4 @@
         </dependency>
     </dependencies>
 
-    <ciManagement>
-        <system>hudson</system>
-        <url>http://cafbuilder.hpeswlab.net:8080/job/util-jerseycompat/</url>
-    </ciManagement>
-
 </project>

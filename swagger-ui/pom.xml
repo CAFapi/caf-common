@@ -16,9 +16,4 @@
         <relativePath>../caf-maven-latest</relativePath>
     </parent>
 
-    <ciManagement>
-        <system>hudson</system>
-        <url>http://cafbuilder.hpeswlab.net:8080/job/swagger-ui/</url>
-    </ciManagement>
-
 </project>

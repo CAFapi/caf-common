@@ -23,9 +23,4 @@
         </dependency>
     </dependencies>
 
-    <ciManagement>
-        <system>hudson</system>
-        <url>http://cafbuilder.hpeswlab.net:8080/job/election-null/</url>
-    </ciManagement>
-
 </project>
