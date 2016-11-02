@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 
 /**
@@ -36,6 +37,7 @@ public class FileConfigurationSource extends CafConfigurationSource
     public static final String OLD_CONFIG_PATH = "config.path";
     private Path configPath;
     private static final Logger LOG = LoggerFactory.getLogger(FileConfigurationSource.class);
+    private static final ArrayList<String> fileNameDelimiters = new ArrayList<>();
 
 
     /**
@@ -50,6 +52,8 @@ public class FileConfigurationSource extends CafConfigurationSource
         } catch (InvalidPathException e) {
             throw new ConfigurationException("Invalid configuration path", e);
         }
+        fileNameDelimiters.add("_");
+        fileNameDelimiters.add("~");
         LOG.debug("Initialised");
     }
 
@@ -72,19 +76,26 @@ public class FileConfigurationSource extends CafConfigurationSource
     protected InputStream getConfigurationStream(final Class configClass, final Name relativePath)
             throws ConfigurationException
     {
-        String configFile = nameToFile(configClass, relativePath);
-        Path p;
-        if ( configPath != null ) {
-            p = configPath.resolve(configFile);
-        } else {
-            p = Paths.get(configFile);
+        // Try each configuration source filename format delimiter in attempt to load the configuration source
+        for (String fileNameDelimiter : fileNameDelimiters) {
+            String configFile = nameToFile(configClass, relativePath, fileNameDelimiter);
+            Path p;
+            if (configPath != null) {
+                p = configPath.resolve(configFile);
+            } else {
+                p = Paths.get(configFile);
+            }
+            LOG.debug("Getting configuration for {} from {}", configClass.getSimpleName(), p);
+            // Check if the file exists and try to return it as an input stream
+            if (Files.exists(p)) {
+                try {
+                    return Files.newInputStream(p);
+                } catch (IOException ioe) {
+                    throw new ConfigurationException("Cannot read config file: " + configFile, ioe);
+                }
+            }
         }
-        LOG.debug("Getting configuration for {} from {}", configClass.getSimpleName(), p);
-        try {
-            return Files.newInputStream(p);
-        } catch (IOException e) {
-            throw new ConfigurationException("Cannot read config file: " + configFile, e);
-        }
+        throw new ConfigurationException("Cannot find config file for " + configClass.getSimpleName());
     }
 
 
@@ -93,15 +104,16 @@ public class FileConfigurationSource extends CafConfigurationSource
      * in the format "cfg_group_subgroup_appid_ConfigurationClass".
      * @param configClass the configuration class to try and acquire
      * @param servicePath the partial or complete ServicePath in Name format
+     * @param fileNameDelimiter the symbol used to separate cfg, group, subgroup, appid and ConfigurationClass
      * @return the constructed file name to try and access
      */
-    private String nameToFile(final Class configClass, final Name servicePath)
+    private String nameToFile(final Class configClass, final Name servicePath, String fileNameDelimiter)
     {
         StringBuilder builder = new StringBuilder("cfg");
         for(String component : servicePath) {
-            builder.append("_").append(component);
+            builder.append(fileNameDelimiter).append(component);
         }
-        builder.append("_").append(configClass.getSimpleName());
+        builder.append(fileNameDelimiter).append(configClass.getSimpleName());
         return builder.toString();
     }
 
@@ -110,9 +122,9 @@ public class FileConfigurationSource extends CafConfigurationSource
         throws ConfigurationException
     {
         String ret;
-        if ( bootstrap.isConfigurationPresent(CONFIG_PATH) ) {
+        if (bootstrap.isConfigurationPresent(CONFIG_PATH)) {
             ret = bootstrap.getConfiguration(CONFIG_PATH);
-        } else if ( bootstrap.isConfigurationPresent(OLD_CONFIG_PATH) ) {
+        } else if (bootstrap.isConfigurationPresent(OLD_CONFIG_PATH)) {
             ret = bootstrap.getConfiguration(OLD_CONFIG_PATH);
         } else {
             throw new ConfigurationException("Configuration parameter " + CONFIG_PATH + " not present");
