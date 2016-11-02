@@ -526,7 +526,7 @@
                         <executions>
                             <execution>
                                 <id>istf-upload</id>
-                                <phase>deploy</phase>
+                                <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>upload</goal>
                                 </goals>
