@@ -150,7 +150,7 @@
             <dependency>
                 <groupId>com.verity</groupId>
                 <artifactId>keyview-api</artifactId>
-                <version>10.25</version>
+                <version>11.2.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-configuration</groupId>
