@@ -39,6 +39,11 @@ public class FileConfigurationSource extends CafConfigurationSource
     private static final Logger LOG = LoggerFactory.getLogger(FileConfigurationSource.class);
     private static final ArrayList<String> fileNameDelimiters = new ArrayList<>();
 
+    static {
+        fileNameDelimiters.add("_");
+        fileNameDelimiters.add("~");
+    }
+
 
     /**
      * {@inheritDoc}
@@ -52,8 +57,6 @@ public class FileConfigurationSource extends CafConfigurationSource
         } catch (InvalidPathException e) {
             throw new ConfigurationException("Invalid configuration path", e);
         }
-        fileNameDelimiters.add("_");
-        fileNameDelimiters.add("~");
         LOG.debug("Initialised");
     }
 
