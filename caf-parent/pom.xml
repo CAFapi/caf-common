@@ -302,6 +302,11 @@
                 <artifactId>podam</artifactId>
                 <version>6.0.2.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.9.13.6</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -487,6 +492,11 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </pluginRepository>
+         <pluginRepository>
+            <id>cmbg-maven-snapshots</id>
+            <name>Cambridge Nexus Snapshots</name>
+            <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/snapshots</url>
         </pluginRepository>
     </pluginRepositories>
 
