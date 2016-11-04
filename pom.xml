@@ -32,6 +32,7 @@
         <module>container-cert-script</module>
         <module>election-null</module>
         <module>swagger-ui</module>
+        <module>util-ref</module>
         <module>util-jerseycompat</module>
         <module>util-liquibase-installer</module>
         <module>util-moduleloader</module>
