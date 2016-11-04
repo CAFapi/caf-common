@@ -4,25 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hpe.caf.config</groupId>
+    <groupId>com.github.cafapi.config</groupId>
     <artifactId>config-rest</artifactId>
-    <version>10.1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
-	<parent>
-		<groupId>com.hpe.caf</groupId>
-		<artifactId>caf-common</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>com.github.cafapi</groupId>
+        <artifactId>caf-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <dependency>
-            <groupId>com.hpe.caf</groupId>
+            <groupId>com.github.cafapi</groupId>
             <artifactId>caf-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.hpe.caf.config</groupId>
+            <groupId>com.github.cafapi.config</groupId>
             <artifactId>config-caf</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.retrofit</groupId>
@@ -38,8 +40,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.hpe.caf.codec</groupId>
+            <groupId>com.github.cafapi.codec</groupId>
             <artifactId>codec-json</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -48,8 +51,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.hpe.caf.cipher</groupId>
+            <groupId>com.github.cafapi.cipher</groupId>
             <artifactId>cipher-null</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
