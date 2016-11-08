@@ -33,7 +33,7 @@
         <module>util-process-identifier</module>
     </modules>
 
-	<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>ru.concerteza.buildnumber</groupId>
@@ -49,9 +49,48 @@
                     </execution>
                 </executions>
             </plugin>
-		</plugins>
-	</build>
-	
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>cmbg</id>
+            <activation>
+                <property>
+                    <name>CAF_BUILD_TYPE</name>
+                    <value>official</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>cmbg-maven-releases</id>
+                    <name>Internal Releases</name>
+                    <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/releases</url>
+                </repository>
+                <snapshotRepository>
+                    <id>cmbg-maven-snapshots</id>
+                    <name>Internal Snapshots</name>
+                    <url>http://cbgmaven.hpeswlab.net/nexus/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>sunnyvale</id>
+            <distributionManagement>
+                <repository>
+                    <id>HPEreleases</id>
+                    <name>Internal Releases</name>
+                    <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-release-local</url>
+                </repository>
+                <snapshotRepository>
+                    <id>HPEsnapshots</id>
+                    <name>Internal Snapshots</name>
+                    <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-snapshot-local</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
     <ciManagement>
         <system>hudson</system>
         <url>http://cafbuilder.hpeswlab.net:8080/job/caf-common/</url>
