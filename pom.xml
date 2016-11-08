@@ -4,16 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hpe.caf</groupId>
+    <groupId>com.github.cafapi</groupId>
     <artifactId>caf-common</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
-    <!-- This aggregator project is only used for building so we don't want to install or deploy the POM -->
-    <properties>
-        <maven.install.skip>true</maven.install.skip>
-        <maven.deploy.skip>true</maven.deploy.skip>
-    </properties>
 
     <modules>
         <module>caf-api</module>
@@ -39,6 +33,25 @@
         <module>util-process-identifier</module>
     </modules>
 
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>ru.concerteza.buildnumber</groupId>
+                <artifactId>maven-jgit-buildnumber-plugin</artifactId>
+                <version>1.2.10</version>
+                <executions>
+                    <execution>
+                        <id>git-buildnumber</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>extract-buildnumber</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+	
     <ciManagement>
         <system>hudson</system>
         <url>http://cafbuilder.hpeswlab.net:8080/job/caf-common/</url>
