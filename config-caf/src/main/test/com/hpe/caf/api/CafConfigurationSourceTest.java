@@ -4,6 +4,7 @@ package com.hpe.caf.api;
 import com.hpe.caf.naming.ServicePath;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
 import javax.naming.InvalidNameException;
@@ -153,6 +154,67 @@ public class CafConfigurationSourceTest
         config.getConfiguration(TestData.class);
     }
 
+    @Test
+    public void testConfigurationSource_Token_SystemProperty()
+            throws CodecException, CipherException, ConfigurationException, InvalidNameException
+    {
+        InputStream is = Mockito.mock(InputStream.class);
+        Validator val = Validation.buildDefaultValidatorFactory().getValidator();
+
+        // Set up system properties for unit test.
+        System.setProperty("ccst_hostname", "MyHostName");
+        System.setProperty("ccst_path", "MyPath");
+
+        ServicePath id = new ServicePath("/testApp/unitTest");
+        TestDataForTokenUsage data = new TestDataForTokenUsage();
+        data.setTestString("MyPropertyTokenTest");
+        data.setValue("http://${ccst_hostname:-MyDefaultHostName}:8080//${ccst_path:-MyDefaultPath}");
+
+        Codec c = Mockito.mock(Codec.class);
+        Mockito.when(c.deserialise(is, TestDataForTokenUsage.class)).thenReturn(data);
+
+        Cipher cipher = Mockito.mock(Cipher.class);
+
+        CafConfigurationSource config = Mockito.mock(CafConfigurationSource.class);
+        Mockito.when(config.getConfigurationStream(TestDataForTokenUsage.class, id.getPath())).thenReturn(is);
+        Mockito.when(config.getServicePath()).thenReturn(id);
+        Mockito.when(config.getCodec()).thenReturn(c);
+        Mockito.when(config.getCipher()).thenReturn(cipher);
+        Mockito.when(config.getValidator()).thenReturn(val);
+
+        TestDataForTokenUsage result = config.getConfiguration(TestDataForTokenUsage.class);
+        Assert.assertEquals("http://MyHostName:8080//MyPath", result.getValue());
+        Assert.assertEquals("MyPropertyTokenTest", result.getTestString());
+    }
+
+    @Test
+    public void testConfigurationSource_Token_DefaultValue()
+            throws CodecException, CipherException, ConfigurationException, InvalidNameException
+    {
+        InputStream is = Mockito.mock(InputStream.class);
+        Validator val = Validation.buildDefaultValidatorFactory().getValidator();
+
+        ServicePath id = new ServicePath("/testApp/unitTest");
+        TestDataForTokenUsage data = new TestDataForTokenUsage();
+        data.setTestString("MyPropertyTokenTest");
+        data.setValue("http://${ccst_hostname:-MyDefaultHostName}:8080//${ccst_path:-MyDefaultPath}");
+
+        Codec c = Mockito.mock(Codec.class);
+        Mockito.when(c.deserialise(is, TestDataForTokenUsage.class)).thenReturn(data);
+
+        Cipher cipher = Mockito.mock(Cipher.class);
+
+        CafConfigurationSource config = Mockito.mock(CafConfigurationSource.class);
+        Mockito.when(config.getConfigurationStream(TestDataForTokenUsage.class, id.getPath())).thenReturn(is);
+        Mockito.when(config.getServicePath()).thenReturn(id);
+        Mockito.when(config.getCodec()).thenReturn(c);
+        Mockito.when(config.getCipher()).thenReturn(cipher);
+        Mockito.when(config.getValidator()).thenReturn(val);
+
+        TestDataForTokenUsage result = config.getConfiguration(TestDataForTokenUsage.class);
+        Assert.assertEquals("http://MyDefaultHostName:8080//MyDefaultPath", result.getValue());
+        Assert.assertEquals("MyPropertyTokenTest", result.getTestString());
+    }
 
     private class TestData
     {
@@ -198,6 +260,31 @@ public class CafConfigurationSourceTest
         }
     }
 
+    private class TestDataForTokenUsage
+    {
+        private String testString;
+
+        private String value;
+
+        public String getTestString() {
+            return testString;
+        }
+
+
+        public void setTestString(final String testString) {
+            this.testString = testString;
+        }
+
+
+        public String getValue() {
+            return value;
+        }
+
+
+        public void setValue(final String value) {
+            this.value = value;
+        }
+    }
 
     private class SubConfig
     {

@@ -2,6 +2,8 @@ package com.hpe.caf.api;
 
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
+import org.apache.commons.lang3.text.StrLookup;
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -163,10 +165,23 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
                     Method getter = new PropertyDescriptor(f.getName(), config.getClass()).getReadMethod();
                     Method setter = new PropertyDescriptor(f.getName(), config.getClass()).getWriteMethod();
                     if (getter != null && setter != null) {
-                        setter.invoke(config, getCipher().decrypt((String) getter.invoke(config)));
+                        setter.invoke(config, getCipher().decrypt(tokenSubstitutor((String) getter.invoke(config))));
                     }
                 } catch (CipherException | IntrospectionException | InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to decrypt class fields", e);
+                }
+            } else if (f.getType().equals(String.class)) {
+                try {
+                    String propertyName = f.getName();
+                    Method getter = new PropertyDescriptor(propertyName, config.getClass()).getReadMethod();
+                    Method setter = new PropertyDescriptor(propertyName, config.getClass()).getWriteMethod();
+                    if (getter != null && setter != null) {
+                        // Property value may contain tokens that require substitution.
+                        String propertyValueByToken = tokenSubstitutor((String) getter.invoke(config));
+                        setter.invoke(config, propertyValueByToken);
+                    }
+                } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                    throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             }
         }
@@ -197,6 +212,21 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         }
         incrementErrors();
         throw new ConfigurationException("No configuration found for " + configClass.getSimpleName());
+    }
+
+    private static String tokenSubstitutor(final String source)
+    {
+        final StrSubstitutor strSubstitutor = new StrSubstitutor(
+            new StrLookup<Object>()
+        {
+            @Override
+            public String lookup(final String key)
+            {
+                return (System.getProperty(key) != null) ? System.getProperty(key) : System.getenv(key);
+            }
+        });
+
+        return strSubstitutor.replace(source);
     }
 
     /**
