@@ -642,6 +642,11 @@
 
         <profile>
             <id>sunnyvale</id>
+            <activation>
+                <property>
+                    <name>RE_BUILD_TYPE</name>
+                </property>
+            </activation>             
             <distributionManagement>
                 <repository>
                     <id>HPEreleases</id>
