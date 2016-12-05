@@ -151,7 +151,7 @@ public class Application {
                 Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(c));
 
                 // Check that the Database does indeed exist before we try to run the liquibase update.
-                Liquibase liquibase = new Liquibase("changelog.xml", new ClassLoaderResourceAccessor(), database);
+                Liquibase liquibase = new Liquibase("changelog-master.xml", new ClassLoaderResourceAccessor(), database);
                 liquibase.getLog().setLogLevel(logLevel);
                 liquibase.update(new Contexts());
                 System.out.println("DB update finished.");
