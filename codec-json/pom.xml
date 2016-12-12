@@ -21,12 +21,12 @@
 
     <groupId>com.github.cafapi.codec</groupId>
     <artifactId>codec-json</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0-23</version>
 
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-parent</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.1.0-23</version>
         <relativePath>../caf-parent</relativePath>
     </parent>
 
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.github.cafapi</groupId>
             <artifactId>caf-api</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>1.1.0-23</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
