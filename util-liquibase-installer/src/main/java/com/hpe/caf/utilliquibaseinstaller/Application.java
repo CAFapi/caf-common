@@ -143,7 +143,7 @@ public class Application {
         }
         updateDB();
     }
-    
+
     /**
      * Checks connection, retrieves appropriate changelog and performs database update.
      * @throws SQLException
@@ -157,7 +157,7 @@ public class Application {
             dataSource.setPassword(password);
             try (java.sql.Connection c = dataSource.getConnection()) {
                 Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(c));
-                
+
                 // Check that the Database does indeed exist before we try to run the liquibase update.
                 Liquibase liquibase = null;
                 ClassLoaderResourceAccessor accessor = new ClassLoaderResourceAccessor(); 
