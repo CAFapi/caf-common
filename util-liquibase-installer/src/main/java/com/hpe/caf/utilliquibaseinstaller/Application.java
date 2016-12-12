@@ -15,6 +15,7 @@
 
 package com.hpe.caf.utilliquibaseinstaller;
 
+import java.io.IOException;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.Database;
@@ -34,6 +35,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by gibsodom on 08/12/2015.
@@ -149,9 +152,27 @@ public class Application {
             dataSource.setPassword(password);
             try (java.sql.Connection c = dataSource.getConnection()) {
                 Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(c));
+                
+                Liquibase liquibase = null;
+                ClassLoaderResourceAccessor accessor = new ClassLoaderResourceAccessor(); 
+                try {
+                   if(accessor.getResourcesAsStream("changelog-master.xml") != null) {
+                        liquibase = new Liquibase("changelog-master.xml", new ClassLoaderResourceAccessor(), database);
+                   } 
+                   
+                   else if(accessor.getResourcesAsStream("changelog.xml") != null) {
+                        liquibase = new Liquibase("changelog.xml", new ClassLoaderResourceAccessor(), database);
+                   }
+                   else {
+                       String errorMessage = "No liquibase changelog-master.xml or changelog.xml could be located";
+                       Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage, this);
+                       throw new RuntimeException(errorMessage);
+                   }
+                } catch (IOException ioe) {
+                    Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
+                }
 
                 // Check that the Database does indeed exist before we try to run the liquibase update.
-                Liquibase liquibase = new Liquibase("changelog-master.xml", new ClassLoaderResourceAccessor(), database);
                 liquibase.getLog().setLogLevel(logLevel);
                 liquibase.update(new Contexts());
                 System.out.println("DB update finished.");
