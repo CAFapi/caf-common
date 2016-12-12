@@ -143,7 +143,12 @@ public class Application {
         }
         updateDB();
     }
-
+    
+    /**
+     * Checks connection, retrieves appropriate changelog and performs database update.
+     * @throws SQLException
+     * @throws LiquibaseException 
+     */
     private void updateDB() throws SQLException, LiquibaseException {
         System.out.println("About to perform DB update.");
         try(BasicDataSource dataSource = new BasicDataSource()) {
@@ -153,13 +158,13 @@ public class Application {
             try (java.sql.Connection c = dataSource.getConnection()) {
                 Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(c));
                 
+                // Check that the Database does indeed exist before we try to run the liquibase update.
                 Liquibase liquibase = null;
                 ClassLoaderResourceAccessor accessor = new ClassLoaderResourceAccessor(); 
                 try {
                    if(accessor.getResourcesAsStream("changelog-master.xml") != null) {
                         liquibase = new Liquibase("changelog-master.xml", new ClassLoaderResourceAccessor(), database);
                    } 
-                   
                    else if(accessor.getResourcesAsStream("changelog.xml") != null) {
                         liquibase = new Liquibase("changelog.xml", new ClassLoaderResourceAccessor(), database);
                    }
@@ -172,14 +177,12 @@ public class Application {
                     Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
                 }
 
-                // Check that the Database does indeed exist before we try to run the liquibase update.
                 liquibase.getLog().setLogLevel(logLevel);
                 liquibase.update(new Contexts());
                 System.out.println("DB update finished.");
             }
         }
     }
-
 
     protected static <T> T loadProperties(Class<T> propertiesClass) {
         AnnotationConfigApplicationContext propertiesApplicationContext = new AnnotationConfigApplicationContext();
