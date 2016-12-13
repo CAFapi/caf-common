@@ -20,13 +20,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>swagger-ui</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-parent</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
         <relativePath>../caf-parent</relativePath>
     </parent>
 
