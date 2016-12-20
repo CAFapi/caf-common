@@ -22,7 +22,6 @@ import java.util.Objects;
 /**
  * A result returned from a class that implements HealthReporter, indicating its health status
  * and if necessary, a message detailing further information.
- * @since 1.0
  */
 public final class HealthResult
 {

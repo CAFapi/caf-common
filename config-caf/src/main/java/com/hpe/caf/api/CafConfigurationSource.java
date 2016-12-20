@@ -40,8 +40,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Partial implementation of a ManagedConfigurationSource that performs hierarchical lookups based upon the service's ServicePath, and
  * recursive lookup for configuration objects that themselves have configuration in marked with the @Configuration annotation.
- *
- * @since 9.0
  */
 public abstract class CafConfigurationSource implements ManagedConfigurationSource
 {

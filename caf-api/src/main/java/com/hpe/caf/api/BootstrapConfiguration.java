@@ -23,7 +23,6 @@ import com.hpe.caf.naming.ServicePath;
  * A bootstrap configuration is a method of providing basic, initial startup configuration.
  * This is more crude than a full ConfigurationProvider, and only supports trivial key/value
  * lookups.
- * @since 9.0
  */
 public interface BootstrapConfiguration
 {

@@ -28,7 +28,6 @@ import java.util.Objects;
  * instance must be loaded into memory. As such, this wrapper should only be used for objects that are at
  * most a few megabytes of data.
  * @param <T> the type of the wrapped, referenced object
- * @since 1.0
  */
 public final class ReferencedObject<T>
 {

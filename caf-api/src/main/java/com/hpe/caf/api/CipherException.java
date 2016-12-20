@@ -18,7 +18,6 @@ package com.hpe.caf.api;
 
 /**
  * Thrown when a Cipher encounters a failure when encrypting or decrypting information.
- * @since 4.0
  */
 public class CipherException extends Exception
 {

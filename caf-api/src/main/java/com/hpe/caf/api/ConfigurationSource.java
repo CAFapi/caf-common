@@ -19,7 +19,6 @@ package com.hpe.caf.api;
 /**
  * A ConfigurationSource is intended to provide an implementation-agnostic method of
  * retrieving application-specific configuration.
- * @since 9.0
  */
 public interface ConfigurationSource
 {

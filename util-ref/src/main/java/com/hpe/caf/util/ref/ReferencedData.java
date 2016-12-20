@@ -27,7 +27,6 @@ import java.util.Objects;
  *
  * This is primarily intended for use with large amounts of binary data that needs to be processed without
  * storing it all in memory.
- * @since 1.0
  */
 public class ReferencedData
 {

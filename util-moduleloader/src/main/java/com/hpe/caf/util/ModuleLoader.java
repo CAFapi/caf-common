@@ -29,7 +29,6 @@ import java.util.ServiceLoader;
 /**
  * Utility class that provides methods for finding and returning components at runtime
  * using the Java ServiceLoader.
- * @since 1.0
  */
 public final class ModuleLoader
 {

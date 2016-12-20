@@ -26,7 +26,6 @@ import java.lang.annotation.Target;
 /**
  * Used on a field of type Map with String keys to indicate that they keys
  * must contains specific Strings.
- * @since 5.0
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -18,7 +18,6 @@ package com.hpe.caf.api;
 
 /**
  * Simple boilerplate for returning a Cipher implementation.
- * @since 5.0
  */
 public interface CipherProvider
 {

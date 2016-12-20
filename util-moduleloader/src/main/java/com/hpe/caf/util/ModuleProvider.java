@@ -24,7 +24,6 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * Allows retrieval of a module based on the Interface that it implements and its simple name.
- * @since 1.1
  */
 public final class ModuleProvider {
     private static final ModuleProvider theInstance = new ModuleProvider();

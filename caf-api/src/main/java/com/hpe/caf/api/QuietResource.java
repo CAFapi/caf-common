@@ -24,7 +24,6 @@ import org.slf4j.LoggerFactory;
  * Utility class for use with try-with-resources, for classes where the close operation
  * may throw an exception, but this is not a useful check.
  * @param <T> the class to close quietly
- * @since 8.0
  */
 public class QuietResource<T extends AutoCloseable> implements AutoCloseable
 {

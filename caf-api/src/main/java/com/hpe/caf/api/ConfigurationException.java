@@ -18,7 +18,6 @@ package com.hpe.caf.api;
 
 /**
  * Indicates there was a problem in the ConfigurationSource module.
- * @since 1.0
  */
 public class ConfigurationException extends Exception
 {

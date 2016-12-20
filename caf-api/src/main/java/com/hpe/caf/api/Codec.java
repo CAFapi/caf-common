@@ -22,7 +22,6 @@ import java.io.InputStream;
 /**
  * A Codec specifies methods to serialise data from a Java object to byte format,
  * and deserialise data from byte format back into a specified Java class.
- * @since 9.0
  */
 public interface Codec
 {

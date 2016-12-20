@@ -21,7 +21,6 @@ import java.io.InputStream;
 
 /**
  * Interface for defining how to retrieve objects or streams from a reference.
- * @since 1.0
  */
 public abstract class DataSource
 {

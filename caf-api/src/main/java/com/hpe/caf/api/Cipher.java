@@ -18,7 +18,6 @@ package com.hpe.caf.api;
 
 /**
  * Provides a method of encrypting and decrypting string data, such as passwords.
- * @since 9.0
  */
 public interface Cipher
 {

@@ -18,7 +18,6 @@ package com.hpe.caf.api;
 
 /**
  * Simple boilerplate for providing an ElectionFactory.
- * @since 5.0
  */
 public interface ElectionFactoryProvider
 {

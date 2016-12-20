@@ -31,7 +31,6 @@ import java.util.Objects;
  * Valid path: /a/b/c/ (leading and terminating slashes will be removed)
  * Invalid path: /a/b//c/ (empty naming groups are not allowed)
  * Invalid path: /a (no group)
- * @since 1.0
  */
 public final class ServicePath implements Iterable<String>
 {

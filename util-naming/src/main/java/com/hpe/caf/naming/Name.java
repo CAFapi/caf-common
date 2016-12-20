@@ -26,7 +26,6 @@ import java.util.regex.Pattern;
 /**
  * A class that is similar to java.naming.Name, but is iterable.
  * A Name is a tokenized character String, delimited by forward-slashes.
- * @since 1.0
  */
 public class Name implements Iterable<String>
 {

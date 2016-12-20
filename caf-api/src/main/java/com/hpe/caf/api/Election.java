@@ -18,7 +18,6 @@ package com.hpe.caf.api;
 
 /**
  * Allows interaction with the election process of an individual service election.
- * @since 9.0
  */
 public interface Election
 {
