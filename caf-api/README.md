@@ -1,6 +1,6 @@
 # CAF-API
 
-Contains configuration classes for 
+CAF-API is a sub module of CAF-Common and contains essential interfaces, exceptions, configurations and classes used in creating CAF services and frameworks. These interfaces promote code reuse and modularity across the implementing services. 
 
 ## Configurations
 
