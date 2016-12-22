@@ -68,3 +68,21 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
   - UNKNOWN: The health could not be determined at this time.
   - HEALTHY: The service is healthy and operating normally.
   - UNHEALTHY: The service is unhealthy or failed in some manner.
+
+## Usage
+
+To use CAF-API in your components add to your pom file the following dependency:
+
+```
+<dependency>
+  <artifactId>caf-api</artifactId>
+  <groupId>com.github.cafapi</groupId>
+  <version>1.2.0-SNAPSHOT</version>
+</dependency>
+```
+
+## Maintainers
+
+The following people are responsible for maintaining this code:
+
+- Gregory Lucy (Belfast, UK, gregory.lucy@hpe.com)
