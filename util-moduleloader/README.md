@@ -9,3 +9,9 @@ The `ModuleProvider` class allows retrieval of a module based on the interface t
 To use `ModuleLoader` call one of the overloaded static `getService(...)` methods passing in the interface to find an advertised service implementation for. To get all the advertised service implementations call `getServices(final class<T> intf)`.
 
 To use `ModuleProvider`, create an instance using `ModuleProvider.getInstance();`. Then call `getModule(Class<T> interfaceImplemented, String moduleType)`.
+
+## Maintainers
+
+The following people are responsible for maintaining this code:
+
+- Krzysztof Ploch (Belfast, UK, krzysztof.ploch@hpe.com)
