@@ -4,25 +4,25 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 ## Configurations
 
-- BootstrapConfiguration: a method of providing a basic initial startup configuration.
+- BootstrapConfiguration: A method of providing a basic initial startup configuration.
 
 ## Exceptions
 
-- CipherException: thrown when a Cipher encounters a failure when encrypting or decrypting information.
+- CipherException: Thrown when a Cipher encounters a failure when encrypting or decrypting information.
 
-- CodecException: thrown when a Codec fails to encode or decode information.
+- CodecException: Thrown when a Codec fails to encode or decode information.
 
-- ConfigurationException: thrown when there is a problem with the ConfigurationSource module.
+- ConfigurationException: Thrown when there is a problem with the ConfigurationSource module.
 
-- ElectionException: thrown if there is a problem with the election process.
+- ElectionException: Thrown if there is a problem with the election process.
 
 ## Interfaces
 
-- Cipher: provides a method of encrypting and decrypting string data such as passwords.
+- Cipher: Provides a method of encrypting and decrypting string data such as passwords.
 
-- Codec: specifies methods to serialise data from a Java object to byte format and deserialise data from byte format back into a specified Java class.
+- Codec: Specifies methods to serialise data from a Java object to byte format and deserialise data from byte format back into a specified Java class.
 
-- Configuration: indicates either that the class is a simple Java object that stores configuration, or for fields within a class, indicates this object is an embedded configuration object that can be overridden by a ConfigurationSource.
+- Configuration: Indicates either that the class is a simple Java object that stores configuration, or for fields within a class, indicates this object is an embedded configuration object that can be overridden by a ConfigurationSource.
 
 - ConfigurationSource: A ConfigurationSource is intended to provide an implementation-agnostic method of retrieving application-specific configuration.
 
@@ -38,7 +38,7 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 - Encrypted: Marker annotation that specifies an item, typically in a configuration class, that a SecurityProvider can decrypt. The field that possesses this annotation must also have the appropriate getter and setter methods that match Java convention.
 
-- ManagedConfigurationSource: interface extending HealthReporter, ConfigurationMetricsReporter and ConfigurationSource.
+- ManagedConfigurationSource: Interface extending HealthReporter, ConfigurationMetricsReporter and ConfigurationSource.
 
 ### Reporters
 
@@ -48,9 +48,9 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 ### Providers
 
-- CipherProvider: a simple boilerplate for returning a Cipher implementation.
+- CipherProvider: A simple boilerplate for returning a Cipher implementation.
 
-- ElectionFactoryProvider: a simple boilerplate for returning an ElectionFactory.
+- ElectionFactoryProvider: A simple boilerplate for returning an ElectionFactory.
 
 ## Classes
 
