@@ -28,3 +28,9 @@ Construct an instance of Name by one of the overloaded constructors:
 - `public Name(final String name)`
 
 - `public Name(final List<String> components)`
+
+## Maintainers
+
+The following people are responsible for maintaining this code:
+
+- Adam Rogan (Belfast, UK adam.pau.rogan@hpe.com)
