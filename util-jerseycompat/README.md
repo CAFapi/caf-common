@@ -4,6 +4,7 @@ This project contains a compatibility class to allow Jersey 1 libraries to co-ex
 
 ## Usage
 To use this, ensure the following is performed before starting the Jersey 2 app:
+
 `ServiceFinder.setIteratorProvider(new Jersey2ServiceIteratorProvider());`
 
 ## Maintainers
