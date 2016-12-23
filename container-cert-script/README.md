@@ -35,3 +35,9 @@ Then unpack the container-cert-script in a dependencySet like this:
   </includes>
 </dependencySet>
 ```
+
+# Maintainers
+
+The following people are responsible for maintaining this project:
+
+- Zara McKeown (Belfast, UK, zara.mckeown@hpe.com)
