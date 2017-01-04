@@ -71,13 +71,14 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 ## Usage
 
+If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
+
 To use CAF-API in your components add to your pom file the following dependency:
 
 ```
 <dependency>
   <artifactId>caf-api</artifactId>
   <groupId>com.github.cafapi</groupId>
-  <version>1.2.0-SNAPSHOT</version>
 </dependency>
 ```
 
