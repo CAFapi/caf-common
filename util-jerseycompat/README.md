@@ -4,7 +4,7 @@ This project contains a compatibility class to allow Jersey 1 libraries to co-ex
 
 ## Usage
 
-If your project's parent pom is [CAF Parent](https://github.com/conalsmith49/caf-common/tree/develop/caf-parent) then add the dependency below, otherwise specify a version number.
+If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
 
 ```
 <dependency>
