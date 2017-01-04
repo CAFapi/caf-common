@@ -6,6 +6,15 @@ The `ModuleProvider` class allows retrieval of a module based on the interface t
 
 ## Usage
 
+If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
+
+```
+<dependency>
+  <groupId>com.github.cafapi.util</groupId>
+  <artifactId>util-moduleloader</artifactId>
+</dependency>
+```
+
 To use `ModuleLoader` call one of the overloaded static `getService(...)` methods passing in the interface to find an advertised service implementation for. To get all the advertised service implementations call `getServices(final class<T> intf)`.
 
 To use `ModuleProvider`, create an instance using `ModuleProvider.getInstance();`. Then call `getModule(Class<T> interfaceImplemented, String moduleType)`.
