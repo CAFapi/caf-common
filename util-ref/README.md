@@ -36,6 +36,15 @@ It should be noted that because this class returns a fully formed Java object in
 
 ### Usage
 
+If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
+
+```
+<dependency>
+  <groupId>com.github.cafapi.util</groupId>
+  <artifactId>util-ref</artifactId>
+</dependency>
+```
+
 To instantiate a ReferencedObject object, call one of the methods:
 
 - `public static <T> ReferencedObject<T> getReferencedObject(final Class<T> clazz, final String ref)`
