@@ -6,6 +6,8 @@ It also contains an install script for installing SSL keystore.
 
 ## Usage
 
+If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
+
 To install the scripts in a container, add the following dependency to your container's pom:
 
 ```
