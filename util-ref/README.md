@@ -1,6 +1,6 @@
 # Util-Ref
 
-This project provides classes and utility wrappers for interactions with data storage and are used throughout CAF component and service development.
+This project provides classes and utility wrappers for interactions with data storage and are used throughout [CAF](http://cafapi.github.io/) component and service development.
 
 ## DataSource
 
