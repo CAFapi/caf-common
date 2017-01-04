@@ -18,6 +18,15 @@ To use CAF-PARENT as the parent for your component, add it like this to your pom
 </parent>
 ```
 
+You can then specify dependencies simply like this:
+
+```
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+</dependency>
+```
+
 ## Maintainer
 
 The following people are responsible for maintaining this code:
