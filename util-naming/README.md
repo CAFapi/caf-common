@@ -1,6 +1,6 @@
 # Util-Naming
 
-This project comprises of classes that are used internally in CAF services to store service paths and names.
+This project comprises of classes that are used internally in [CAF](http://cafapi.github.io/) services to store service paths and names.
 
 ## Project Usage
 
