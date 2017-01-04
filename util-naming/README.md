@@ -2,6 +2,17 @@
 
 This project comprises of classes that are used internally in CAF services to store service paths and names.
 
+## Project Usage
+
+If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
+
+```
+<dependency>
+  <groupId>com.github.cafapi.util</groupId>
+  <artifactId>util-naming</artifactId>
+</dependency>
+```
+
 ## ServicePath
 
 Simple object to store the service path, expected to be in the form /group/subgroup/id. Internally this is represented by a javax.naming.Name object. Any leading or terminating forward-slashes are removed upon creation. 
