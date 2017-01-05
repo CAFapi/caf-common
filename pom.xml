@@ -9,6 +9,65 @@
     <version>1.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>${project.artifactId}</name>
+    <description>A set of re-usable Java libraries which are used by the various CAF Services and Frameworks.</description>
+    <url>http://cafapi.github.io/</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>andyreidz</id>
+            <name>Andy Reid</name>
+            <email>andrew.reid@hpe.com</email>
+        </developer>
+        <developer>
+            <id>arogan92</id>
+            <name>Adam Rogan</name>
+            <email>adam.pau.rogan@hpe.com</email>
+        </developer>
+        <developer>
+            <id>dermot-hardy</id>
+            <name>Dermot Hardy</name>
+            <email>dermot.hardy@hpe.com</email>
+        </developer>
+        <developer>
+            <id>glucy</id>
+            <name>Gregory Lucy</name>
+            <email>gregory.lucy@hpe.com</email>
+        </developer>
+        <developer>
+            <id>kploch</id>
+            <name>Krzysztof Ploch</name>
+            <email>krzysztof.ploch@hpe.com</email>
+        </developer>
+        <developer>
+            <id>michael-bryson</id>
+            <name>Michael Bryson</name>
+            <email>michael.bryson@hpe.com</email>
+        </developer>
+        <developer>
+            <id>mulhollandc</id>
+            <name>Connor Mulholland</name>
+            <email>connor.mulholland@hpe.com</email>
+        </developer>
+        <developer>
+            <id>pcrookshpe</id>
+            <name>Philip Crooks</name>
+            <email>philip.crooks@hpe.com</email>
+        </developer>
+        <developer>
+            <id>zaramckeown</id>
+            <name>Zara McKeown</name>
+            <email>zara.mckeown@hpe.com</email>
+        </developer>
+    </developers>
+
     <modules>
         <module>caf-api</module>
         <module>caf-parent</module>
@@ -32,6 +91,12 @@
         <module>util-naming</module>
         <module>util-process-identifier</module>
     </modules>
+
+    <scm>
+        <connection>scm:git:https://github.com/CAFapi/caf-common.git</connection>
+        <developerConnection>scm:git:https://github.com/CAFapi/caf-common.git</developerConnection>
+        <url>https://github.com/CAFapi/caf-common</url>
+    </scm>
 
     <build>
         <plugins>
