@@ -75,9 +75,4 @@
         </profile>
     </profiles>
 
-    <ciManagement>
-        <system>hudson</system>
-        <url>http://cafbuilder.hpeswlab.net:8080/job/caf-common/</url>
-    </ciManagement>
-
 </project>
