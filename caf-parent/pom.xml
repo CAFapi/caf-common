@@ -32,6 +32,26 @@
         <url />
     </scm>
 
+    <!-- Distribute to the corporate repository manager -->
+    <distributionManagement>
+        <repository>
+            <id>HPEreleases</id>
+            <name>HPE Sunnyvale Artifactory Releases</name>
+            <url>${corporate.repository.manager.url}/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>HPEsnapshots</id>
+            <name>HPE Sunnyvale Artifactory Snapshots</name>
+            <url>${corporate.repository.manager.url}/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <docker.dev.repo>rh7-artifactory.svs.hpeswlab.net:8443</docker.dev.repo>
+        <corporate.repository.manager.url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory</corporate.repository.manager.url>
+        <skipLocalStaging>true</skipLocalStaging>
+    </properties>
+
     <build>
         <plugins>
             <!-- Continue to respect the maven.deploy.skip flag, even though we now use Nexus Staging Maven Plugin -->

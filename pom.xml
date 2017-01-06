@@ -99,15 +99,9 @@
     </scm>
 
     <distributionManagement>
-        <repository>
-            <id>HPEreleases</id>
-            <name>HPE Sunnyvale Artifactory Releases</name>
-            <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-release-local</url>
-        </repository>
         <snapshotRepository>
-            <id>HPEsnapshots</id>
-            <name>HPE Sunnyvale Artifactory Snapshots</name>
-            <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-snapshot-local</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -121,9 +115,6 @@
         <fabric8.docker.maven.version>0.16.7</fabric8.docker.maven.version>
         <tini.version>0.9.0</tini.version>
         <marathon.client.version>0.4.9</marathon.client.version>
-        <docker.dev.repo>rh7-artifactory.svs.hpeswlab.net:8443</docker.dev.repo>
-        <corporate.repository.manager.url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory</corporate.repository.manager.url>
-        <skipLocalStaging>true</skipLocalStaging>
     </properties>
 
     <dependencyManagement>
