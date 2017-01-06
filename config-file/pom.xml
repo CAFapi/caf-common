@@ -21,20 +21,17 @@
 
     <groupId>com.github.cafapi.config</groupId>
     <artifactId>config-file</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
 
     <parent>
         <groupId>com.github.cafapi</groupId>
-        <artifactId>caf-parent</artifactId>
+        <artifactId>caf-common</artifactId>
         <version>1.2.0-SNAPSHOT</version>
-        <relativePath>../caf-parent</relativePath>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.github.cafapi</groupId>
             <artifactId>caf-api</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -44,7 +41,6 @@
         <dependency>
             <groupId>com.github.cafapi.config</groupId>
             <artifactId>config-caf</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -54,7 +50,6 @@
         <dependency>
             <groupId>com.github.cafapi.codec</groupId>
             <artifactId>codec-yaml</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -65,7 +60,6 @@
         <dependency>
             <groupId>com.github.cafapi.cipher</groupId>
             <artifactId>cipher-null</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
