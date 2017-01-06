@@ -123,6 +123,7 @@
         <marathon.client.version>0.4.9</marathon.client.version>
         <docker.dev.repo>rh7-artifactory.svs.hpeswlab.net:8443</docker.dev.repo>
         <corporate.repository.manager.url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory</corporate.repository.manager.url>
+        <skipLocalStaging>true</skipLocalStaging>
     </properties>
 
     <dependencyManagement>
@@ -663,6 +664,18 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Use the Nexus Staging Maven Plugin for deployment -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                </configuration>
             </plugin>
 
             <!-- Include SonarQube Maven Plugin for project analysis -->
