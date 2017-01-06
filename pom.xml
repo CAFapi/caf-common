@@ -98,6 +98,19 @@
         <url>https://github.com/CAFapi/caf-common</url>
     </scm>
 
+    <distributionManagement>
+        <repository>
+            <id>HPEreleases</id>
+            <name>HPE Sunnyvale Artifactory Releases</name>
+            <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>HPEsnapshots</id>
+            <name>HPE Sunnyvale Artifactory Snapshots</name>
+            <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -753,27 +766,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-
-        <profile>
-            <id>sunnyvale</id>
-            <activation>
-                <property>
-                    <name>RE_BUILD_TYPE</name>
-                </property>
-            </activation>
-            <distributionManagement>
-                <repository>
-                    <id>HPEreleases</id>
-                    <name>Internal Releases</name>
-                    <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-release-local</url>
-                </repository>
-                <snapshotRepository>
-                    <id>HPEsnapshots</id>
-                    <name>Internal Snapshots</name>
-                    <url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory/libs-snapshot-local</url>
-                </snapshotRepository>
-            </distributionManagement>
         </profile>
     </profiles>
 
