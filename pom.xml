@@ -794,6 +794,33 @@
                 </plugins>
             </build>
         </profile>
+
+        <!-- Sign the artifacts with GnuPG -->
+        <profile>
+            <id>sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>RE_BUILD_TYPE</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
