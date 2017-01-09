@@ -70,7 +70,6 @@
 
     <modules>
         <module>caf-api</module>
-        <module>caf-parent</module>
         <module>caf-utils</module>
         <module>cipher-jasypt</module>
         <module>cipher-null</module>
