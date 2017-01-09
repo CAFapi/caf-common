@@ -30,7 +30,7 @@ Create in instance using the ServicePath constructor which takes a `String path`
 
 ## Name
 
-A class that is similar to java.naming.Name, but is iterable. A Name is a tokenized character String, delimited by forward-slashes.
+A class that is similar to javax.naming.Name, but is iterable. A Name is a tokenized character String, delimited by forward-slashes.
 
 ### Usage
 
