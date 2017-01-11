@@ -1,12 +1,10 @@
 # Container Cert Script
 
-The container cert script contains CAcert installation scripts for installing Java security certificates primarily for use in [CAF](http://cafapi.github.io/) service development and installation of the certificates in Docker containers.
+The container cert script project contains CAcert installation scripts primarily for use in [CAF](http://cafapi.github.io/) service development and installation of the certificates in Docker containers.
 
-It also contains an install script for installing SSL keystore.
+`install-ca-cert-java.sh` installs Java security certificates. `install-keystore-tomcat.sh` installs SSL keystore for tomcat and the `install-ca-cert.sh` installs into the OS certificate store.
 
 ## Usage
-
-If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
 
 To install the scripts in a container, add the following dependency to your container's pom:
 
@@ -15,6 +13,7 @@ To install the scripts in a container, add the following dependency to your cont
   <groupId>com.github.cafapi</groupId>
   <artifactId>container-cert-script</artifactId>
   <type>tar.gz</type>
+  <version>xxx</version>
 </dependency>
 ```
 
