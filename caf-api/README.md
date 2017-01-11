@@ -1,10 +1,12 @@
 # CAF-API
 
-CAF-API is a sub module of CAF-Common and contains essential interfaces, exceptions, configurations and classes used in creating [CAF](http://cafapi.github.io/) services and frameworks. These interfaces promote code reuse and modularity across the implementing services. 
+CAF-API is a sub module of CAF-Common and contains essential interfaces, exceptions, configurations and classes used in creating [CAF](http://cafapi.github.io/) services and frameworks. These interfaces provide a layer of abstraction to allow for different implementations to be used across the implementing services. 
+
+For example, by implementing the `Codec` class various different Codecs can be used with CAF as required i.e. JSON and XML codecs.
 
 ## Configurations
 
-- BootstrapConfiguration: A method of providing a basic initial startup configuration.
+- BootstrapConfiguration: Provides the initial startup configuration.
 
 ## Exceptions
 
@@ -12,7 +14,7 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 - CodecException: Thrown when a Codec fails to encode or decode information.
 
-- ConfigurationException: Thrown when there is a problem with the ConfigurationSource module.
+- ConfigurationException: Thrown when there is a problem with the Configuration.
 
 - ElectionException: Thrown if there is a problem with the election process.
 
@@ -24,7 +26,7 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 - Configuration: Indicates either that the class is a simple Java object that stores configuration, or for fields within a class, indicates this object is an embedded configuration object that can be overridden by a ConfigurationSource.
 
-- ConfigurationSource: A ConfigurationSource is intended to provide an implementation-agnostic method of retrieving application-specific configuration.
+- ConfigurationSource: Provides an implementation-agnostic method of retrieving application-specific configuration.
 
 - ContainsStringKeys: Used on a field of type Map with String keys to indicate that they keys must contains specific Strings.
 
@@ -56,7 +58,7 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
 
 - HealthResult (final): A result returned from a class that implements HealthReporter, indicating its health status and if necessary, a message detailing further information.
 
-- QuietResource: Utility class for use with try-with-resources, for classes where the close operation may throw an exception, but this is not a useful check. @param <T> the class to close quietly
+- QuietResource: Utility class for use with try-with-resources, for classes where the close operation may throw an exception, but this is not a useful check.
 
 ## Enums
 
@@ -68,19 +70,6 @@ CAF-API is a sub module of CAF-Common and contains essential interfaces, excepti
   - UNKNOWN: The health could not be determined at this time.
   - HEALTHY: The service is healthy and operating normally.
   - UNHEALTHY: The service is unhealthy or failed in some manner.
-
-## Usage
-
-If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
-
-To use CAF-API in your components add to your pom file the following dependency:
-
-```
-<dependency>
-  <artifactId>caf-api</artifactId>
-  <groupId>com.github.cafapi</groupId>
-</dependency>
-```
 
 ## Maintainers
 
