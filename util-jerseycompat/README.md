@@ -4,12 +4,11 @@ This project contains a compatibility class to allow Jersey 1 libraries to co-ex
 
 ## Usage
 
-If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
-
 ```
 <dependency>
   <groupId>com.github.cafapi.util</groupId>
   <artifactId>util-jerseycompat</artifactId>
+  <version>xxx</version>
 </dependency>
 ```
 
