@@ -1,4 +1,4 @@
-# Swagger UI [![Build Status](http://cafbuilder.hpswlabs.hp.com:8080/buildStatus/icon?job=swagger-ui)](http://cafbuilder.hpswlabs.hp.com:8080/job/swagger-ui)
+# Swagger UI
 
 This project is a fork of the [Swagger-UI](https://github.com/swagger-api/swagger-ui) project. 
 
