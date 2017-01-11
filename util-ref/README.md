@@ -12,7 +12,7 @@ General exception for DataSource acquisition failures.
 
 ## ReferencedData
 
-Utility wrapper for allowing data to potentially be within a message or located on a remote DataStore. The acquire(ObjectSource) method allows transparent method of obtaining an InputStream to the data.
+Utility wrapper for allowing data to potentially be within a message or located on a remote DataStore. The `acquire(ObjectSource)` method allows transparent method of obtaining an InputStream to the data.
 
 This is primarily intended for use with large amounts of binary data that needs to be processed without storing it all in memory.
 
