@@ -30,18 +30,17 @@ The `acquire(...)` method is used to return the referenced data as a stream, and
 
 ## ReferencedObject
 
-Utility wrapper for allowing data to potentially be within a message or located on a remote DataStore. The acquire(ObjectSource) method allows transparent method of obtaining the wrapped data, which will only be retrieved the first time acquire is called (if it is not already present).
+Utility wrapper for allowing a serialized object to potentially be within a message or located on a remote DataStore. The acquire(ObjectSource) method allows transparent method of obtaining the wrapped data, which will only be retrieved the first time acquire is called (if it is not already present).
 
 It should be noted that because this class returns a fully formed Java object instance, the entire instance must be loaded into memory. As such, this wrapper should only be used for objects that are at most a few megabytes of data.
 
 ### Usage
 
-If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
-
 ```
 <dependency>
   <groupId>com.github.cafapi.util</groupId>
   <artifactId>util-ref</artifactId>
+  <version>xxx</version>
 </dependency>
 ```
 
