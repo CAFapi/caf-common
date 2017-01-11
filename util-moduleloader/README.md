@@ -4,18 +4,25 @@ This project contains a utility class called `ModuleLoader` that provides method
 
 The `ModuleProvider` class allows retrieval of a module based on the interface that it implements and its simple name.
 
-## Usage
+The advantages of using this over a direct call to the Java ServiceLoader are:
 
-If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
+- Provides a means of retrieving services which is consistent across CAF services and components.
+- This project encapsulates all calls to Java ServiceLoader hiding the ServiceLoader details.
+- The project will log information which is standard across all CAF services which use `util-moduleloader`.
+- The project provides validation of the returned implementations.
+- The project provides its own exceptions which handles ServiceLoader exceptions.
+
+## Usage
 
 ```
 <dependency>
   <groupId>com.github.cafapi.util</groupId>
   <artifactId>util-moduleloader</artifactId>
+  <version>xxx</version>
 </dependency>
 ```
 
-To use `ModuleLoader` call one of the overloaded static `getService(...)` methods passing in the interface to find an advertised service implementation for. To get all the advertised service implementations call `getServices(final class<T> intf)`.
+To use `ModuleLoader` call one of the overloaded static `getService(...)` methods passing in the interface of which to find a list of advertised service implementations.
 
 To use `ModuleProvider`, create an instance using `ModuleProvider.getInstance();`. Then call `getModule(Class<T> interfaceImplemented, String moduleType)`.
 
