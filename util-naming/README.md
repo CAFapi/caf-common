@@ -25,7 +25,7 @@ A class that is similar to `javax.naming.Name`, but is iterable. A `Name` is a t
 
 Constructed and used in the `ServicePath` constructor. To construct an intance of `ServicePath` see above.
 
-`ServicePath` provides getters for various components of the `Name`. For example, to construct a `ServicePath` and get the root node:
+`ServicePath` provides getters for various components of the `Name`. Example usage is below:
 
 ```
 // Construct a new service path.
