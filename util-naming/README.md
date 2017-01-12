@@ -2,17 +2,6 @@
 
 This project comprises of classes that are used internally in [CAF](http://cafapi.github.io/) services to store service paths and names.
 
-## Project Usage
-
-If your project's parent pom is [CAF Parent](../caf-parent) then add the dependency below, otherwise specify a version number.
-
-```
-<dependency>
-  <groupId>com.github.cafapi.util</groupId>
-  <artifactId>util-naming</artifactId>
-</dependency>
-```
-
 ## ServicePath
 
 Simple object to store the service path, expected to be in the form /group/subgroup/id. Internally this is represented by a javax.naming.Name object. Any leading or terminating forward-slashes are removed upon creation. 
@@ -24,21 +13,35 @@ Simple object to store the service path, expected to be in the form /group/subgr
 
 ### Usage
 
-Create in instance using the ServicePath constructor which takes a `String path` i.e. 
+Create an instance using the `ServicePath` constructor which takes a `String path`: 
 
 `public ServicePath(final String path) throws InvalidNameException`. 
 
 ## Name
 
-A class that is similar to javax.naming.Name, but is iterable. A Name is a tokenized character String, delimited by forward-slashes.
+A class that is similar to `javax.naming.Name`, but is iterable. A `Name` is a tokenized character String, delimited by forward-slashes.
 
 ### Usage
 
-Construct an instance of Name by one of the overloaded constructors:
+Constructed and used in the `ServicePath` constructor. To construct an intance of `ServicePath` see above.
 
-- `public Name(final String name)`
+`ServicePath` provides getters for various components of the `Name`. For example, to construct a `ServicePath` and get the root node:
 
-- `public Name(final List<String> components)`
+```
+// Construct a new service path.
+ServicePath servicePath = new ServicePath("a/b/c");
+
+// Get the root of the service path e.g. "a".
+String root = servicePath.getRoot();
+
+// Get the leaf (or tip) of the service path i.e. the final part of the service name e.g. "c".
+String leaf = servicePath.getLeaf();
+
+// Get the immediate group of the service, the node above the leaf e.g. "b".
+String group = servicePath.getGroup();
+```
+
+
 
 ## Maintainers
 
