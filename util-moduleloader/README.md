@@ -4,13 +4,13 @@ This project contains a utility class called `ModuleLoader` that provides method
 
 The `ModuleProvider` class allows retrieval of a module based on the interface that it implements and its simple name.
 
-The advantages of using this over a direct call to the Java ServiceLoader are:
+The advantages of using `util-moduleloader` over a direct call to the Java ServiceLoader are:
 
 - Provides a means of retrieving services which is consistent across CAF services and components.
-- This project encapsulates all calls to Java ServiceLoader hiding the ServiceLoader details.
-- The project will log information which is standard across all CAF services which use `util-moduleloader`.
-- The project provides validation of the returned implementations.
-- The project provides its own exceptions which handles ServiceLoader exceptions.
+- Encapsulates all calls to Java ServiceLoader hiding the ServiceLoader details.
+- Logs information which is standard across all CAF services which use `util-moduleloader`.
+- Validates the returned service implementations.
+- Provides its own exception and handles ServiceLoader exceptions.
 
 ## Usage
 
