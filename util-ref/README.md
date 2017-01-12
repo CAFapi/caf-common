@@ -18,6 +18,14 @@ This is primarily intended for use with large amounts of binary data that needs 
 
 ### Usage
 
+```
+<dependency>
+  <groupId>com.github.cafapi.util</groupId>
+  <artifactId>util-ref</artifactId>
+  <version>xxx</version>
+</dependency>
+```
+
 To instantiate a ReferencedData object, call one of the methods:
 
 - `public static ReferencedData getReferencedData(final String ref)`
@@ -35,14 +43,6 @@ Utility wrapper for allowing a serialized object to potentially be within a mess
 It should be noted that because this class returns a fully formed Java object instance, the entire instance must be loaded into memory. As such, this wrapper should only be used for objects that are at most a few megabytes of data.
 
 ### Usage
-
-```
-<dependency>
-  <groupId>com.github.cafapi.util</groupId>
-  <artifactId>util-ref</artifactId>
-  <version>xxx</version>
-</dependency>
-```
 
 To instantiate a ReferencedObject object, call one of the methods:
 
