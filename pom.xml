@@ -725,8 +725,14 @@
                 <dependency>
                     <groupId>com.hpe.caf.qa.test.framework.listeners</groupId>
                     <artifactId>caf-testng-sqlreporter</artifactId>
-                    <version>1.0.0</version>
+                    <version>1.1.0</version>
                     <scope>test</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.testng</groupId>
+                            <artifactId>testng</artifactId>
+                        </exclusion>
+                    </exclusions> 
                 </dependency>
             </dependencies>
         </profile>
