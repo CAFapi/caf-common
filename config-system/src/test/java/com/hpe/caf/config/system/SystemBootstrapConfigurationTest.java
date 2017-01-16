@@ -18,15 +18,32 @@ package com.hpe.caf.config.system;
 
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.ConfigurationException;
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 public class SystemBootstrapConfigurationTest
 {
-    private final SystemBootstrapConfiguration sysbsc = new SystemBootstrapConfiguration();
+    private SystemBootstrapConfiguration sysbsc = new SystemBootstrapConfiguration();
     private static final String TEST_PROP = "paas.TEST_PROP.1";
 
+    
+    @BeforeMethod
+    public void setUp()
+    {
+        sysbsc = new SystemBootstrapConfiguration();
+    }
+    
+    @AfterMethod
+    public void tearDown()
+    {
+        System.clearProperty(TEST_PROP);
+        System.clearProperty(SystemBootstrapConfiguration.ENV_MARATHON_APP_ID);
+        System.clearProperty(BootstrapConfiguration.CONFIG_APP_NAME);
+    }
 
     @Test
     public void isConfigurationPresent()
@@ -38,7 +55,7 @@ public class SystemBootstrapConfigurationTest
     }
 
 
-    @Test(expected = ConfigurationException.class)
+    @Test(expectedExceptions = ConfigurationException.class)
     public void getConfigurationInvalid()
             throws ConfigurationException
     {
@@ -76,7 +93,7 @@ public class SystemBootstrapConfigurationTest
     }
 
 
-    @Test(expected = ConfigurationException.class)
+    @Test(expectedExceptions = ConfigurationException.class)
     public void getConfigurationIntegerInvalid()
             throws ConfigurationException
     {
@@ -107,7 +124,7 @@ public class SystemBootstrapConfigurationTest
     }
 
 
-    @Test(expected = ConfigurationException.class)
+    @Test(expectedExceptions = ConfigurationException.class)
     public void getServicePathException()
         throws ConfigurationException
     {

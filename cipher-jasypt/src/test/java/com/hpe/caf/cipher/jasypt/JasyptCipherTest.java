@@ -20,8 +20,8 @@ import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.Cipher;
 import com.hpe.caf.api.CipherException;
 import com.hpe.caf.api.ConfigurationException;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 public class JasyptCipherTest
@@ -41,7 +41,7 @@ public class JasyptCipherTest
     }
 
 
-    @Test(expected = CipherException.class)
+    @Test(expectedExceptions = CipherException.class)
     public void jasyptExceptionTest()
         throws ConfigurationException, CipherException
     {

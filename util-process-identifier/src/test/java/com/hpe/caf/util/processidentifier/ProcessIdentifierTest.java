@@ -16,8 +16,8 @@
 package com.hpe.caf.util.processidentifier;
 
 import com.hpe.caf.util.testing.MultiThreadTestUtil;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -46,8 +46,8 @@ public class ProcessIdentifierTest {
                 try {
                     for (int i = 0; i < iterationsPerThread; i++) {
                         UUID currentThreadProcessId = ProcessIdentifier.getProcessId();
-                        Assert.assertEquals("ProcessID retrieved by this thread should be the same as that obtained" +
-                                "at start of test.", originalProcessID, currentThreadProcessId);
+                        Assert.assertEquals(originalProcessID, currentThreadProcessId,
+                                "ProcessID retrieved by this thread should be the same as that obtained at start of test.");
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -57,6 +57,6 @@ public class ProcessIdentifierTest {
             e.printStackTrace();
             Assert.fail(e.getMessage());
         }
-        Assert.assertEquals("Expecting no errors thrown during multi-thread retrieval of process IDs", 0, errors.size());
+        Assert.assertEquals(0, errors.size(), "Expecting no errors thrown during multi-thread retrieval of process IDs");
     }
 }

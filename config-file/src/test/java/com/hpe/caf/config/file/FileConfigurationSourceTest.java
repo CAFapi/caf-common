@@ -24,15 +24,15 @@ import com.hpe.caf.api.ConfigurationSource;
 import com.hpe.caf.cipher.NullCipher;
 import com.hpe.caf.codec.YamlCodec;
 import com.hpe.caf.naming.ServicePath;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 import javax.naming.InvalidNameException;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -42,8 +42,7 @@ import java.nio.file.StandardOpenOption;
 
 public class FileConfigurationSourceTest
 {
-    @Rule
-    public TemporaryFolder tempDir = new TemporaryFolder();
+    public File tempDir;
     private Path temp;
     private final Codec codec = new YamlCodec();
     private final String groupName = "testApp";
@@ -51,14 +50,32 @@ public class FileConfigurationSourceTest
     private ServicePath id;
 
 
-    @Before
+    @BeforeMethod
     public void setUp()
             throws IOException, InvalidNameException
     {
-        temp = tempDir.newFolder().toPath();
+        tempDir = new File("temp");
+        tempDir.mkdir();
+        temp = tempDir.toPath();
         id = new ServicePath(groupName + "/" + appId);
     }
-
+    
+    @AfterMethod
+    public void tearDown()
+    {
+        deleteDir(tempDir);
+    }
+    
+    private void deleteDir(File file)
+    {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                deleteDir(f);
+            }
+        }
+        file.delete();
+    }    
 
     @Test
     public void testGetConfiguration()
@@ -125,7 +142,7 @@ public class FileConfigurationSourceTest
     }
 
 
-    @Test(expected = ConfigurationException.class)
+    @Test(expectedExceptions = ConfigurationException.class)
     public void testMissingConfiguration()
         throws ConfigurationException
     {
@@ -135,7 +152,7 @@ public class FileConfigurationSourceTest
     }
 
 
-    @Test(expected = ConfigurationException.class)
+    @Test(expectedExceptions = ConfigurationException.class)
     public void testInvalidConfiguration()
             throws ConfigurationException, IOException, CodecException
     {

@@ -15,8 +15,8 @@
 
 package com.hpe.caf.util;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
@@ -67,34 +67,27 @@ public class ModuleProviderTest {
 
         MultipleTestInterface firstImpl = provider.getModule(MultipleTestInterface.class, FirstMultipleTestImpl.class.getSimpleName());
         Assert.assertNotNull(firstImpl);
-        Assert.assertEquals("Expecting FirstMultipleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance",
-                explicitFirst.getNumber(),
-                firstImpl.getNumber());
+        Assert.assertEquals(explicitFirst.getNumber(), firstImpl.getNumber(),
+                "Expecting FirstMultipleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance");
 
         MultipleTestInterface secondImpl = provider.getModule(MultipleTestInterface.class, SecondMultipleTestImpl.class.getSimpleName());
         Assert.assertNotNull(secondImpl);
-        Assert.assertEquals("Expecting SecondMultipleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance",
-                explicitSecond.getNumber(),
-                secondImpl.getNumber());
+        Assert.assertEquals(explicitSecond.getNumber(), secondImpl.getNumber(),
+                "Expecting SecondMultipleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance");
 
         //test retrieving a different key
         SingleTestInterface singleImpl = provider.getModule(SingleTestInterface.class, SingleTestImpl.class.getSimpleName());
         Assert.assertNotNull(singleImpl);
-        Assert.assertEquals("Expecting SingleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance",
-                explicitSingle.getName(),
-                singleImpl.getName());
+        Assert.assertEquals(explicitSingle.getName(), singleImpl.getName(),
+                "Expecting SingleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance");
 
         //verify that a second call re-uses than existing object and doesn't create a new instance of it it
         MultipleTestInterface firstImpl_again = provider.getModule(MultipleTestInterface.class, "FirstMultipleTestImpl");
         Assert.assertNotNull(firstImpl_again);
-        Assert.assertEquals("Expecting FirstMultipleTestImpl instance returned by second call to ModuleProvider to behave" +
-                        " the same as our explictly constructed instance",
-                explicitFirst.getNumber(),
-                firstImpl_again.getNumber()
-        );
-        Assert.assertTrue("Expecting instance returned from first call to ModuleProvider for FirstMultipleTestImpl to be" +
-                        "same instance as returned as second call for FirstMultipleTestImpl",
-                firstImpl == firstImpl_again);
+        Assert.assertEquals(explicitFirst.getNumber(), firstImpl_again.getNumber(),
+                "Expecting FirstMultipleTestImpl instance returned by second call to ModuleProvider to behave the same as our explictly constructed instance");
+        Assert.assertTrue(firstImpl == firstImpl_again,
+                "Expecting instance returned from first call to ModuleProvider for FirstMultipleTestImpl to be same instance as returned as second call for FirstMultipleTestImpl");
     }
 
 

@@ -17,9 +17,9 @@ package com.hpe.caf.api;
 
 
 import com.hpe.caf.naming.ServicePath;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.rules.ExpectedException;
 import org.mockito.Mockito;
 
 import javax.naming.InvalidNameException;

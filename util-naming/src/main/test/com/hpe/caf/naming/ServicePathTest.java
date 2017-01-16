@@ -16,8 +16,8 @@
 package com.hpe.caf.naming;
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import javax.naming.InvalidNameException;
 import java.util.Iterator;

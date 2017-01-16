@@ -16,8 +16,8 @@
 package com.hpe.caf.util;
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.Collection;
 
@@ -50,7 +50,7 @@ public class ModuleLoaderTest
     /**
      * Ensure that for an interface with no advertised implementations, and no default provided, ComponentLoader throws an Exception.
      */
-    @Test(expected = Exception.class)
+    @Test(expectedExceptions = Exception.class)
     public void testMissing()
         throws Exception
     {

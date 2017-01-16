@@ -16,8 +16,9 @@
 package com.hpe.caf.util.ref;
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.internal.junit.ArrayAsserts;
 import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
@@ -39,7 +40,7 @@ public class ReferencedDataTest
         InputStream str = testDat.acquire(source);
         int nRead = str.read(buf, 0, buf.length);
         Assert.assertEquals(test.length, nRead);
-        Assert.assertArrayEquals(test, buf);
+        ArrayAsserts.assertArrayEquals(test, buf);
         Mockito.verify(source, Mockito.times(0)).getStream(Mockito.any());
         Assert.assertNull(testDat.getReference());
     }
@@ -60,11 +61,11 @@ public class ReferencedDataTest
         InputStream str = testDat.acquire(source);
         int nRead = str.read(buf, 0, buf.length);
         Assert.assertEquals(test.length, nRead);
-        Assert.assertArrayEquals(test, buf);
+        ArrayAsserts.assertArrayEquals(test, buf);
     }
 
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expectedExceptions = IllegalStateException.class)
     public void testMissingDataAndReference()
         throws DataSourceException
     {

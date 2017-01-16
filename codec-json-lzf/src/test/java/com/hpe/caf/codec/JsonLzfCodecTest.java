@@ -19,8 +19,8 @@ package com.hpe.caf.codec;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
 public class JsonLzfCodecTest
@@ -41,7 +41,7 @@ public class JsonLzfCodecTest
     }
 
 
-    @Test(expected = CodecException.class)
+    @Test(expectedExceptions = CodecException.class)
     public void testUnknownPropertyStrict()
         throws CodecException
     {

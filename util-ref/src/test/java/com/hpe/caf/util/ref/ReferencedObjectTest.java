@@ -19,8 +19,8 @@ package com.hpe.caf.util.ref;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class ReferencedObjectTest
     }
 
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expectedExceptions = IllegalStateException.class)
     public void testMissingObjectAndReference()
         throws DataSourceException
     {
