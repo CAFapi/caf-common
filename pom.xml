@@ -562,7 +562,7 @@
                 </executions>
             </plugin>
 
-            <!-- Set the git.branch property to 'unknown' if it could be be retrieved -->
+            <!-- Set the git.branch property to 'unknown' if it could not be retrieved -->
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
