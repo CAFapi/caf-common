@@ -163,37 +163,37 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         for (Field f : configClass.getDeclaredFields()) {
             if (f.isAnnotationPresent(Configuration.class)) {
                 try {
-                    Method setter = new PropertyDescriptor(f.getName(), configClass).getWriteMethod();
+                    Method setter = getPropertyDescriptorNull(f.getName(), configClass).getWriteMethod();
                     if (setter != null) {
                         setter.invoke(config, getCompleteConfig(f.getType()));
                     }
                 } catch (ConfigurationException e) {
                     LOG.debug("Didn't find any overriding configuration", e);
-                } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException e) {
                     incrementErrors();
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             } else if (f.getType().equals(String.class) && f.isAnnotationPresent(Encrypted.class)) {
                 try {
-                    Method getter = new PropertyDescriptor(f.getName(), config.getClass()).getReadMethod();
-                    Method setter = new PropertyDescriptor(f.getName(), config.getClass()).getWriteMethod();
+                    Method getter = getPropertyDescriptorNull(f.getName(), config.getClass()).getReadMethod();
+                    Method setter = getPropertyDescriptorNull(f.getName(), config.getClass()).getWriteMethod();
                     if (getter != null && setter != null) {
                         setter.invoke(config, getCipher().decrypt(tokenSubstitutor((String) getter.invoke(config))));
                     }
-                } catch (CipherException | IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                } catch (CipherException | InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to decrypt class fields", e);
                 }
             } else if (f.getType().equals(String.class)) {
                 try {
                     String propertyName = f.getName();
-                    Method getter = new PropertyDescriptor(propertyName, config.getClass()).getReadMethod();
-                    Method setter = new PropertyDescriptor(propertyName, config.getClass()).getWriteMethod();
+                    Method getter = getPropertyDescriptorNull(propertyName, config.getClass()).getReadMethod();
+                    Method setter = getPropertyDescriptorNull(propertyName, config.getClass()).getWriteMethod();
                     if (getter != null && setter != null) {
                         // Property value may contain tokens that require substitution.
                         String propertyValueByToken = tokenSubstitutor((String) getter.invoke(config));
                         setter.invoke(config, propertyValueByToken);
                     }
-                } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             }
@@ -256,5 +256,15 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
     protected void incrementErrors()
     {
         this.confErrors.incrementAndGet();
+    }
+
+    private PropertyDescriptor getPropertyDescriptorNull(String propertyName, Class<?> beanClass){
+
+        try{
+            return new PropertyDescriptor(propertyName, beanClass);
+        } catch (IntrospectionException e) {
+            return null;
+        }
+
     }
 }
