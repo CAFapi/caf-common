@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 /**
  * Partial implementation of a ManagedConfigurationSource that performs hierarchical lookups based upon the service's ServicePath, and
@@ -163,7 +164,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         for (Field f : configClass.getDeclaredFields()) {
             if (f.isAnnotationPresent(Configuration.class)) {
                 try {
-                    Method setter = getPropertyDescriptorNull(f.getName(), configClass).getWriteMethod();
+                    Method setter = getMethod(f.getName(), configClass, PropertyDescriptor::getWriteMethod);
                     if (setter != null) {
                         setter.invoke(config, getCompleteConfig(f.getType()));
                     }
@@ -175,8 +176,8 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
                 }
             } else if (f.getType().equals(String.class) && f.isAnnotationPresent(Encrypted.class)) {
                 try {
-                    Method getter = getPropertyDescriptorNull(f.getName(), config.getClass()).getReadMethod();
-                    Method setter = getPropertyDescriptorNull(f.getName(), config.getClass()).getWriteMethod();
+                    Method getter = getMethod(f.getName(), config.getClass(), PropertyDescriptor::getReadMethod);
+                    Method setter = getMethod(f.getName(), config.getClass(), PropertyDescriptor::getWriteMethod);
                     if (getter != null && setter != null) {
                         setter.invoke(config, getCipher().decrypt(tokenSubstitutor((String) getter.invoke(config))));
                     }
@@ -186,8 +187,8 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
             } else if (f.getType().equals(String.class)) {
                 try {
                     String propertyName = f.getName();
-                    Method getter = getPropertyDescriptorNull(propertyName, config.getClass()).getReadMethod();
-                    Method setter = getPropertyDescriptorNull(propertyName, config.getClass()).getWriteMethod();
+                    Method getter = getMethod(propertyName, config.getClass(), PropertyDescriptor::getReadMethod);
+                    Method setter = getMethod(propertyName, config.getClass(), PropertyDescriptor::getWriteMethod);
                     if (getter != null && setter != null) {
                         // Property value may contain tokens that require substitution.
                         String propertyValueByToken = tokenSubstitutor((String) getter.invoke(config));
@@ -258,13 +259,12 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         this.confErrors.incrementAndGet();
     }
 
-    private PropertyDescriptor getPropertyDescriptorNull(String propertyName, Class<?> beanClass){
-
+    private Method getMethod(String propertyName, Class<?> beanClass, Function<PropertyDescriptor, Method> function){
         try{
-            return new PropertyDescriptor(propertyName, beanClass);
+            PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
+            return function.apply(propertyDescriptor);
         } catch (IntrospectionException e) {
             return null;
         }
-
     }
 }
