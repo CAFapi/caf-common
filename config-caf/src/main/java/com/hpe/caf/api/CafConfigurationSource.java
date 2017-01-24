@@ -264,6 +264,10 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
             return function.apply(propertyDescriptor);
         } catch (IntrospectionException e) {
+            String propertyDescriptorConstructionFailedMessage = String.format("Unable to " +
+                    "create Property Descriptor from field %s", propertyName) + System.lineSeparator() +
+                    e.getMessage();
+            LOG.debug(propertyDescriptorConstructionFailedMessage);
             return null;
         }
     }
