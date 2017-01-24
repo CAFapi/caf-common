@@ -17,6 +17,7 @@ package com.hpe.caf.api;
 
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.text.StrLookup;
 import org.apache.commons.lang3.text.StrSubstitutor;
 import org.slf4j.Logger;
@@ -264,10 +265,9 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
             return function.apply(propertyDescriptor);
         } catch (IntrospectionException e) {
-            String propertyDescriptorConstructionFailedMessage = String.format("Unable to " +
-                    "create Property Descriptor from field %s", propertyName) + System.lineSeparator() +
-                    e.getMessage();
-            LOG.debug(propertyDescriptorConstructionFailedMessage);
+            LOG.debug(String.format("Unable to " +
+                    "create Property Descriptor from field %s :", propertyName) + System.lineSeparator() +
+                    ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
