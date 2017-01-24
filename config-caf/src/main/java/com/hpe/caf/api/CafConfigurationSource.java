@@ -17,6 +17,7 @@ package com.hpe.caf.api;
 
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.text.StrLookup;
 import org.apache.commons.lang3.text.StrSubstitutor;
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 /**
  * Partial implementation of a ManagedConfigurationSource that performs hierarchical lookups based upon the service's ServicePath, and
@@ -163,37 +165,37 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         for (Field f : configClass.getDeclaredFields()) {
             if (f.isAnnotationPresent(Configuration.class)) {
                 try {
-                    Method setter = new PropertyDescriptor(f.getName(), configClass).getWriteMethod();
+                    Method setter = getMethod(f.getName(), configClass, PropertyDescriptor::getWriteMethod);
                     if (setter != null) {
                         setter.invoke(config, getCompleteConfig(f.getType()));
                     }
                 } catch (ConfigurationException e) {
                     LOG.debug("Didn't find any overriding configuration", e);
-                } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException e) {
                     incrementErrors();
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             } else if (f.getType().equals(String.class) && f.isAnnotationPresent(Encrypted.class)) {
                 try {
-                    Method getter = new PropertyDescriptor(f.getName(), config.getClass()).getReadMethod();
-                    Method setter = new PropertyDescriptor(f.getName(), config.getClass()).getWriteMethod();
+                    Method getter = getMethod(f.getName(), config.getClass(), PropertyDescriptor::getReadMethod);
+                    Method setter = getMethod(f.getName(), config.getClass(), PropertyDescriptor::getWriteMethod);
                     if (getter != null && setter != null) {
                         setter.invoke(config, getCipher().decrypt(tokenSubstitutor((String) getter.invoke(config))));
                     }
-                } catch (CipherException | IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                } catch (CipherException | InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to decrypt class fields", e);
                 }
             } else if (f.getType().equals(String.class)) {
                 try {
                     String propertyName = f.getName();
-                    Method getter = new PropertyDescriptor(propertyName, config.getClass()).getReadMethod();
-                    Method setter = new PropertyDescriptor(propertyName, config.getClass()).getWriteMethod();
+                    Method getter = getMethod(propertyName, config.getClass(), PropertyDescriptor::getReadMethod);
+                    Method setter = getMethod(propertyName, config.getClass(), PropertyDescriptor::getWriteMethod);
                     if (getter != null && setter != null) {
                         // Property value may contain tokens that require substitution.
                         String propertyValueByToken = tokenSubstitutor((String) getter.invoke(config));
                         setter.invoke(config, propertyValueByToken);
                     }
-                } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             }
@@ -256,5 +258,17 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
     protected void incrementErrors()
     {
         this.confErrors.incrementAndGet();
+    }
+
+    private Method getMethod(String propertyName, Class<?> beanClass, Function<PropertyDescriptor, Method> function){
+        try{
+            PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
+            return function.apply(propertyDescriptor);
+        } catch (IntrospectionException e) {
+            LOG.debug(String.format("Unable to " +
+                    "create Property Descriptor from field %s :", propertyName) + System.lineSeparator() +
+                    ExceptionUtils.getStackTrace(e));
+            return null;
+        }
     }
 }
