@@ -749,6 +749,9 @@
                     <name>RE_BUILD_TYPE</name>
                 </property>
             </activation>
+            <properties>
+                <istfSourceDB>${project.basedir}</istfSourceDB>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -772,7 +775,7 @@
                     <plugin>
                         <groupId>com.hpe.caf</groupId>
                         <artifactId>caf-kafka-istf-maven-plugin</artifactId>
-                        <version>1.0.0</version>
+                        <version>1.1.0-SNAPSHOT</version>
                         <executions>
                             <execution>
                                 <id>istf-upload</id>
