@@ -89,7 +89,7 @@
         <module>util-moduleloader</module>
         <module>util-naming</module>
         <module>util-process-identifier</module>
-		<module>util-testing</module>
+        <module>util-testing</module>
     </modules>
 
     <scm>
@@ -301,7 +301,7 @@
                 <version>1.5.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <group>com.github.caf-api.util</groupId>
+                <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-testing</artifactId>
                 <version>1.5.0-SNAPSHOT</version>
             </dependency>
