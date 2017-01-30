@@ -753,7 +753,7 @@
             <activation>
                 <property>
                     <name>RE_BUILD_TYPE</name>
-                    <value>release<value>
+                    <value>release</value>
                 </property>
                 <file>
                     <exists>istfActivator.txt</exists>
@@ -785,7 +785,7 @@
                     <plugin>
                         <groupId>com.hpe.caf</groupId>
                         <artifactId>caf-kafka-istf-maven-plugin</artifactId>
-                        <version>1.1.0-SNAPSHOT</version>
+                        <version>1.1.0-2</version>
                         <executions>
                             <execution>
                                 <id>istf-upload</id>
