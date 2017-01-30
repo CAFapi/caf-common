@@ -748,6 +748,9 @@
                 <property>
                     <name>RE_BUILD_TYPE</name>
                 </property>
+                <file>
+                    <exists>istfActivator.txt</exists>
+                </file>
             </activation>
             <properties>
                 <istfSourceDB>${project.basedir}</istfSourceDB>
