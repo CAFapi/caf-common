@@ -753,7 +753,6 @@
             <activation>
                 <property>
                     <name>RE_BUILD_TYPE</name>
-                    <value>release</value>
                 </property>
                 <file>
                     <exists>istfActivator.txt</exists>
