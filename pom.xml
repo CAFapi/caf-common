@@ -67,6 +67,11 @@
             <email>philip.crooks@hpe.com</email>
         </developer>
         <developer>
+            <id>trevorgetty</id>
+            <name>Trevor Getty</name>
+            <email>trevor.getty@hpe.com</email>
+        </developer>
+        <developer>
             <id>zaramckeown</id>
             <name>Zara McKeown</name>
             <email>zara.mckeown@hpe.com</email>
