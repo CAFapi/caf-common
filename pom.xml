@@ -30,6 +30,8 @@
     <description>A set of re-usable Java libraries which are used by the various CAF Services and Frameworks.</description>
     <url>http://cafapi.github.io/</url>
 
+    <inceptionYear>2015</inceptionYear>
+
     <organization>
         <name>Hewlett Packard Enterprise Development LP</name>
         <url>http://www.hpe.com</url>
@@ -142,6 +144,7 @@
         <fabric8.docker.maven.version>0.16.7</fabric8.docker.maven.version>
         <tini.version>0.9.0</tini.version>
         <marathon.client.version>0.4.9</marathon.client.version>
+        <skipLicenseHeadersCheck>false</skipLicenseHeadersCheck>
     </properties>
 
     <dependencyManagement>
@@ -689,6 +692,53 @@
                 </executions>
             </plugin>
 
+            <!-- Check the license headers -->
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <inlineHeader>
+<![CDATA[
+Copyright ${project.inceptionYear}-2017 ${project.organization.name}.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+]]>
+                    </inlineHeader>
+                    <excludes>
+                        <exclude>LICENSE</exclude>
+                        <exclude>official-build.props</exclude>
+                        <exclude>docs/**</exclude>
+                        <exclude>**/marathon-template-config/**</exclude>
+                        <exclude>**/test-configs/**</exclude>
+                        <exclude>**/test-data/**</exclude>
+                        <exclude>**/test-license/**</exclude>
+                    </excludes>
+                    <mapping>
+                        <java>PHP</java>
+                    </mapping>
+                    <skip>${skipLicenseHeadersCheck}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-license-headers</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Use the Nexus Staging Maven Plugin for deployment -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -711,6 +761,33 @@
     </build>
 
     <profiles>
+        <!-- Update the license headers if required -->
+        <profile>
+            <id>update-licenses</id>
+            <activation>
+                <property>
+                    <name>!RE_BUILD_TYPE</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>update-license-headers</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <profile>
             <id>windows</id>
             <activation>
