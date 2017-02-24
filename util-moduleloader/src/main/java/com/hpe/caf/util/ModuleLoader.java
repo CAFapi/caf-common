@@ -99,7 +99,7 @@ public final class ModuleLoader
     public static <T> List<T> getServices(final Class<T> intf)
     {
         Objects.requireNonNull(intf);
-        List<T> ret = new LinkedList<T>();
+        List<T> ret = new LinkedList<>();
         for ( T t : ServiceLoader.load(intf) ) {
             ret.add(t);
         }
