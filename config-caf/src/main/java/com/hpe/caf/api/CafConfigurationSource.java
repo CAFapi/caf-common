@@ -47,7 +47,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
 {
     private final Cipher security;
     private final ServicePath id;
-    private final Codec codec;
+    private final Decoder decoder;
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     private final AtomicInteger confRequests = new AtomicInteger(0);
     private final AtomicInteger confErrors = new AtomicInteger(0);
@@ -60,14 +60,14 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
      * @param bootstrapProvider the initial provider of configuration
      * @param cipher for decrypting information in a configuration file
      * @param servicePath to localise configuration for this service
-     * @param codec provides a mechanism to deserialise the configuration format
+     * @param decoder provides a mechanism to decode the configuration format
      */
     public CafConfigurationSource(final BootstrapConfiguration bootstrapProvider, final Cipher cipher, final ServicePath servicePath,
-                                  final Codec codec)
+                                  final Decoder decoder)
     {
         this.security = Objects.requireNonNull(cipher);
         this.id = Objects.requireNonNull(servicePath);
-        this.codec = Objects.requireNonNull(codec);
+        this.decoder = Objects.requireNonNull(decoder);
         Objects.requireNonNull(bootstrapProvider);
     }
 
@@ -125,11 +125,6 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
     protected ServicePath getServicePath()
     {
         return this.id;
-    }
-
-    protected Codec getCodec()
-    {
-        return this.codec;
     }
 
     protected Validator getValidator()
@@ -204,11 +199,11 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
     }
 
     /**
-     * Acquire, deserialise and decrypt a configuration object from a data stream.
+     * Acquire, decode and decrypt a configuration object from a data stream.
      *
      * @param configClass the class representing configuration to acquire
      * @param <T> the class representing configuration to acquire
-     * @return the deserialised configuration object
+     * @return the decoded configuration object
      * @throws ConfigurationException if the configuration cannot be acquired
      */
     private <T> T getConfig(final Class<T> configClass)
@@ -217,7 +212,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         Iterator<Name> it = getServicePath().descendingPathIterator();
         while (it.hasNext()) {
             try (InputStream in = getConfigurationStream(configClass, it.next())) {
-                return getCodec().deserialise(in, configClass);
+                return decoder.deserialise(in, configClass);
             } catch (ConfigurationException e) {
                 LOG.trace("No configuration at this path level", e);
             } catch (CodecException | IOException e) {

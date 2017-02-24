@@ -19,8 +19,8 @@ package com.hpe.caf.config.file;
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.CafConfigurationSource;
 import com.hpe.caf.api.Cipher;
-import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.Decoder;
 import com.hpe.caf.api.HealthResult;
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
@@ -63,10 +63,15 @@ public class FileConfigurationSource extends CafConfigurationSource
     /**
      * {@inheritDoc}
      */
-    public FileConfigurationSource(final BootstrapConfiguration bootstrap, final Cipher cipher, final ServicePath servicePath, final Codec codec)
-            throws ConfigurationException
+    public FileConfigurationSource(
+        final BootstrapConfiguration bootstrap,
+        final Cipher cipher,
+        final ServicePath servicePath,
+        final Decoder decoder
+    )
+        throws ConfigurationException
     {
-        super(bootstrap, cipher, servicePath, codec);
+        super(bootstrap, cipher, servicePath, decoder);
         try {
             configPath = FileSystems.getDefault().getPath(getConfigPath(bootstrap));
         } catch (InvalidPathException e) {

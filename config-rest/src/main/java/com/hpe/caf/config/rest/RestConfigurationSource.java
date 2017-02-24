@@ -19,8 +19,8 @@ package com.hpe.caf.config.rest;
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.CafConfigurationSource;
 import com.hpe.caf.api.Cipher;
-import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.Decoder;
 import com.hpe.caf.api.HealthResult;
 import com.hpe.caf.api.HealthStatus;
 import com.hpe.caf.naming.Name;
@@ -64,10 +64,10 @@ public class RestConfigurationSource extends CafConfigurationSource
      * This ConfigurationProvider requires config.rest.host to be available from the bootstrap configuration.
      */
     public RestConfigurationSource(final BootstrapConfiguration bootstrap, final Cipher cipher, final ServicePath servicePath,
-            final Codec codec)
+            final Decoder decoder)
             throws ConfigurationException
     {
-        super(bootstrap, cipher, servicePath, codec);
+        super(bootstrap, cipher, servicePath, decoder);
         try {
             httpServer = new URL(getConfigHost(bootstrap));
             LOG.debug("REST host is {}", httpServer);
