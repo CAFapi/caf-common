@@ -65,19 +65,39 @@ public final class ModuleLoader
     public static <T> T getService(final Class<T> intf, final Class<? extends T> defaultImpl)
             throws ModuleLoaderException
     {
+        final T implementation = getServiceOrElse(intf, null);
+
+        if (implementation != null) {
+            return implementation;
+        }
+
+        if (defaultImpl == null) {
+            throw new ModuleLoaderException("Missing implementation: " + intf);
+        }
+
+        try {
+            return defaultImpl.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new ModuleLoaderException("Cannot instantiate class", e);
+        }
+    }
+
+    /**
+     * Determine the first advertised service implementation for the specified interface. The implementations are advertised via the Java
+     * "ServiceLoader" mechanism.
+     *
+     * @param <T> the interface
+     * @param intf the interface to find an advertised service implementation for
+     * @param defaultObj the default object to return if an advertised one is not found, may be null
+     * @return an advertised implementation of intf of type T, or the default object if one is not found
+     */
+    public static <T> T getServiceOrElse(final Class<T> intf, final T defaultObj)
+    {
         Objects.requireNonNull(intf);
         final T ret;
         List<T> implementations = getServices(intf);
         if ( implementations.isEmpty() ) {
-            if ( defaultImpl != null ) {
-                try {
-                    ret = defaultImpl.getConstructor().newInstance();
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                    throw new ModuleLoaderException("Cannot instantiate class", e);
-                }
-            } else {
-                throw new ModuleLoaderException("Missing implementation: " + intf);
-            }
+            return defaultObj;
         } else {
             ret = implementations.get(0);
         }
