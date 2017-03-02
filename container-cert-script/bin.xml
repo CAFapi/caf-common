@@ -16,6 +16,7 @@
 
 -->
 <assembly>
+    <id>container-cert-script</id>
     <formats>
         <format>tar.gz</format>
     </formats>
