@@ -39,6 +39,7 @@
                 <configuration>
                     <descriptor>bin.xml</descriptor>
                     <finalName>container-cert-script</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
                     <execution>
