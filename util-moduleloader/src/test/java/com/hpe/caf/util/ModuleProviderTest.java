@@ -18,9 +18,10 @@ package com.hpe.caf.util;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.concurrent.CountDownLatch;
-import java.util.function.Consumer;
 
 /**
  * Tests for the ModuleProvider class
