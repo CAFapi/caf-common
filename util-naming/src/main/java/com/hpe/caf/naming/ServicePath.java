@@ -45,7 +45,7 @@ public final class ServicePath implements Iterable<String>
         if (pathName.size() < 2) {
             throw new InvalidNameException("At minimum, a service must have a group");
         }
-        for (String n : this) {
+        for (final String n : this) {
             if (n.isEmpty()) {
                 throw new InvalidNameException("Empty subgroups are invalid");
             }

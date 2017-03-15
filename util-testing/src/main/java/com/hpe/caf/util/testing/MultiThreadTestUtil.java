@@ -27,8 +27,8 @@ import java.util.function.Consumer;
 public class MultiThreadTestUtil
 {
     public static void RunMultiThreadedTest(
-        Consumer<?> function,
-        int numberOfThreads,
+        final Consumer<?> function,
+        final int numberOfThreads,
         final CountDownLatch gate,
         final Collection<String> errors
     )
@@ -41,11 +41,11 @@ public class MultiThreadTestUtil
                 {
                     try {
                         function.accept(null);
-                    } catch (Exception e) {
+                    } catch (final Exception e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
                         throw new RuntimeException(e);
-                    } catch (AssertionError e) {
+                    } catch (final AssertionError e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
                         Assert.fail(e.getMessage());

@@ -24,8 +24,8 @@ import java.util.function.Consumer;
  */
 public class TestUtils
 {
-    public static void RunMultiThreadedTest(Consumer<?> function,
-                                            int numberOfThreads,
+    public static void RunMultiThreadedTest(final Consumer<?> function,
+                                            final int numberOfThreads,
                                             final CountDownLatch gate,
                                             final Collection<String> errors)
         throws InterruptedException
@@ -33,11 +33,11 @@ public class TestUtils
         RunMultiThreadedTest(function, numberOfThreads, gate, errors, false);
     }
 
-    public static void RunMultiThreadedTest(Consumer<?> function,
-                                            int numberOfThreads,
+    public static void RunMultiThreadedTest(final Consumer<?> function,
+                                            final int numberOfThreads,
                                             final CountDownLatch gate,
                                             final Collection<String> errors,
-                                            boolean printPerformance)
+                                            final boolean printPerformance)
         throws InterruptedException
     {
         for (Integer i = 0; i < numberOfThreads; i++) {
@@ -55,7 +55,7 @@ public class TestUtils
                             System.out.println(GetCurrentThreadPrefix() + " Finished - " + threadNumber + " test took "
                                 + (timeAfterTest - timeBeforeTest) + " milliseconds to execute");
                         }
-                    } catch (Exception e) {
+                    } catch (final Exception e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
                         throw new RuntimeException(e);

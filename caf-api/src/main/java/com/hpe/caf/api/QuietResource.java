@@ -44,7 +44,7 @@ public class QuietResource<T extends AutoCloseable> implements AutoCloseable
     {
         try {
             resource.close();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             LOG.warn("Failed to close resource {}", get().getClass().getSimpleName(), e);
         }
     }

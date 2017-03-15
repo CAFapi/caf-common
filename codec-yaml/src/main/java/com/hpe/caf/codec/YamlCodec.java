@@ -55,7 +55,7 @@ public class YamlCodec implements Codec
     {
         try {
             return getYaml(method).loadAs(new ByteArrayInputStream(data), clazz);
-        } catch (YAMLException e) {
+        } catch (final YAMLException e) {
             throw new CodecException("Failed to deserialise", e);
         }
     }
@@ -66,7 +66,7 @@ public class YamlCodec implements Codec
     {
         try {
             return getYaml(method).loadAs(stream, clazz);
-        } catch (YAMLException e) {
+        } catch (final YAMLException e) {
             throw new CodecException("Failed to deserialise", e);
         }
     }
@@ -77,7 +77,7 @@ public class YamlCodec implements Codec
     {
         try {
             return getYaml(DecodeMethod.getDefault()).dump(object).getBytes(StandardCharsets.UTF_8);
-        } catch (YAMLException e) {
+        } catch (final YAMLException e) {
             throw new CodecException("Failed to serialise", e);
         }
     }

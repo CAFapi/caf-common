@@ -44,7 +44,7 @@ public class JsonCodec implements Codec
     {
         try {
             return getMapper(method).readValue(data, clazz);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
     }
@@ -55,7 +55,7 @@ public class JsonCodec implements Codec
     {
         try {
             return getMapper(method).readValue(stream, clazz);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
     }
@@ -66,7 +66,7 @@ public class JsonCodec implements Codec
     {
         try {
             return getMapper(DecodeMethod.getDefault()).writeValueAsBytes(object);
-        } catch (JsonProcessingException e) {
+        } catch (final JsonProcessingException e) {
             throw new CodecException("Failed to serialise", e);
         }
     }

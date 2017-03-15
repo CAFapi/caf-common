@@ -54,11 +54,11 @@ public class ModuleProviderTest
                     for (int index = 0; index < numberOfIterationsForEachThread; index++) {
                         RunModulesTesting();
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new RuntimeException(e);
                 }
             }, overallNumberOfThreads, overallThreadGate, errors);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             e.printStackTrace();
         }
     }

@@ -35,7 +35,12 @@ public class Jersey2ServiceIteratorProvider extends ServiceFinder.ServiceIterato
     ServiceFinder.DefaultServiceIteratorProvider delegate = new ServiceFinder.DefaultServiceIteratorProvider();
 
     @Override
-    public <T> Iterator<T> createIterator(Class<T> service, String serviceName, ClassLoader loader, boolean ignoreOnClassNotFound)
+    public <T> Iterator<T> createIterator(
+        final Class<T> service,
+        final String serviceName,
+        final ClassLoader loader,
+        final boolean ignoreOnClassNotFound
+    )
     {
         return delegate.createIterator(service, serviceName, loader, ignoreOnClassNotFound);
     }
@@ -45,10 +50,10 @@ public class Jersey2ServiceIteratorProvider extends ServiceFinder.ServiceIterato
      */
     @Override
     public <T> Iterator<Class<T>> createClassIterator(
-        Class<T> service,
-        String serviceName,
-        ClassLoader loader,
-        boolean ignoreOnClassNotFound
+        final Class<T> service,
+        final String serviceName,
+        final ClassLoader loader,
+        final boolean ignoreOnClassNotFound
     )
     {
         final Iterator<Class<T>> delegateClassIterator = delegate.createClassIterator(

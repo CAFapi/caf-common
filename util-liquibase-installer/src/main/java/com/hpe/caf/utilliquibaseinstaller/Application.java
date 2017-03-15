@@ -67,18 +67,18 @@ public class Application
 
     private DatabaseProperties properties = loadProperties(DatabaseProperties.class);
 
-    public static void main(String[] args) throws SQLException, LiquibaseException
+    public static void main(final String[] args) throws SQLException, LiquibaseException
     {
         new Application().run(args);
     }
 
-    private void run(String[] args) throws SQLException, LiquibaseException
+    private void run(final String[] args) throws SQLException, LiquibaseException
     {
         CmdLineParser parser = new CmdLineParser(this);
         try {
             // parse the arguments.
             parser.parseArgument(args);
-        } catch (CmdLineException e) {
+        } catch (final CmdLineException e) {
             // if there's a problem in the command line,
             // you'll get this exception. this will report
             // an error message.
@@ -181,7 +181,7 @@ public class Application
                         Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage, this);
                         throw new RuntimeException(errorMessage);
                     }
-                } catch (IOException ioe) {
+                } catch (final IOException ioe) {
                     Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
                 }
 
@@ -192,7 +192,7 @@ public class Application
         }
     }
 
-    protected static <T> T loadProperties(Class<T> propertiesClass)
+    protected static <T> T loadProperties(final Class<T> propertiesClass)
     {
         AnnotationConfigApplicationContext propertiesApplicationContext = new AnnotationConfigApplicationContext();
         propertiesApplicationContext.register(PropertySourcesPlaceholderConfigurer.class);
@@ -211,13 +211,13 @@ public class Application
             dataSource.setPassword(password);
             try (Connection c = dataSource.getConnection()) {
                 return true;
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 return false;
             }
         }
     }
 
-    private String joinDBConnection(String connectionString, String dbName)
+    private String joinDBConnection(final String connectionString, final String dbName)
     {
         if (connectionString != null && dbName != null) {
             if (connectionString.endsWith("/") && !dbName.startsWith("/")) {

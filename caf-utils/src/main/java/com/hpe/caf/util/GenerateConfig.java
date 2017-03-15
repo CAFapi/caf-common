@@ -45,14 +45,14 @@ public final class GenerateConfig
                 Class clazz = Class.forName(className);
                 Codec codec = ModuleLoader.getService(Codec.class);
                 System.out.println(new String(codec.serialise(clazz.getConstructor().newInstance()), StandardCharsets.UTF_8));
-            } catch (ClassNotFoundException e) {
+            } catch (final ClassNotFoundException e) {
                 System.err.println("Class not found on classpath: " + className);
                 throw e;
-            } catch (InstantiationException | InvocationTargetException |
-                     NoSuchMethodException | IllegalAccessException | CodecException e) {
+            } catch (final InstantiationException | InvocationTargetException |
+                           NoSuchMethodException | IllegalAccessException | CodecException e) {
                 System.err.println("Failed to generate configuration");
                 throw e;
-            } catch (ModuleLoaderException e) {
+            } catch (final ModuleLoaderException e) {
                 System.err.println("Could not load codec component");
                 throw e;
             }

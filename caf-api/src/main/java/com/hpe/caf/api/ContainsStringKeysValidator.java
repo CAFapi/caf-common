@@ -36,7 +36,7 @@ public class ContainsStringKeysValidator implements ConstraintValidator<Contains
     @Override
     public boolean isValid(final Map<?, ?> map, final ConstraintValidatorContext constraintValidatorContext)
     {
-        for (String requiredKey : requiredKeys) {
+        for (final String requiredKey : requiredKeys) {
             if (!map.containsKey(requiredKey)) {
                 return false;
             }

@@ -50,7 +50,7 @@ public class ContainsStringKeysValidatorTest
             return testMap;
         }
 
-        public void setTestMap(Map<String, Integer> testMap)
+        public void setTestMap(final Map<String, Integer> testMap)
         {
             this.testMap = testMap;
         }

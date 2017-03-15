@@ -53,7 +53,7 @@ public class SystemBootstrapConfiguration implements BootstrapConfiguration
     {
         try {
             return Integer.parseInt(getConfiguration(key));
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             throw new ConfigurationException("Configuration value is not an integer: " + key, e);
         }
     }
@@ -85,7 +85,7 @@ public class SystemBootstrapConfiguration implements BootstrapConfiguration
             } else {
                 path = new ServicePath(getConfiguration(ENV_MARATHON_APP_ID));
             }
-        } catch (InvalidNameException e) {
+        } catch (final InvalidNameException e) {
             throw new ConfigurationException("Cannot get service path", e);
         }
         return path;

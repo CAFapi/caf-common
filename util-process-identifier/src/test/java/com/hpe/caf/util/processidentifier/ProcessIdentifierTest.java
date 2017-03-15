@@ -51,11 +51,11 @@ public class ProcessIdentifierTest
                         Assert.assertEquals(originalProcessID, currentThreadProcessId,
                                             "ProcessID retrieved by this thread should be the same as that obtained at start of test.");
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new RuntimeException(e);
                 }
             }, overallNumberOfThreads, overallThreadGate, errors);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             e.printStackTrace();
             Assert.fail(e.getMessage());
         }

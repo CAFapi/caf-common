@@ -47,7 +47,7 @@ public class JasyptCipher implements Cipher
     {
         try {
             codec.setPassword(bootstrap.getConfiguration(CONFIG_SECURITY_PASS));
-        } catch (ConfigurationException e) {
+        } catch (final ConfigurationException e) {
             throw new CipherException("Configuration " + CONFIG_SECURITY_PASS + " not set", e);
         }
     }

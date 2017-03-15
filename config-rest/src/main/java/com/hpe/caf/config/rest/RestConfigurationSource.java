@@ -67,7 +67,7 @@ public class RestConfigurationSource extends CafConfigurationSource
         try {
             httpServer = new URL(getConfigHost(bootstrap));
             LOG.debug("REST host is {}", httpServer);
-        } catch (MalformedURLException e) {
+        } catch (final MalformedURLException e) {
             throw new ConfigurationException("Invalid endpoint URL", e);
         }
         RestAdapter adapter = new RestAdapter.Builder()
@@ -95,7 +95,7 @@ public class RestConfigurationSource extends CafConfigurationSource
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(httpServer.getHost(), httpServer.getPort()), 5000);
             return HealthResult.RESULT_HEALTHY;
-        } catch (IOException e) {
+        } catch (final IOException e) {
             LOG.warn("Connection failure to HTTP endpoint", e);
             return new HealthResult(HealthStatus.UNHEALTHY, "Cannot connect to REST endpoint: " + httpServer);
         }
@@ -118,9 +118,9 @@ public class RestConfigurationSource extends CafConfigurationSource
     {
         try {
             return remoteCall(relativePath.toString(), configClass.getSimpleName()).getBody().in();
-        } catch (HttpConfigurationException e) {
+        } catch (final HttpConfigurationException e) {
             throw new ConfigurationException("No configuration at path: " + relativePath, e);
-        } catch (IOException | InterruptedException e) {
+        } catch (final IOException | InterruptedException e) {
             throw new ConfigurationException("Failed to retrieve configuration", e);
         }
     }
@@ -140,10 +140,10 @@ public class RestConfigurationSource extends CafConfigurationSource
         while (true) {
             try {
                 return remote.getRemoteConfiguration(path, configName);
-            } catch (HttpConfigurationException nfe) {
+            } catch (final HttpConfigurationException nfe) {
                 // don't retry if we have an explicit failure from the HTTP server
                 throw nfe;
-            } catch (ConfigurationException e) {
+            } catch (final ConfigurationException e) {
                 LOG.debug("HTTP client call failed, retrying");
                 if (i == retries) {
                     throw e;

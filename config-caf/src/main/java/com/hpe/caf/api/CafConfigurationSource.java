@@ -162,16 +162,16 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         throws ConfigurationException
     {
         T config = getConfig(configClass);
-        for (Field f : configClass.getDeclaredFields()) {
+        for (final Field f : configClass.getDeclaredFields()) {
             if (f.isAnnotationPresent(Configuration.class)) {
                 try {
                     Method setter = getMethod(f.getName(), configClass, PropertyDescriptor::getWriteMethod);
                     if (setter != null) {
                         setter.invoke(config, getCompleteConfig(f.getType()));
                     }
-                } catch (ConfigurationException e) {
+                } catch (final ConfigurationException e) {
                     LOG.debug("Didn't find any overriding configuration", e);
-                } catch (InvocationTargetException | IllegalAccessException e) {
+                } catch (final InvocationTargetException | IllegalAccessException e) {
                     incrementErrors();
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
@@ -182,7 +182,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
                     if (getter != null && setter != null) {
                         setter.invoke(config, getCipher().decrypt(tokenSubstitutor((String) getter.invoke(config))));
                     }
-                } catch (CipherException | InvocationTargetException | IllegalAccessException e) {
+                } catch (final CipherException | InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to decrypt class fields", e);
                 }
             } else if (f.getType().equals(String.class)) {
@@ -195,7 +195,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
                         String propertyValueByToken = tokenSubstitutor((String) getter.invoke(config));
                         setter.invoke(config, propertyValueByToken);
                     }
-                } catch (InvocationTargetException | IllegalAccessException e) {
+                } catch (final InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             }
@@ -218,9 +218,9 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         while (it.hasNext()) {
             try (InputStream in = getConfigurationStream(configClass, it.next())) {
                 return getCodec().deserialise(in, configClass);
-            } catch (ConfigurationException e) {
+            } catch (final ConfigurationException e) {
                 LOG.trace("No configuration at this path level", e);
-            } catch (CodecException | IOException e) {
+            } catch (final CodecException | IOException e) {
                 incrementErrors();
                 throw new ConfigurationException("Failed to get configuration for " + configClass.getSimpleName(), e);
             }
@@ -260,12 +260,16 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         this.confErrors.incrementAndGet();
     }
 
-    private Method getMethod(String propertyName, Class<?> beanClass, Function<PropertyDescriptor, Method> function)
+    private Method getMethod(
+        final String propertyName,
+        final Class<?> beanClass,
+        final Function<PropertyDescriptor, Method> function
+    )
     {
         try {
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
             return function.apply(propertyDescriptor);
-        } catch (IntrospectionException e) {
+        } catch (final IntrospectionException e) {
             LOG.debug(String.format("Unable to "
                 + "create Property Descriptor from field %s :", propertyName) + System.lineSeparator()
                 + ExceptionUtils.getStackTrace(e));

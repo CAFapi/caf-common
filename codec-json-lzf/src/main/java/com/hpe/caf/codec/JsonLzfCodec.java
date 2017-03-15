@@ -50,7 +50,7 @@ public class JsonLzfCodec implements Codec
         try (ByteArrayInputStream bis = new ByteArrayInputStream(data);
              LZFInputStream lzf = new LZFInputStream(bis)) {
             return getMapper(method).readValue(lzf, clazz);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
     }
@@ -61,7 +61,7 @@ public class JsonLzfCodec implements Codec
     {
         try (LZFInputStream lzf = new LZFInputStream(stream)) {
             return getMapper(method).readValue(lzf, clazz);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
     }
@@ -74,7 +74,7 @@ public class JsonLzfCodec implements Codec
              LZFOutputStream lzf = new LZFOutputStream(bos)) {
             getMapper(DecodeMethod.getDefault()).writeValue(lzf, object);
             return bos.toByteArray();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CodecException("Failed to serialise", e);
         }
     }

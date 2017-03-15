@@ -69,7 +69,7 @@ public class FileConfigurationSource extends CafConfigurationSource
         super(bootstrap, cipher, servicePath, codec);
         try {
             configPath = FileSystems.getDefault().getPath(getConfigPath(bootstrap));
-        } catch (InvalidPathException e) {
+        } catch (final InvalidPathException e) {
             throw new ConfigurationException("Invalid configuration path", e);
         }
         LOG.debug("Initialised");
@@ -92,7 +92,7 @@ public class FileConfigurationSource extends CafConfigurationSource
         throws ConfigurationException
     {
         // Try each configuration source filename format delimiter in attempt to load the configuration source
-        for (String fileNameDelimiter : fileNameDelimiters) {
+        for (final String fileNameDelimiter : fileNameDelimiters) {
             String configFile = nameToFile(configClass, relativePath, fileNameDelimiter);
             Path p;
             if (configPath != null) {
@@ -105,7 +105,7 @@ public class FileConfigurationSource extends CafConfigurationSource
             if (Files.exists(p)) {
                 try {
                     return Files.newInputStream(p);
-                } catch (IOException ioe) {
+                } catch (final IOException ioe) {
                     throw new ConfigurationException("Cannot read config file: " + configFile, ioe);
                 }
             }
@@ -122,10 +122,10 @@ public class FileConfigurationSource extends CafConfigurationSource
      * @param fileNameDelimiter the symbol used to separate cfg, group, subgroup, appid and ConfigurationClass
      * @return the constructed file name to try and access
      */
-    private String nameToFile(final Class configClass, final Name servicePath, String fileNameDelimiter)
+    private String nameToFile(final Class configClass, final Name servicePath, final String fileNameDelimiter)
     {
         StringBuilder builder = new StringBuilder("cfg");
-        for (String component : servicePath) {
+        for (final String component : servicePath) {
             builder.append(fileNameDelimiter).append(component);
         }
         builder.append(fileNameDelimiter).append(configClass.getSimpleName());

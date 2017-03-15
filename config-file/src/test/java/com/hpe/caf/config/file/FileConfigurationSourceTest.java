@@ -63,11 +63,11 @@ public class FileConfigurationSourceTest
         deleteDir(tempDir);
     }
 
-    private void deleteDir(File file)
+    private void deleteDir(final File file)
     {
         File[] contents = file.listFiles();
         if (contents != null) {
-            for (File f : contents) {
+            for (final File f : contents) {
                 deleteDir(f);
             }
         }

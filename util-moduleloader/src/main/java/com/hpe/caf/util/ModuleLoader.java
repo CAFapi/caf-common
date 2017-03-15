@@ -75,7 +75,7 @@ public final class ModuleLoader
 
         try {
             return defaultImpl.getConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (final InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new ModuleLoaderException("Cannot instantiate class", e);
         }
     }
@@ -118,7 +118,7 @@ public final class ModuleLoader
     {
         Objects.requireNonNull(intf);
         List<T> ret = new LinkedList<>();
-        for (T t : ServiceLoader.load(intf)) {
+        for (final T t : ServiceLoader.load(intf)) {
             ret.add(t);
         }
         return ret;
