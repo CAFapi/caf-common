@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.config.file;
 
-
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.CafConfigurationSource;
 import com.hpe.caf.api.Cipher;
@@ -36,14 +35,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-
 /**
- * This is a ConfigurationProvider that reads from a local disk file.
- * If the bootstrap parameter config.path is set, it will read the config
- * files from the specified directory, otherwise it will use the working dir.
+ * This is a ConfigurationProvider that reads from a local disk file. If the bootstrap parameter config.path is set, it will read the
+ * config files from the specified directory, otherwise it will use the working dir.
  *
- * If retrieving the configuration class "TestConfiguration", using the
- * ServicePath /a/b, it will expect the file to be called "cfg_a_b_TestConfiguration".
+ * If retrieving the configuration class "TestConfiguration", using the ServicePath /a/b, it will expect the file to be called
+ * "cfg_a_b_TestConfiguration".
  */
 public class FileConfigurationSource extends CafConfigurationSource
 {
@@ -59,12 +56,15 @@ public class FileConfigurationSource extends CafConfigurationSource
         fileNameDelimiters.add("~");
     }
 
-
     /**
      * {@inheritDoc}
      */
-    public FileConfigurationSource(final BootstrapConfiguration bootstrap, final Cipher cipher, final ServicePath servicePath, final Codec codec)
-            throws ConfigurationException
+    public FileConfigurationSource(
+        final BootstrapConfiguration bootstrap,
+        final Cipher cipher,
+        final ServicePath servicePath,
+        final Codec codec
+    ) throws ConfigurationException
     {
         super(bootstrap, cipher, servicePath, codec);
         try {
@@ -75,13 +75,11 @@ public class FileConfigurationSource extends CafConfigurationSource
         LOG.debug("Initialised");
     }
 
-
     @Override
     public void shutdown()
     {
         // nothing to do
     }
-
 
     @Override
     public HealthResult healthCheck()
@@ -89,10 +87,9 @@ public class FileConfigurationSource extends CafConfigurationSource
         return HealthResult.RESULT_HEALTHY;
     }
 
-
     @Override
     protected InputStream getConfigurationStream(final Class configClass, final Name relativePath)
-            throws ConfigurationException
+        throws ConfigurationException
     {
         // Try each configuration source filename format delimiter in attempt to load the configuration source
         for (String fileNameDelimiter : fileNameDelimiters) {
@@ -116,10 +113,10 @@ public class FileConfigurationSource extends CafConfigurationSource
         throw new ConfigurationException("Cannot find config file for " + configClass.getSimpleName());
     }
 
-
     /**
-     * Convert a (partial) ServicePath into a file name to access. The file names are
-     * in the format "cfg_group_subgroup_appid_ConfigurationClass".
+     * Convert a (partial) ServicePath into a file name to access. The file names are in the format
+     * "cfg_group_subgroup_appid_ConfigurationClass".
+     *
      * @param configClass the configuration class to try and acquire
      * @param servicePath the partial or complete ServicePath in Name format
      * @param fileNameDelimiter the symbol used to separate cfg, group, subgroup, appid and ConfigurationClass
@@ -128,13 +125,12 @@ public class FileConfigurationSource extends CafConfigurationSource
     private String nameToFile(final Class configClass, final Name servicePath, String fileNameDelimiter)
     {
         StringBuilder builder = new StringBuilder("cfg");
-        for(String component : servicePath) {
+        for (String component : servicePath) {
             builder.append(fileNameDelimiter).append(component);
         }
         builder.append(fileNameDelimiter).append(configClass.getSimpleName());
         return builder.toString();
     }
-
 
     private String getConfigPath(final BootstrapConfiguration bootstrap)
         throws ConfigurationException

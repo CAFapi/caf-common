@@ -260,14 +260,15 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         this.confErrors.incrementAndGet();
     }
 
-    private Method getMethod(String propertyName, Class<?> beanClass, Function<PropertyDescriptor, Method> function){
-        try{
+    private Method getMethod(String propertyName, Class<?> beanClass, Function<PropertyDescriptor, Method> function)
+    {
+        try {
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
             return function.apply(propertyDescriptor);
         } catch (IntrospectionException e) {
-            LOG.debug(String.format("Unable to " +
-                    "create Property Descriptor from field %s :", propertyName) + System.lineSeparator() +
-                    ExceptionUtils.getStackTrace(e));
+            LOG.debug(String.format("Unable to "
+                + "create Property Descriptor from field %s :", propertyName) + System.lineSeparator()
+                + ExceptionUtils.getStackTrace(e));
             return null;
         }
     }

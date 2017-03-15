@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.codec;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
@@ -28,17 +27,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 /**
- * Implementation of Codec that supports serialisation and deserialisation to and form JSON format
- * that itself is compressed with a high-speed LZF algorithm. In some crude tests, this was resulting
- * in data that was approximately 60% of the original JSON size with negligible performance impact.
+ * Implementation of Codec that supports serialisation and deserialisation to and form JSON format that itself is compressed with a
+ * high-speed LZF algorithm. In some crude tests, this was resulting in data that was approximately 60% of the original JSON size with
+ * negligible performance impact.
  */
 public class JsonLzfCodec implements Codec
 {
     private final ObjectMapper strictMapper;
     private final ObjectMapper lenientMapper;
-
 
     public JsonLzfCodec()
     {
@@ -46,10 +43,9 @@ public class JsonLzfCodec implements Codec
         lenientMapper = ObjectMapperFactory.getLenientMapper();
     }
 
-
     @Override
     public <T> T deserialise(final byte[] data, final Class<T> clazz, final DecodeMethod method)
-            throws CodecException
+        throws CodecException
     {
         try (ByteArrayInputStream bis = new ByteArrayInputStream(data);
              LZFInputStream lzf = new LZFInputStream(bis)) {
@@ -59,10 +55,9 @@ public class JsonLzfCodec implements Codec
         }
     }
 
-
     @Override
     public <T> T deserialise(final InputStream stream, final Class<T> clazz, final DecodeMethod method)
-            throws CodecException
+        throws CodecException
     {
         try (LZFInputStream lzf = new LZFInputStream(stream)) {
             return getMapper(method).readValue(lzf, clazz);
@@ -71,10 +66,9 @@ public class JsonLzfCodec implements Codec
         }
     }
 
-
     @Override
     public byte[] serialise(final Object object)
-            throws CodecException
+        throws CodecException
     {
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
              LZFOutputStream lzf = new LZFOutputStream(bos)) {
@@ -84,7 +78,6 @@ public class JsonLzfCodec implements Codec
             throw new CodecException("Failed to serialise", e);
         }
     }
-
 
     protected ObjectMapper getMapper(final DecodeMethod method)
     {

@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 /**
  * Thrown if there is a problem with the election process.
  */

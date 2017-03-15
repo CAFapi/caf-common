@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 /**
  * Indicates there was a problem in the ConfigurationSource module.
  */
@@ -23,6 +22,7 @@ public class ConfigurationException extends Exception
 {
     /**
      * Create a new ConfigurationException
+     *
      * @param message information about this exception
      */
     public ConfigurationException(final String message)
@@ -30,9 +30,9 @@ public class ConfigurationException extends Exception
         super(message);
     }
 
-
     /**
      * Create a new ConfigurationException
+     *
      * @param message information about this exception
      * @param cause the original cause of this exception
      */

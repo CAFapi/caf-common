@@ -15,12 +15,10 @@
  */
 package com.hpe.caf.util;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Collection;
-
 
 public class ModuleLoaderTest
 {
@@ -34,7 +32,6 @@ public class ModuleLoaderTest
         ModuleLoader.getService(SingleTestInterface.class);
     }
 
-
     /**
      * Ensure that for an interface with two advertised implementations, ComponentLoader returns both.
      */
@@ -46,7 +43,6 @@ public class ModuleLoaderTest
         Assert.assertEquals(2, res.size());
     }
 
-
     /**
      * Ensure that for an interface with no advertised implementations, and no default provided, ComponentLoader throws an Exception.
      */
@@ -56,7 +52,6 @@ public class ModuleLoaderTest
     {
         ModuleLoader.getService(MissingTestInterface.class);
     }
-
 
     /**
      * Ensure that for an interface with no advertised implementation but a provided default, ComponentLoader returns the default.

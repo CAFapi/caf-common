@@ -26,30 +26,33 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySources({
-        @PropertySource(value = "classpath:database.properties", ignoreResourceNotFound = true),
-        @PropertySource(value = "file:${DATABASE_CONFIG}/database.properties", ignoreResourceNotFound = true)
+    @PropertySource(value = "classpath:database.properties", ignoreResourceNotFound = true),
+    @PropertySource(value = "file:${DATABASE_CONFIG}/database.properties", ignoreResourceNotFound = true)
 })
-public class DatabaseProperties {
-
+public class DatabaseProperties
+{
     private final String dbNamePlaceholder = "<dbname>";
 
     @Autowired
     protected Environment environment;
 
-    public String getConnectionString(){
-      return this.environment.getProperty("db.connection");
+    public String getConnectionString()
+    {
+        return this.environment.getProperty("db.connection");
     }
 
-    public String getUser(){
+    public String getUser()
+    {
         return this.environment.getProperty("db.user");
     }
 
-    public String getPass(){
+    public String getPass()
+    {
         return this.environment.getProperty("db.pass");
     }
 
-    public String getDBName(){
+    public String getDBName()
+    {
         return this.environment.getProperty("db.name");
     }
-
 }

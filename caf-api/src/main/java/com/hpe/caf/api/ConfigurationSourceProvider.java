@@ -15,9 +15,7 @@
  */
 package com.hpe.caf.api;
 
-
 import com.hpe.caf.naming.ServicePath;
-
 
 /**
  * Simple boilerplate to return a ConfigurationSource.
@@ -34,6 +32,10 @@ public interface ConfigurationSourceProvider
      * @return a new ConfigurationSource instance
      * @throws ConfigurationException if the ConfigurationSource could not be created
      */
-    ManagedConfigurationSource getConfigurationSource(BootstrapConfiguration bootstrapProvider, Cipher cipher, ServicePath servicePath, Codec codec)
-        throws ConfigurationException;
+    ManagedConfigurationSource getConfigurationSource(
+        BootstrapConfiguration bootstrapProvider,
+        Cipher cipher,
+        ServicePath servicePath,
+        Codec codec
+    ) throws ConfigurationException;
 }

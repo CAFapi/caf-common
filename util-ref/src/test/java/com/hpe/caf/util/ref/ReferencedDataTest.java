@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util.ref;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.internal.junit.ArrayAsserts;
@@ -25,7 +24,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-
 
 public class ReferencedDataTest
 {
@@ -45,7 +43,6 @@ public class ReferencedDataTest
         Assert.assertNull(testDat.getReference());
     }
 
-
     @Test
     public void testAcquireWithReference()
         throws DataSourceException, IOException
@@ -63,7 +60,6 @@ public class ReferencedDataTest
         Assert.assertEquals(test.length, nRead);
         ArrayAsserts.assertArrayEquals(test, buf);
     }
-
 
     @Test(expectedExceptions = IllegalStateException.class)
     public void testMissingDataAndReference()

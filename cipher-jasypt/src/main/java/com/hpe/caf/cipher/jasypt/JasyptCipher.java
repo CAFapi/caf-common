@@ -15,18 +15,15 @@
  */
 package com.hpe.caf.cipher.jasypt;
 
-
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.Cipher;
 import com.hpe.caf.api.CipherException;
 import com.hpe.caf.api.ConfigurationException;
 import org.jasypt.util.text.BasicTextEncryptor;
 
-
 /**
- * Implementation of a SecurityProvider that uses Jasypt to provide basic
- * text encryption/decryption capabilities. The strong encryptor is not used
- * to avoid licensing/export issues.
+ * Implementation of a SecurityProvider that uses Jasypt to provide basic text encryption/decryption capabilities. The strong encryptor is
+ * not used to avoid licensing/export issues.
  */
 public class JasyptCipher implements Cipher
 {
@@ -40,14 +37,13 @@ public class JasyptCipher implements Cipher
      */
     private final BasicTextEncryptor codec = new BasicTextEncryptor();
 
-
     /**
      * {@inheritDoc}
      *
      * The cipher.pass variable must be present in the bootstrap configuration for this provider to init.
      */
     public JasyptCipher(final BootstrapConfiguration bootstrap)
-            throws CipherException
+        throws CipherException
     {
         try {
             codec.setPassword(bootstrap.getConfiguration(CONFIG_SECURITY_PASS));
@@ -56,13 +52,11 @@ public class JasyptCipher implements Cipher
         }
     }
 
-
     @Override
     public String decrypt(final String input)
     {
         return codec.decrypt(input);
     }
-
 
     @Override
     public String encrypt(final String input)

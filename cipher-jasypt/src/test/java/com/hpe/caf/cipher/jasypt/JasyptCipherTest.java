@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.cipher.jasypt;
 
-
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.Cipher;
 import com.hpe.caf.api.CipherException;
@@ -28,10 +27,9 @@ public class JasyptCipherTest
 {
     private static final String PASS = "test123";
 
-
     @Test
     public void jasyptStringTest()
-            throws ConfigurationException, CipherException
+        throws ConfigurationException, CipherException
     {
         BootstrapConfiguration boot = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(boot.getConfiguration(JasyptCipher.CONFIG_SECURITY_PASS)).thenReturn(PASS);
@@ -39,7 +37,6 @@ public class JasyptCipherTest
         String testString = "test456";
         Assert.assertEquals(testString, sp.decrypt(sp.encrypt(testString)));
     }
-
 
     @Test(expectedExceptions = CipherException.class)
     public void jasyptExceptionTest()

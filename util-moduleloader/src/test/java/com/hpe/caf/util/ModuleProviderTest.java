@@ -26,29 +26,32 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Tests for the ModuleProvider class
  */
-public class ModuleProviderTest {
+public class ModuleProviderTest
+{
     @Test
-    public void singleThreadGetModuleTest(){
+    public void singleThreadGetModuleTest()
+    {
         RunModulesTesting();
     }
 
     /**
-     * Attempting to verify that ModuleProvider behaves as expected when multiple threads are accessing it. Due to the nature of
-     * the code though this doesn't have a great coverage on adding unique classes into the ModuleProvider cached map
-     * (can't think of a way to dynamically add classes per thread).
+     * Attempting to verify that ModuleProvider behaves as expected when multiple threads are accessing it. Due to the nature of the code
+     * though this doesn't have a great coverage on adding unique classes into the ModuleProvider cached map (can't think of a way to
+     * dynamically add classes per thread).
      */
     @Test
-    public void multiThreadGetModuleTest(){
+    public void multiThreadGetModuleTest()
+    {
         int overallNumberOfThreads = 16;
         int numberOfIterationsForEachThread = 500;
         final CountDownLatch overallThreadGate = new CountDownLatch(overallNumberOfThreads);
         final Collection<String> errors = Collections.synchronizedList(new LinkedList<>());
 
         try {
-            TestUtils.RunMultiThreadedTest(r ->
-            {
+            TestUtils.RunMultiThreadedTest(r
+                -> {
                 try {
-                    for(int index = 0; index < numberOfIterationsForEachThread; index++ ) {
+                    for (int index = 0; index < numberOfIterationsForEachThread; index++) {
                         RunModulesTesting();
                     }
                 } catch (Exception e) {
@@ -60,7 +63,8 @@ public class ModuleProviderTest {
         }
     }
 
-    private void RunModulesTesting(){
+    private void RunModulesTesting()
+    {
         ModuleProvider provider = ModuleProvider.getInstance();
         FirstMultipleTestImpl explicitFirst = new FirstMultipleTestImpl();
         SecondMultipleTestImpl explicitSecond = new SecondMultipleTestImpl();
@@ -69,27 +73,30 @@ public class ModuleProviderTest {
         MultipleTestInterface firstImpl = provider.getModule(MultipleTestInterface.class, FirstMultipleTestImpl.class.getSimpleName());
         Assert.assertNotNull(firstImpl);
         Assert.assertEquals(explicitFirst.getNumber(), firstImpl.getNumber(),
-                "Expecting FirstMultipleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance");
+                            "Expecting FirstMultipleTestImpl instance returned by ModuleProvider"
+                            + " to behave the same as our explictly constructed instance");
 
         MultipleTestInterface secondImpl = provider.getModule(MultipleTestInterface.class, SecondMultipleTestImpl.class.getSimpleName());
         Assert.assertNotNull(secondImpl);
         Assert.assertEquals(explicitSecond.getNumber(), secondImpl.getNumber(),
-                "Expecting SecondMultipleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance");
+                            "Expecting SecondMultipleTestImpl instance returned by ModuleProvider"
+                            + " to behave the same as our explictly constructed instance");
 
         //test retrieving a different key
         SingleTestInterface singleImpl = provider.getModule(SingleTestInterface.class, SingleTestImpl.class.getSimpleName());
         Assert.assertNotNull(singleImpl);
         Assert.assertEquals(explicitSingle.getName(), singleImpl.getName(),
-                "Expecting SingleTestImpl instance returned by ModuleProvider to behave the same as our explictly constructed instance");
+                            "Expecting SingleTestImpl instance returned by ModuleProvider"
+                            + " to behave the same as our explictly constructed instance");
 
         //verify that a second call re-uses than existing object and doesn't create a new instance of it it
         MultipleTestInterface firstImpl_again = provider.getModule(MultipleTestInterface.class, "FirstMultipleTestImpl");
         Assert.assertNotNull(firstImpl_again);
         Assert.assertEquals(explicitFirst.getNumber(), firstImpl_again.getNumber(),
-                "Expecting FirstMultipleTestImpl instance returned by second call to ModuleProvider to behave the same as our explictly constructed instance");
+                            "Expecting FirstMultipleTestImpl instance returned by second call to ModuleProvider"
+                            + " to behave the same as our explictly constructed instance");
         Assert.assertTrue(firstImpl == firstImpl_again,
-                "Expecting instance returned from first call to ModuleProvider for FirstMultipleTestImpl to be same instance as returned as second call for FirstMultipleTestImpl");
+                          "Expecting instance returned from first call to ModuleProvider"
+                          + " for FirstMultipleTestImpl to be same instance as returned as second call for FirstMultipleTestImpl");
     }
-
-
 }
