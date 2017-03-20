@@ -18,8 +18,9 @@ package com.hpe.caf.config.file;
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.CafConfigurationSource;
 import com.hpe.caf.api.Cipher;
-import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.ConfigurationException;
+import com.hpe.caf.api.Decoder;
+import com.hpe.caf.api.FileExtensions;
 import com.hpe.caf.api.HealthResult;
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
@@ -50,6 +51,7 @@ public class FileConfigurationSource extends CafConfigurationSource
     private Path configPath;
     private static final Logger LOG = LoggerFactory.getLogger(FileConfigurationSource.class);
     private static final ArrayList<String> fileNameDelimiters = new ArrayList<>();
+    private final String[] fileExtensions;
 
     static {
         fileNameDelimiters.add("_");
@@ -63,15 +65,16 @@ public class FileConfigurationSource extends CafConfigurationSource
         final BootstrapConfiguration bootstrap,
         final Cipher cipher,
         final ServicePath servicePath,
-        final Codec codec
+        final Decoder decoder
     ) throws ConfigurationException
     {
-        super(bootstrap, cipher, servicePath, codec);
+        super(bootstrap, cipher, servicePath, decoder);
         try {
             configPath = FileSystems.getDefault().getPath(getConfigPath(bootstrap));
         } catch (final InvalidPathException e) {
             throw new ConfigurationException("Invalid configuration path", e);
         }
+        fileExtensions = getFileExtensions(decoder);
         LOG.debug("Initialised");
     }
 
@@ -93,20 +96,22 @@ public class FileConfigurationSource extends CafConfigurationSource
     {
         // Try each configuration source filename format delimiter in attempt to load the configuration source
         for (final String fileNameDelimiter : fileNameDelimiters) {
-            String configFile = nameToFile(configClass, relativePath, fileNameDelimiter);
-            Path p;
-            if (configPath != null) {
-                p = configPath.resolve(configFile);
-            } else {
-                p = Paths.get(configFile);
-            }
-            LOG.debug("Getting configuration for {} from {}", configClass.getSimpleName(), p);
-            // Check if the file exists and try to return it as an input stream
-            if (Files.exists(p)) {
-                try {
-                    return Files.newInputStream(p);
-                } catch (final IOException ioe) {
-                    throw new ConfigurationException("Cannot read config file: " + configFile, ioe);
+            for (final String fileExtension : fileExtensions) {
+                String configFile = nameToFile(configClass, relativePath, fileNameDelimiter, fileExtension);
+                Path p;
+                if (configPath != null) {
+                    p = configPath.resolve(configFile);
+                } else {
+                    p = Paths.get(configFile);
+                }
+                LOG.debug("Getting configuration for {} from {}", configClass.getSimpleName(), p);
+                // Check if the file exists and try to return it as an input stream
+                if (Files.exists(p)) {
+                    try {
+                        return Files.newInputStream(p);
+                    } catch (final IOException ioe) {
+                        throw new ConfigurationException("Cannot read config file: " + configFile, ioe);
+                    }
                 }
             }
         }
@@ -114,21 +119,40 @@ public class FileConfigurationSource extends CafConfigurationSource
     }
 
     /**
+     * Retrieves the file extensions to use with the specified decoder.
+     * <p>
+     * If the specified Decoder doesn't have any file extensions explicitly associated with it, then a single empty string is returned.
+     */
+    private static String[] getFileExtensions(final Decoder decoder)
+    {
+        final Class<? extends Decoder> decoderClass = decoder.getClass();
+        final FileExtensions fileExtensionsAnnotation = decoderClass.getAnnotation(FileExtensions.class);
+
+        return (fileExtensionsAnnotation == null)
+            ? new String[]{""}
+            : fileExtensionsAnnotation.value();
+    }
+
+    /**
      * Convert a (partial) ServicePath into a file name to access. The file names are in the format
-     * "cfg_group_subgroup_appid_ConfigurationClass".
+     * "cfg_group_subgroup_appid_ConfigurationClass[.ext]".
      *
      * @param configClass the configuration class to try and acquire
      * @param servicePath the partial or complete ServicePath in Name format
      * @param fileNameDelimiter the symbol used to separate cfg, group, subgroup, appid and ConfigurationClass
+     * @param extension the file extension, or an empty string if there is no extension
      * @return the constructed file name to try and access
      */
-    private String nameToFile(final Class configClass, final Name servicePath, final String fileNameDelimiter)
+    private String nameToFile(final Class configClass, final Name servicePath, final String fileNameDelimiter, final String extension)
     {
         StringBuilder builder = new StringBuilder("cfg");
         for (final String component : servicePath) {
             builder.append(fileNameDelimiter).append(component);
         }
         builder.append(fileNameDelimiter).append(configClass.getSimpleName());
+        if (!extension.isEmpty()) {
+            builder.append('.').append(extension);
+        }
         return builder.toString();
     }
 

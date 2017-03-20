@@ -18,6 +18,7 @@ package com.hpe.caf.codec;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
+import com.hpe.caf.api.FileExtensions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.error.YAMLException;
 import org.yaml.snakeyaml.introspector.BeanAccess;
@@ -32,6 +33,7 @@ import java.nio.charset.StandardCharsets;
  *
  * The strict version does not allow missing properties, whereas the lenient version does.
  */
+@FileExtensions({"", "yaml", "yml"})
 public class YamlCodec implements Codec
 {
     private final Yaml strictYaml;

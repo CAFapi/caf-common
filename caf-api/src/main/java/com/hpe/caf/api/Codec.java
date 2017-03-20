@@ -21,7 +21,7 @@ import java.io.InputStream;
  * A Codec specifies methods to serialise data from a Java object to byte format, and deserialise data from byte format back into a
  * specified Java class.
  */
-public interface Codec
+public interface Codec extends Decoder
 {
     default <T> T deserialise(byte[] data, Class<T> clazz)
         throws CodecException
@@ -51,6 +51,7 @@ public interface Codec
      * @return an instance of the class specified represented by the data
      * @throws CodecException if the data could not be deserialised
      */
+    @Override
     default <T> T deserialise(InputStream stream, Class<T> clazz)
         throws CodecException
     {

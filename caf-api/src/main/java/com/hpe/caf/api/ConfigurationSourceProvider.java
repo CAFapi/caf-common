@@ -28,7 +28,7 @@ public interface ConfigurationSourceProvider
      * @param bootstrapProvider used to provide initial configuration of the ConfigurationSource
      * @param cipher used to perform any necessary decryption in the configuration objects
      * @param servicePath used to acquire service-specific configuration
-     * @param codec used to deserialise data from the source into objects
+     * @param decoder used to decode data from the source into objects
      * @return a new ConfigurationSource instance
      * @throws ConfigurationException if the ConfigurationSource could not be created
      */
@@ -36,6 +36,6 @@ public interface ConfigurationSourceProvider
         BootstrapConfiguration bootstrapProvider,
         Cipher cipher,
         ServicePath servicePath,
-        Codec codec
+        Decoder decoder
     ) throws ConfigurationException;
 }
