@@ -17,15 +17,15 @@ package com.hpe.caf.decoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hpe.caf.api.CodecException;
+import com.hpe.caf.api.Decoder;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import com.hpe.caf.api.Decoder;
-import java.io.InputStreamReader;
 
 public class JavascriptDecoder implements Decoder
 {
