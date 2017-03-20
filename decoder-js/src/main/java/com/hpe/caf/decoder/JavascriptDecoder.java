@@ -39,16 +39,16 @@ public class JavascriptDecoder implements Decoder
     }
 
     @Override
-    public <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException
+    public <T> T deserialise(final InputStream stream, final Class<T> clazz) throws CodecException
     {
         try {
             return decode(stream, clazz);
-        } catch (IOException | ScriptException | NoSuchMethodException ex) {
+        } catch (final IOException | ScriptException | NoSuchMethodException ex) {
             throw new CodecException("Failed to decode JavaScript", ex);
         }
     }
 
-    private <T> T decode(InputStream stream, Class<T> clazz) throws IOException, ScriptException, NoSuchMethodException
+    private <T> T decode(final InputStream stream, final Class<T> clazz) throws IOException, ScriptException, NoSuchMethodException
     {
         // I'm unsure about whether it would be safe to share the scripting engine across threads so I'm creating a separate one each time
         // this method is called.  It might be safe, assuming we just created a fresh Binding for each thread, but I'm finding it hard to

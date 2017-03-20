@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 /**
  * Provides a method of encrypting and decrypting string data, such as passwords.
  */
@@ -23,6 +22,7 @@ public interface Cipher
 {
     /**
      * Decrypt a string.
+     *
      * @param input the data to decrypt
      * @return the decrypted data
      * @throws CipherException if the decryption fails
@@ -30,9 +30,9 @@ public interface Cipher
     String decrypt(String input)
         throws CipherException;
 
-
     /**
      * Encrypt a string.
+     *
      * @param input the data to encrypt
      * @return the encrypted data
      * @throws CipherException if the encryption fails

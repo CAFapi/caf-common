@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,37 +24,36 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ServiceLoader;
 
-
 /**
- * Utility class that provides methods for finding and returning components at runtime
- * using the Java ServiceLoader.
+ * Utility class that provides methods for finding and returning components at runtime using the Java ServiceLoader.
  */
 public final class ModuleLoader
 {
     private static final Logger LOG = LoggerFactory.getLogger(ModuleLoader.class);
 
-
-    private ModuleLoader() { }
-
+    private ModuleLoader()
+    {
+    }
 
     /**
-     * Determine the first advertised service implementation for the specified interface.
-     * The implementations are advertised via the Java "ServiceLoader" mechanism.
+     * Determine the first advertised service implementation for the specified interface. The implementations are advertised via the Java
+     * "ServiceLoader" mechanism.
+     *
      * @param intf the interface to find an advertised service implementation for
      * @param <T> the interface
      * @return an advertised implementation of intf of type T
      * @throws ModuleLoaderException if there is no advertised implementation available
      */
     public static <T> T getService(final Class<T> intf)
-            throws ModuleLoaderException
+        throws ModuleLoaderException
     {
         return getService(intf, null);
     }
 
-
     /**
-     * Determine the first advertised service implementation for the specified interface.
-     * The implementations are advertised via the Java "ServiceLoader" mechanism.
+     * Determine the first advertised service implementation for the specified interface. The implementations are advertised via the Java
+     * "ServiceLoader" mechanism.
+     *
      * @param intf the interface to find an advertised service implementation for
      * @param defaultImpl the default implementation class if an advertised one is not found, may be null
      * @param <T> the interface
@@ -63,7 +61,7 @@ public final class ModuleLoader
      * @throws ModuleLoaderException if the implementation is missing and no defaultImpl is specified
      */
     public static <T> T getService(final Class<T> intf, final Class<? extends T> defaultImpl)
-            throws ModuleLoaderException
+        throws ModuleLoaderException
     {
         final T implementation = getServiceOrElse(intf, null);
 
@@ -77,7 +75,7 @@ public final class ModuleLoader
 
         try {
             return defaultImpl.getConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (final InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new ModuleLoaderException("Cannot instantiate class", e);
         }
     }
@@ -96,22 +94,22 @@ public final class ModuleLoader
         Objects.requireNonNull(intf);
         final T ret;
         List<T> implementations = getServices(intf);
-        if ( implementations.isEmpty() ) {
+        if (implementations.isEmpty()) {
             return defaultObj;
         } else {
             ret = implementations.get(0);
         }
 
-        if ( implementations.size() > 1 ) {
+        if (implementations.size() > 1) {
             LOG.warn("There is more than one implementation of {} available on the classpath, taking the first available", intf);
         }
         LOG.info("Detected component implementation {}", ret.getClass().getSimpleName());
         return ret;
     }
 
-
     /**
      * Get all advertised service implementations of the specified interface.
+     *
      * @param intf the interface to find advertised service implementations of
      * @param <T> the interface
      * @return a collection of implementations of the specified interface
@@ -120,7 +118,7 @@ public final class ModuleLoader
     {
         Objects.requireNonNull(intf);
         List<T> ret = new LinkedList<>();
-        for ( T t : ServiceLoader.load(intf) ) {
+        for (final T t : ServiceLoader.load(intf)) {
             ret.add(t);
         }
         return ret;

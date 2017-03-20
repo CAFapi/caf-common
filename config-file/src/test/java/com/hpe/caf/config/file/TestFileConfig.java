@@ -15,24 +15,21 @@
  */
 package com.hpe.caf.config.file;
 
-
 import org.hibernate.validator.constraints.NotBlank;
-
 
 public class TestFileConfig
 {
     @NotBlank
     private String testString = "test123";
 
-
-    public TestFileConfig() { }
-
+    public TestFileConfig()
+    {
+    }
 
     public String getTestString()
     {
         return this.testString;
     }
-
 
     public void setTestString(final String input)
     {

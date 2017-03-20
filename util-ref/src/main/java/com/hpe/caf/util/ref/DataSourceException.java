@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util.ref;
 
-
 /**
  * General exception for DataSource acquisition failures.
  */
@@ -25,7 +24,6 @@ public class DataSourceException extends Exception
     {
         super(message);
     }
-
 
     public DataSourceException(final String message, final Throwable cause)
     {

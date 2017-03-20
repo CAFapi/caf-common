@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util;
 
-
 /**
  * Thrown when there is a problem finding or instantiating a requested component.
  */
@@ -25,7 +24,6 @@ public class ModuleLoaderException extends Exception
     {
         super(message);
     }
-
 
     public ModuleLoaderException(final String message, final Throwable cause)
     {

@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util.ref;
 
-
 /**
  * Thrown when the source reference is not found.
  */
@@ -25,7 +24,6 @@ public class SourceNotFoundException extends DataSourceException
     {
         super(message);
     }
-
 
     public SourceNotFoundException(final String message, final Throwable cause)
     {

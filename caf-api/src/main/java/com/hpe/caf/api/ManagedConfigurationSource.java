@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 public interface ManagedConfigurationSource extends HealthReporter, ConfigurationMetricsReporter, ConfigurationSource
 {
     /**
@@ -23,13 +22,11 @@ public interface ManagedConfigurationSource extends HealthReporter, Configuratio
      */
     void shutdown();
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     int getConfigurationRequests();
-
 
     /**
      * {@inheritDoc}

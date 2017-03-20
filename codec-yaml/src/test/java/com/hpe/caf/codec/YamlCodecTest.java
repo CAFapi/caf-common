@@ -15,22 +15,19 @@
  */
 package com.hpe.caf.codec;
 
-
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class YamlCodecTest
 {
     private static final String VERIFY_STRING = "test456";
 
-
     @Test
     public void testYamlCodec()
-            throws CodecException
+        throws CodecException
     {
         Codec codec = new YamlCodec();
         CodecTestData test = new CodecTestData();
@@ -39,7 +36,6 @@ public class YamlCodecTest
         CodecTestData res = codec.deserialise(stuff, CodecTestData.class);
         Assert.assertEquals(test.getTestString(), res.getTestString());
     }
-
 
     @Test(expectedExceptions = CodecException.class)
     public void testUnknownPropertyStrict()
@@ -53,7 +49,6 @@ public class YamlCodecTest
         codec.deserialise(stuff, CodecTestData.class, DecodeMethod.STRICT);
     }
 
-
     @Test
     public void testUnknownPropertyLenient()
         throws CodecException
@@ -66,7 +61,6 @@ public class YamlCodecTest
         codec.deserialise(stuff, CodecTestData.class, DecodeMethod.LENIENT);
     }
 
-
     @Test
     public void testPrivateSerialisation()
         throws CodecException
@@ -76,7 +70,6 @@ public class YamlCodecTest
         byte[] stuff = codec.serialise(data);
         Assert.assertEquals(VERIFY_STRING, codec.deserialise(stuff, PrivateCodecTestData.class).getTestData());
     }
-
 
     @Test
     public void testGetterVisibility()

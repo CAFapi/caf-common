@@ -22,26 +22,40 @@ import java.util.function.Consumer;
 /**
  * Created by Michael.McAlynn on 04/03/2016.
  */
-public class TestUtils {
-    public static void RunMultiThreadedTest(Consumer<?> function, int numberOfThreads, final CountDownLatch gate, final Collection<String> errors) throws InterruptedException {
+public class TestUtils
+{
+    public static void RunMultiThreadedTest(final Consumer<?> function,
+                                            final int numberOfThreads,
+                                            final CountDownLatch gate,
+                                            final Collection<String> errors)
+        throws InterruptedException
+    {
         RunMultiThreadedTest(function, numberOfThreads, gate, errors, false);
     }
 
-    public static void RunMultiThreadedTest(Consumer<?> function, int numberOfThreads, final CountDownLatch gate, final Collection<String> errors, boolean printPerformance) throws InterruptedException {
+    public static void RunMultiThreadedTest(final Consumer<?> function,
+                                            final int numberOfThreads,
+                                            final CountDownLatch gate,
+                                            final Collection<String> errors,
+                                            final boolean printPerformance)
+        throws InterruptedException
+    {
         for (Integer i = 0; i < numberOfThreads; i++) {
             final Integer threadNumber = i;
-            new Thread() {
-                public void run() {
+            new Thread()
+            {
+                public void run()
+                {
                     try {
                         long timeBeforeTest = System.currentTimeMillis();
                         function.accept(null);
                         long timeAfterTest = System.currentTimeMillis();
 
-                        if(printPerformance){
+                        if (printPerformance) {
                             System.out.println(GetCurrentThreadPrefix() + " Finished - " + threadNumber + " test took "
-                                    + (timeAfterTest - timeBeforeTest) + " milliseconds to execute");
+                                + (timeAfterTest - timeBeforeTest) + " milliseconds to execute");
                         }
-                    } catch (Exception e) {
+                    } catch (final Exception e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
                         throw new RuntimeException(e);
@@ -53,7 +67,8 @@ public class TestUtils {
         gate.await();
     }
 
-    private static String GetCurrentThreadPrefix() {
+    private static String GetCurrentThreadPrefix()
+    {
         return Thread.currentThread().getName() + " ID#" + Thread.currentThread().getId() + " : ";
     }
 }

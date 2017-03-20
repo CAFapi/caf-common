@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -27,7 +26,6 @@ import java.util.Map;
 public class ContainsStringKeysValidatorTest
 {
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-
 
     @Test
     public void testValidator()
@@ -42,18 +40,18 @@ public class ContainsStringKeysValidatorTest
         Assert.assertFalse(validator.validate(test).isEmpty());
     }
 
-
     private class TestClass
     {
         @ContainsStringKeys(keys = {"testKey"})
         Map<String, Integer> testMap;
 
-
-        public Map<String, Integer> getTestMap() {
+        public Map<String, Integer> getTestMap()
+        {
             return testMap;
         }
 
-        public void setTestMap(Map<String, Integer> testMap) {
+        public void setTestMap(final Map<String, Integer> testMap)
+        {
             this.testMap = testMap;
         }
     }

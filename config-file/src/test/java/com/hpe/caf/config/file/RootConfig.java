@@ -15,11 +15,9 @@
  */
 package com.hpe.caf.config.file;
 
-
 import com.hpe.caf.api.Configuration;
 
 import javax.validation.Valid;
-
 
 public class RootConfig
 {
@@ -28,24 +26,20 @@ public class RootConfig
     @Valid
     private InnerConfig innerConfig;
 
-
     public String getTestString()
     {
         return testString;
     }
-
 
     public void setTestString(final String testString)
     {
         this.testString = testString;
     }
 
-
     public InnerConfig getInnerConfig()
     {
         return innerConfig;
     }
-
 
     public void setInnerConfig(final InnerConfig innerConfig)
     {

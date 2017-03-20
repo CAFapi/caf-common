@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.config.system;
 
-
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.ConfigurationException;
 
@@ -24,19 +23,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 public class SystemBootstrapConfigurationTest
 {
     private SystemBootstrapConfiguration sysbsc = new SystemBootstrapConfiguration();
     private static final String TEST_PROP = "paas.TEST_PROP.1";
 
-    
     @BeforeMethod
     public void setUp()
     {
         sysbsc = new SystemBootstrapConfiguration();
     }
-    
+
     @AfterMethod
     public void tearDown()
     {
@@ -54,25 +51,22 @@ public class SystemBootstrapConfigurationTest
         Assert.assertEquals(true, sysbsc.isConfigurationPresent(TEST_PROP));
     }
 
-
     @Test(expectedExceptions = ConfigurationException.class)
     public void getConfigurationInvalid()
-            throws ConfigurationException
+        throws ConfigurationException
     {
         System.clearProperty(TEST_PROP);
         sysbsc.getConfiguration(TEST_PROP);
     }
 
-
     @Test
     public void getConfiguration()
-            throws ConfigurationException
+        throws ConfigurationException
     {
         String testVal = "test123";
         System.setProperty(TEST_PROP, testVal);
         Assert.assertEquals(testVal, sysbsc.getConfiguration(TEST_PROP));
     }
-
 
     @Test
     public void getConfigurationInteger()
@@ -81,7 +75,6 @@ public class SystemBootstrapConfigurationTest
         System.setProperty(TEST_PROP, "101");
         Assert.assertEquals(101, sysbsc.getConfigurationInteger(TEST_PROP));
     }
-
 
     @Test
     public void getConfigurationIntegerMinMax()
@@ -92,24 +85,21 @@ public class SystemBootstrapConfigurationTest
         Assert.assertEquals(200, sysbsc.getConfigurationInteger(TEST_PROP, 200, 300));
     }
 
-
     @Test(expectedExceptions = ConfigurationException.class)
     public void getConfigurationIntegerInvalid()
-            throws ConfigurationException
+        throws ConfigurationException
     {
         System.setProperty(TEST_PROP, "blah");
         sysbsc.getConfigurationInteger(TEST_PROP);
     }
 
-
     @Test
     public void getConfigurationBoolean()
-            throws ConfigurationException
+        throws ConfigurationException
     {
         System.setProperty(TEST_PROP, "true");
         Assert.assertTrue(sysbsc.getConfigurationBoolean(TEST_PROP));
     }
-
 
     @Test
     public void getServicePath()
@@ -123,7 +113,6 @@ public class SystemBootstrapConfigurationTest
         Assert.assertEquals(testApp2, sysbsc.getServicePath().toString());
     }
 
-
     @Test(expectedExceptions = ConfigurationException.class)
     public void getServicePathException()
         throws ConfigurationException
@@ -132,5 +121,4 @@ public class SystemBootstrapConfigurationTest
         System.setProperty(SystemBootstrapConfiguration.ENV_MARATHON_APP_ID, testApp);
         sysbsc.getServicePath();
     }
-
 }

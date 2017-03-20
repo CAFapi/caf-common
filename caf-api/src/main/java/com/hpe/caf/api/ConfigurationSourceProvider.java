@@ -15,9 +15,7 @@
  */
 package com.hpe.caf.api;
 
-
 import com.hpe.caf.naming.ServicePath;
-
 
 /**
  * Simple boilerplate to return a ConfigurationSource.

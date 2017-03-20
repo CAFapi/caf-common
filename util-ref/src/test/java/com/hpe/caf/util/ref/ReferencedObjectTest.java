@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util.ref;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +23,6 @@ import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-
 
 public class ReferencedObjectTest
 {
@@ -40,7 +38,6 @@ public class ReferencedObjectTest
         Assert.assertNull(testRef.getReference());
     }
 
-
     @Test
     public void testAcquireWithReference()
         throws DataSourceException
@@ -54,7 +51,6 @@ public class ReferencedObjectTest
         Assert.assertEquals(test, testRef.acquire(source));
     }
 
-
     @Test(expectedExceptions = IllegalStateException.class)
     public void testMissingObjectAndReference()
         throws DataSourceException
@@ -62,7 +58,6 @@ public class ReferencedObjectTest
         ReferencedObject<String> test = new ReferencedObject<>();
         test.acquire(Mockito.mock(DataSource.class));
     }
-
 
     @Test
     public void testSerialisation()

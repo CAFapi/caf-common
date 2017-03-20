@@ -15,22 +15,19 @@
  */
 package com.hpe.caf.codec;
 
-
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class JsonLzfCodecTest
 {
     private static final String VERIFY_STRING = "test456";
 
-
     @Test
     public void testJsonLzfCodec()
-            throws CodecException
+        throws CodecException
     {
         Codec codec = new JsonLzfCodec();
         CodecTestData test = new CodecTestData();
@@ -39,7 +36,6 @@ public class JsonLzfCodecTest
         CodecTestData res = codec.deserialise(stuff, CodecTestData.class);
         Assert.assertEquals(test.getTestString(), res.getTestString());
     }
-
 
     @Test(expectedExceptions = CodecException.class)
     public void testUnknownPropertyStrict()
@@ -53,7 +49,6 @@ public class JsonLzfCodecTest
         codec.deserialise(stuff, CodecTestData.class, DecodeMethod.STRICT);
     }
 
-
     @Test
     public void testUnknownPropertyLenient()
         throws CodecException
@@ -65,5 +60,4 @@ public class JsonLzfCodecTest
         byte[] stuff = codec.serialise(test);
         codec.deserialise(stuff, CodecTestData.class, DecodeMethod.LENIENT);
     }
-
 }

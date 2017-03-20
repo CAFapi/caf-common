@@ -15,13 +15,11 @@
  */
 package com.hpe.caf.api;
 
-
 import java.io.InputStream;
 
-
 /**
- * A Codec specifies methods to serialise data from a Java object to byte format,
- * and deserialise data from byte format back into a specified Java class.
+ * A Codec specifies methods to serialise data from a Java object to byte format, and deserialise data from byte format back into a
+ * specified Java class.
  */
 public interface Codec extends Decoder
 {
@@ -31,9 +29,9 @@ public interface Codec extends Decoder
         return deserialise(data, clazz, DecodeMethod.getDefault());
     }
 
-
     /**
      * Deserialise the given data into the specified class.
+     *
      * @param data the serialised data
      * @param clazz the class the serialised data represents
      * @param method specifies whether to use strict or lenient decoding during deserialisation
@@ -44,9 +42,9 @@ public interface Codec extends Decoder
     <T> T deserialise(byte[] data, Class<T> clazz, DecodeMethod method)
         throws CodecException;
 
-
     /**
      * Deserialise the given data into the specified class using the default decode method.
+     *
      * @param stream the serialised data as a stream
      * @param clazz the class the serialised data represents
      * @param <T> the class the serialised data represents
@@ -60,9 +58,9 @@ public interface Codec extends Decoder
         return deserialise(stream, clazz, DecodeMethod.getDefault());
     }
 
-
     /**
      * Deserialise the given data into the specified class using the default decode method.
+     *
      * @param stream the serialised data as a stream
      * @param clazz the class the serialised data represents
      * @param method specifies whether to use strict or lenient decoding during deserialisation
@@ -73,9 +71,9 @@ public interface Codec extends Decoder
     <T> T deserialise(InputStream stream, Class<T> clazz, DecodeMethod method)
         throws CodecException;
 
-
     /**
      * Serialise the given object into a byte data form.
+     *
      * @param object the object to serialise
      * @param <T> the class of the object to serialise
      * @return the serialised data of the given object

@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 /**
  * Indicates this object can report on its health.
  */

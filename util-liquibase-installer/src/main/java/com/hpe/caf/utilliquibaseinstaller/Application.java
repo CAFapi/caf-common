@@ -41,7 +41,8 @@ import java.util.logging.Logger;
 /**
  * Created by gibsodom on 08/12/2015.
  */
-public class Application {
+public class Application
+{
     private final String dbNamePlaceholder = "<dbname>";
 
     @Option(name = "-fd", usage = "Enables the deletion of existing database for a fresh install.")
@@ -66,16 +67,18 @@ public class Application {
 
     private DatabaseProperties properties = loadProperties(DatabaseProperties.class);
 
-    public static void main(String[] args) throws SQLException, LiquibaseException {
+    public static void main(final String[] args) throws SQLException, LiquibaseException
+    {
         new Application().run(args);
     }
 
-    private void run(String[] args) throws SQLException, LiquibaseException {
+    private void run(final String[] args) throws SQLException, LiquibaseException
+    {
         CmdLineParser parser = new CmdLineParser(this);
         try {
             // parse the arguments.
             parser.parseArgument(args);
-        } catch (CmdLineException e) {
+        } catch (final CmdLineException e) {
             // if there's a problem in the command line,
             // you'll get this exception. this will report
             // an error message.
@@ -86,7 +89,8 @@ public class Application {
             System.err.println();
 
             // print option sample. This is useful some time
-            System.err.println("  Example: java -jar database-installer-1.0-SNAPSHOT-jar-with-dependencies.jar " + parser.printExample(ExampleMode.ALL));
+            System.err.println(
+                "  Example: java -jar database-installer-1.0-SNAPSHOT-jar-with-dependencies.jar " + parser.printExample(ExampleMode.ALL));
 
             return;
         }
@@ -94,19 +98,23 @@ public class Application {
         applySchema();
     }
 
-    private void checkArgs() {
+    private void checkArgs()
+    {
         if (properties != null) {
             dbName = dbName != null ? dbName : properties.getDBName();
             connectionString = connectionString != null ? connectionString : properties.getConnectionString();
-            fullConnectionString = joinDBConnection(connectionString,dbName);
+            fullConnectionString = joinDBConnection(connectionString, dbName);
             username = username != null ? username : properties.getUser();
             password = password != null ? password : properties.getPass();
         } else if (connectionString == null || username == null || password == null) {
-            throw new RuntimeException("If no properties specified, either supply a properties file with -DpropertySource or pass the arguments with -Ddb.connection, -Ddb.user, -Ddb.pass");
+            throw new RuntimeException(
+                "If no properties specified, either supply a properties file with -DpropertySource or pass the arguments with"
+                + " -Ddb.connection, -Ddb.user, -Ddb.pass");
         }
     }
 
-    private void applySchema() throws SQLException, LiquibaseException {
+    private void applySchema() throws SQLException, LiquibaseException
+    {
 
         boolean dbExists = checkDBExists();
 
@@ -146,12 +154,14 @@ public class Application {
 
     /**
      * Checks connection, retrieves appropriate changelog and performs database update.
+     *
      * @throws SQLException
-     * @throws LiquibaseException 
+     * @throws LiquibaseException
      */
-    private void updateDB() throws SQLException, LiquibaseException {
+    private void updateDB() throws SQLException, LiquibaseException
+    {
         System.out.println("About to perform DB update.");
-        try(BasicDataSource dataSource = new BasicDataSource()) {
+        try (BasicDataSource dataSource = new BasicDataSource()) {
             dataSource.setUrl(fullConnectionString);
             dataSource.setUsername(username);
             dataSource.setPassword(password);
@@ -160,20 +170,18 @@ public class Application {
 
                 // Check that the Database does indeed exist before we try to run the liquibase update.
                 Liquibase liquibase = null;
-                ClassLoaderResourceAccessor accessor = new ClassLoaderResourceAccessor(); 
+                ClassLoaderResourceAccessor accessor = new ClassLoaderResourceAccessor();
                 try {
-                   if(accessor.getResourcesAsStream("changelog-master.xml") != null) {
+                    if (accessor.getResourcesAsStream("changelog-master.xml") != null) {
                         liquibase = new Liquibase("changelog-master.xml", new ClassLoaderResourceAccessor(), database);
-                   } 
-                   else if(accessor.getResourcesAsStream("changelog.xml") != null) {
+                    } else if (accessor.getResourcesAsStream("changelog.xml") != null) {
                         liquibase = new Liquibase("changelog.xml", new ClassLoaderResourceAccessor(), database);
-                   }
-                   else {
-                       String errorMessage = "No liquibase changelog-master.xml or changelog.xml could be located";
-                       Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage, this);
-                       throw new RuntimeException(errorMessage);
-                   }
-                } catch (IOException ioe) {
+                    } else {
+                        String errorMessage = "No liquibase changelog-master.xml or changelog.xml could be located";
+                        Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage, this);
+                        throw new RuntimeException(errorMessage);
+                    }
+                } catch (final IOException ioe) {
                     Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
                 }
 
@@ -184,7 +192,8 @@ public class Application {
         }
     }
 
-    protected static <T> T loadProperties(Class<T> propertiesClass) {
+    protected static <T> T loadProperties(final Class<T> propertiesClass)
+    {
         AnnotationConfigApplicationContext propertiesApplicationContext = new AnnotationConfigApplicationContext();
         propertiesApplicationContext.register(PropertySourcesPlaceholderConfigurer.class);
         RootBeanDefinition beanDefinition = new RootBeanDefinition();
@@ -194,40 +203,38 @@ public class Application {
         return propertiesApplicationContext.getBean(propertiesClass);
     }
 
-    private boolean checkDBExists() throws SQLException {
+    private boolean checkDBExists() throws SQLException
+    {
         try (BasicDataSource dataSource = new BasicDataSource()) {
             dataSource.setUrl(fullConnectionString);
             dataSource.setUsername(username);
             dataSource.setPassword(password);
             try (Connection c = dataSource.getConnection()) {
                 return true;
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 return false;
             }
         }
     }
 
-    private String joinDBConnection(String connectionString, String dbName) {
-        if(connectionString!=null && dbName != null){
-            if(connectionString.endsWith("/") && !dbName.startsWith("/")) {
+    private String joinDBConnection(final String connectionString, final String dbName)
+    {
+        if (connectionString != null && dbName != null) {
+            if (connectionString.endsWith("/") && !dbName.startsWith("/")) {
                 return connectionString + dbName;
-            }
-            else if(!connectionString.endsWith("/") && dbName.startsWith("/")){
+            } else if (!connectionString.endsWith("/") && dbName.startsWith("/")) {
                 //Connection string must end with a /
-                this.connectionString = connectionString+"/";
-                return connectionString+dbName;
-            }
-            else if(!connectionString.endsWith("/") && !dbName.startsWith("/")){
+                this.connectionString = connectionString + "/";
+                return connectionString + dbName;
+            } else if (!connectionString.endsWith("/") && !dbName.startsWith("/")) {
                 //Connection string must end with a /
-                this.connectionString = connectionString+"/";
-                return connectionString+"/"+dbName;
-            }
-            else if(connectionString.endsWith("/") && dbName.startsWith("/")){
+                this.connectionString = connectionString + "/";
+                return connectionString + "/" + dbName;
+            } else if (connectionString.endsWith("/") && dbName.startsWith("/")) {
                 int index = connectionString.lastIndexOf("/");
-                return connectionString.substring(0,index) + dbName;
+                return connectionString.substring(0, index) + dbName;
             }
         }
         throw new RuntimeException("Must specify both db.connection and db.name");
     }
-
 }

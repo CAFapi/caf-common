@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 /**
  * Thrown when a Codec fails to encode or decode information.
  */
@@ -23,6 +22,7 @@ public class CodecException extends Exception
 {
     /**
      * Create a new CodecException
+     *
      * @param message information explaining the exception
      * @param cause the original cause of this exception
      */

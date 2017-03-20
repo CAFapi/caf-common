@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.config.file;
 
-
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
@@ -39,7 +38,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-
 public class FileConfigurationSourceTest
 {
     public File tempDir;
@@ -49,37 +47,36 @@ public class FileConfigurationSourceTest
     private final String appId = "testWorker";
     private ServicePath id;
 
-
     @BeforeMethod
     public void setUp()
-            throws IOException, InvalidNameException
+        throws IOException, InvalidNameException
     {
         tempDir = new File("temp");
         tempDir.mkdir();
         temp = tempDir.toPath();
         id = new ServicePath(groupName + "/" + appId);
     }
-    
+
     @AfterMethod
     public void tearDown()
     {
         deleteDir(tempDir);
     }
-    
-    private void deleteDir(File file)
+
+    private void deleteDir(final File file)
     {
         File[] contents = file.listFiles();
         if (contents != null) {
-            for (File f : contents) {
+            for (final File f : contents) {
                 deleteDir(f);
             }
         }
         file.delete();
-    }    
+    }
 
     @Test
     public void testGetConfiguration()
-            throws IOException, ConfigurationException, CodecException
+        throws IOException, ConfigurationException, CodecException
     {
         TestFileConfig tyc = new TestFileConfig();
         final String comparisonString = "test456";
@@ -95,7 +92,6 @@ public class FileConfigurationSourceTest
         TestFileConfig result = ycp.getConfiguration(TestFileConfig.class);
         Assert.assertEquals(tyc.getTestString(), result.getTestString());
     }
-
 
     @Test
     public void testGetGroupConfiguration()
@@ -116,7 +112,6 @@ public class FileConfigurationSourceTest
         Assert.assertEquals(tyc.getTestString(), result.getTestString());
     }
 
-
     @Test
     public void testGetRecursiveConfiguration()
         throws IOException, ConfigurationException, CodecException
@@ -130,7 +125,8 @@ public class FileConfigurationSourceTest
         try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(rootName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(rootConfig), StandardCharsets.UTF_8));
         }
-        try (BufferedWriter writer = Files.newBufferedWriter(temp.resolve(innerName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        try (
+            BufferedWriter writer = Files.newBufferedWriter(temp.resolve(innerName), StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             writer.write(new String(codec.serialise(innerConfig), StandardCharsets.UTF_8));
         }
         BootstrapConfiguration bc = Mockito.mock(BootstrapConfiguration.class);
@@ -141,7 +137,6 @@ public class FileConfigurationSourceTest
         Assert.assertEquals(testInt, result.getInnerConfig().getTestValue());
     }
 
-
     @Test(expectedExceptions = ConfigurationException.class)
     public void testMissingConfiguration()
         throws ConfigurationException
@@ -151,10 +146,9 @@ public class FileConfigurationSourceTest
         ycp.getConfiguration(TestFileConfig.class);
     }
 
-
     @Test(expectedExceptions = ConfigurationException.class)
     public void testInvalidConfiguration()
-            throws ConfigurationException, IOException, CodecException
+        throws ConfigurationException, IOException, CodecException
     {
         TestFileConfig tyc = new TestFileConfig();
         tyc.setTestString("");
@@ -168,5 +162,4 @@ public class FileConfigurationSourceTest
         ConfigurationSource ycp = new FileConfigurationSource(bc, new NullCipher(), id, codec);
         TestFileConfig result = ycp.getConfiguration(TestFileConfig.class);
     }
-
 }

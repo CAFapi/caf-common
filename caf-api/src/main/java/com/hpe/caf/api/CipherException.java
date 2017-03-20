@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.api;
 
-
 /**
  * Thrown when a Cipher encounters a failure when encrypting or decrypting information.
  */
@@ -23,6 +22,7 @@ public class CipherException extends Exception
 {
     /**
      * Create a new CipherException.
+     *
      * @param message the message indicating the problem
      * @param cause the exception cause
      */

@@ -28,12 +28,14 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Tests for ProcessIdentifier class
  */
-public class ProcessIdentifierTest {
+public class ProcessIdentifierTest
+{
     /**
      * Test to verify that process identifier remains the same across multiple calls to 'getProcessId' method.
      */
     @Test
-    public void testRetrieveProcessId(){
+    public void testRetrieveProcessId()
+    {
         UUID originalProcessID = ProcessIdentifier.getProcessId();
         final int overallNumberOfThreads = 16;
         final int iterationsPerThread = 10;
@@ -41,19 +43,19 @@ public class ProcessIdentifierTest {
         final Collection<String> errors = Collections.synchronizedList(new LinkedList<>());
 
         try {
-            MultiThreadTestUtil.RunMultiThreadedTest(r ->
-            {
+            MultiThreadTestUtil.RunMultiThreadedTest(r
+                -> {
                 try {
                     for (int i = 0; i < iterationsPerThread; i++) {
                         UUID currentThreadProcessId = ProcessIdentifier.getProcessId();
                         Assert.assertEquals(originalProcessID, currentThreadProcessId,
-                                "ProcessID retrieved by this thread should be the same as that obtained at start of test.");
+                                            "ProcessID retrieved by this thread should be the same as that obtained at start of test.");
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new RuntimeException(e);
                 }
             }, overallNumberOfThreads, overallThreadGate, errors);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             e.printStackTrace();
             Assert.fail(e.getMessage());
         }

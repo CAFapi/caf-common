@@ -48,6 +48,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
     private final Cipher security;
     private final ServicePath id;
     private final Decoder decoder;
+    private final boolean isSubstitutorEnabled;
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     private final AtomicInteger confRequests = new AtomicInteger(0);
     private final AtomicInteger confErrors = new AtomicInteger(0);
@@ -69,6 +70,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         this.id = Objects.requireNonNull(servicePath);
         this.decoder = Objects.requireNonNull(decoder);
         Objects.requireNonNull(bootstrapProvider);
+        this.isSubstitutorEnabled = getIsSubstitutorEnabled(bootstrapProvider);
     }
 
     /**
@@ -157,16 +159,16 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         throws ConfigurationException
     {
         T config = getConfig(configClass);
-        for (Field f : configClass.getDeclaredFields()) {
+        for (final Field f : configClass.getDeclaredFields()) {
             if (f.isAnnotationPresent(Configuration.class)) {
                 try {
                     Method setter = getMethod(f.getName(), configClass, PropertyDescriptor::getWriteMethod);
                     if (setter != null) {
                         setter.invoke(config, getCompleteConfig(f.getType()));
                     }
-                } catch (ConfigurationException e) {
+                } catch (final ConfigurationException e) {
                     LOG.debug("Didn't find any overriding configuration", e);
-                } catch (InvocationTargetException | IllegalAccessException e) {
+                } catch (final InvocationTargetException | IllegalAccessException e) {
                     incrementErrors();
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
@@ -175,12 +177,14 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
                     Method getter = getMethod(f.getName(), config.getClass(), PropertyDescriptor::getReadMethod);
                     Method setter = getMethod(f.getName(), config.getClass(), PropertyDescriptor::getWriteMethod);
                     if (getter != null && setter != null) {
-                        setter.invoke(config, getCipher().decrypt(tokenSubstitutor((String) getter.invoke(config))));
+                        final String configValue = (String) getter.invoke(config);
+                        final String encryptedValue = isSubstitutorEnabled ? tokenSubstitutor(configValue) : configValue;
+                        setter.invoke(config, getCipher().decrypt(encryptedValue));
                     }
-                } catch (CipherException | InvocationTargetException | IllegalAccessException e) {
+                } catch (final CipherException | InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to decrypt class fields", e);
                 }
-            } else if (f.getType().equals(String.class)) {
+            } else if (isSubstitutorEnabled && f.getType().equals(String.class)) {
                 try {
                     String propertyName = f.getName();
                     Method getter = getMethod(propertyName, config.getClass(), PropertyDescriptor::getReadMethod);
@@ -190,7 +194,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
                         String propertyValueByToken = tokenSubstitutor((String) getter.invoke(config));
                         setter.invoke(config, propertyValueByToken);
                     }
-                } catch (InvocationTargetException | IllegalAccessException e) {
+                } catch (final InvocationTargetException | IllegalAccessException e) {
                     throw new ConfigurationException("Failed to get complete configuration for " + configClass.getSimpleName(), e);
                 }
             }
@@ -213,15 +217,40 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         while (it.hasNext()) {
             try (InputStream in = getConfigurationStream(configClass, it.next())) {
                 return decoder.deserialise(in, configClass);
-            } catch (ConfigurationException e) {
+            } catch (final ConfigurationException e) {
                 LOG.trace("No configuration at this path level", e);
-            } catch (CodecException | IOException e) {
+            } catch (final CodecException | IOException e) {
                 incrementErrors();
                 throw new ConfigurationException("Failed to get configuration for " + configClass.getSimpleName(), e);
             }
         }
         incrementErrors();
         throw new ConfigurationException("No configuration found for " + configClass.getSimpleName());
+    }
+
+    /**
+     * Checks whether the string substitution functionality should be enabled.
+     *
+     * @param bootstrapConfig used to provide basic, initial startup configuration
+     * @return true if the configuration substitution should be performed
+     */
+    private static boolean getIsSubstitutorEnabled(final BootstrapConfiguration bootstrapConfig)
+    {
+        final String ENABLE_SUBSTITUTOR_CONFIG_KEY = "CAF_CONFIG_ENABLE_SUBSTITUTOR";
+        final boolean ENABLE_SUBSTITUTOR_CONFIG_DEFAULT = true;
+
+        // Return the default if the setting is not configured
+        if (!bootstrapConfig.isConfigurationPresent(ENABLE_SUBSTITUTOR_CONFIG_KEY)) {
+            return ENABLE_SUBSTITUTOR_CONFIG_DEFAULT;
+        }
+
+        // Return the configured setting.
+        // The ConfigurationException should never happen since isConfigurationPresent() has already been called.
+        try {
+            return bootstrapConfig.getConfigurationBoolean(ENABLE_SUBSTITUTOR_CONFIG_KEY);
+        } catch (final ConfigurationException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     private static String tokenSubstitutor(final String source)
@@ -255,14 +284,19 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
         this.confErrors.incrementAndGet();
     }
 
-    private Method getMethod(String propertyName, Class<?> beanClass, Function<PropertyDescriptor, Method> function){
-        try{
+    private Method getMethod(
+        final String propertyName,
+        final Class<?> beanClass,
+        final Function<PropertyDescriptor, Method> function
+    )
+    {
+        try {
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, beanClass);
             return function.apply(propertyDescriptor);
-        } catch (IntrospectionException e) {
-            LOG.debug(String.format("Unable to " +
-                    "create Property Descriptor from field %s :", propertyName) + System.lineSeparator() +
-                    ExceptionUtils.getStackTrace(e));
+        } catch (final IntrospectionException e) {
+            LOG.debug(String.format("Unable to "
+                + "create Property Descriptor from field %s :", propertyName) + System.lineSeparator()
+                + ExceptionUtils.getStackTrace(e));
             return null;
         }
     }

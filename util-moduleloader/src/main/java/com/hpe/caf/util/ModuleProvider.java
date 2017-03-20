@@ -25,16 +25,19 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Allows retrieval of a module based on the Interface that it implements and its simple name.
  */
-public final class ModuleProvider {
+public final class ModuleProvider
+{
     private static final ModuleProvider theInstance = new ModuleProvider();
 
     private final ConcurrentMap<Class, Map<String, Object>> loadedModules;
 
-    private ModuleProvider(){
+    private ModuleProvider()
+    {
         loadedModules = new ConcurrentHashMap<>();
     }
 
-    public static ModuleProvider getInstance(){
+    public static ModuleProvider getInstance()
+    {
         return theInstance;
     }
 
@@ -45,26 +48,28 @@ public final class ModuleProvider {
      * @param moduleType Represents particular instance of a factory type object e.g. 'ExampleWorkerBuilder'
      * @return An instance of moduleType as the type T passed in.
      */
-    public <T> T getModule(Class<T> interfaceImplemented, String moduleType) {
-
-
+    public <T> T getModule(final Class<T> interfaceImplemented, final String moduleType)
+    {
         //check for this type in the map
         Map<String, Object> computedValue = loadedModules.computeIfAbsent(interfaceImplemented, ModuleProvider::loadModules);
         Object moduleInstance = computedValue.get(moduleType);
-        Objects.requireNonNull(moduleInstance, "Unable to find implementation of "+ interfaceImplemented.getName() + " with moduleType "+moduleType);
+        Objects.requireNonNull(
+            moduleInstance, "Unable to find implementation of " + interfaceImplemented.getName() + " with moduleType " + moduleType);
         return (T) moduleInstance;
     }
 
-    private static <T> Map<String, Object> loadModules(Class<T> interfaceImplemented){
+    private static <T> Map<String, Object> loadModules(final Class<T> interfaceImplemented)
+    {
         List<T> modulesList = ModuleLoader.getServices(interfaceImplemented);
         Map<String, Object> modulesMap = new HashMap<>();
-        for(T module : modulesList){
-             modulesMap.put(getShortNameForType(module), module);
+        for (final T module : modulesList) {
+            modulesMap.put(getShortNameForType(module), module);
         }
         return modulesMap;
     }
 
-    private static String getShortNameForType(Object type){
+    private static String getShortNameForType(final Object type)
+    {
         return type.getClass().getSimpleName();
     }
 }
