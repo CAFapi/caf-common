@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
+import com.hpe.caf.api.FileExtensions;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +28,7 @@ import java.io.InputStream;
 /**
  * Implementation of Codec that supports serialisation and deserialisation to and form JSON format.
  */
+@FileExtensions({"", "json"})
 public class JsonCodec implements Codec
 {
     private final ObjectMapper strictMapper;

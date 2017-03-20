@@ -18,6 +18,7 @@ package com.hpe.caf.decoder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.Decoder;
+import com.hpe.caf.api.FileExtensions;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,6 +28,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+@FileExtensions("js")
 public class JavascriptDecoder implements Decoder
 {
     private final ScriptEngineManager scriptManager;
