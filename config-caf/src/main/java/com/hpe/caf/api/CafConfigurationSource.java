@@ -242,7 +242,7 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
     private static boolean getIsSubstitutorEnabled(final BootstrapConfiguration bootstrapConfig)
     {
         final String ENABLE_SUBSTITUTOR_CONFIG_KEY = "CAF_CONFIG_ENABLE_SUBSTITUTOR";
-        final boolean ENABLE_SUBSTITUTOR_CONFIG_DEFAULT = true;
+        final boolean ENABLE_SUBSTITUTOR_CONFIG_DEFAULT = false;
 
         // Return the default if the setting is not configured
         if (!bootstrapConfig.isConfigurationPresent(ENABLE_SUBSTITUTOR_CONFIG_KEY)) {
