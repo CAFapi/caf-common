@@ -60,7 +60,7 @@ public class JavascriptDecoder implements Decoder
         // Define a short-cut for accessing environment variables
         // Return the JSON.stringify method so that we can call it later
         final Object fnObj = jsEngine.eval(""
-            + "getenv = java.lang.System.getenv;"
+            + "getenv = com.hpe.caf.decoder.PropertyRetriever.getProperty;"
             + ""
             + "({"
             + "    toJson: JSON.stringify"
