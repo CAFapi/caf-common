@@ -47,8 +47,9 @@ public final class ModuleProvider
      * @param interfaceImplemented The interface that 'moduleType' implements and that the result should be returned as.
      * @param moduleType Represents particular instance of a factory type object e.g. 'ExampleWorkerBuilder'
      * @return An instance of moduleType as the type T passed in.
+     * @throws NullPointerException If the module cannot be retrieved with the specified moduleType.
      */
-    public <T> T getModule(final Class<T> interfaceImplemented, final String moduleType)
+    public <T> T getModule(final Class<T> interfaceImplemented, final String moduleType) throws NullPointerException
     {
         //check for this type in the map
         Map<String, Object> computedValue = loadedModules.computeIfAbsent(interfaceImplemented, ModuleProvider::loadModules);
