@@ -32,11 +32,12 @@ public class CafConfigurationDecoderProviderTest
     @Test
     public void defaultReturnedWhenNoKeySetTest() throws ConfigurationException
     {
-        BootstrapConfiguration mockedBConfiguration = Mockito.mock(BootstrapConfiguration.class);
+        final BootstrapConfiguration mockedBConfiguration = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(mockedBConfiguration.isConfigurationPresent(Mockito.anyString())).thenReturn(false);
-        CafConfigurationDecoderProvider provider = new CafConfigurationDecoderProvider();
-        Decoder mockedDecoder = Mockito.mock(Decoder.class);
-        Decoder resultDecoder = provider.getDecoder(mockedBConfiguration, mockedDecoder);
+
+        final CafConfigurationDecoderProvider provider = new CafConfigurationDecoderProvider();
+        final Decoder mockedDecoder = Mockito.mock(Decoder.class);
+        final Decoder resultDecoder = provider.getDecoder(mockedBConfiguration, mockedDecoder);
         Assert.assertEquals(resultDecoder, mockedDecoder, "Expecting provided default decoder provided to have been returned.");
     }
 
@@ -50,12 +51,13 @@ public class CafConfigurationDecoderProviderTest
     {
         final String DECODER_CONFIG_KEY = "CAF_CONFIG_DECODER";
 
-        BootstrapConfiguration mockedBConfiguration = Mockito.mock(BootstrapConfiguration.class);
+        final BootstrapConfiguration mockedBConfiguration = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(mockedBConfiguration.isConfigurationPresent(DECODER_CONFIG_KEY)).thenReturn(true);
         Mockito.when(mockedBConfiguration.getConfiguration(DECODER_CONFIG_KEY)).thenReturn(TestDecoder_1.class.getSimpleName());
 
-        Decoder mockedDecoder = Mockito.mock(Decoder.class);
-        CafConfigurationDecoderProvider provider = new CafConfigurationDecoderProvider();
+        final Decoder mockedDecoder = Mockito.mock(Decoder.class);
+        final CafConfigurationDecoderProvider provider = new CafConfigurationDecoderProvider();
+
         Decoder resultDecoder = provider.getDecoder(mockedBConfiguration, mockedDecoder);
         Assert.assertNotEquals(resultDecoder, mockedDecoder, "Default decoder should not have been returned.");
         Assert.assertTrue(resultDecoder instanceof TestDecoder_1, "Returned decoder should be the type expected");
@@ -78,19 +80,19 @@ public class CafConfigurationDecoderProviderTest
     {
         final String DECODER_CONFIG_KEY = "CAF_CONFIG_DECODER";
 
-        //this mocked decoder doesn't have a META-INF services entry so isn't going to be found by service loader.
-        Decoder unfindableDecoder = Mockito.mock(Decoder.class);
+        // This mocked decoder doesn't have a META-INF services entry so isn't going to be found by service loader.
+        final Decoder unfindableDecoder = Mockito.mock(Decoder.class);
 
-        BootstrapConfiguration mockedBConfiguration = Mockito.mock(BootstrapConfiguration.class);
+        final BootstrapConfiguration mockedBConfiguration = Mockito.mock(BootstrapConfiguration.class);
         Mockito.when(mockedBConfiguration.isConfigurationPresent(DECODER_CONFIG_KEY)).thenReturn(true);
         Mockito.when(mockedBConfiguration.getConfiguration(DECODER_CONFIG_KEY)).thenReturn(unfindableDecoder.getClass().getSimpleName());
 
-        Decoder mockedDecoder = Mockito.mock(Decoder.class);
-        CafConfigurationDecoderProvider provider = new CafConfigurationDecoderProvider();
+        final Decoder mockedDecoder = Mockito.mock(Decoder.class);
+        final CafConfigurationDecoderProvider provider = new CafConfigurationDecoderProvider();
 
         try {
             provider.getDecoder(mockedBConfiguration, mockedDecoder);
-        } catch (RuntimeException ex) {
+        } catch (final RuntimeException ex) {
             Assert.assertEquals(
                 ex.getMessage(),
                 "Unable to get Decoder using " + DECODER_CONFIG_KEY + " value: " + mockedDecoder.getClass().getSimpleName());
