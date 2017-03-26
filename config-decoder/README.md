@@ -11,9 +11,11 @@ e.g.
 Given a class TestDecoder as below;
 ```
 package com.hpe.decoders;
+
 import java.io.InputStream;
+
 public class TestDecoder implements Decoder{
-	@Override
+    @Override
     public <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException {
         return null;
     }
