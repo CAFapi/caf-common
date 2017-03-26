@@ -34,6 +34,7 @@ public class CafConfigurationDecoderProvider implements ConfigurationDecoderProv
     {
         final String DECODER_CONFIG_KEY = "CAF_CONFIG_DECODER";
 
+        final String decoder;
         try {
             // Return the specified default Decoder if none has been configured
             if (!bootstrap.isConfigurationPresent(DECODER_CONFIG_KEY)) {
@@ -41,15 +42,19 @@ public class CafConfigurationDecoderProvider implements ConfigurationDecoderProv
             }
 
             // Lookup the Decoder to use
-            final String decoder = bootstrap.getConfiguration(DECODER_CONFIG_KEY);
-
-            // Retrieve the Decoder using the ModuleProvider
-            return ModuleProvider.getInstance().getModule(Decoder.class, decoder);
+            decoder = bootstrap.getConfiguration(DECODER_CONFIG_KEY);
 
         } catch (final ConfigurationException ex) {
             // Throw a RuntimeException since this shouldn't happen
             // (since isConfigurationPresent() has already been called)
             throw new RuntimeException(ex);
+        }
+
+        try {
+            // Retrieve the Decoder using the ModuleProvider
+            return ModuleProvider.getInstance().getModule(Decoder.class, decoder);
+        } catch (final NullPointerException ex) {
+            throw new RuntimeException("Unable to get Decoder using " + DECODER_CONFIG_KEY + " value: " + decoder, ex);
         }
     }
 }
