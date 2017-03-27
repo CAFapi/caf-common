@@ -17,6 +17,9 @@ package com.hpe.caf.api;
 
 import java.io.InputStream;
 
+/**
+ * A Decoder provides a facility to convert data to an object representation.
+ */
 public interface Decoder
 {
     <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException;
