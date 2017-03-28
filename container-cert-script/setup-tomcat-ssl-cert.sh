@@ -31,10 +31,3 @@ then
 else
     echo "Not setting up tomcat SSL connector"
 fi
-
-# Replace default password with a user defined password if provided
-if [ -n "${SSL_TOMCAT_KEYSTORE_PASSWORD}" ]
-then
-    echo "Replacing password in /usr/local/tomcat/conf/server.xml with provided one."
-    sed -i "s@keystorePass=.*@keystorePass=\"$SSL_TOMCAT_KEYSTORE_PASSWORD\"@" /usr/local/tomcat/conf/server.xml
-fi
