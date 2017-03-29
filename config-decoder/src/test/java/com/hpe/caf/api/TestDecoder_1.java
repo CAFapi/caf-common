@@ -18,9 +18,13 @@ package com.hpe.caf.api;
 import java.io.InputStream;
 
 /**
- * A Decoder provides a facility to convert data to an object representation.
+ * An an implementation of Decoder for use with tests.
  */
-public interface Decoder
+public class TestDecoder_1 implements Decoder
 {
-    <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException;
+    @Override
+    public <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException
+    {
+        return null;
+    }
 }

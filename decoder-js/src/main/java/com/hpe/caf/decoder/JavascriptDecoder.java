@@ -28,6 +28,10 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+/**
+ * Decoder implementation that supports building objects from JavaScript. Supports a function 'getenv' which takes the
+ * name of an environment variable and will return its value.
+ */
 @FileExtensions("js")
 public class JavascriptDecoder implements Decoder
 {
@@ -60,7 +64,7 @@ public class JavascriptDecoder implements Decoder
         // Define a short-cut for accessing environment variables
         // Return the JSON.stringify method so that we can call it later
         final Object fnObj = jsEngine.eval(""
-            + "getenv = java.lang.System.getenv;"
+            + "getenv = com.hpe.caf.decoder.PropertyRetriever.getenv;"
             + ""
             + "({"
             + "    toJson: JSON.stringify"

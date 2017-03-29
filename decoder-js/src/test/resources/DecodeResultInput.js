@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hpe.caf.api;
-
-import java.io.InputStream;
-
-/**
- * A Decoder provides a facility to convert data to an object representation.
- */
-public interface Decoder
-{
-    <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException;
-}
+({
+    myInt: getenv("TEST_MYINT") || 100,
+    myString: getenv("TEST_MYSTRING")
+    || (getenv("TEST_BASE") || "default") + "-appended",
+    myBoolean: getenv("TEST_MYBOOLEAN") || false,
+    myNestedProp: {
+        myNestedString: getenv("TEST_MYNESTEDSTRING") || "default nested string",
+        myNestedBoolean: getenv("TEST_MYNESTEDBOOLEAN") || false,
+        myNestedInt: getenv("TEST_MYNESTEDINT") || 500
+    }
+});

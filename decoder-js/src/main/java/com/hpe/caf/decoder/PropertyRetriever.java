@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hpe.caf.api;
-
-import java.io.InputStream;
+package com.hpe.caf.decoder;
 
 /**
- * A Decoder provides a facility to convert data to an object representation.
+ * Provides access to properties requested during decoding.
  */
-public interface Decoder
-{
-    <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException;
+public class PropertyRetriever {
+    /**
+     * Gets the value to use for the specified property.
+     * @param key Name of property.
+     * @return Value of property specified.
+     */
+    public static String getenv(String key){
+        return System.getenv(key);
+    }
 }
