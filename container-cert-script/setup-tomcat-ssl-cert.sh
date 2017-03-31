@@ -16,7 +16,7 @@
 #
 
 # If there is a provided tomcat CA certificate
-if [ -n "${SSL_TOMCAT_CA_CERT_LOCATION}" ]
+if [ -n "${JOB_SERVICE_KEYSTORE}" ]
 then
     # search for and delete the lines in the server.xml with:
     # <!-- setup-tomcat-ssl-cert.sh TLS section start
@@ -25,9 +25,23 @@ then
     sed -i '/setup-tomcat-ssl-cert.sh TLS section start/d' /usr/local/tomcat/conf/server.xml
     sed -i '/setup-tomcat-ssl-cert.sh TLS section end/d' /usr/local/tomcat/conf/server.xml
 
-    # Replace the default keystore with the SSL_TOMCAT_CA_CERT_LOCATION keystore provided
-    echo "Replacing default keystore in /usr/local/tomcat/conf/server.xml with provided one."
-    sed -i "s@keystoreFile=.*@keystoreFile=\"$SSL_TOMCAT_CA_CERT_LOCATION\"@" /usr/local/tomcat/conf/server.xml
+    # Replace the default keystore with the JOB_SERVICE_KEYSTORE keystore provided
+    echo "Replacing default keystore in /usr/local/tomcat/conf/server.xml with provided environment variable JOB_SERVICE_KEYSTORE."
+    sed -i "s@keystoreFile=.*@keystoreFile=\"$JOB_SERVICE_KEYSTORE\"@" /usr/local/tomcat/conf/server.xml
 else
     echo "Not setting up tomcat SSL connector"
+fi
+
+# Replace default password with a user defined password if provided
+if [ -z "${JOB_SERVICE_KEYSTOREPASS}" ]
+then
+    echo "Replacing password in /usr/local/tomcat/conf/server.xml with provided environment variable JOB_SERVICE_KEYSTOREPASS"
+    sed -i "s@keystorePass=.*@keystorePass=\"$JOB_SERVICE_KEYSTOREPASS\"@" /usr/local/tomcat/conf/server.xml
+fi
+
+# Replace default alias with a user defined alias if provided
+if [ -z "${JOB_SERVICE_KEYSTORE_ALIAS}" ]
+then
+    echo "Replacing keystore alias in /usr/local/tomcat/conf/server.xml with provided environment variable JOB_SERVICE_KEYSTORE_ALIAS"
+    sed -i "s@keyAlias=.*@keyAlias=\"$JOB_SERVICE_KEYSTORE_ALIAS\"@" /usr/local/tomcat/conf/server.xml
 fi
