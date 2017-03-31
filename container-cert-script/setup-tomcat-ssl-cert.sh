@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-# If there is a provided tomcat CA certificate
-if [ -n "${JOB_SERVICE_KEYSTORE}" ]
+# If there is a provided tomcat keystore
+if [ -n "${SSL_TOMCAT_CA_CERT_LOCATION}" ]
 then
     # search for and delete the lines in the server.xml with:
     # <!-- setup-tomcat-ssl-cert.sh TLS section start
@@ -25,9 +25,9 @@ then
     sed -i '/setup-tomcat-ssl-cert.sh TLS section start/d' /usr/local/tomcat/conf/server.xml
     sed -i '/setup-tomcat-ssl-cert.sh TLS section end/d' /usr/local/tomcat/conf/server.xml
 
-    # Replace the default keystore with the JOB_SERVICE_KEYSTORE keystore provided
-    echo "Replacing default keystore in /usr/local/tomcat/conf/server.xml with provided environment variable JOB_SERVICE_KEYSTORE."
-    sed -i "s@keystoreFile=.*@keystoreFile=\"$JOB_SERVICE_KEYSTORE\"@" /usr/local/tomcat/conf/server.xml
+    # Replace the default keystore with the SSL_TOMCAT_CA_CERT_LOCATION keystore provided
+    echo "Replacing default keystore in /usr/local/tomcat/conf/server.xml with provided environment variable SSL_TOMCAT_CA_CERT_LOCATION."
+    sed -i "s@keystoreFile=.*@keystoreFile=\"SSL_TOMCAT_CA_CERT_LOCATION\"@" /usr/local/tomcat/conf/server.xml
 else
     echo "Not setting up tomcat SSL connector"
 fi
