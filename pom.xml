@@ -113,6 +113,7 @@
         <module>container-cert-script</module>
         <module>decoder-js</module>
         <module>election-null</module>
+        <module>swagger-restapi-client-base</module>
         <module>swagger-ui</module>
         <module>util-ref</module>
         <module>util-jerseycompat</module>
