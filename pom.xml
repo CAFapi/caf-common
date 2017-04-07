@@ -144,7 +144,7 @@
         <maven.compiler.version>3.3</maven.compiler.version>
         <maven.resources.version>2.7</maven.resources.version>
         <docker.maven.version>0.13.6</docker.maven.version>
-        <fabric8.docker.maven.version>0.16.7</fabric8.docker.maven.version>
+        <fabric8.docker.maven.version>0.20.1</fabric8.docker.maven.version>
         <tini.version>0.9.0</tini.version>
         <marathon.client.version>0.4.9</marathon.client.version>
         <skipLicenseHeadersCheck>false</skipLicenseHeadersCheck>
