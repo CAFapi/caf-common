@@ -35,8 +35,15 @@ fi
 # Replace default password with a user defined password if provided
 if [ -n "${SSL_TOMCAT_CA_CERT_KEYSTOREPASS}" ]
 then
-    echo "Replacing password in /usr/local/tomcat/conf/server.xml with provided environment variable SSL_TOMCAT_CA_CERT_KEYSTOREPASS"
+    echo "Replacing keystore pass in /usr/local/tomcat/conf/server.xml with provided environment variable SSL_TOMCAT_CA_CERT_KEYSTOREPASS"
     sed -i "s@keystorePass=.*@keystorePass=\"SSL_TOMCAT_CA_CERT_KEYSTOREPASS\"@" /usr/local/tomcat/conf/server.xml
+fi
+
+# Replace default password with a user defined password if provided
+if [ -n "${SSL_TOMCAT_CA_CERT_KEY_PASS}" ]
+then
+    echo "Replacing key pass in /usr/local/tomcat/conf/server.xml with provided environment variable SSL_TOMCAT_CA_CERT_KEY_PASS"
+    sed -i "s@keyPass=.*@keyPass=\"SSL_TOMCAT_CA_CERT_KEY_PASS\"@" /usr/local/tomcat/conf/server.xml
 fi
 
 # Replace default alias with a user defined alias if provided
