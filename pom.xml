@@ -746,6 +746,7 @@ limitations under the License.
                         <exclude>**/test-configs/**</exclude>
                         <exclude>**/test-data/**</exclude>
                         <exclude>**/test-license/**</exclude>
+                        <exclude>**/resources/**</exclude>
                     </excludes>
                     <mapping>
                         <java>PHP</java>
