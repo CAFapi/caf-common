@@ -889,65 +889,6 @@ limitations under the License.
                 </plugins>
             </build>
         </profile>
-      
-        <profile>
-            <id>istf</id>
-            <activation>
-                <property>
-                    <name>RE_BUILD_TYPE</name>
-                </property>
-                <file>
-                    <exists>istfActivator.txt</exists>
-                </file>
-            </activation>
-            <properties>
-                <istfSourceDB>${project.basedir}</istfSourceDB>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven.failsafe.version}</version>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <ProductName>${project.artifactId}</ProductName>
-                                <BuildID>${project.artifactId}:${project.version}::${git.branch}::${git.shortRevision}::${maven.build.timestamp}</BuildID> 
-                                <ProductVersion>${project.version}</ProductVersion>
-                                <ProductGUID>1</ProductGUID>
-                            </systemPropertyVariables>
-                            <properties>
-                                <property>
-                                    <name>listener</name>
-                                    <value>com.hpe.qa.test.framework.listeners.testng_sqlreporter</value>
-                                </property>
-                            </properties>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.hpe.caf</groupId>
-                        <artifactId>caf-kafka-istf-maven-plugin</artifactId>
-                        <version>1.1.0-2</version>
-                        <executions>
-                            <execution>
-                                <id>istf-upload</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>upload</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>com.hpe.caf.qa.test.framework.listeners</groupId>
-                    <artifactId>caf-testng-sqlreporter</artifactId>
-                    <version>1.1.0</version>
-                    <scope>test</scope> 
-                </dependency>
-            </dependencies>
-        </profile>
 
         <profile>
             <id>integration-test</id>
