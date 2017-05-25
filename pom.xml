@@ -76,6 +76,11 @@
             <email>michael.bryson@hpe.com</email>
         </developer>
         <developer>
+            <id>mmaBel</id>
+            <name>Michael McAlynn</name>
+            <email>michael.mcalynn@hpe.com</email>
+        </developer>
+        <developer>
             <id>mulhollandc</id>
             <name>Connor Mulholland</name>
             <email>connor.mulholland@hpe.com</email>
@@ -113,6 +118,7 @@
         <module>container-cert-script</module>
         <module>decoder-js</module>
         <module>election-null</module>
+        <module>java-postgres-container</module>
         <module>swagger-restapi-client-base</module>
         <module>swagger-ui</module>
         <module>util-ref</module>
