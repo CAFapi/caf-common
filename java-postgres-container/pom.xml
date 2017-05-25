@@ -27,10 +27,9 @@
         <version>1.11.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.hpe.caf</groupId>
+    <groupId>com.github.cafapi</groupId>
     <artifactId>java-postgres-container</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
 
     <build>
         <plugins>
