@@ -49,6 +49,22 @@
                             <skip>false</skip>
                         </configuration>
                     </execution>
+                    <!-- Start the containers in pre-integration-test phase. -->
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <!-- Stop the containers in post-integration-test phase. -->
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <phase>deploy</phase>
                         <goals>
