@@ -65,7 +65,7 @@
                     <images>
                         <image>
                             <alias>java-postgres</alias>
-                            <name>cafinternal/java-postgres:${project.version}</name>
+                            <name>cafinternal/prereleases:java-postgres-${project.version}</name>
                             <build>
                                 <from>postgres:9.4.10-alpine</from>
                                 <labels>
