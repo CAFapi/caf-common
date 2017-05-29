@@ -769,6 +769,7 @@ limitations under the License.
                         <exclude>official-build.props</exclude>
                         <exclude>docs/**</exclude>
                         <exclude>**/marathon-template-config/**</exclude>
+                        <exclude>**/test/resources/**.txt</exclude>
                         <exclude>**/test-configs/**</exclude>
                         <exclude>**/test-data/**</exclude>
                         <exclude>**/test-license/**</exclude>
