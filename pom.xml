@@ -154,6 +154,9 @@
         <marathon.client.version>0.4.9</marathon.client.version>
         <skipLicenseHeadersCheck>false</skipLicenseHeadersCheck>
         <rabbitmq.image.version>rabbitmq:3.6.9-management</rabbitmq.image.version>
+        <dockerImagePrefix>dev/</dockerImagePrefix>
+        <dockerOrgSeperator>/</dockerOrgSeperator>
+        <dockerVersionSeperator>:</dockerVersionSeperator>
     </properties>
 
     <dependencyManagement>
