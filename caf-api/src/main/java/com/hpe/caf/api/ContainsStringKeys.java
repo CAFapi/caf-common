@@ -15,12 +15,12 @@
  */
 package com.hpe.caf.api;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import javax.validation.Constraint;
+import javax.validation.Payload;
 
 /**
  * Used on a field of type Map with String keys to indicate that they keys must contains specific Strings.

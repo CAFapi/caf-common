@@ -15,14 +15,11 @@
  */
 package com.hpe.caf.naming;
 
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import javax.naming.InvalidNameException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+import javax.naming.InvalidNameException;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class ServicePathTest
 {

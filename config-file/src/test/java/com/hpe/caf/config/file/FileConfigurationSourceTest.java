@@ -23,13 +23,6 @@ import com.hpe.caf.api.ConfigurationSource;
 import com.hpe.caf.cipher.NullCipher;
 import com.hpe.caf.codec.YamlCodec;
 import com.hpe.caf.naming.ServicePath;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import org.mockito.Mockito;
-
-import javax.naming.InvalidNameException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +30,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import javax.naming.InvalidNameException;
+import org.mockito.Mockito;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class FileConfigurationSourceTest
 {

@@ -16,14 +16,13 @@
 package com.hpe.caf.util.processidentifier;
 
 import com.hpe.caf.util.testing.MultiThreadTestUtil;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  * Tests for ProcessIdentifier class

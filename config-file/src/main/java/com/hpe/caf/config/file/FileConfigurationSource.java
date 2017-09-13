@@ -24,9 +24,6 @@ import com.hpe.caf.api.FileExtensions;
 import com.hpe.caf.api.HealthResult;
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystems;
@@ -35,6 +32,8 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This is a ConfigurationProvider that reads from a local disk file. If the bootstrap parameter config.path is set, it will read the

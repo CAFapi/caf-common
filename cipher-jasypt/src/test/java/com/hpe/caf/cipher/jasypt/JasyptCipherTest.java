@@ -19,9 +19,9 @@ import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.Cipher;
 import com.hpe.caf.api.CipherException;
 import com.hpe.caf.api.ConfigurationException;
+import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.mockito.Mockito;
 
 public class JasyptCipherTest
 {

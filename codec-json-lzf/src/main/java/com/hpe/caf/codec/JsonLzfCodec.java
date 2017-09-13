@@ -21,7 +21,6 @@ import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
 import com.ning.compress.lzf.LZFInputStream;
 import com.ning.compress.lzf.LZFOutputStream;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

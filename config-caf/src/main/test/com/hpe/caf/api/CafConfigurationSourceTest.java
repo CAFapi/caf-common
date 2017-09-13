@@ -15,21 +15,17 @@
  */
 package com.hpe.caf.api;
 
-
 import com.hpe.caf.naming.ServicePath;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.rules.ExpectedException;
-import org.mockito.Mockito;
-
+import java.io.InputStream;
 import javax.naming.InvalidNameException;
 import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.io.InputStream;
-
+import org.mockito.Mockito;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class CafConfigurationSourceTest
 {

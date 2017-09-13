@@ -15,13 +15,12 @@
  */
 package com.hpe.caf.api;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import javax.validation.Validation;
-import javax.validation.Validator;
 import java.util.HashMap;
 import java.util.Map;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class ContainsStringKeysValidatorTest
 {

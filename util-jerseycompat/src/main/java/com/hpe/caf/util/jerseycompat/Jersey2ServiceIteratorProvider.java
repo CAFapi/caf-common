@@ -15,14 +15,13 @@
  */
 package com.hpe.caf.util.jerseycompat;
 
-import org.glassfish.jersey.internal.ServiceFinder;
-
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import org.glassfish.jersey.internal.ServiceFinder;
 
 /**
  * Compatibility class to allow Jersey 1 libraries to co-exist with Jersey 2 apps, such as Dropwizard.

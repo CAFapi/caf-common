@@ -15,15 +15,14 @@
  */
 package com.hpe.caf.util.ref;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.internal.junit.ArrayAsserts;
-import org.mockito.Mockito;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import org.mockito.Mockito;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.internal.junit.ArrayAsserts;
 
 public class ReferencedDataTest
 {

@@ -15,13 +15,10 @@
  */
 package com.hpe.caf.naming;
 
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class NameTest
 {

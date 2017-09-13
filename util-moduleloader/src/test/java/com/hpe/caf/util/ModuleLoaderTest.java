@@ -15,10 +15,9 @@
  */
 package com.hpe.caf.util;
 
+import java.util.Collection;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Collection;
 
 public class ModuleLoaderTest
 {

@@ -17,7 +17,6 @@ package com.hpe.caf.util;
 
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
-
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 

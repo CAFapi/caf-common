@@ -18,9 +18,8 @@ package com.hpe.caf.config.system;
 import com.hpe.caf.api.BootstrapConfiguration;
 import com.hpe.caf.api.ConfigurationException;
 import com.hpe.caf.naming.ServicePath;
-
-import javax.naming.InvalidNameException;
 import java.util.Objects;
+import javax.naming.InvalidNameException;
 
 /**
  * Provides bootstrap configuration from Java system properties and environment variables. Note that system properties will always

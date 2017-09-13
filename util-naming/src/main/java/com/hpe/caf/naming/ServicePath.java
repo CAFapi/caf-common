@@ -15,10 +15,10 @@
  */
 package com.hpe.caf.naming;
 
-import javax.naming.InvalidNameException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import javax.naming.InvalidNameException;
 
 /**
  * Simple object to store the service path, expected to be in the form /group/subgroup/id. Internally this is represented by a

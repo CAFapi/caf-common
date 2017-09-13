@@ -16,15 +16,14 @@
 package com.hpe.caf.decoder;
 
 import com.hpe.caf.api.CodecException;
+import java.io.InputStream;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.testng.PowerMockTestCase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.io.InputStream;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Unit tests for JavaScriptDecoder class.

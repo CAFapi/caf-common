@@ -26,18 +26,16 @@ import com.hpe.caf.cipher.NullCipher;
 import com.hpe.caf.codec.JsonCodec;
 import com.hpe.caf.naming.ServicePath;
 import io.dropwizard.testing.junit.DropwizardClientRule;
-import org.hibernate.validator.constraints.NotBlank;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import javax.naming.InvalidNameException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
+import org.hibernate.validator.constraints.NotBlank;
 import static org.junit.Assert.assertEquals;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 public class RestConfigurationSourceTest
 {

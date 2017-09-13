@@ -17,7 +17,6 @@ package com.hpe.caf.election;
 
 import com.hpe.caf.api.Election;
 import com.hpe.caf.api.ElectionCallback;
-
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 

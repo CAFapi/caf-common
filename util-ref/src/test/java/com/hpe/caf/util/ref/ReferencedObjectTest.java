@@ -18,11 +18,10 @@ package com.hpe.caf.util.ref;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.mockito.Mockito;
-
-import java.io.IOException;
 
 public class ReferencedObjectTest
 {

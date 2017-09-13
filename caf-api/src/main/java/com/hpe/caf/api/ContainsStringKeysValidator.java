@@ -15,9 +15,9 @@
  */
 package com.hpe.caf.api;
 
+import java.util.Map;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.Map;
 
 /**
  * Validates a specific String key is present within a Map.

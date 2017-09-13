@@ -16,7 +16,6 @@
 package com.hpe.caf.config.file;
 
 import com.hpe.caf.api.Configuration;
-
 import javax.validation.Valid;
 
 public class RootConfig

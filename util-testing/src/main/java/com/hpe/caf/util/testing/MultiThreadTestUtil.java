@@ -15,11 +15,10 @@
  */
 package com.hpe.caf.util.testing;
 
-import org.junit.Assert;
-
 import java.util.Collection;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Consumer;
+import org.junit.Assert;
 
 /**
  * Utility class for running multi-threaded tests.
