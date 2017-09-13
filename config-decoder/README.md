@@ -10,11 +10,11 @@ The `CAF_CONFIG_DECODER` variable should be set to the name of the class impleme
 e.g.
 Given a class TestDecoder as below;
 ```
-package com.hpe.decoders;
+package com.acme.decoders;
 
 import java.io.InputStream;
 
-public class TestDecoder implements Decoder{
+public class TestDecoder implements Decoder {
     @Override
     public <T> T deserialise(InputStream stream, Class<T> clazz) throws CodecException {
         return null;
@@ -22,10 +22,10 @@ public class TestDecoder implements Decoder{
 }
 ```
 
-Which in its project specifies a META-INF/services resource file 'com.hpe.caf.api.Decoder' containing;
+Which in its project specifies a META-INF/services resource file 'com.github.cafapi.Decoder' containing;
 
 ```
-com.hpe.decoders.TestDecoder
+com.amce.decoders.TestDecoder
 ```
 
 The `CAF_CONFIG_DECODER` variable should be set to `TestDecoder` to load that Decoder implementation.
