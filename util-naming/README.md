@@ -47,4 +47,4 @@ String group = servicePath.getGroup();
 
 The following people are responsible for maintaining this code:
 
-- Adam Rogan (Belfast, UK adam.pau.rogan@hpe.com)
+- Adam Rogan (Belfast, UK adam.pau.rogan@microfocus.com)
