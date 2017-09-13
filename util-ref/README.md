@@ -62,4 +62,4 @@ Thrown when the source reference is not found.
 
 The following people are responsible for maintaining this code:
 
-- Christopher Comac (Belfast, UK, christopher.jam.comac@hpe.com)
+- Christopher Comac (Belfast, UK, christopher.jam.comac@microfocus.com)
