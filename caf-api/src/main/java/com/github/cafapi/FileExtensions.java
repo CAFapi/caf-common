@@ -25,8 +25,8 @@ import java.lang.annotation.Target;
 /**
  * Used to associate a class with a file extension or a set of file extensions.
  * <p>
- * The file-based configuration provider uses the file extensions associated with the {@link Decoder} in use when building up the
- * path of the configuration file to read from.
+ * The file-based configuration provider uses the file extensions associated with the {@link Decoder} in use when building up the path of
+ * the configuration file to read from.
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

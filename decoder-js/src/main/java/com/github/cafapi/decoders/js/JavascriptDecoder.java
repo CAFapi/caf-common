@@ -29,8 +29,8 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 /**
- * Decoder implementation that supports building objects from JavaScript. Supports a function 'getenv' which takes the
- * name of an environment variable and will return its value.
+ * Decoder implementation that supports building objects from JavaScript. Supports a function 'getenv' which takes the name of an
+ * environment variable and will return its value.
  */
 @FileExtensions("js")
 public class JavascriptDecoder implements Decoder

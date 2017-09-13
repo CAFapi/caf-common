@@ -25,7 +25,7 @@ public class ServicePathTest
 {
     @Test
     public void testValid()
-            throws InvalidNameException
+        throws InvalidNameException
     {
         ServicePath sp = new ServicePath("group/Subgroup/name");
         Assert.assertEquals("group", sp.getRoot());
@@ -33,17 +33,15 @@ public class ServicePathTest
         Assert.assertEquals("name", sp.getLeaf());
     }
 
-
     @Test
     public void testStrip()
-            throws InvalidNameException
+        throws InvalidNameException
     {
         ServicePath sp = new ServicePath("/group/Subgroup/name/");
         Assert.assertEquals("group", sp.getRoot());
         Assert.assertEquals("Subgroup", sp.getGroup());
         Assert.assertEquals("name", sp.getLeaf());
     }
-
 
     @Test(expected = InvalidNameException.class)
     public void testEmptyGroup()
@@ -52,7 +50,6 @@ public class ServicePathTest
         ServicePath sp = new ServicePath("/group/Subgroup//name/");
     }
 
-
     @Test(expected = InvalidNameException.class)
     public void testNoGroup()
         throws InvalidNameException
@@ -60,10 +57,9 @@ public class ServicePathTest
         ServicePath sp = new ServicePath("/name");
     }
 
-
     @Test
     public void testGroupIterator()
-            throws InvalidNameException
+        throws InvalidNameException
     {
         ServicePath sp = new ServicePath("/group/Subgroup/name/");
         Iterator<String> it = sp.groupIterator();
@@ -73,7 +69,6 @@ public class ServicePathTest
         Assert.assertEquals("Subgroup", it.next());
         Assert.assertFalse(it.hasNext());
     }
-
 
     @Test(expected = NoSuchElementException.class)
     public void testGroupIteratorException()
@@ -85,10 +80,9 @@ public class ServicePathTest
         it.next();
     }
 
-
     @Test
     public void testDescendingPathIterator()
-            throws InvalidNameException
+        throws InvalidNameException
     {
         ServicePath sp = new ServicePath("/group/Subgroup/name/");
         Iterator<Name> it = sp.descendingPathIterator();
@@ -100,7 +94,6 @@ public class ServicePathTest
         Assert.assertEquals("group", it.next().toString());
         Assert.assertFalse(it.hasNext());
     }
-
 
     @Test(expected = NoSuchElementException.class)
     public void testDescendingPathIteratorException()

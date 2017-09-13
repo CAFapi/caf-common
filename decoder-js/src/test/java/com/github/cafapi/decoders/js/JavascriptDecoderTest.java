@@ -29,18 +29,20 @@ import org.testng.annotations.Test;
  * Unit tests for JavaScriptDecoder class.
  */
 @PrepareForTest(PropertyRetriever.class)
-public class JavascriptDecoderTest extends PowerMockTestCase {
-
+public class JavascriptDecoderTest extends PowerMockTestCase
+{
     /**
      * Tests that the decoded input use environment property values.
+     *
      * @throws CodecException
      */
     @Test
-    public void deserializeWithEnvironmentVariablesTest() throws CodecException {
+    public void deserializeWithEnvironmentVariablesTest() throws CodecException
+    {
         int expectedMyInt = ThreadLocalRandom.current().nextInt();
-        String expectedMyString = "Test Result"+ UUID.randomUUID().toString();
+        String expectedMyString = "Test Result" + UUID.randomUUID().toString();
         boolean expectedMyBoolean = true;
-        String expectedNestedString = "Nested Result"+ UUID.randomUUID().toString();
+        String expectedNestedString = "Nested Result" + UUID.randomUUID().toString();
         int expectedNestedInt = ThreadLocalRandom.current().nextInt();
         boolean expectedNestedBoolean = true;
 
@@ -53,32 +55,34 @@ public class JavascriptDecoderTest extends PowerMockTestCase {
         PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDBOOLEAN")).thenReturn(Boolean.toString(expectedNestedBoolean));
 
         InputStream inputToDecode = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("DecodeResultInput.js");
+            .getResourceAsStream("DecodeResultInput.js");
 
         JavascriptDecoder decoder = new JavascriptDecoder();
         DecodeResult result = decoder.deserialise(inputToDecode, DecodeResult.class);
         Assert.assertNotNull(result, "Deserialized result should not be null");
-        Assert.assertEquals(result.getMyString(), expectedMyString, "Decoded myString should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(result.getMyInt(), expectedMyInt, "Decoded myInt should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(result.isMyBoolean(), expectedMyBoolean, "Decoded myBoolean should have been resolved to expected property " +
-                "value.");
+        Assert.assertEquals(result.getMyString(), expectedMyString, "Decoded myString should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(result.getMyInt(), expectedMyInt, "Decoded myInt should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(result.isMyBoolean(), expectedMyBoolean, "Decoded myBoolean should have been resolved to expected property "
+                            + "value.");
         DecodeResult.NestedProp nestedResult = result.getMyNestedProp();
-        Assert.assertEquals(nestedResult.getMyNestedString(), expectedNestedString, "Decoded nested string should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(nestedResult.getMyNestedInt(), expectedNestedInt, "Decoded nested int should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(nestedResult.isMyNestedBoolean(), expectedNestedBoolean, "Decoded nested boolean should have been resolved to expected property " +
-                "value.");
+        Assert.assertEquals(nestedResult.getMyNestedString(), expectedNestedString, "Decoded nested string should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(nestedResult.getMyNestedInt(), expectedNestedInt, "Decoded nested int should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(nestedResult.isMyNestedBoolean(), expectedNestedBoolean, "Decoded nested boolean should have been resolved to expected property "
+                            + "value.");
     }
 
     /**
      * Tests that deserialized input returns appropriate values when no environment variables are set.
+     *
      * @throws CodecException
      */
     @Test
-    public void deserializeWithoutEnvironmentVariablesTest() throws CodecException {
+    public void deserializeWithoutEnvironmentVariablesTest() throws CodecException
+    {
         //default values specified in resource input file
         int expectedMyInt = 100;
         String expectedMyString = "default-appended";
@@ -88,33 +92,34 @@ public class JavascriptDecoderTest extends PowerMockTestCase {
         boolean expectedNestedBoolean = false;
 
         InputStream inputToDecode = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("DecodeResultInput.js");
+            .getResourceAsStream("DecodeResultInput.js");
 
         JavascriptDecoder decoder = new JavascriptDecoder();
         DecodeResult result = decoder.deserialise(inputToDecode, DecodeResult.class);
         Assert.assertNotNull(result, "Deserialized result should not be null");
-        Assert.assertEquals(result.getMyString(), expectedMyString, "Decoded myString should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(result.getMyInt(), expectedMyInt, "Decoded myInt should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(result.isMyBoolean(), expectedMyBoolean, "Decoded myBoolean should have been resolved to expected property " +
-                "value.");
+        Assert.assertEquals(result.getMyString(), expectedMyString, "Decoded myString should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(result.getMyInt(), expectedMyInt, "Decoded myInt should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(result.isMyBoolean(), expectedMyBoolean, "Decoded myBoolean should have been resolved to expected property "
+                            + "value.");
         DecodeResult.NestedProp nestedResult = result.getMyNestedProp();
-        Assert.assertEquals(nestedResult.getMyNestedString(), expectedNestedString, "Decoded nested string should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(nestedResult.getMyNestedInt(), expectedNestedInt, "Decoded nested int should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(nestedResult.isMyNestedBoolean(), expectedNestedBoolean, "Decoded nested boolean should have been resolved to expected property " +
-                "value.");
+        Assert.assertEquals(nestedResult.getMyNestedString(), expectedNestedString, "Decoded nested string should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(nestedResult.getMyNestedInt(), expectedNestedInt, "Decoded nested int should have been resolved to expected property "
+                            + "value.");
+        Assert.assertEquals(nestedResult.isMyNestedBoolean(), expectedNestedBoolean, "Decoded nested boolean should have been resolved to expected property "
+                            + "value.");
     }
 
     /**
      * Test that appropriate exception thrown when an invalid input stream i.e. not JavaScript, is passed.
      */
     @Test
-    public void invalidInputFile(){
+    public void invalidInputFile()
+    {
         InputStream inputToDecode = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("InvalidInput.sh");
+            .getResourceAsStream("InvalidInput.sh");
 
         JavascriptDecoder decoder = new JavascriptDecoder();
         try {

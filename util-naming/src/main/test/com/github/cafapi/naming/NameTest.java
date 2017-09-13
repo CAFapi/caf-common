@@ -31,7 +31,6 @@ public class NameTest
         Assert.assertEquals(3, name.size());
     }
 
-
     @Test
     public void testTrailingSlash()
     {
@@ -40,7 +39,6 @@ public class NameTest
         Assert.assertEquals(input, name.toString());
         Assert.assertEquals(3, name.size());
     }
-
 
     @Test
     public void testGetIndex()
@@ -52,7 +50,6 @@ public class NameTest
         Assert.assertEquals("c", name.getIndex(2));
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void testGetIndexLowerBound()
     {
@@ -61,7 +58,6 @@ public class NameTest
         name.getIndex(-1);
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void testGetIndexUpperBound()
     {
@@ -69,7 +65,6 @@ public class NameTest
         Name name = new Name(input);
         name.getIndex(3);
     }
-
 
     @Test
     public void testIterator()
@@ -86,7 +81,6 @@ public class NameTest
         Assert.assertFalse(it.hasNext());
     }
 
-
     @Test(expected = NoSuchElementException.class)
     public void testIteratorBounds()
     {
@@ -99,7 +93,6 @@ public class NameTest
         it.next();
     }
 
-
     @Test
     public void testGetPrefix()
     {
@@ -110,7 +103,6 @@ public class NameTest
         Assert.assertEquals("a/b", subName.toString());
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void getGetPrefixLowerBound()
     {
@@ -119,7 +111,6 @@ public class NameTest
         name.getPrefix(-1);
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void getGetPrefixUpperBound()
     {
@@ -127,7 +118,6 @@ public class NameTest
         Name name = new Name(input);
         name.getPrefix(4);
     }
-
 
     @Test
     public void testEquals()

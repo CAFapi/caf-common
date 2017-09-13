@@ -35,10 +35,9 @@ public class CafConfigurationSourceTest
     private static final long DEFAULT_LONG = 200L;
     private static final long TEST_LONG = 16384L;
 
-
     @Test
     public void testConfigurationSource()
-            throws CodecException, CipherException, ConfigurationException, InvalidNameException
+        throws CodecException, CipherException, ConfigurationException, InvalidNameException
     {
         InputStream is = Mockito.mock(InputStream.class);
         Validator val = Validation.buildDefaultValidatorFactory().getValidator();
@@ -68,10 +67,9 @@ public class CafConfigurationSourceTest
         Assert.assertEquals(DEFAULT_LONG, result.getSubConfig().getTestLong());
     }
 
-
     @Test(expected = ConfigurationException.class)
     public void testConfigurationSourceValidation()
-            throws CodecException, CipherException, ConfigurationException, InvalidNameException
+        throws CodecException, CipherException, ConfigurationException, InvalidNameException
     {
         InputStream is = Mockito.mock(InputStream.class);
         ServicePath id = new ServicePath("/testApp/unitTest");
@@ -96,10 +94,9 @@ public class CafConfigurationSourceTest
         config.getConfiguration(TestData.class);
     }
 
-
     @Test
     public void testRecursiveConfiguration()
-            throws CodecException, ConfigurationException, CipherException, InvalidNameException
+        throws CodecException, ConfigurationException, CipherException, InvalidNameException
     {
         InputStream is = Mockito.mock(InputStream.class);
 
@@ -133,10 +130,9 @@ public class CafConfigurationSourceTest
         Assert.assertEquals(TEST_LONG, result.getSubConfig().getTestLong());
     }
 
-
     @Test(expected = ConfigurationException.class)
     public void testRecursiveConfigurationValidation()
-            throws CodecException, ConfigurationException, CipherException, InvalidNameException
+        throws CodecException, ConfigurationException, CipherException, InvalidNameException
     {
         InputStream is = Mockito.mock(InputStream.class);
         ServicePath id = new ServicePath("/testApp/unitTest");
@@ -167,7 +163,7 @@ public class CafConfigurationSourceTest
 
     @Test
     public void testConfigurationSource_Token_SystemProperty()
-            throws CodecException, CipherException, ConfigurationException, InvalidNameException
+        throws CodecException, CipherException, ConfigurationException, InvalidNameException
     {
         InputStream is = Mockito.mock(InputStream.class);
         Validator val = Validation.buildDefaultValidatorFactory().getValidator();
@@ -200,7 +196,7 @@ public class CafConfigurationSourceTest
 
     @Test
     public void testConfigurationSource_Token_DefaultValue()
-            throws CodecException, CipherException, ConfigurationException, InvalidNameException
+        throws CodecException, CipherException, ConfigurationException, InvalidNameException
     {
         InputStream is = Mockito.mock(InputStream.class);
         Validator val = Validation.buildDefaultValidatorFactory().getValidator();
@@ -231,39 +227,39 @@ public class CafConfigurationSourceTest
     {
         @Encrypted
         private String testString;
+
         @Min(5)
         private int value;
+
         @Configuration
         @Valid
         @NotNull
         private SubConfig subConfig = new SubConfig(DEFAULT_LONG);
 
-
-        public String getTestString() {
+        public String getTestString()
+        {
             return testString;
         }
 
-
-        public void setTestString(final String testString) {
+        public void setTestString(final String testString)
+        {
             this.testString = testString;
         }
 
-
-        public int getValue() {
+        public int getValue()
+        {
             return value;
         }
 
-
-        public void setValue(final int value) {
+        public void setValue(final int value)
+        {
             this.value = value;
         }
-
 
         public SubConfig getSubConfig()
         {
             return subConfig;
         }
-
 
         public void setSubConfig(final SubConfig subConfig)
         {
@@ -274,25 +270,25 @@ public class CafConfigurationSourceTest
     private class TestDataForTokenUsage
     {
         private String testString;
-
         private String value;
 
-        public String getTestString() {
+        public String getTestString()
+        {
             return testString;
         }
 
-
-        public void setTestString(final String testString) {
+        public void setTestString(final String testString)
+        {
             this.testString = testString;
         }
 
-
-        public String getValue() {
+        public String getValue()
+        {
             return value;
         }
 
-
-        public void setValue(final String value) {
+        public void setValue(final String value)
+        {
             this.value = value;
         }
     }
@@ -302,21 +298,19 @@ public class CafConfigurationSourceTest
         @Min(100)
         private long testLong;
 
-
-        public SubConfig() { }
-
+        public SubConfig()
+        {
+        }
 
         public SubConfig(final long val)
         {
             this.testLong = val;
         }
 
-
         public long getTestLong()
         {
             return testLong;
         }
-
 
         public void setTestLong(final long testLong)
         {

@@ -862,7 +862,7 @@ limitations under the License.
                 </file>
             </activation>
             <properties>
-                 <caf.integrationtests.fs.path>\\${docker.host.address}@${webdav.apache.port}\webdav</caf.integrationtests.fs.path>
+                <caf.integrationtests.fs.path>\\${docker.host.address}@${webdav.apache.port}\webdav</caf.integrationtests.fs.path>
             </properties>
         </profile>
 
