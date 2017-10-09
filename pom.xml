@@ -777,7 +777,7 @@ limitations under the License.
                 <artifactId>license-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <inlineHeader>$(licenseHeaderText)</inlineHeader>
+                    <inlineHeader>${licenseHeaderText}</inlineHeader>
                     <excludes>
                         <exclude>LICENSE</exclude>
                         <exclude>official-build.props</exclude>
