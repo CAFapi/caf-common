@@ -65,6 +65,7 @@ public class JavascriptDecoder implements Decoder
         // Return the JSON.stringify method so that we can call it later
         final Object fnObj = jsEngine.eval(""
             + "getenv = com.github.cafapi.decoders.js.PropertyRetriever.getenv;"
+            + "getenvOrFile = com.github.cafapi.decoders.js.PropertyRetriever.getenvOrFile;"
             + ""
             + "({"
             + "    toJson: JSON.stringify"
