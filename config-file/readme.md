@@ -28,6 +28,12 @@
  application with a `ServicePath` of `group/subgroup/service` would prompt the
  module to look for the file `cfg_group_subgroup_service_TestConfiguration`.
 
+ The Decoder passed to the `ConfigurationSource` may be annotated with `FileExtensions`, which will be appended to the
+  constructed filename when looking for configuration files.
+  e.g. a Decoder defining FileExtensions as "js" passed in, will cause the module to look for a config file
+   using the previously described filename rules and appending ".js". For the prior example the module would now look
+   for the file `cfg_group_subgroup_service_TestConfiguration.js`.
+
  This module fully supports hierarchical and recursive configuration. If the
  file above is not found it will proceed to drop the top level of the
  `ServicePath` (eg. it will open `cfg_group_subgroup_TestConfiguration`) and
@@ -51,4 +57,4 @@
 
  The following people are contacts for developing and maintaining this module:
 
- - Richard Hickman (Cambridge, UK, richard.hickman@hp.com)
+ - Richard Hickman (Cambridge, UK, richard.hickman@microfocus.com)

@@ -41,4 +41,4 @@ In your docker container's configuration, unpack the container-cert-script in a 
 
 The following people are responsible for maintaining this project:
 
-- Zara McKeown (Belfast, UK, zara.mckeown@hpe.com)
+- Zara McKeown (Belfast, UK, zara.mckeown@microfocus.com)

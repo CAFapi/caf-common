@@ -21,7 +21,7 @@ Add this project and the swagger contract into your own web-service-ui module as
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.hpe.caf</groupId>
+            <groupId>com.github.cafapi</groupId>
             <artifactId>swagger-ui</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
@@ -48,7 +48,7 @@ Unpack the dependencies using the maven-dependency-plugin as below. The maven-wa
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>com.hpe.caf</groupId>
+                                    <groupId>com.github.cafapi</groupId>
                                     <artifactId>swagger-ui</artifactId>
                                     <outputDirectory>${project.build.directory}/swagger-ui</outputDirectory>
                                     <excludes>**/META-INF/**</excludes>

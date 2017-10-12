@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+# Copyright 2015-2017 EntIT Software LLC, a Micro Focus company.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -46,6 +46,8 @@ then
     # Determine OS version
     if [ -e /usr/lib/ssl/certs/java/cacerts ]; then
         import_java_certs "Debian" /usr/lib/ssl/certs/java/cacerts
+    elif [ -e /usr/lib64/jvm/jre/lib/security/cacerts ]; then
+        import_java_certs "OpenSUSE" /usr/lib64/jvm/jre/lib/security/cacerts
     elif [ -e /etc/pki/java/cacerts ]; then
         import_java_certs "CentOS" /etc/pki/java/cacerts
     else

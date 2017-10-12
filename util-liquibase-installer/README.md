@@ -6,11 +6,11 @@ The Liquibase Database Installer is a generic  java application that will create
 To make use of the installer use the following steps:
 
 1. Create a new Java project.
-2. Add com.hpe.caf.util-liquibase-installer as a dependency.
+2. Add com.github.cafapi.util:util-liquibase-installer as a dependency.
 3. Create a Liquibase change log called changelog.xml and place this in the resources folder of the project.
 4. Build the project with the mainClass as:
     
-    `com.hpe.caf.utilliquibaseinstaller.Application`
+    `com.github.cafapi.util.liquibaseinstaller.Application`
 
 This will produce a .jar specific to your project.
  
@@ -18,13 +18,13 @@ Note: The installer comes prepackaged only with Postgresql and h2 drivers. If yo
 
 ## Example POM
 Below is an example project's POM showing how to build using the Liquibase installer. 
-<groupId>com.hpe.caf</groupId>
+<groupId>com.github.cafdataprocessing</groupId>
 <artifactId>boilerplate-db</artifactId>
 <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
-            <groupId>com.hpe.caf.util</groupId>
+            <groupId>com.github.cafapi.util</groupId>
             <artifactId>util-liquibase-installer</artifactId>
             <version>1.0</version>
         </dependency>
@@ -37,7 +37,7 @@ Below is an example project's POM showing how to build using the Liquibase insta
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.hpe.caf.utilliquibaseinstaller.Application</mainClass>
+                            <mainClass>com.github.cafapi.util.liquibaseinstaller.Application</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -77,4 +77,4 @@ For example:
 
     java -jar -DDATABASE_CONFIG=C:\var myInstaller.jar -fd -db.user Admin  
     
-Note that passing a property as a command line argument will override the properties file.  
+Note that passing a property as a command line argument will override the properties file.

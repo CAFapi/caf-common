@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+# Copyright 2015-2017 EntIT Software LLC, a Micro Focus company.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,7 +37,14 @@ then
 
     # Determine OS version
     if [ -e /usr/sbin/update-ca-certificates ]; then
-        copy_certs "Debian" /usr/local/share/ca-certificates
+        DISTRO=$(grep "NAME=\"openSUSE" /etc/os-release)
+
+        if [ -n "$DISTRO" ]; then
+            copy_certs "openSUSE" /etc/pki/trust/anchors
+        else
+            copy_certs "Debian" /usr/local/share/ca-certificates
+        fi
+
         update-ca-certificates
     elif [ -e /usr/bin/update-ca-trust ]; then
         copy_certs "CentOS" /etc/pki/ca-trust/source/anchors
@@ -49,3 +56,4 @@ then
 else
     echo "Not installing CA Certificate."
 fi
+

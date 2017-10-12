@@ -30,4 +30,4 @@ To use `ModuleProvider`, create an instance using `ModuleProvider.getInstance();
 
 The following people are responsible for maintaining this code:
 
-- Krzysztof Ploch (Belfast, UK, krzysztof.ploch@hpe.com)
+- Krzysztof Ploch (Belfast, UK, krzysztof.ploch@microfocus.com)

@@ -20,4 +20,4 @@ To use this, ensure the following is performed before starting the Jersey 2 app:
 
 The following people are contacts for developing and maintaining this module:
 
-- Andrew Reid (Belfast, UK, andrew.reid@hpe.com)
+- Andrew Reid (Belfast, UK, andrew.reid@microfocus.com)
