@@ -37,7 +37,7 @@ then
 
     # Determine OS version
     if [ -e /usr/sbin/update-ca-certificates ]; then
-        DISTRO=`cat /etc/os-release | grep "NAME=\"openSUSE"`
+        DISTRO=$(grep "NAME=\"openSUSE" /etc/os-release)
 
         if [ -n "$DISTRO" ]; then
             copy_certs "openSUSE" /etc/pki/trust/anchors
