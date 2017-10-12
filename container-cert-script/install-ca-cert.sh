@@ -37,7 +37,14 @@ then
 
     # Determine OS version
     if [ -e /usr/sbin/update-ca-certificates ]; then
-        copy_certs "Debian" /usr/local/share/ca-certificates
+        DISTRO=`cat /etc/os-release | grep "NAME=\"openSUSE"`
+
+        if [ -n "$DISTRO" ]; then
+            copy_certs "openSUSE" /etc/pki/trust/anchors
+        else
+            copy_certs "Debian" /usr/local/share/ca-certificates
+        fi
+
         update-ca-certificates
     elif [ -e /usr/bin/update-ca-trust ]; then
         copy_certs "CentOS" /etc/pki/ca-trust/source/anchors
@@ -49,3 +56,4 @@ then
 else
     echo "Not installing CA Certificate."
 fi
+

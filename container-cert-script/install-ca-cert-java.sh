@@ -46,6 +46,8 @@ then
     # Determine OS version
     if [ -e /usr/lib/ssl/certs/java/cacerts ]; then
         import_java_certs "Debian" /usr/lib/ssl/certs/java/cacerts
+    elif [ -e /usr/lib64/jvm/jre/lib/security/cacerts ]; then
+        import_java_certs "OpenSUSE" /usr/lib64/jvm/jre/lib/security/cacerts
     elif [ -e /etc/pki/java/cacerts ]; then
         import_java_certs "CentOS" /etc/pki/java/cacerts
     else
