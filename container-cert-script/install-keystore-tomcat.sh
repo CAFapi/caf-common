@@ -17,8 +17,15 @@
 
 if [ -n "${SSL_KEYSTORE_PASSWORD}" ]
 then
-    echo "Setting keystore password in /usr/local/tomcat/conf/server.xml"
-    sed -i 's/\(keystorePass\)="[^"]*"/\1='\"${SSL_KEYSTORE_PASSWORD}\"'/' /usr/local/tomcat/conf/server.xml
+    if [ -e /usr/local/tomcat/conf/server.xml ]; then
+        echo "Setting keystore password in /usr/local/tomcat/conf/server.xml"
+        sed -i 's/\(keystorePass\)="[^"]*"/\1='\"${SSL_KEYSTORE_PASSWORD}\"'/' /usr/local/tomcat/conf/server.xml
+    elif [ -e /usr/share/tomcat/conf/server.xml ]; then
+        echo "Setting keystore password in /usr/share/tomcat/conf/server.xml"
+        sed -i 's/\(keystorePass\)="[^"]*"/\1='\"${SSL_KEYSTORE_PASSWORD}\"'/' /usr/share/tomcat/conf/server.xml
+    else
+        echo "WARNING: Couldn't locate Tomcat server.xml file"
+    fi
 else
     echo "Not setting keystore password"
 fi
