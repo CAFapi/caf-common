@@ -18,7 +18,7 @@
 if [ -n "${SSL_KEYSTORE_PASSWORD}" ]
 then
     echo "Setting keystore password in /usr/local/tomcat/conf/server.xml"
-    sed -i 's/\(keystorePass\)="[^"]*"/\1='\"${SSL_KEYSTORE_PASSWORD}\"'/' /usr/local/tomcat/conf/server.xml
+    sed -i 's/\(keystorePass\)="[^"]*"/\1='\"${SSL_KEYSTORE_PASSWORD}\"'/' /usr/share/tomcat/conf/server.xml
 else
     echo "Not setting keystore password"
 fi
