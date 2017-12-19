@@ -71,3 +71,21 @@ e.g. MY_STRING=My Name, `name` is set to "My Name".
 then the `name` property is set to that value concatenated with " Example".
 e.g. GLOBAL_STRING=Global, `name` is set to "Global Example".
 * If Neither environment variable is set then the `name` property is set to "Default Example".
+
+### Notes
+If you have characters in your key or value names that might confuse javascript, then know your javascript. For example if I have a key with name like `my-another-key` then docoder shall fail to parse the configuration, as it shall consider the dash as substract operator. So in that case you can use single quotes to your salvation. 
+
+```
+// Shall produce parse error
+({
+    my-another-key: "Another key"
+});
+
+// This shall go fine though; NOTE single quotes around my-another-key
+({
+    'my-another-key': "Another key"
+});
+
+```
+
+Important point to remember here is, that this library ultimately calling a javascript enging from java.
