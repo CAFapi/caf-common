@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+    Copyright 2015-2018 Micro Focus or one of its affiliates.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -36,11 +36,6 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <organization>
-        <name>Hewlett Packard Enterprise Development LP</name>
-        <url>http://www.hpe.com</url>
-    </organization>
-
     <modules>
         <module>caf-api</module>
         <module>caf-utils</module>
@@ -73,6 +68,11 @@
         <developerConnection>scm:git:https://github.com/CAFapi/caf-common.git</developerConnection>
         <url>https://github.com/CAFapi/caf-common</url>
     </scm>
+
+    <properties>
+        <copyrightYear>2018</copyrightYear>
+        <copyrightNotice>Copyright ${project.inceptionYear}-${copyrightYear} Micro Focus or one of its affiliates.</copyrightNotice>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
