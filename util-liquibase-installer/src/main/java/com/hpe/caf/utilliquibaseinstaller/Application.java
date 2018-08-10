@@ -108,8 +108,8 @@ public class Application
                 connectionString = connectionString != null ? connectionString : properties.getConnectionString();
                 fullConnectionString = joinDBConnection(connectionString, dbName);
             }else{
-                dbName = fullConnectionString.substring(fullConnectionString.lastIndexOf('/')+1,
-                        fullConnectionString.indexOf('?')) ;
+                int index = fullConnectionString.indexOf('?') != -1 ? fullConnectionString.indexOf('?') : fullConnectionString.length();
+                dbName = fullConnectionString.substring(fullConnectionString.lastIndexOf('/')+1, index) ;
                 connectionString = fullConnectionString.substring(0,fullConnectionString.lastIndexOf('/')+1);
             }
             username = username != null ? username : properties.getUser();
