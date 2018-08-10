@@ -54,6 +54,10 @@ public class Application
     @Option(name = "-db.connection", usage = "Specifies the connection string to the database service. e.g. postgresql://localhost:3307/")
     private String connectionString;
 
+    @Option(name = "-db.connection.url",
+            usage = "Specifies the full connection string to the database service. e.g. postgresql://localhost:3307/storageservice?characterEncoding=UTF8&rewriteBatchedStatements=true")
+    private String fullConnectionString;
+
     @Option(name = "-db.user", usage = "Specifies the username to access the database.")
     private String username;
 
@@ -62,8 +66,6 @@ public class Application
 
     @Option(name = "-db.name", usage = "Specifies the name of the database to be created or updated.")
     private String dbName;
-
-    private String fullConnectionString;
 
     private DatabaseProperties properties = loadProperties(DatabaseProperties.class);
 
@@ -101,9 +103,15 @@ public class Application
     private void checkArgs()
     {
         if (properties != null) {
-            dbName = dbName != null ? dbName : properties.getDBName();
-            connectionString = connectionString != null ? connectionString : properties.getConnectionString();
-            fullConnectionString = joinDBConnection(connectionString, dbName);
+            if(fullConnectionString == null) {
+                dbName = dbName != null ? dbName : properties.getDBName();
+                connectionString = connectionString != null ? connectionString : properties.getConnectionString();
+                fullConnectionString = joinDBConnection(connectionString, dbName);
+            }else{
+                int index = fullConnectionString.indexOf('?') != -1 ? fullConnectionString.indexOf('?') : fullConnectionString.length();
+                dbName = fullConnectionString.substring(fullConnectionString.lastIndexOf('/')+1, index) ;
+                connectionString = fullConnectionString.substring(0,fullConnectionString.lastIndexOf('/')+1);
+            }
             username = username != null ? username : properties.getUser();
             password = password != null ? password : properties.getPass();
         } else if (connectionString == null || username == null || password == null) {
