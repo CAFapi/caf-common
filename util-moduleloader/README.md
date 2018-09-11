@@ -25,9 +25,3 @@ The advantages of using `util-moduleloader` over a direct call to the Java Servi
 To use `ModuleLoader` call one of the overloaded static `getService(...)` methods passing in the interface of which to find a list of advertised service implementations.
 
 To use `ModuleProvider`, create an instance using `ModuleProvider.getInstance();`. Then call `getModule(Class<T> interfaceImplemented, String moduleType)`.
-
-## Maintainers
-
-The following people are responsible for maintaining this code:
-
-- Krzysztof Ploch (Belfast, UK, krzysztof.ploch@microfocus.com)

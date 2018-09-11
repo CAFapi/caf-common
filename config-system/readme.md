@@ -18,10 +18,3 @@
  Java system properties and environment variables. The standard method that
  should be used by developers/operations is environment variables, but note
  that Java system properties will take precedence if both are set.
-
-
-## Maintainers
-
- The following people are contacts for developing and maintaining this module:
-
- - Richard Hickman (Cambridge, UK, richard.hickman@microfocus.com)

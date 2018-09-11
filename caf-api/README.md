@@ -70,9 +70,3 @@ For example, by implementing the `Codec` class various different Codecs can be u
   - UNKNOWN: The health could not be determined at this time.
   - HEALTHY: The service is healthy and operating normally.
   - UNHEALTHY: The service is unhealthy or failed in some manner.
-
-## Maintainers
-
-The following people are responsible for maintaining this code:
-
-- Gregory Lucy (Belfast, UK, gregory.lucy@microfocus.com)

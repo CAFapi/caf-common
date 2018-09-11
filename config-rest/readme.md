@@ -48,10 +48,3 @@
  for this module:
 
  - Non-transient network failures that exceed the retry period
-
-
-## Maintainers
-
- The following people are contacts for developing and maintaining this module:
-
- - Richard Hickman (Cambridge, UK, richard.hickman@microfocus.com)

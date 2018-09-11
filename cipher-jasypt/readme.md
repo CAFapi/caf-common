@@ -25,10 +25,3 @@
  The following scenarios will prevent the module from initialising:
 
  - The `cipher.pass` configuration parameter was not specified
-
-
-## Maintainers
-
- The following people are contacts for developing and maintaining this module:
-
- - Richard Hickman (Cambridge, UK, richard.hickman@microfocus.com)

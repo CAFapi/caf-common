@@ -40,11 +40,3 @@ String leaf = servicePath.getLeaf();
 // Get the immediate group of the service, the node above the leaf e.g. "b".
 String group = servicePath.getGroup();
 ```
-
-
-
-## Maintainers
-
-The following people are responsible for maintaining this code:
-
-- Adam Rogan (Belfast, UK adam.pau.rogan@microfocus.com)

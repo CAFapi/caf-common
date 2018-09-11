@@ -57,9 +57,3 @@ To acquire the data potentially from a lookup to the data storage call:
 ## SourceNotFoundException
 
 Thrown when the source reference is not found.
-
-## Maintainer
-
-The following people are responsible for maintaining this code:
-
-- Christopher Comac (Belfast, UK, christopher.jam.comac@microfocus.com)
