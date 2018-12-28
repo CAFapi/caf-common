@@ -37,13 +37,6 @@
 
     <properties>
         <swagger-annotations-version>1.5.4</swagger-annotations-version>
-        <swagger-codegen-maven-plugin-version>2.1.5</swagger-codegen-maven-plugin-version>
-        <jersey-version>2.25.1</jersey-version>
-        <maven-plugin-version>1.0.0</maven-plugin-version>
-        <junit-version>4.8.1</junit-version>
-        <jackson-version>2.9.6</jackson-version>
-        <jodatime-version>2.7</jodatime-version>
-        <maven-plugin-version>1.0.0</maven-plugin-version>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     </properties>
 
@@ -58,68 +51,56 @@
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
-            <version>${jersey-version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>${jersey-version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
-            <version>${jersey-version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-common</artifactId>
-            <version>${jersey-version}</version>
         </dependency>
 
         <!-- JSON processing: jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-base</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
 
         <!-- Joda time: if you use it -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>${jodatime-version}</version>
         </dependency>
 
         <!-- Base64 encoding that works in both JVM and Android -->
         <dependency>
             <groupId>com.brsanthu</groupId>
             <artifactId>migbase64</artifactId>
-            <version>2.2</version>
         </dependency>
     </dependencies>
 

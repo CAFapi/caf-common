@@ -73,29 +73,31 @@
     <properties>
         <copyrightYear>2018</copyrightYear>
         <copyrightNotice>Copyright ${project.inceptionYear}-${copyrightYear} Micro Focus or one of its affiliates.</copyrightNotice>
+        <enforceCorrectDependencies>true</enforceCorrectDependencies>
+        <cafApiVersion>1.17.0-SNAPSHOT</cafApiVersion>
+        <logbackVersion>1.1.2</logbackVersion>
+        <powermockVersion>1.6.4</powermockVersion>
+        <slf4jVersion>1.7.25</slf4jVersion>
+        <dropwizardVersion>0.8.4</dropwizardVersion>
+        <springVersion>4.0.5.RELEASE</springVersion>
+        <netflixFeinVersion>8.11.0</netflixFeinVersion>
+        <hamcrestVersion>1.3</hamcrestVersion>
+        <log4jVersion>2.8.2</log4jVersion>
+        <jackson-version>2.9.6</jackson-version>
+        <jersey-version>2.25.1</jersey-version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>3.5.3</version>
+            </dependency>
+            <dependency>
                 <groupId>args4j</groupId>
                 <artifactId>args4j</artifactId>
                 <version>2.33</version>
-            </dependency>
-            <dependency>
-                <groupId>cc.roden</groupId>
-                <artifactId>marathon-client</artifactId>
-                <version>0.4.9</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>1.1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>com.autonomy.aci.actions</groupId>
@@ -108,241 +110,39 @@
                 <version>4.1.3</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>2.6.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-xml</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-guava</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jdk7</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-joda</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.jaxrs</groupId>
-                <artifactId>jackson-jaxrs-json-provider</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-afterburner</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
                 <groupId>com.github.cafapi</groupId>
                 <artifactId>caf-api</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi</groupId>
                 <artifactId>caf-utils</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi</groupId>
-                <artifactId>container-cert-script</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-                <type>tar.gz</type>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi</groupId>
-                <artifactId>swagger-ui</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.cipher</groupId>
                 <artifactId>cipher-jasypt</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.cipher</groupId>
                 <artifactId>cipher-null</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-json</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-json-lzf</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-yaml</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-caf</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-decoder</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-file</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-rest</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-system</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.decoder</groupId>
-                <artifactId>decoder-js</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.election</groupId>
-                <artifactId>election-null</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-jerseycompat</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-liquibase-installer</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-moduleloader</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-naming</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-process-identifier</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-ref</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-testing</artifactId>
-                <version>1.17.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>18.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.krallin</groupId>
-                <artifactId>tini</artifactId>
-                <version>${tini.version}</version>
-                <type>exe</type>
-            </dependency>
-            <dependency>
-                <groupId>com.microsoft.sqlserver</groupId>
-                <artifactId>sqljdbc4</artifactId>
-                <version>4.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.feign</groupId>
-                <artifactId>feign-core</artifactId>
-                <version>8.11.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.feign</groupId>
-                <artifactId>feign-gson</artifactId>
-                <version>8.11.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ning</groupId>
-                <artifactId>compress-lzf</artifactId>
-                <version>1.0.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rabbitmq</groupId>
-                <artifactId>amqp-client</artifactId>
-                <version>3.5.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.okhttp</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.retrofit</groupId>
-                <artifactId>retrofit</artifactId>
-                <version>1.9.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.jersey</groupId>
-                <artifactId>jersey-client</artifactId>
-                <version>1.19</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.jersey</groupId>
-                <artifactId>jersey-core</artifactId>
-                <version>1.19</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.jersey.contribs</groupId>
-                <artifactId>jersey-multipart</artifactId>
-                <version>1.19</version>
-            </dependency>
-            <dependency>
-                <groupId>com.verity</groupId>
-                <artifactId>keyview-api</artifactId>
-                <version>11.2.0</version>
+                <version>${cafApiVersion}</version>
             </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
@@ -355,19 +155,185 @@
                 <version>1.10</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.1.1</version>
+            </dependency>
+            <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>2.4</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ning</groupId>
+                <artifactId>compress-lzf</artifactId>
+                <version>1.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.config</groupId>
+                <artifactId>config-caf</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.config</groupId>
+                <artifactId>config-decoder</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.config</groupId>
+                <artifactId>config-file</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.config</groupId>
+                <artifactId>config-rest</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.config</groupId>
+                <artifactId>config-system</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi</groupId>
+                <artifactId>container-cert-script</artifactId>
+                <version>${cafApiVersion}</version>
+                <type>tar.gz</type>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.decoder</groupId>
+                <artifactId>decoder-js</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-core</artifactId>
-                <version>0.8.4</version>
+                <version>${dropwizardVersion}</version>
             </dependency>
             <dependency>
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-testing</artifactId>
-                <version>0.8.4</version>
+                <version>${dropwizardVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>el-impl</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.election</groupId>
+                <artifactId>election-null</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.feign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>${netflixFeinVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.feign</groupId>
+                <artifactId>feign-gson</artifactId>
+                <version>${netflixFeinVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>18.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.187</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>${hamcrestVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrestVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.1.3.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                <artifactId>jackson-jaxrs-base</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-guava</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jdk7</artifactId>
+                <version>2.6.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+               <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                <artifactId>jackson-jaxrs-json-provider</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-afterburner</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>1.9.2</version>
             </dependency>
             <dependency>
                 <groupId>javax.el</groupId>
@@ -380,19 +346,54 @@
                 <version>1</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.1.0.Final</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.ws.rs</groupId>
                 <artifactId>javax.ws.rs-api</artifactId>
                 <version>2.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4jVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom</artifactId>
+                <version>1.1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-client</artifactId>
+                <version>1.19</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.core</groupId>
+                <artifactId>jersey-common</artifactId>
+                <version>${jersey-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.core</groupId>
+                <artifactId>jersey-client</artifactId>
+                <version>${jersey-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.media</groupId>
+                <artifactId>jersey-media-json-jackson</artifactId>
+                <version>${jersey-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.media</groupId>
+                <artifactId>jersey-media-multipart</artifactId>
+                <version>${jersey-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-core</artifactId>
+                <version>1.19</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-multipart</artifactId>
+                <version>1.19</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
@@ -405,84 +406,49 @@
                 <version>4.12</version>
             </dependency>
             <dependency>
+                <groupId>com.verity</groupId>
+                <artifactId>keyview-api</artifactId>
+                <version>11.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>3.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4jVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4jVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logbackVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logbackVersion}</version>
+            </dependency>
+            <dependency>
                 <groupId>net.jodah</groupId>
                 <artifactId>lyra</artifactId>
                 <version>0.5.3</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-dbcp2</artifactId>
-                <version>2.1.1</version>
+                <groupId>cc.roden</groupId>
+                <artifactId>marathon-client</artifactId>
+                <version>0.4.9</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>1.3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>2.8.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.8.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-utils</artifactId>
-                <version>3.0.8</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.woodstox</groupId>
-                <artifactId>woodstox-core-asl</artifactId>
-                <version>4.4.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.jersey.core</groupId>
-                <artifactId>jersey-common</artifactId>
-                <version>2.21</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>el-impl</artifactId>
+                <groupId>com.brsanthu</groupId>
+                <artifactId>migbase64</artifactId>
                 <version>2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <version>1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>5.1.3.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jasypt</groupId>
-                <artifactId>jasypt</artifactId>
-                <version>1.9.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jdom</groupId>
-                <artifactId>jdom</artifactId>
-                <version>1.1.3</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -495,6 +461,21 @@
                 <version>1.10.19</version>
             </dependency>
             <dependency>
+                <groupId>com.squareup.okhttp</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>2.4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-utils</artifactId>
+                <version>3.0.8</version>
+            </dependency>
+            <dependency>
+                <groupId>uk.co.jemos.podam</groupId>
+                <artifactId>podam</artifactId>
+                <version>6.0.2.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.1.1</version>
@@ -502,37 +483,42 @@
             <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-api-mockito</artifactId>
-                <version>1.6.4</version>
+                <version>${powermockVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-core</artifactId>
+                <version>${powermockVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-module-junit4</artifactId>
-                <version>1.6.4</version>
+                <version>${powermockVersion}</version>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>1.7.25</version>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-testng-common</artifactId>
+                <version>${powermockVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit</groupId>
+                <artifactId>retrofit</artifactId>
+                <version>1.9.0</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.25</version>
+                <version>${slf4jVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.25</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-core</artifactId>
-                <version>3.4.2</version>
+                <version>${slf4jVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.yaml</groupId>
@@ -540,9 +526,90 @@
                 <version>1.15</version>
             </dependency>
             <dependency>
-                <groupId>uk.co.jemos.podam</groupId>
-                <artifactId>podam</artifactId>
-                <version>6.0.2.RELEASE</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${springVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${springVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${springVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi</groupId>
+                <artifactId>swagger-ui</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.krallin</groupId>
+                <artifactId>tini</artifactId>
+                <version>${tini.version}</version>
+                <type>exe</type>
+            </dependency>
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils-core</artifactId>
+                <version>3.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-jerseycompat</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-liquibase-installer</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-moduleloader</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-naming</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-process-identifier</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-ref</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.util</groupId>
+                <artifactId>util-testing</artifactId>
+                <version>${cafApiVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.1.0.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>woodstox-core-asl</artifactId>
+                <version>4.4.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

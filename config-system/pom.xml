@@ -32,6 +32,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.github.cafapi.util</groupId>
+            <artifactId>util-naming</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.cafapi</groupId>
             <artifactId>caf-api</artifactId>
             <scope>provided</scope>
