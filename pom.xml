@@ -85,6 +85,7 @@
         <log4jVersion>2.8.2</log4jVersion>
         <jackson-version>2.9.6</jackson-version>
         <jersey-version>2.25.1</jersey-version>
+        <mockitoVersion>1.10.19</mockitoVersion>
     </properties>
 
     <dependencyManagement>
@@ -453,12 +454,12 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version>1.9.5</version>
+                <version>${mockitoVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.10.19</version>
+                <version>${mockitoVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp</groupId>
@@ -493,6 +494,11 @@
             <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermockVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-testng</artifactId>
                 <version>${powermockVersion}</version>
             </dependency>
             <dependency>
