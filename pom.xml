@@ -396,6 +396,11 @@
                 <version>${dropwizardVersion}</version>
             </dependency>
             <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.4</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
                 <version>3.0.0</version>
