@@ -84,6 +84,7 @@
         <log4jVersion>2.8.2</log4jVersion>
         <jersey-version>2.25.1</jersey-version>
         <mockitoVersion>1.10.19</mockitoVersion>
+        <sunJerseyVersion>1.19</sunJerseyVersion>
     </properties>
 
     <dependencyManagement>
@@ -96,7 +97,7 @@
             <dependency>
                 <groupId>cc.roden</groupId>
                 <artifactId>marathon-client</artifactId>
-                <version>0.4.9</version>
+                <version>0.6.2</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -353,17 +354,17 @@
             <dependency>
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-client</artifactId>
-                <version>1.19</version>
+                <version>${sunJerseyVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-core</artifactId>
-                <version>1.19</version>
+                <version>${sunJerseyVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.jersey.contribs</groupId>
                 <artifactId>jersey-multipart</artifactId>
-                <version>1.19</version>
+                <version>${sunJerseyVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.verity</groupId>
