@@ -34,6 +34,7 @@
         <dependency>
             <groupId>com.github.cafapi.util</groupId>
             <artifactId>util-naming</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.cafapi</groupId>
