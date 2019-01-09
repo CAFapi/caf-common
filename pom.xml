@@ -193,16 +193,6 @@ limitations under the License.
                 <version>1.1.2</version>
             </dependency>
             <dependency>
-                <groupId>com.autonomy.aci.actions</groupId>
-                <artifactId>autonomy-aci-actions-base</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.autonomy.aci.client</groupId>
-                <artifactId>autonomy-aci-client-api</artifactId>
-                <version>4.1.3</version>
-            </dependency>
-            <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
                 <version>2.6.0</version>
@@ -215,16 +205,6 @@ limitations under the License.
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-xml</artifactId>
-                <version>2.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
                 <version>2.6.4</version>
             </dependency>
             <dependency>
@@ -258,22 +238,6 @@ limitations under the License.
                 <version>2.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi</groupId>
-                <artifactId>caf-utils</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi</groupId>
-                <artifactId>container-cert-script</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-                <type>tar.gz</type>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi</groupId>
-                <artifactId>swagger-ui</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
                 <groupId>com.github.cafapi.cipher</groupId>
                 <artifactId>cipher-jasypt</artifactId>
                 <version>2.0.0-SNAPSHOT</version>
@@ -290,11 +254,6 @@ limitations under the License.
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
-                <artifactId>codec-json-lzf</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-yaml</artifactId>
                 <version>2.0.0-SNAPSHOT</version>
             </dependency>
@@ -305,42 +264,7 @@ limitations under the License.
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-decoder</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-file</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-rest</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.config</groupId>
                 <artifactId>config-system</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.decoder</groupId>
-                <artifactId>decoder-js</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.election</groupId>
-                <artifactId>election-null</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-jerseycompat</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-liquibase-installer</artifactId>
                 <version>2.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -355,28 +279,8 @@ limitations under the License.
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-process-identifier</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-ref</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-testing</artifactId>
                 <version>2.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>18.0</version>
             </dependency>
             <dependency>
                 <groupId>com.github.krallin</groupId>
@@ -385,39 +289,19 @@ limitations under the License.
                 <type>exe</type>
             </dependency>
             <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.187</version>
+            </dependency>
+            <dependency>
                 <groupId>com.mesosphere</groupId>
                 <artifactId>marathon-client</artifactId>
                 <version>0.6.0</version>
             </dependency>
             <dependency>
-                <groupId>com.microsoft.sqlserver</groupId>
-                <artifactId>sqljdbc4</artifactId>
-                <version>4.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.feign</groupId>
-                <artifactId>feign-core</artifactId>
-                <version>8.11.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.feign</groupId>
-                <artifactId>feign-gson</artifactId>
-                <version>8.11.0</version>
-            </dependency>
-            <dependency>
                 <groupId>com.ning</groupId>
                 <artifactId>compress-lzf</artifactId>
                 <version>1.0.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rabbitmq</groupId>
-                <artifactId>amqp-client</artifactId>
-                <version>3.5.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.okhttp</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>2.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.squareup.retrofit</groupId>
@@ -430,34 +314,14 @@ limitations under the License.
                 <version>1.19</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.jersey</groupId>
-                <artifactId>jersey-core</artifactId>
-                <version>1.19</version>
-            </dependency>
-            <dependency>
                 <groupId>com.sun.jersey.contribs</groupId>
                 <artifactId>jersey-multipart</artifactId>
                 <version>1.19</version>
             </dependency>
             <dependency>
-                <groupId>com.verity</groupId>
-                <artifactId>keyview-api</artifactId>
-                <version>11.2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.10</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-configuration</groupId>
-                <artifactId>commons-configuration</artifactId>
-                <version>1.10</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>2.4</version>
+                <groupId>com.brsanthu</groupId>
+                <artifactId>migbase64</artifactId>
+                <version>2.2</version>
             </dependency>
             <dependency>
                 <groupId>io.dropwizard</groupId>
@@ -470,29 +334,19 @@ limitations under the License.
                 <version>0.8.4</version>
             </dependency>
             <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.4</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
                 <version>3.0.0</version>
             </dependency>
             <dependency>
-                <groupId>javax.inject</groupId>
-                <artifactId>javax.inject</artifactId>
-                <version>1</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>1.1.0.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>javax.ws.rs-api</artifactId>
-                <version>2.0.1</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
@@ -505,49 +359,14 @@ limitations under the License.
                 <version>4.12</version>
             </dependency>
             <dependency>
-                <groupId>net.jodah</groupId>
-                <artifactId>lyra</artifactId>
-                <version>0.5.3</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-dbcp2</artifactId>
                 <version>2.1.1</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>1.3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>2.8.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.8.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-utils</artifactId>
-                <version>3.0.8</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.woodstox</groupId>
-                <artifactId>woodstox-core-asl</artifactId>
-                <version>4.4.1</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jersey.core</groupId>
@@ -560,16 +379,6 @@ limitations under the License.
                 <version>2.2</version>
             </dependency>
             <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <version>1.3</version>
-            </dependency>
-            <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>5.1.3.Final</version>
@@ -580,9 +389,9 @@ limitations under the License.
                 <version>1.9.2</version>
             </dependency>
             <dependency>
-                <groupId>org.jdom</groupId>
-                <artifactId>jdom</artifactId>
-                <version>1.1.3</version>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>3.3.2</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -606,13 +415,8 @@ limitations under the License.
             </dependency>
             <dependency>
                 <groupId>org.powermock</groupId>
-                <artifactId>powermock-module-junit4</artifactId>
+                <artifactId>powermock-module-testng</artifactId>
                 <version>1.6.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>1.7.25</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -620,9 +424,9 @@ limitations under the License.
                 <version>1.7.25</version>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.25</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.0.5.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.testng</groupId>
@@ -630,19 +434,9 @@ limitations under the License.
                 <version>6.4</version>
             </dependency>
             <dependency>
-                <groupId>org.unitils</groupId>
-                <artifactId>unitils-core</artifactId>
-                <version>3.4.2</version>
-            </dependency>
-            <dependency>
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
                 <version>1.15</version>
-            </dependency>
-            <dependency>
-                <groupId>uk.co.jemos.podam</groupId>
-                <artifactId>podam</artifactId>
-                <version>6.0.2.RELEASE</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
