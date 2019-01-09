@@ -156,6 +156,7 @@
         <dockerImagePrefix>dev/</dockerImagePrefix>
         <dockerOrgSeperator>/</dockerOrgSeperator>
         <dockerVersionSeperator>:</dockerVersionSeperator>
+        <enforceCorrectDependencies>true</enforceCorrectDependencies>
         <licenseHeaderText>
 <![CDATA[
 Copyright ${project.inceptionYear}-2017 ${project.organization.name}.
