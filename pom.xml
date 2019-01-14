@@ -85,7 +85,6 @@
         <slf4jVersion>1.7.25</slf4jVersion>
         <springVersion>4.0.5.RELEASE</springVersion>
         <sunJerseyVersion>1.19</sunJerseyVersion>
-        <tini.version>0.16.1</tini.version>
     </properties>
 
     <dependencyManagement>
@@ -299,7 +298,7 @@
             <dependency>
                 <groupId>com.github.krallin</groupId>
                 <artifactId>tini</artifactId>
-                <version>${tini.version}</version>
+                <version>0.16.1</version>
                 <type>exe</type>
             </dependency>
             <dependency>
