@@ -42,8 +42,17 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.github.cafapi.util</groupId>
+            <artifactId>util-naming</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -69,10 +78,6 @@
             <groupId>org.glassfish.web</groupId>
             <artifactId>el-impl</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
