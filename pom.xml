@@ -83,7 +83,7 @@
         <netflixFeinVersion>8.11.0</netflixFeinVersion>
         <powermockVersion>1.6.4</powermockVersion>
         <slf4jVersion>1.7.25</slf4jVersion>
-        <springVersion>4.0.5.RELEASE</springVersion>
+        <springVersion>5.0.4.RELEASE</springVersion>
         <sunJerseyVersion>1.19</sunJerseyVersion>
     </properties>
 
