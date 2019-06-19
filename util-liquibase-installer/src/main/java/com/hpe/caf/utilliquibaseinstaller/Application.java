@@ -189,14 +189,12 @@ public class Application
                         Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage, this);
                         throw new RuntimeException(errorMessage);
                     }
+                    liquibase.getLog().setLogLevel(logLevel);
+                    liquibase.update(new Contexts());
                 } catch (final IOException ioe) {
                     Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
                 }
-                
-                if (liquibase != null) {
-                    liquibase.getLog().setLogLevel(logLevel);
-                    liquibase.update(new Contexts());
-                }
+
                 System.out.println("DB update finished.");
             }
         }
