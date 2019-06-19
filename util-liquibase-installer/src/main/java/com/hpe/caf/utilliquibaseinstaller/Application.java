@@ -186,7 +186,7 @@ public class Application
                         liquibase = new Liquibase("changelog.xml", new ClassLoaderResourceAccessor(), database);
                     } else {
                         String errorMessage = "No liquibase changelog-master.xml or changelog.xml could be located";
-                        Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage, this);
+                        Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage);
                         throw new RuntimeException(errorMessage);
                     }
                     liquibase.getLog().setLogLevel(logLevel);
