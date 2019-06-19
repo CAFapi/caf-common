@@ -192,9 +192,11 @@ public class Application
                 } catch (final IOException ioe) {
                     Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
                 }
-
-                liquibase.getLog().setLogLevel(logLevel);
-                liquibase.update(new Contexts());
+                
+                if (liquibase != null) {
+                    liquibase.getLog().setLogLevel(logLevel);
+                    liquibase.update(new Contexts());
+                }
                 System.out.println("DB update finished.");
             }
         }
