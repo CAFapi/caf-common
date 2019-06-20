@@ -70,6 +70,10 @@ public class FileConfigurationSource extends CafConfigurationSource
     {
         super(bootstrap, cipher, servicePath, decoder);
         try {
+            /**
+             * This method was identified as a possible issue for path manipulation, marking as false positive due to the path being
+             * picked up from environment variable. Creating a regex to match valid paths here would be overkill.
+             */
             configPath = FileSystems.getDefault().getPath(getConfigPath(bootstrap));
         } catch (final InvalidPathException e) {
             throw new ConfigurationException("Invalid configuration path", e);
