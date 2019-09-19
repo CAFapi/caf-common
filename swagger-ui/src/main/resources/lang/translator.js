@@ -12,6 +12,10 @@
  * 2. Mark that text it templates this way <anyHtmlTag data-sw-translate>New Phrase</anyHtmlTag> or <anyHtmlTag data-sw-translate value='New Phrase'/>.
  * The main thing here is attribute data-sw-translate. Only inner html, title-attribute and value-attribute are going to translate.
  *
+ * Fortify False Positive: SCMOD-7595
+ * Marking as a false positive as it is being detected because the langauge replacements are not being screened to make sure a word or sentance is not replaced with executable javascript.
+ * We however supply these files and they are not supplied by the user so they are safe.
+ *
  */
 window.SwaggerTranslator = {
 
