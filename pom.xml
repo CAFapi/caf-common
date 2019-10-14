@@ -319,9 +319,9 @@
                 <version>${sunJerseyVersion}</version>
             </dependency>
             <dependency>
-                <groupId>com.verity</groupId>
-                <artifactId>keyview-api</artifactId>
-                <version>11.2.0</version>
+                <groupId>com.microfocus.caf.keyview</groupId>
+                <artifactId>keyview-api-12.4.0</artifactId>
+		        <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
