@@ -57,10 +57,10 @@
         <module>swagger-ui</module>
         <module>util-ref</module>
         <module>util-jerseycompat</module>
+        <module>util-process-identifier</module>
         <module>util-liquibase-installer</module>
         <module>util-moduleloader</module>
-        <module>util-naming</module>
-        <module>util-process-identifier</module>
+        <module>util-naming</module>        
         <module>util-testing</module>
     </modules>
 
