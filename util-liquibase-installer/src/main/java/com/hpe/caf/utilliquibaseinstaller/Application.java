@@ -22,7 +22,6 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
-import liquibase.logging.LogLevel;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.kohsuke.args4j.CmdLineException;
@@ -35,8 +34,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by gibsodom on 08/12/2015.
@@ -44,13 +43,12 @@ import java.util.logging.Logger;
 public class Application
 {
     private final String dbNamePlaceholder = "<dbname>";
+    
+    private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Option(name = "-fd", usage = "Enables the deletion of existing database for a fresh install.")
     private boolean allowDBDeletion;
-
-    @Option(name = "-log", usage = "Specifies the logging level of the installer")
-    private LogLevel logLevel = LogLevel.WARNING;
-
+    
     @Option(name = "-db.connection", usage = "Specifies the connection string to the database service. e.g. postgresql://localhost:3307/")
     private String connectionString;
 
@@ -84,14 +82,13 @@ public class Application
             // if there's a problem in the command line,
             // you'll get this exception. this will report
             // an error message.
-            System.err.println(e.getMessage());
-            System.err.println("java Main [options...] arguments...");
+            logger.error(e.getMessage());
+            logger.error("java Main [options...] arguments...");
             // print the list of available options
             parser.printUsage(System.err);
-            System.err.println();
 
             // print option sample. This is useful some time
-            System.err.println(
+            logger.error(
                 "  Example: java -jar database-installer-1.0-SNAPSHOT-jar-with-dependencies.jar " + parser.printExample(ExampleMode.ALL));
 
             return;
@@ -127,9 +124,7 @@ public class Application
         boolean dbExists = checkDBExists();
 
         if (dbExists && allowDBDeletion) {
-            System.out.println();
-            System.out.println("DB - Exists, and force deletion has been specified for: " + dbName);
-            System.out.println();
+            logger.info("DB - Exists, and force deletion has been specified for: " + dbName);
 
             BasicDataSource basicDataSourceNoDB = new BasicDataSource();
             basicDataSourceNoDB.setUrl(connectionString);
@@ -139,12 +134,12 @@ public class Application
             try (Connection c = basicDataSourceNoDB.getConnection()) {
                 java.sql.Statement statement = c.createStatement();
                 statement.executeUpdate("DROP DATABASE " + dbName);
-                System.out.println("DELETED database: " + dbName);
+                logger.info("DELETED database: " + dbName);
                 dbExists = false;
             }
         }
         if (!dbExists) {
-            System.out.println("about to perform DB installation from scratch.");
+            logger.info("about to perform DB installation from scratch.");
 
             BasicDataSource basicDataSourceNoDB = new BasicDataSource();
             basicDataSourceNoDB.setUrl(connectionString);
@@ -154,7 +149,7 @@ public class Application
             try (java.sql.Connection c = basicDataSourceNoDB.getConnection()) {
                 java.sql.Statement statement = c.createStatement();
                 statement.executeUpdate("CREATE DATABASE " + dbName);
-                System.out.println("Created new database: " + dbName);
+                logger.info("Created new database: " + dbName);
             }
         }
         updateDB();
@@ -168,7 +163,7 @@ public class Application
      */
     private void updateDB() throws SQLException, LiquibaseException
     {
-        System.out.println("About to perform DB update.");
+        logger.info("About to perform DB update.");
         try (BasicDataSource dataSource = new BasicDataSource()) {
             dataSource.setUrl(fullConnectionString);
             dataSource.setUsername(username);
@@ -179,6 +174,7 @@ public class Application
                 // Check that the Database does indeed exist before we try to run the liquibase update.
                 Liquibase liquibase = null;
                 ClassLoaderResourceAccessor accessor = new ClassLoaderResourceAccessor();
+
                 try {
                     if (accessor.getResourcesAsStream("changelog-master.xml") != null) {
                         liquibase = new Liquibase("changelog-master.xml", new ClassLoaderResourceAccessor(), database);
@@ -186,16 +182,17 @@ public class Application
                         liquibase = new Liquibase("changelog.xml", new ClassLoaderResourceAccessor(), database);
                     } else {
                         String errorMessage = "No liquibase changelog-master.xml or changelog.xml could be located";
-                        Logger.getLogger(Application.class.getName()).log(Level.SEVERE, errorMessage);
+                        logger.error(errorMessage);
                         throw new RuntimeException(errorMessage);
                     }
-                    liquibase.getLog().setLogLevel(logLevel);
-                    liquibase.update(new Contexts());
-                } catch (final IOException ioe) {
-                    Logger.getLogger(Application.class.getName()).log(Level.SEVERE, ioe.getMessage(), ioe);
+                } catch (IOException ex) {
+                    logger.error(ex.getMessage());
                 }
+                
+                liquibase.update(new Contexts());
 
-                System.out.println("DB update finished.");
+
+                logger.info("DB update finished.");
             }
         }
     }
