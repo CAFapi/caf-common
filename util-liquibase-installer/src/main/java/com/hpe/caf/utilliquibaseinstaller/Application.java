@@ -82,13 +82,13 @@ public class Application
             // if there's a problem in the command line,
             // you'll get this exception. this will report
             // an error message.
-            logger.error(e.getMessage());
-            logger.error("java Main [options...] arguments...");
+            System.err.println(e.getMessage());
+            System.err.println("java Main [options...] arguments...");
             // print the list of available options
             parser.printUsage(System.err);
-
+            System.err.println();
             // print option sample. This is useful some time
-            logger.error(
+            System.err.println(
                 "  Example: java -jar database-installer-1.0-SNAPSHOT-jar-with-dependencies.jar " + parser.printExample(ExampleMode.ALL));
 
             return;
@@ -185,13 +185,10 @@ public class Application
                         logger.error(errorMessage);
                         throw new RuntimeException(errorMessage);
                     }
-                } catch (IOException ex) {
+                    liquibase.update(new Contexts());
+                } catch (final IOException ex) {
                     logger.error(ex.getMessage());
                 }
-                
-                liquibase.update(new Contexts());
-
-
                 logger.info("DB update finished.");
             }
         }
