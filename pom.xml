@@ -54,7 +54,6 @@
         <module>election-null</module>
         <module>swagger-restapi-client-base</module>
         <module>swagger-restapi-client-base2</module>
-        <module>swagger-ui</module>
         <module>util-ref</module>
         <module>util-jerseycompat</module>
         <module>util-liquibase-installer</module>
@@ -149,7 +148,7 @@
             <dependency>
                 <groupId>com.github.cafapi</groupId>
                 <artifactId>swagger-ui</artifactId>
-                <version>1.18.0-SNAPSHOT</version>
+                <version>1.17.0-201</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.cipher</groupId>
