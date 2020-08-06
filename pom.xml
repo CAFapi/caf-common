@@ -81,7 +81,7 @@
         <netflixFeinVersion>8.11.0</netflixFeinVersion>
         <powermockVersion>1.6.4</powermockVersion>
         <slf4jVersion>1.7.25</slf4jVersion>
-        <springVersion>5.0.4.RELEASE</springVersion>
+        <springVersion>5.0.18.RELEASE</springVersion>
         <sunJerseyVersion>1.19</sunJerseyVersion>
     </properties>
 
@@ -474,7 +474,7 @@
             <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
-                <version>3.3.2</version>
+                <version>3.5.5</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
