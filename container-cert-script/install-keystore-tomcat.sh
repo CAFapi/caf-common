@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+MESOS_SANDBOX=${SSL_CA_CRT_DIR:-$MESOS_SANDBOX}
+
 if [ -n "${SSL_KEYSTORE_PASSWORD}" ]
 then
     if [ -e /usr/local/tomcat/conf/server.xml ]; then

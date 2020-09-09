@@ -16,6 +16,7 @@
 #
 
 JAVA_KEYSTORE_PASSWORD=${JAVA_KEYSTORE_PASSWORD:-changeit}
+MESOS_SANDBOX=${SSL_CA_CRT_DIR:-$MESOS_SANDBOX}
 
 import_java_cert() {
     echo "Importing CA cert into Java Keystore on $1"

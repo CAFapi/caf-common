@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+MESOS_SANDBOX=${SSL_CA_CRT_DIR:-$MESOS_SANDBOX}
+
 copy_certs() {
     IFS=',' read -a caFiles <<< "$SSL_CA_CRT"
 
