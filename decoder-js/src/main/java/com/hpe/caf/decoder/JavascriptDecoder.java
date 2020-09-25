@@ -23,7 +23,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import javax.script.Bindings;
 import javax.script.Invocable;
+import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -59,12 +61,17 @@ public class JavascriptDecoder implements Decoder
         // I'm unsure about whether it would be safe to share the scripting engine across threads so I'm creating a separate one each time
         // this method is called.  It might be safe, assuming we just created a fresh Binding for each thread, but I'm finding it hard to
         // see a definitive answer on it in the reference.
-        final ScriptEngine jsEngine = scriptManager.getEngineByName("nashorn");
+        final ScriptEngine jsEngine = scriptManager.getEngineByName("graal.js");
+        final Bindings bindings = jsEngine.getBindings(ScriptContext.ENGINE_SCOPE);
+        bindings.put("polyglot.js.allowHostAccess", true);
+        bindings.put("polyglot.js.allowHostClassLookup", true);
+
 
         // Define a short-cut for accessing environment variables
         // Return the JSON.stringify method so that we can call it later
         final Object fnObj = jsEngine.eval(""
-            + "getenv = com.hpe.caf.decoder.PropertyRetriever.getenv;"
+            + "var PropertyRetriever = Java.type('com.hpe.caf.decoder.PropertyRetriever');"
+            + "getenv = PropertyRetriever.getenv;"
             + ""
             + "({"
             + "    toJson: JSON.stringify"
