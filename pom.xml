@@ -23,7 +23,7 @@
 
     <groupId>com.github.cafapi</groupId>
     <artifactId>caf-common</artifactId>
-    <version>1.19.0-269</version>
+    <version>1.20.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
@@ -134,17 +134,17 @@
             <dependency>
                 <groupId>com.github.cafapi</groupId>
                 <artifactId>caf-api</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi</groupId>
                 <artifactId>caf-utils</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi</groupId>
                 <artifactId>container-cert-script</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
                 <type>tar.gz</type>
             </dependency>
             <dependency>
@@ -155,97 +155,97 @@
             <dependency>
                 <groupId>com.github.cafapi.cipher</groupId>
                 <artifactId>cipher-jasypt</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.cipher</groupId>
                 <artifactId>cipher-null</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-json</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-json-lzf</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.codec</groupId>
                 <artifactId>codec-yaml</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.config</groupId>
                 <artifactId>config-caf</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.config</groupId>
                 <artifactId>config-decoder</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.config</groupId>
                 <artifactId>config-file</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.config</groupId>
                 <artifactId>config-rest</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.config</groupId>
                 <artifactId>config-system</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.decoder</groupId>
                 <artifactId>decoder-js</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.election</groupId>
                 <artifactId>election-null</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-jerseycompat</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-liquibase-installer</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-moduleloader</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-naming</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-process-identifier</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-ref</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
                 <artifactId>util-testing</artifactId>
-                <version>1.19.0-269</version>
+                <version>1.20.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.github.krallin</groupId>
