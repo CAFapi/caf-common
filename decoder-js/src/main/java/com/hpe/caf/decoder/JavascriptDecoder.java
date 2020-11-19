@@ -23,11 +23,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import javax.script.Bindings;
+import com.oracle.truffle.js.scriptengine.GraalJSScriptEngine;
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.HostAccess;
+
 import javax.script.Invocable;
-import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 /**
@@ -37,12 +38,10 @@ import javax.script.ScriptException;
 @FileExtensions("js")
 public class JavascriptDecoder implements Decoder
 {
-    private final ScriptEngineManager scriptManager;
     private final ObjectMapper objectMapper;
 
     public JavascriptDecoder()
     {
-        scriptManager = new ScriptEngineManager();
         objectMapper = new ObjectMapper();
     }
 
@@ -61,30 +60,33 @@ public class JavascriptDecoder implements Decoder
         // I'm unsure about whether it would be safe to share the scripting engine across threads so I'm creating a separate one each time
         // this method is called.  It might be safe, assuming we just created a fresh Binding for each thread, but I'm finding it hard to
         // see a definitive answer on it in the reference.
-        final ScriptEngine jsEngine = scriptManager.getEngineByName("graal.js");
-        final Bindings bindings = jsEngine.getBindings(ScriptContext.ENGINE_SCOPE);
-        bindings.put("polyglot.js.allowHostAccess", true);
-        bindings.put("polyglot.js.allowHostClassLookup", true);
+        try (final GraalJSScriptEngine jsEngine = GraalJSScriptEngine.create(null,
+                Context.newBuilder("js")
+                        .allowExperimentalOptions(true)
+                        .allowHostAccess(HostAccess.ALL)
+                        .allowHostClassLookup(s -> true)
+                        .option("js.load-from-classpath", "true"))) {
 
 
-        // Define a short-cut for accessing environment variables
-        // Return the JSON.stringify method so that we can call it later
-        final Object fnObj = jsEngine.eval(""
-            + "var PropertyRetriever = Java.type('com.hpe.caf.decoder.PropertyRetriever');"
-            + "getenv = PropertyRetriever.getenv;"
-            + ""
-            + "({"
-            + "    toJson: JSON.stringify"
-            + "});");
+            // Define a short-cut for accessing environment variables
+            // Return the JSON.stringify method so that we can call it later
+            final Object fnObj = jsEngine.eval(""
+                    + "var PropertyRetriever = Java.type('com.hpe.caf.decoder.PropertyRetriever');"
+                    + "getenv = PropertyRetriever.getenv;"
+                    + ""
+                    + "({"
+                    + "    toJson: JSON.stringify"
+                    + "});");
 
-        // Evaluate the supplied file which is expected to return an object
-        final Object configObj = evaluateScript(jsEngine, stream);
+            // Evaluate the supplied file which is expected to return an object
+            final Object configObj = evaluateScript(jsEngine, stream);
 
-        // Convert the object to a JSON string
-        final String configJson = invokeStringMethod(jsEngine, fnObj, "toJson", configObj);
+            // Convert the object to a JSON string
+            final String configJson = invokeStringMethod(jsEngine, fnObj, "toJson", configObj);
 
-        // Deserialise the JSON string into the configuration object
-        return objectMapper.readValue(configJson, clazz);
+            // Deserialise the JSON string into the configuration object
+            return objectMapper.readValue(configJson, clazz);
+        }
     }
 
     /**
