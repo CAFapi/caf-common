@@ -15,6 +15,7 @@
  - config.path: the absolute directory that contains the config files, if this
   is not specified then it will use the current working directory. If a path is
   specified, then it must be a valid directory
+ - CAF\_RESOURCE\_PATH: the resource directory that contains the config files
 
 
 ## Usage
@@ -45,6 +46,8 @@
  The following scenarios will prevent the module from initialising:
 
  - The bootstrap configuration variable `config.path` is incorrectly set
+ - The bootstrap configuration variable `CAF_RESOURCE_PATH` is incorrectly set
+ - The specified resource path is not found
 
  The following scenarios have been identified as possible runtime failure modes
  for this module:

@@ -24,17 +24,23 @@ import com.hpe.caf.api.FileExtensions;
 import com.hpe.caf.api.HealthResult;
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
+import java.io.Closeable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This is a ConfigurationProvider that reads from a local disk file. If the bootstrap parameter config.path is set, it will read the
@@ -46,9 +52,11 @@ import java.util.ArrayList;
 public class FileConfigurationSource extends CafConfigurationSource
 {
     public static final String CONFIG_PATH = "CAF_CONFIG_PATH";
+    public static final String RESOURCE_PATH = "CAF_RESOURCE_PATH";
     @Deprecated
     public static final String OLD_CONFIG_PATH = "config.path";
-    private Path configPath;
+    private final FileSystem configFilesystem;
+    private final Path configPath;
     private static final Logger LOG = LoggerFactory.getLogger(FileConfigurationSource.class);
     private static final ArrayList<String> fileNameDelimiters = new ArrayList<>();
     private final String[] fileExtensions;
@@ -74,8 +82,42 @@ public class FileConfigurationSource extends CafConfigurationSource
              * This method was identified as a possible issue for path manipulation, marking as false positive due to the path being
              * picked up from environment variable. Creating a regex to match valid paths here would be overkill.
              */
-            configPath = FileSystems.getDefault().getPath(getConfigPath(bootstrap));
-        } catch (final InvalidPathException e) {
+            if (bootstrap.isConfigurationPresent(CONFIG_PATH)) {
+                configFilesystem = null;
+                configPath = FileSystems.getDefault().getPath(bootstrap.getConfiguration(CONFIG_PATH));
+            } else if (bootstrap.isConfigurationPresent(OLD_CONFIG_PATH)) {
+                configFilesystem = null;
+                configPath = FileSystems.getDefault().getPath(bootstrap.getConfiguration(OLD_CONFIG_PATH));
+            } else if (bootstrap.isConfigurationPresent(RESOURCE_PATH)) {
+                final URL resourceUrl = Thread.currentThread().getContextClassLoader()
+                    .getResource(bootstrap.getConfiguration(RESOURCE_PATH));
+                if (resourceUrl == null) {
+                    throw new ConfigurationException("Resource path " + RESOURCE_PATH + " not found");
+                }
+
+                final URI resourceUri = resourceUrl.toURI();
+
+                if (resourceUri.getScheme().equalsIgnoreCase("file")) {
+                    configFilesystem = null;
+                    configPath = FileSystems.getDefault().provider().getPath(resourceUri);
+                } else {
+                    try {
+                        configFilesystem = FileSystems.newFileSystem(resourceUri, Collections.emptyMap());
+                    } catch (final IOException ex) {
+                        throw new ConfigurationException("I/O error creating resource file system", ex);
+                    }
+
+                    try {
+                        configPath = configFilesystem.provider().getPath(resourceUri);
+                    } catch (final Exception ex) {
+                        closeSilently(configFilesystem);
+                        throw ex;
+                    }
+                }
+            } else {
+                throw new ConfigurationException("Configuration parameter " + CONFIG_PATH + " not present");
+            }
+        } catch (final InvalidPathException | URISyntaxException e) {
             throw new ConfigurationException("Invalid configuration path", e);
         }
         fileExtensions = getFileExtensions(decoder);
@@ -85,7 +127,7 @@ public class FileConfigurationSource extends CafConfigurationSource
     @Override
     public void shutdown()
     {
-        // nothing to do
+        closeSilently(configFilesystem);
     }
 
     @Override
@@ -160,17 +202,14 @@ public class FileConfigurationSource extends CafConfigurationSource
         return builder.toString();
     }
 
-    private String getConfigPath(final BootstrapConfiguration bootstrap)
-        throws ConfigurationException
+    private static void closeSilently(final Closeable closee)
     {
-        String ret;
-        if (bootstrap.isConfigurationPresent(CONFIG_PATH)) {
-            ret = bootstrap.getConfiguration(CONFIG_PATH);
-        } else if (bootstrap.isConfigurationPresent(OLD_CONFIG_PATH)) {
-            ret = bootstrap.getConfiguration(OLD_CONFIG_PATH);
-        } else {
-            throw new ConfigurationException("Configuration parameter " + CONFIG_PATH + " not present");
+        if (closee != null) {
+            try {
+                closee.close();
+            } catch (final IOException ex) {
+                LOG.error("Error releasing system resources", ex);
+            }
         }
-        return ret;
     }
 }
