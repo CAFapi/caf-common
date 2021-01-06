@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-common</artifactId>
-        <version>1.20.0-288</version>
+        <version>1.21.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.cafapi.util</groupId>
