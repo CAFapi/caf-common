@@ -20,7 +20,7 @@ MESOS_SANDBOX=${SSL_CA_CRT_DIR:-$MESOS_SANDBOX}
 
 import_java_cert() {
     echo "Importing CA cert into Java Keystore on $1"
-    keytool -noprompt -keystore $2 -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert-$4 -file $3
+    sudo keytool -noprompt -keystore $2 -storepass $JAVA_KEYSTORE_PASSWORD -importcert -alias caf-ssl-ca-cert-$4 -file $3
 }
 
 import_java_certs() {
