@@ -85,6 +85,7 @@
         <slf4jVersion>1.7.25</slf4jVersion>
         <springVersion>5.0.18.RELEASE</springVersion>
         <sunJerseyVersion>1.19</sunJerseyVersion>
+        <autonomyAciClientVersion>12.4.0</autonomyAciClientVersion>
     </properties>
 
     <dependencyManagement>
@@ -117,12 +118,12 @@
             <dependency>
                 <groupId>com.autonomy.aci.client</groupId>
                 <artifactId>autonomy-aci-client-api</artifactId>
-                <version>12.4.0</version>
+                <version>${autonomyAciClientVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.hp.autonomy.aci.client</groupId>
                 <artifactId>aci-api</artifactId>
-                <version>12.4.0</version>
+                <version>${autonomyAciClientVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.brsanthu</groupId>
