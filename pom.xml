@@ -117,7 +117,7 @@
             <dependency>
                 <groupId>com.autonomy.aci.client</groupId>
                 <artifactId>autonomy-aci-client-api</artifactId>
-                <version>4.1.3</version>
+                <version>12.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.hp.autonomy.aci.client</groupId>
