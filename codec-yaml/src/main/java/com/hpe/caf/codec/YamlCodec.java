@@ -28,6 +28,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
  * Use SnakeYAML to serialise/deserialise data.
  *
@@ -50,7 +52,13 @@ public class YamlCodec implements Codec
         lenientYaml = new Yaml(lenient);
         strictYaml = new Yaml(strict);
     }
-
+    
+    @Override
+    public <T> T deserialise(Object data, Class<T> clazz, DecodeMethod method) throws CodecException
+    {
+        throw new CodecException("Operation not implemented for yaml codec", new OperationNotSupportedException());
+    }
+    
     @Override
     public <T> T deserialise(final byte[] data, final Class<T> clazz, final DecodeMethod method)
         throws CodecException

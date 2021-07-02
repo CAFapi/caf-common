@@ -24,6 +24,7 @@ import com.hpe.caf.api.FileExtensions;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Implementation of Codec that supports serialisation and deserialisation to and form JSON format.
@@ -60,6 +61,21 @@ public class JsonCodec implements Codec
         } catch (final IOException e) {
             throw new CodecException("Failed to deserialise", e);
         }
+    }
+    
+    @Override
+    public <T> T deserialise(final Object data, final Class<T> clazz) throws CodecException
+    {
+        return deserialise(data, clazz, DecodeMethod.STRICT);
+    }
+    
+    @Override
+    public <T> T deserialise(final Object data, final Class<T> clazz, final DecodeMethod method) throws CodecException
+    {
+        if (data instanceof String) {
+            return deserialise(((String)data).getBytes(StandardCharsets.UTF_8), clazz, method);
+        }
+        return getMapper(method).convertValue(data, clazz);
     }
 
     @Override

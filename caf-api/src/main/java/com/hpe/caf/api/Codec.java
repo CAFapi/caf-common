@@ -28,7 +28,24 @@ public interface Codec extends Decoder
     {
         return deserialise(data, clazz, DecodeMethod.getDefault());
     }
-
+    
+    default <T> T deserialise(final Object data, final Class<T> clazz) throws CodecException
+    {
+        return deserialise(data, clazz, DecodeMethod.getDefault());
+    }
+    
+    /**
+     * Deserialise the given object data into the specified class.
+     *
+     * @param data the serialised object
+     * @param clazz the class the serialised data represents
+     * @param method specifies whether to use strict or lenient decoding during deserialisation
+     * @param <T> the class the serialised data represents
+     * @return an instance of the class specified represented by the data
+     * @throws CodecException if the data could not be deserialised
+     */
+    <T> T deserialise(final Object data, final Class<T> clazz, final DecodeMethod method) throws CodecException;;
+    
     /**
      * Deserialise the given data into the specified class.
      *

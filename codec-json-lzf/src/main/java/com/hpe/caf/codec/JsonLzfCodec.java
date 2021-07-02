@@ -27,6 +27,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
  * Implementation of Codec that supports serialisation and deserialisation to and form JSON format that itself is compressed with a
  * high-speed LZF algorithm. In some crude tests, this was resulting in data that was approximately 60% of the original JSON size with
@@ -42,7 +44,17 @@ public class JsonLzfCodec implements Codec
         strictMapper = ObjectMapperFactory.getStrictMapper();
         lenientMapper = ObjectMapperFactory.getLenientMapper();
     }
-
+    
+    @Override
+    public <T> T deserialise(final Object data, final Class<T> clazz, final DecodeMethod method) throws CodecException
+    {
+        throw new CodecException("Operation not implemented for jsonlzf codec", new OperationNotSupportedException());
+//        if (data instanceof String) {
+//            return deserialise(((String)data).getBytes(StandardCharsets.UTF_8), clazz, method);
+//        }
+//        return getMapper(method).convertValue(data, clazz);
+    }
+    
     @Override
     public <T> T deserialise(final byte[] data, final Class<T> clazz, final DecodeMethod method)
         throws CodecException
