@@ -49,10 +49,6 @@ public class JsonLzfCodec implements Codec
     public <T> T deserialise(final Object data, final Class<T> clazz, final DecodeMethod method) throws CodecException
     {
         throw new CodecException("Operation not implemented for jsonlzf codec", new OperationNotSupportedException());
-//        if (data instanceof String) {
-//            return deserialise(((String)data).getBytes(StandardCharsets.UTF_8), clazz, method);
-//        }
-//        return getMapper(method).convertValue(data, clazz);
     }
     
     @Override

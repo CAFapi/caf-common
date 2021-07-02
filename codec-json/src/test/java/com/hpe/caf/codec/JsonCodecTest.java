@@ -15,6 +15,12 @@
  */
 package com.hpe.caf.codec;
 
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hpe.caf.api.Codec;
 import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.DecodeMethod;
@@ -79,5 +85,34 @@ public class JsonCodecTest
         RandomGetterTestData test = new RandomGetterTestData(VERIFY_STRING);
         byte[] stuff = codec.serialise(test);
         Assert.assertEquals(VERIFY_STRING, codec.deserialise(stuff, RandomGetterTestData.class).getTestData());
+    }
+    
+    @Test
+    public void testObjectDeserialisation() throws CodecException
+    {
+        final Codec codec = new JsonCodec();
+        final DocumentWorkerTask taskData = new DocumentWorkerTask();
+        Map<String, String> map = new HashMap();
+        map.put("prop1", "value1");
+        map.put("prop2", "value2");
+        taskData.customData = map;
+        final DocumentWorkerTask deserialisedTaskData = codec.deserialise(taskData, DocumentWorkerTask.class);
+        Assert.assertEquals("value2", deserialisedTaskData.customData.get("prop2"));
+    }
+    
+    @Test
+    public void testJsonStringDeserialisation() throws CodecException, JsonProcessingException
+    {
+        Codec codec = new JsonCodec();
+        final DocumentWorkerTask taskData = new DocumentWorkerTask();
+        Map<String, String> map = new HashMap();
+        map.put("prop1", "value1");
+        map.put("prop2", "value2");
+        taskData.customData = map;
+        final Object jsonString = new String(new ObjectMapper().writeValueAsBytes(taskData), StandardCharsets.UTF_8);
+        //jsonString  -->   {"customData":{"prop2":"value2","prop1":"value1"}}
+        final DocumentWorkerTask deserialisedTaskData = codec.deserialise(jsonString, DocumentWorkerTask.class);
+        
+        Assert.assertEquals("value2", deserialisedTaskData.customData.get("prop2"));
     }
 }
