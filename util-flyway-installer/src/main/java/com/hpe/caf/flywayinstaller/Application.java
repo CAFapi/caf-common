@@ -156,7 +156,10 @@ public class Application
     private void updateDB()
     {
         System.out.println("About to perform DB update.");
-        Flyway flyway = Flyway.configure().dataSource(fullConnectionString, username, password).load();
+        Flyway flyway = Flyway.configure()
+                .dataSource(fullConnectionString, username, password)
+                .baselineOnMigrate(true)
+                .load();
         flyway.migrate();
         System.out.println("DB update finished.");
         
