@@ -63,6 +63,7 @@
         <module>util-naming</module>
         <module>util-process-identifier</module>
         <module>util-testing</module>
+        <module>util-flyway-installer</module>
     </modules>
 
     <scm>
