@@ -89,12 +89,7 @@
             <artifactId>migbase64</artifactId>
         </dependency>
 
-        <!--
-            jakarta.annotation-api (used by the generated swagger code) needs to be explicitly included when using Java 11.
-            See https://stackoverflow.com/a/68323341
-            https://stackoverflow.com/a/48204154
-            https://nipafx.dev/java-11-migration-guide/#removal-of-java-ee-modules
-        -->
+        <!-- Annotations used by the generated swagger code -->
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
