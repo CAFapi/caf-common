@@ -25,11 +25,13 @@ import org.testng.annotations.Test;
 import java.io.InputStream;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 
 /**
  * Unit tests for JavaScriptDecoder class.
  */
 @PrepareForTest(PropertyRetriever.class)
+@PowerMockIgnore("jdk.internal.reflect.*") // @PowerMockIgnore needed when using Java 11: https://stackoverflow.com/a/66226045
 public class JavascriptDecoderTest extends PowerMockTestCase {
 
     /**
