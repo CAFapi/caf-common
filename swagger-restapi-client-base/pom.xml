@@ -86,10 +86,10 @@
         </dependency>
 
         <!-- Annotations used by the generated swagger code -->
-        <dependency>
+<!--        <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
