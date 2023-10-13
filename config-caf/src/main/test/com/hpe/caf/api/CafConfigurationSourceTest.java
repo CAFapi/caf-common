@@ -23,11 +23,11 @@ import org.testng.rules.ExpectedException;
 import org.mockito.Mockito;
 
 import javax.naming.InvalidNameException;
-import javax.validation.Valid;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import java.io.InputStream;
 
 

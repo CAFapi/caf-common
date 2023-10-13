@@ -15,7 +15,7 @@
  */
 package com.hpe.caf.config.file;
 
-import org.hibernate.validator.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class TestFileConfig
 {

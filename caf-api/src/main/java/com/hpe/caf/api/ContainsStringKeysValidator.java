@@ -15,8 +15,8 @@
  */
 package com.hpe.caf.api;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.Map;
 
 /**

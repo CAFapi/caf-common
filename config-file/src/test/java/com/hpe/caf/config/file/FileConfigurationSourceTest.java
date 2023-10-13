@@ -21,7 +21,7 @@ import com.hpe.caf.api.CodecException;
 import com.hpe.caf.api.ConfigurationException;
 import com.hpe.caf.api.ConfigurationSource;
 import com.hpe.caf.cipher.NullCipher;
-import com.hpe.caf.codec.YamlCodec;
+import com.hpe.caf.codec.JsonCodec;
 import com.hpe.caf.naming.ServicePath;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -42,7 +42,7 @@ public class FileConfigurationSourceTest
 {
     public File tempDir;
     private Path temp;
-    private final Codec codec = new YamlCodec();
+    private final Codec codec = new JsonCodec();
     private final String groupName = "testApp";
     private final String appId = "testWorker";
     private ServicePath id;
