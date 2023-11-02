@@ -27,7 +27,7 @@
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-common</artifactId>
-        <version>2.1.0-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -45,8 +45,8 @@
             <artifactId>config-caf</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -56,11 +56,11 @@
         </dependency>
         <dependency>
             <groupId>com.github.cafapi.codec</groupId>
-            <artifactId>codec-yaml</artifactId>
+            <artifactId>codec-json</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>test</scope>
         </dependency>
@@ -80,8 +80,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>el-impl</artifactId>
+            <groupId>org.glassfish.expressly</groupId>
+            <artifactId>expressly</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

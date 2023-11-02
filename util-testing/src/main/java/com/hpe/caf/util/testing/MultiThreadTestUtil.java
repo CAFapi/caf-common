@@ -37,6 +37,7 @@ public class MultiThreadTestUtil
         for (Integer i = 0; i < numberOfThreads; i++) {
             new Thread()
             {
+                @Override
                 public void run()
                 {
                     try {

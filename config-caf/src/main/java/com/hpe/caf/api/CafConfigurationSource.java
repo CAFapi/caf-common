@@ -18,14 +18,14 @@ package com.hpe.caf.api;
 import com.hpe.caf.naming.Name;
 import com.hpe.caf.naming.ServicePath;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.commons.lang3.text.StrLookup;
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.text.StringSubstitutor;
+import org.apache.commons.text.lookup.StringLookup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.IOException;
@@ -255,8 +255,8 @@ public abstract class CafConfigurationSource implements ManagedConfigurationSour
 
     private static String tokenSubstitutor(final String source)
     {
-        final StrSubstitutor strSubstitutor = new StrSubstitutor(
-            new StrLookup<Object>()
+        final StringSubstitutor strSubstitutor = new StringSubstitutor(
+            new StringLookup()
         {
             @Override
             public String lookup(final String key)
