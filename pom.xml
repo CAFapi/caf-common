@@ -40,23 +40,23 @@
 
     <modules>
         <module>caf-api</module>
-<!--        <module>caf-utils</module>-->
-<!--        <module>cipher-jasypt</module>-->
-<!--        <module>cipher-null</module>-->
-<!--        <module>codec-json</module>-->
-<!--        <module>codec-json-lzf</module>-->
-<!--        <module>config-caf</module>-->
-<!--        <module>config-decoder</module>-->
-<!--        <module>config-file</module>-->
-<!--        <module>config-system</module>-->
-<!--        <module>decoder-js</module>-->
-<!--        <module>election-null</module>-->
-<!--        <module>util-ref</module>-->
-<!--        <module>util-jerseycompat</module>-->
-<!--        <module>util-moduleloader</module>-->
-<!--        <module>util-naming</module>-->
-<!--        <module>util-process-identifier</module>-->
-<!--        <module>util-testing</module>-->
+        <module>caf-utils</module>
+        <module>cipher-jasypt</module>
+        <module>cipher-null</module>
+        <module>codec-json</module>
+        <module>codec-json-lzf</module>
+        <module>config-caf</module>
+        <module>config-decoder</module>
+        <module>config-file</module>
+        <module>config-system</module>
+        <module>decoder-js</module>
+        <module>election-null</module>
+        <module>util-ref</module>
+        <module>util-jerseycompat</module>
+        <module>util-moduleloader</module>
+        <module>util-naming</module>
+        <module>util-process-identifier</module>
+        <module>util-testing</module>
     </modules>
 
     <scm>
