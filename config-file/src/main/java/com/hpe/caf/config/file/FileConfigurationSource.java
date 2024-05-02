@@ -131,7 +131,7 @@ public class FileConfigurationSource extends CafConfigurationSource
     }
 
     @Override
-    public HealthResult healthCheck()
+    public HealthResult checkReady()
     {
         return HealthResult.RESULT_HEALTHY;
     }

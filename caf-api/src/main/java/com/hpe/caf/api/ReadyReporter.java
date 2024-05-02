@@ -15,22 +15,13 @@
  */
 package com.hpe.caf.api;
 
-public interface ManagedConfigurationSource extends ReadyReporter, ConfigurationMetricsReporter, ConfigurationSource
+/**
+ * Indicates this object can report on its readiness.
+ */
+public interface ReadyReporter
 {
     /**
-     * Perform necessary shutdown operations.
+     * @return the result of the readiness health check
      */
-    void shutdown();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    int getConfigurationRequests();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    int getConfigurationErrors();
+    HealthResult checkReady();
 }

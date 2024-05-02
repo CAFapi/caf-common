@@ -16,12 +16,12 @@
 package com.hpe.caf.api;
 
 /**
- * Indicates this object can report on its health.
+ * Indicates this object can report on its liveness.
  */
-public interface HealthReporter
+public interface AliveReporter
 {
     /**
-     * @return the result of the health check
+     * @return the result of the liveness health check
      */
-    HealthResult healthCheck();
+    HealthResult checkAlive();
 }
