@@ -15,7 +15,7 @@
  */
 package com.hpe.caf.api;
 
-public interface ManagedConfigurationSource extends ReadyReporter, ConfigurationMetricsReporter, ConfigurationSource
+public interface ManagedConfigurationSource extends HealthReporter, ConfigurationMetricsReporter, ConfigurationSource
 {
     /**
      * Perform necessary shutdown operations.
