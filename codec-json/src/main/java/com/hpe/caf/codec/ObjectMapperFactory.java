@@ -17,6 +17,7 @@ package com.hpe.caf.codec;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.StreamReadConstraints;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
@@ -36,7 +37,8 @@ public final class ObjectMapperFactory
         commonMapper.registerModule(new GuavaModule());
         commonMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         commonMapper.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
-
+        final StreamReadConstraints streamReadConstraints = StreamReadConstraints.builder().maxStringLength(Integer.MAX_VALUE).build();
+        commonMapper.getFactory().setStreamReadConstraints(streamReadConstraints);
         return commonMapper;
     }
 
