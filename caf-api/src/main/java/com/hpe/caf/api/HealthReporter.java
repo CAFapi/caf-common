@@ -21,7 +21,14 @@ package com.hpe.caf.api;
 public interface HealthReporter
 {
     /**
-     * @return the result of the health check
+     * @return the result of the liveness check
+     */
+    default HealthResult livenessCheck() {
+        return HealthResult.RESULT_HEALTHY;
+    }
+
+    /**
+     * @return the result of the health (aka readiness) check
      */
     HealthResult healthCheck();
 }
