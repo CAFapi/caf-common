@@ -16,23 +16,24 @@
 package com.hpe.caf.decoder;
 
 import com.hpe.caf.api.CodecException;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.testng.PowerMockTestCase;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.InputStream;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
+
+import org.junit.runner.RunWith;
+
+import static org.mockito.Mockito.doReturn;
 
 /**
  * Unit tests for JavaScriptDecoder class.
  */
-@PrepareForTest(PropertyRetriever.class)
-@PowerMockIgnore("jdk.internal.reflect.*") // @PowerMockIgnore needed when using Java 11: https://stackoverflow.com/a/66226045
-public class JavascriptDecoderTest extends PowerMockTestCase {
+@RunWith(MockitoJUnitRunner.class)
+public class JavascriptDecoderTest {
 
     /**
      * Tests that the decoded input use environment property values.
@@ -47,13 +48,13 @@ public class JavascriptDecoderTest extends PowerMockTestCase {
         int expectedNestedInt = ThreadLocalRandom.current().nextInt();
         boolean expectedNestedBoolean = true;
 
-        PowerMockito.spy(PropertyRetriever.class);
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYINT")).thenReturn(Integer.toString(expectedMyInt));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYSTRING")).thenReturn(expectedMyString);
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYBOOLEAN")).thenReturn(Boolean.toString(expectedMyBoolean));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDSTRING")).thenReturn(expectedNestedString);
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDINT")).thenReturn(Integer.toString(expectedNestedInt));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDBOOLEAN")).thenReturn(Boolean.toString(expectedNestedBoolean));
+        Mockito.spy(PropertyRetriever.class);
+        doReturn(Integer.toString(expectedMyInt)).when(PropertyRetriever.getenv("TEST_MYINT"));
+        doReturn(expectedMyString).when(PropertyRetriever.getenv("TEST_MYSTRING"));
+        doReturn(Boolean.toString(expectedMyBoolean)).when(PropertyRetriever.getenv("TEST_MYBOOLEAN"));
+        doReturn(expectedNestedString).when(PropertyRetriever.getenv("TEST_MYNESTEDSTRING"));
+        doReturn(Integer.toString(expectedNestedInt)).when(PropertyRetriever.getenv("TEST_MYNESTEDINT"));
+        doReturn(Boolean.toString(expectedNestedBoolean)).when(PropertyRetriever.getenv("TEST_MYNESTEDBOOLEAN"));
 
         InputStream inputToDecode = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream("DecodeResultInput.js");
