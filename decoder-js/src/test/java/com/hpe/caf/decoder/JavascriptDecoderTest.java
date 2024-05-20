@@ -16,6 +16,7 @@
 package com.hpe.caf.decoder;
 
 import com.hpe.caf.api.CodecException;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.testng.Assert;
@@ -24,8 +25,6 @@ import org.testng.annotations.Test;
 import java.io.InputStream;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-
-import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.doReturn;
 
