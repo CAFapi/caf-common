@@ -6,5 +6,8 @@ ${version-number}
   - This method can optionally be implemented to provide a liveness check. The default implementation returns 
     `HealthResult.RESULT_HEALTHY`.
 
+#### Bug Fixes
+- None
+
 #### Known Issues
 - None
