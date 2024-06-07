@@ -1,5 +1,3 @@
-!not-ready-for-release!
-
 #### Version Number
 ${version-number}
 
@@ -7,6 +5,9 @@ ${version-number}
 - US915147: A new default `livenessCheck` method in the `HealthReporter` interface has been added.  
   - This method can optionally be implemented to provide a liveness check. The default implementation returns 
     `HealthResult.RESULT_HEALTHY`.
+
+#### Bug Fixes
+- None
 
 #### Known Issues
 - None
