@@ -15,7 +15,7 @@
  */
 package com.hpe.caf.util.testing;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.Collection;
 import java.util.concurrent.CountDownLatch;
@@ -49,7 +49,7 @@ public class MultiThreadTestUtil
                     } catch (final AssertionError e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
-                        Assert.fail(e.getMessage());
+                        Assertions.fail(e.getMessage());
                     }
                     gate.countDown();
                 }
