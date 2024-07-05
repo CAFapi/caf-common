@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hpe.caf.util.testing;
+package com.hpe.caf.util.processidentifier;
 
-import org.junit.jupiter.api.Assertions;
+import static org.testng.Assert.fail;
 
 import java.util.Collection;
 import java.util.concurrent.CountDownLatch;
@@ -49,7 +49,7 @@ public class MultiThreadTestUtil
                     } catch (final AssertionError e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
-                        Assertions.fail(e.getMessage());
+                        fail(e.getMessage());
                     }
                     gate.countDown();
                 }

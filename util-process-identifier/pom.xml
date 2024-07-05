@@ -36,11 +36,6 @@
             <artifactId>testng</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.cafapi.util</groupId>
-            <artifactId>util-testing</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>
