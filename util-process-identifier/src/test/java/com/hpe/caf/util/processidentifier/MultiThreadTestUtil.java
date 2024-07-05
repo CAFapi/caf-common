@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 /**
  * Utility class for running multi-threaded tests.
  */
-public class MultiThreadTestUtil
+class MultiThreadTestUtil
 {
     public static void RunMultiThreadedTest(
         final Consumer<?> function,
