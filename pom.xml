@@ -56,7 +56,6 @@
         <module>util-moduleloader</module>
         <module>util-naming</module>
         <module>util-process-identifier</module>
-        <module>util-testing</module>
     </modules>
 
     <scm>
@@ -203,11 +202,6 @@
                 <version>3.1.0</version>
             </dependency>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.13.2</version>
-            </dependency>
-            <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
                 <version>1.14.9</version>
@@ -344,8 +338,18 @@
                 <version>3.5.3.Final</version>
             </dependency>
             <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.10.2</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
+                <version>3.12.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
                 <version>3.12.4</version>
             </dependency>
             <dependency>

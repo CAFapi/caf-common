@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hpe.caf.util.testing;
+package com.hpe.caf.util.processidentifier;
 
-import org.junit.Assert;
+import static org.testng.Assert.fail;
 
 import java.util.Collection;
 import java.util.concurrent.CountDownLatch;
@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 /**
  * Utility class for running multi-threaded tests.
  */
-public class MultiThreadTestUtil
+class MultiThreadTestUtil
 {
     public static void RunMultiThreadedTest(
         final Consumer<?> function,
@@ -49,7 +49,7 @@ public class MultiThreadTestUtil
                     } catch (final AssertionError e) {
                         gate.countDown();
                         errors.add(GetCurrentThreadPrefix() + " Failure - " + e);
-                        Assert.fail(e.getMessage());
+                        fail(e.getMessage());
                     }
                     gate.countDown();
                 }

@@ -16,9 +16,9 @@
 package com.hpe.caf.decoder;
 
 import com.hpe.caf.api.CodecException;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.doReturn;
 /**
  * Unit tests for JavaScriptDecoder class.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class JavascriptDecoderTest {
 
     /**

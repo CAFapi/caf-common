@@ -15,7 +15,6 @@
  */
 package com.hpe.caf.util.processidentifier;
 
-import com.hpe.caf.util.testing.MultiThreadTestUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
