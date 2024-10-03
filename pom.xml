@@ -137,11 +137,6 @@
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-testing</artifactId>
-                <version>3.2.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
                 <version>3.0.2</version>
