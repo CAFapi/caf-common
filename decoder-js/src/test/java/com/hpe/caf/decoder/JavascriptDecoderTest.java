@@ -43,8 +43,7 @@ public class JavascriptDecoderTest {
      * @throws CodecException
      */
     @Test
-    public void deserializeWithEnvironmentVariablesTest() throws CodecException, URISyntaxException
-    {
+    public void deserializeWithEnvironmentVariablesTest() throws CodecException, URISyntaxException {
         int expectedMyInt = ThreadLocalRandom.current().nextInt();
         String expectedMyString = "Test Result"+ UUID.randomUUID().toString();
         boolean expectedMyBoolean = true;
