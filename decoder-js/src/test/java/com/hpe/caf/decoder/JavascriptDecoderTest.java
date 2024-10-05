@@ -23,6 +23,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -39,13 +43,18 @@ public class JavascriptDecoderTest {
      * @throws CodecException
      */
     @Test
-    public void deserializeWithEnvironmentVariablesTest() throws CodecException {
+    public void deserializeWithEnvironmentVariablesTest() throws CodecException, URISyntaxException
+    {
         int expectedMyInt = ThreadLocalRandom.current().nextInt();
         String expectedMyString = "Test Result"+ UUID.randomUUID().toString();
         boolean expectedMyBoolean = true;
         String expectedNestedString = "Nested Result"+ UUID.randomUUID().toString();
         int expectedNestedInt = ThreadLocalRandom.current().nextInt();
         boolean expectedNestedBoolean = true;
+
+        URL myFileUrl = getClass().getClassLoader().getResource("my-file");
+        Path myFilePath = Paths.get(myFileUrl.toURI());
+        String expectedMyFilePath = myFilePath.toString();
 
         Mockito.spy(PropertyRetriever.class);
         doReturn(Integer.toString(expectedMyInt)).when(PropertyRetriever.getenv("TEST_MYINT"));
@@ -54,6 +63,7 @@ public class JavascriptDecoderTest {
         doReturn(expectedNestedString).when(PropertyRetriever.getenv("TEST_MYNESTEDSTRING"));
         doReturn(Integer.toString(expectedNestedInt)).when(PropertyRetriever.getenv("TEST_MYNESTEDINT"));
         doReturn(Boolean.toString(expectedNestedBoolean)).when(PropertyRetriever.getenv("TEST_MYNESTEDBOOLEAN"));
+        doReturn(expectedMyFilePath).when(PropertyRetriever.getenv("TEST_MYFILE"));
 
         InputStream inputToDecode = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream("DecodeResultInput.js");
@@ -66,6 +76,8 @@ public class JavascriptDecoderTest {
         Assert.assertEquals(result.getMyInt(), expectedMyInt, "Decoded myInt should have been resolved to expected property " +
                 "value.");
         Assert.assertEquals(result.isMyBoolean(), expectedMyBoolean, "Decoded myBoolean should have been resolved to expected property " +
+                "value.");
+        Assert.assertEquals(result.getMyFile(), "he", "Decoded myFile should have been resolved to expected property " +
                 "value.");
         DecodeResult.NestedProp nestedResult = result.getMyNestedProp();
         Assert.assertEquals(nestedResult.getMyNestedString(), expectedNestedString, "Decoded nested string should have been resolved to expected property " +

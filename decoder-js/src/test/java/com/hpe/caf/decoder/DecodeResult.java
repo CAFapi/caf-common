@@ -23,6 +23,7 @@ public class DecodeResult {
     private int myInt;
     private boolean myBoolean;
     private NestedProp myNestedProp;
+    private String myFile;
 
     public String getMyString() {
         return myString;
@@ -54,6 +55,14 @@ public class DecodeResult {
 
     public void setMyNestedProp(NestedProp myNestedProp) {
         this.myNestedProp = myNestedProp;
+    }
+
+    public String getMyFile()  {
+        return myFile;
+    }
+
+    public void setMyFile(final String myFile) {
+        this.myFile = myFile;
     }
 
     public class NestedProp {

@@ -73,6 +73,7 @@ public class JavascriptDecoder implements Decoder
             final Object fnObj = jsEngine.eval(""
                     + "var PropertyRetriever = Java.type('com.hpe.caf.decoder.PropertyRetriever');"
                     + "getenv = PropertyRetriever.getenv;"
+                    + "getenvfile = PropertyRetriever.getenvfile;"
                     + ""
                     + "({"
                     + "    toJson: JSON.stringify"
