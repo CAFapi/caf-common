@@ -49,8 +49,8 @@ public class PropertyRetriever {
         final String env = getenv(key);
         if (env != null && !env.isEmpty()) {
             final String fileContents = Files.readString(Paths.get(env)).trim();
-            // TODO Remove fileContents from log after debugging
-            LOG.debug("Successfully read contents of file pointed at by environment variable {}={}: {}", key, env, fileContents);
+            // TODO Chane to debug + Remove fileContents from log after debugging
+            LOG.warn("Successfully read contents of file pointed at by environment variable {}={}: {}", key, env, fileContents);
             return fileContents;
         } else {
             return null;
