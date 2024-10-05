@@ -22,5 +22,6 @@
         myNestedString: getenv("TEST_MYNESTEDSTRING") || "default nested string",
         myNestedBoolean: getenv("TEST_MYNESTEDBOOLEAN") || false,
         myNestedInt: getenv("TEST_MYNESTEDINT") || 500
-    }
+    },
+    myFile: getenvfile("TEST_MYFILE")
 });
