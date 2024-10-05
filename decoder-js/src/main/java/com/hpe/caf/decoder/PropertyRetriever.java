@@ -19,10 +19,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Provides access to properties requested during decoding.
  */
 public class PropertyRetriever {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PropertyRetriever.class);
+
     /**
      * Gets the value to use for the specified property.
      * @param key Name of property.
@@ -42,7 +48,10 @@ public class PropertyRetriever {
     public static String getenvfile(String key) throws IOException {
         final String env = getenv(key);
         if (env != null && !env.isEmpty()) {
-            return Files.readString(Paths.get(env)).trim();
+            final String fileContents = Files.readString(Paths.get(env)).trim();
+            // TODO Remove fileContents from log after debugging
+            LOG.debug("Successfully read contents of file pointed at by environment variable {}={}: {}", key, env, fileContents);
+            return fileContents;
         } else {
             return null;
         }
