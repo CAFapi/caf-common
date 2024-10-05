@@ -49,7 +49,7 @@ public class PropertyRetriever {
         final String env = getenv(key);
         if (env != null && !env.isEmpty()) {
             final String fileContents = Files.readString(Paths.get(env)).trim();
-            LOG.debug("Successfully read file contents of {}={}", key, env);
+            LOG.debug("Successfully read file contents of file here: {}={}", key, env);
             return fileContents;
         } else {
             LOG.debug("The {} environment variable is null or empty, returning null", key);
