@@ -22,13 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -45,8 +39,7 @@ public class JavascriptDecoderTest {
      * @throws CodecException
      */
     @Test
-    public void deserializeWithEnvironmentVariablesTest() throws CodecException, IOException, URISyntaxException
-    {
+    public void deserializeWithEnvironmentVariablesTest() throws CodecException {
         int expectedMyInt = ThreadLocalRandom.current().nextInt();
         String expectedMyString = "Test Result"+ UUID.randomUUID().toString();
         boolean expectedMyBoolean = true;
@@ -54,7 +47,6 @@ public class JavascriptDecoderTest {
         int expectedNestedInt = ThreadLocalRandom.current().nextInt();
         boolean expectedNestedBoolean = true;
 
-<<<<<<< Updated upstream
         Mockito.spy(PropertyRetriever.class);
         doReturn(Integer.toString(expectedMyInt)).when(PropertyRetriever.getenv("TEST_MYINT"));
         doReturn(expectedMyString).when(PropertyRetriever.getenv("TEST_MYSTRING"));
@@ -62,20 +54,6 @@ public class JavascriptDecoderTest {
         doReturn(expectedNestedString).when(PropertyRetriever.getenv("TEST_MYNESTEDSTRING"));
         doReturn(Integer.toString(expectedNestedInt)).when(PropertyRetriever.getenv("TEST_MYNESTEDINT"));
         doReturn(Boolean.toString(expectedNestedBoolean)).when(PropertyRetriever.getenv("TEST_MYNESTEDBOOLEAN"));
-=======
-        URL myFileUrl = getClass().getClassLoader().getResource("my-file");
-        Path myFilePath = Paths.get(myFileUrl.toURI());
-        String expectedMyFilePath = myFilePath.toString();
-
-        PowerMockito.spy(PropertyRetriever.class);
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYINT")).thenReturn(Integer.toString(expectedMyInt));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYSTRING")).thenReturn(expectedMyString);
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYBOOLEAN")).thenReturn(Boolean.toString(expectedMyBoolean));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDSTRING")).thenReturn(expectedNestedString);
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDINT")).thenReturn(Integer.toString(expectedNestedInt));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYNESTEDBOOLEAN")).thenReturn(Boolean.toString(expectedNestedBoolean));
-        PowerMockito.when(PropertyRetriever.getenv("TEST_MYFILE")).thenReturn(expectedMyFilePath);
->>>>>>> Stashed changes
 
         InputStream inputToDecode = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream("DecodeResultInput.js");
@@ -95,8 +73,6 @@ public class JavascriptDecoderTest {
         Assert.assertEquals(nestedResult.getMyNestedInt(), expectedNestedInt, "Decoded nested int should have been resolved to expected property " +
                 "value.");
         Assert.assertEquals(nestedResult.isMyNestedBoolean(), expectedNestedBoolean, "Decoded nested boolean should have been resolved to expected property " +
-                "value.");
-        Assert.assertEquals(result.getMyFile(), "hello", "Decoded myFile should have been resolved to expected property " +
                 "value.");
     }
 

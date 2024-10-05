@@ -83,23 +83,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-<<<<<<< Updated upstream
-=======
-                    <configuration>
-                        <!-- Workaround https://github.com/powermock/powermock/issues/1094 -->
-                        <argLine>
-                            -Dfile.encoding=UTF-8
-                            -Dpolyglot.engine.WarnInterpreterOnly=false
-                            --add-opens java.base/java.lang=ALL-UNNAMED
-                            --add-opens java.base/java.util=ALL-UNNAMED
-                            --add-opens java.base/java.util.concurrent=ALL-UNNAMED
-                            --add-opens java.base/java.nio.file=ALL-UNNAMED
-                            --add-opens java.base/java.nio.file.spi=ALL-UNNAMED
-                            --add-opens java.base/sun.nio.fs=ALL-UNNAMED
-                            --add-opens java.base/java.net=ALL-UNNAMED
-                        </argLine>
-                    </configuration>
->>>>>>> Stashed changes
                 </plugin>
             </plugins>
         </pluginManagement>

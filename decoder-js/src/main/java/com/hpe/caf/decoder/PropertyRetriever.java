@@ -15,10 +15,6 @@
  */
 package com.hpe.caf.decoder;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 /**
  * Provides access to properties requested during decoding.
  */
@@ -30,21 +26,5 @@ public class PropertyRetriever {
      */
     public static String getenv(String key){
         return System.getenv(key);
-    }
-
-    /**
-     * Gets the contents of the file pointed to by the specified environment variable.
-     * @param key Name of environment variable containing the path of the file to read from.
-     * @return Contents of the file pointed to by the specified environment variable, or null if the specified environment variable is
-     * null or empty.
-     * @throws IOException If the file could not be read for any reason.
-     */
-    public static String getenvfile(String key) throws IOException {
-        final String env = getenv(key);
-        if (env != null && !env.isEmpty()) {
-            return Files.readString(Paths.get(env));
-        } else {
-            return null;
-        }
     }
 }
