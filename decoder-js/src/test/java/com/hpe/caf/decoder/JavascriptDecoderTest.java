@@ -51,9 +51,9 @@ public class JavascriptDecoderTest {
         int expectedNestedInt = ThreadLocalRandom.current().nextInt();
         boolean expectedNestedBoolean = true;
 
-        URL myFileUrl = getClass().getClassLoader().getResource("my-file");
-        Path myFilePath = Paths.get(myFileUrl.toURI());
-        String expectedMyFilePath = myFilePath.toString();
+        final URL myFileUrl = getClass().getClassLoader().getResource("my-file");
+        final Path myFilePath = Paths.get(myFileUrl.toURI());
+        final String expectedMyFilePath = myFilePath.toString();
 
         Mockito.spy(PropertyRetriever.class);
         doReturn(Integer.toString(expectedMyInt)).when(PropertyRetriever.getenv("TEST_MYINT"));
