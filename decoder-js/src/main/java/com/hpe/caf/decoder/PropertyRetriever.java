@@ -15,16 +15,27 @@
  */
 package com.hpe.caf.decoder;
 
+import com.hpe.caf.system.SystemUtil;
+
 /**
  * Provides access to properties requested during decoding.
  */
 public class PropertyRetriever {
     /**
-     * Gets the value to use for the specified property.
-     * @param key Name of property.
-     * @return Value of property specified.
+     * Gets the value to use for the specified environment variable.
+     * @param key Name of environment variable.
+     * @return Value of environment variable specified.
      */
     public static String getenv(String key){
         return System.getenv(key);
+    }
+
+    /**
+     * Gets the value to use for the specified environment variable or property.
+     * @param key Name of environment variable or property.
+     * @return Value of environment variable or property specified.
+     */
+    public static String getenvorprop(String key){
+        return SystemUtil.getEnvOrProp(key);
     }
 }
