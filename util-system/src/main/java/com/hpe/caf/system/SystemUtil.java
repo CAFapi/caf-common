@@ -17,8 +17,13 @@ package com.hpe.caf.system;
 
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class SystemUtil
 {
+    private static final Logger LOG = LoggerFactory.getLogger(SystemUtil.class);
+
     private SystemUtil()
     {
     }
@@ -34,11 +39,19 @@ public final class SystemUtil
      */
     public static String getEnvOrProp(final String key) {
         Objects.requireNonNull(key, "key");
-        final String value = System.getenv(key);
-        if (value != null) {
-            return value;
+        final String env = System.getenv(key);
+        if (env != null) {
+            LOG.debug("Found value for key '{}' in environment variables", key);
+            return env;
         } else {
-            return System.getProperty(key);
+            final String property = System.getProperty(key);
+            if (property != null) {
+                LOG.debug("Found value for key '{}' in system properties", key);
+                return property;
+            } else {
+                LOG.debug("No value found for key '{}' in environment variables or system properties", key);
+                return null;
+            }
         }
     }
 
@@ -56,6 +69,11 @@ public final class SystemUtil
     public static String getEnvOrProp(final String key, final String defaultValue) {
         Objects.requireNonNull(defaultValue, "defaultValue");
         final String value = getEnvOrProp(key);
-        return value != null ? value : defaultValue;
+        if (value != null) {
+            return value;
+        } else {
+            LOG.debug("Using default value for key '{}'", key);
+            return defaultValue;
+        }
     }
 }
