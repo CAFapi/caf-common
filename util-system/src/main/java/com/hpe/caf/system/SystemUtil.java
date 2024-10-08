@@ -54,7 +54,6 @@ public final class SystemUtil
      *         Never returns null as the default value is used when no value is found.
      */
     public static String getEnvOrProp(final String key, final String defaultValue) {
-        Objects.requireNonNull(key, "key");
         Objects.requireNonNull(defaultValue, "defaultValue");
         final String value = getEnvOrProp(key);
         return value != null ? value : defaultValue;
