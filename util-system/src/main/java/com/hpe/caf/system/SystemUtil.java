@@ -52,10 +52,10 @@ public final class SystemUtil
     {
         Objects.requireNonNull(envKey, "envKey");
         Objects.requireNonNull(envFileKey, "envFileKey");
-        final String envValue = System.getenv(envKey);
-        if (envValue != null) {
+        final String value = System.getenv(envKey);
+        if (value != null) {
             LOG.debug("Found value for key '{}' in environment variables", envKey);
-            return envValue;
+            return value;
         } else {
             return getFileContentFromEnv(envFileKey);
         }
@@ -79,10 +79,10 @@ public final class SystemUtil
     public static String getFileContentFromEnv(final String key) throws IOException
     {
         Objects.requireNonNull(key, "key");
-        final String env = System.getenv(key);
-        if (env != null) {
+        final String value = System.getenv(key);
+        if (value != null) {
             LOG.debug("Found value for key '{}' in environment variables, attempting to read file content...", key);
-            final String fileContents = Files.readString(Paths.get(env)).trim();
+            final String fileContents = Files.readString(Paths.get(value)).trim();
             LOG.debug("Successfully read file content of key '{}'", key);
             return fileContents;
         } else {
