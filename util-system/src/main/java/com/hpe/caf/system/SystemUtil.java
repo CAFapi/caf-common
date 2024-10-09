@@ -34,22 +34,24 @@ public final class SystemUtil
      * falls back to checking system properties.
      *
      * @param key The name of the environment variable or system property to retrieve
+     * @param propPrefix The prefix to use when looking up the system property. If null, the key is used as-is.
      * @return The value of the environment variable or system property.
      *         Returns null if the key is not found in either location.
      */
-    public static String getEnvOrProp(final String key) {
+    public static String getEnvOrProp(final String key, final String propPrefix) {
         Objects.requireNonNull(key, "key");
         final String env = System.getenv(key);
         if (env != null) {
             LOG.debug("Found value for key '{}' in environment variables", key);
             return env;
         } else {
-            final String property = System.getProperty(key);
+            final String keyWithOptionalPrefix = propPrefix != null ? propPrefix + key : key;
+            final String property = System.getProperty(keyWithOptionalPrefix);
             if (property != null) {
-                LOG.debug("Found value for key '{}' in system properties", key);
+                LOG.debug("Found value for key '{}' in system properties", keyWithOptionalPrefix);
                 return property;
             } else {
-                LOG.debug("No value found for key '{}' in environment variables or system properties", key);
+                LOG.debug("No value found for key '{}' in environment variables or system properties", keyWithOptionalPrefix);
                 return null;
             }
         }
@@ -62,13 +64,14 @@ public final class SystemUtil
      * and finally returns the default value if neither contains the key.
      *
      * @param key The name of the environment variable or system property to retrieve
+     * @param propPrefix The prefix to use when looking up the system property. If null, the key is used as-is.
      * @param defaultValue The default value to return if the key is not found
      * @return The value from environment variables, system properties, or the default value.
      *         Never returns null as the default value is used when no value is found.
      */
-    public static String getEnvOrProp(final String key, final String defaultValue) {
+    public static String getEnvOrProp(final String key, final String propPrefix, final String defaultValue) {
         Objects.requireNonNull(defaultValue, "defaultValue");
-        final String value = getEnvOrProp(key);
+        final String value = getEnvOrProp(key, propPrefix);
         if (value != null) {
             return value;
         } else {

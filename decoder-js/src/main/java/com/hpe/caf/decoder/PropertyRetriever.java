@@ -33,9 +33,10 @@ public class PropertyRetriever {
     /**
      * Gets the value to use for the specified environment variable or property.
      * @param key Name of environment variable or property.
+     * @param propPrefix The prefix to use when looking up the system property. If null, the key is used as-is.
      * @return Value of environment variable or property specified.
      */
-    public static String getenvorprop(String key){
-        return SystemUtil.getEnvOrProp(key);
+    public static String getenvorprop(String key, String propPrefix){
+        return SystemUtil.getEnvOrProp(key, propPrefix);
     }
 }
