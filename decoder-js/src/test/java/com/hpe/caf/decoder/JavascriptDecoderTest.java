@@ -17,6 +17,7 @@ package com.hpe.caf.decoder;
 
 import com.hpe.caf.api.CodecException;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.Assert;
@@ -54,6 +55,8 @@ public class JavascriptDecoderTest {
         final URL myFileUrl = getClass().getClassLoader().getResource("my-file");
         final Path myFilePath = Paths.get(myFileUrl.toURI());
         final String expectedMyFilePath = myFilePath.toString();
+        MockedStatic<System> mockedSystem = Mockito.mockStatic(System.class);
+        mockedSystem.when(() -> System.getenv("TEST_MYFILE")).thenReturn(expectedMyFilePath);
 
         Mockito.spy(PropertyRetriever.class);
         doReturn(Integer.toString(expectedMyInt)).when(PropertyRetriever.getenv("TEST_MYINT"));
