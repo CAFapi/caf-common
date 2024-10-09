@@ -16,11 +16,11 @@
 package com.hpe.caf.decoder;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.hpe.caf.system.SystemUtil;
 
 /**
  * Provides access to properties requested during decoding.
@@ -46,14 +46,6 @@ public class PropertyRetriever {
      * @throws IOException If the file could not be read for any reason.
      */
     public static String getenvfile(String key) throws IOException {
-        final String env = getenv(key);
-        if (env != null && !env.isEmpty()) {
-            final String fileContents = Files.readString(Paths.get(env)).trim();
-            LOG.debug("Successfully read file contents (contents not logged): {}={}", key, env);
-            return fileContents;
-        } else {
-            LOG.debug("The {} environment variable is null or empty, returning null", key);
-            return null;
-        }
+        return SystemUtil.getFileContentFromEnv(key);
     }
 }

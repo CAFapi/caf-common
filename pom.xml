@@ -56,6 +56,7 @@
         <module>util-moduleloader</module>
         <module>util-naming</module>
         <module>util-process-identifier</module>
+        <module>util-system</module>
     </modules>
 
     <scm>
