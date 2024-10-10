@@ -138,10 +138,10 @@ public final class SecretUtil
 
     private static String getFromSystemProperty(final String key)
     {
-        final String keyWithCafPrefix = PROPERTY_PREFIX + key;
-        final String value = System.getProperty(keyWithCafPrefix);
+        final String keyWithPropertyPrefix = PROPERTY_PREFIX + key;
+        final String value = System.getProperty(keyWithPropertyPrefix);
         if (value != null) {
-            LOG.debug("Found value for key '{}' in system properties", keyWithCafPrefix);
+            LOG.debug("Found value for key '{}' in system properties", keyWithPropertyPrefix);
             return value;
         }
         return null;
