@@ -27,29 +27,28 @@ public final class SecretUtil
 {
     private static final Logger LOG = LoggerFactory.getLogger(com.hpe.caf.secret.SecretUtil.class);
     private static final String FILE_POSTFIX = "_FILE";
-    private static final String PROPERTY_PREFIX = "CAF.";
+    private static final String CAF_READ_SECRETS_FROM_ENV = "CAF_READ_SECRETS_FROM_ENV";
+    private static final String CAF_READ_SECRETS_FROM_FILE = "CAF_READ_SECRETS_FROM_FILE";
 
     private SecretUtil()
     {
     }
 
     /**
-     * Retrieves a secret value from various sources in a prescribed order of precedence:
+     * Retrieves a secret value from various sources based on configuration:
      * <ol>
-     *   <li>Environment variables (direct value)</li>
-     *   <li>File content (path specified by environment variable with "_FILE" suffix)</li>
-     *   <li>System properties (with "CAF." prefix)</li>
+     *   <li>Environment variables (if CAF_READ_SECRETS_FROM_ENV is true or not set)</li>
+     *   <li>File content (if CAF_READ_SECRETS_FROM_FILE is true and path specified by environment variable with "_FILE" suffix)</li>
      * </ol>
      *
      * For example, for a key "DATABASE_PASSWORD":
      * <ul>
-     *   <li>First checks environment variable: DATABASE_PASSWORD</li>
-     *   <li>Then checks file path in environment variable: DATABASE_PASSWORD_FILE</li>
-     *   <li>Finally checks system property: CAF.DATABASE_PASSWORD</li>
+     *   <li>First checks environment variable (if enabled): DATABASE_PASSWORD</li>
+     *   <li>Then checks file path in environment variable (if enabled): DATABASE_PASSWORD_FILE</li>
      * </ul>
      *
      * @param key The base key to look up the secret value. Must not be null.
-     * @return The secret value if found in any of the sources, or null if not found.
+     * @return The secret value if found in any of the enabled sources, or null if not found.
      *         If found in a file, the content is trimmed of leading and trailing whitespace.
      * @throws IOException If there is an error reading the file when using the _FILE variant
      * @throws NullPointerException If the key parameter is null
@@ -58,45 +57,46 @@ public final class SecretUtil
     {
         Objects.requireNonNull(key, "key");
 
-        // 1. Try environment variable
-        final String envValue = getFromEnvironment(key);
-        if (envValue != null) {
-            return envValue;
+        // Check if reading from environment is enabled (defaults to true)
+        final boolean readFromEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_READ_SECRETS_FROM_ENV, "true"));
+        if (readFromEnv) {
+            // Try environment variable
+            final String envValue = getFromEnvironment(key);
+            if (envValue != null) {
+                return envValue;
+            }
         }
 
-        // 2. Try file reference (via environment variable)
-        final String fileValue = getFromFileViaEnvironment(key);
-        if (fileValue != null) {
-            return fileValue;
+        // Check if reading from file via environment is enabled (defaults to false)
+        final boolean readFromFileViaEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_READ_SECRETS_FROM_FILE, "false"));
+        if (readFromFileViaEnv) {
+            // Try file reference (via environment variable)
+            final String fileValue = getFromFileViaEnvironment(key);
+            if (fileValue != null) {
+                return fileValue;
+            }
         }
 
-        // 3. Try system property
-        final String propertyValue = getFromSystemProperty(key);
-        if (propertyValue != null) {
-            return propertyValue;
-        }
-
-        LOG.debug("No value found for key '{}' in any location", key);
+        LOG.debug("No value found for key '{}' in any enabled location", key);
         return null;
     }
 
     /**
-     * Retrieves a secret value from various sources in a prescribed order of precedence:
+     * Retrieves a secret value from various sources based on configuration:
      * <ol>
-     *   <li>Environment variables (direct value)</li>
-     *   <li>File content (path specified by environment variable with "_FILE" suffix)</li>
-     *   <li>System properties (with "CAF." prefix)</li>
+     *   <li>Environment variables (if CAF_READ_SECRETS_FROM_ENV is true or not set)</li>
+     *   <li>File content (if CAF_READ_SECRETS_FROM_FILE is true and path specified by environment variable with "_FILE" suffix)</li>
      * </ol>
      *
      * For example, for a key "DATABASE_PASSWORD":
      * <ul>
-     *   <li>First checks environment variable: DATABASE_PASSWORD</li>
-     *   <li>Then checks file path in environment variable: DATABASE_PASSWORD_FILE</li>
-     *   <li>Finally checks system property: CAF.DATABASE_PASSWORD</li>
+     *   <li>First checks environment variable (if enabled): DATABASE_PASSWORD</li>
+     *   <li>Then checks file path in environment variable (if enabled): DATABASE_PASSWORD_FILE</li>
      * </ul>
      *
      * @param key The base key to look up the secret value. Must not be null.
-     * @return The secret value if found in any of the sources, or defaultValue if not found.
+     * @param defaultValue The value to return if no secret is found. Must not be null.
+     * @return The secret value if found in any of the enabled sources, or defaultValue if not found.
      *         If found in a file, the content is trimmed of leading and trailing whitespace.
      * @throws IOException If there is an error reading the file when using the _FILE variant
      * @throws NullPointerException If either the key or defaultValue parameters are null
@@ -132,17 +132,6 @@ public final class SecretUtil
             final String fileContent = Files.readString(Paths.get(filePath)).trim();
             LOG.debug("Successfully read file content for key '{}'", keyWithFilePostfix);
             return fileContent;
-        }
-        return null;
-    }
-
-    private static String getFromSystemProperty(final String key)
-    {
-        final String keyWithPropertyPrefix = PROPERTY_PREFIX + key;
-        final String value = System.getProperty(keyWithPropertyPrefix);
-        if (value != null) {
-            LOG.debug("Found value for key '{}' in system properties", keyWithPropertyPrefix);
-            return value;
         }
         return null;
     }
