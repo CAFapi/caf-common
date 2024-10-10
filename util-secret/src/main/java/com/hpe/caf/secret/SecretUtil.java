@@ -65,7 +65,7 @@ public final class SecretUtil
         }
 
         // 2. Try file reference (via environment variable)
-        final String fileValue = getFromFile(key);
+        final String fileValue = getFromFileViaEnvironment(key);
         if (fileValue != null) {
             return fileValue;
         }
@@ -122,7 +122,7 @@ public final class SecretUtil
         return null;
     }
 
-    private static String getFromFile(final String key) throws IOException
+    private static String getFromFileViaEnvironment(final String key) throws IOException
     {
         final String keyWithFilePostfix = key + FILE_POSTFIX;
         final String filePath = System.getenv(keyWithFilePostfix);
