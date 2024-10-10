@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.cafapi.util</groupId>
-    <artifactId>util-system</artifactId>
+    <artifactId>util-secret</artifactId>
 
     <parent>
         <groupId>com.github.cafapi</groupId>

@@ -56,7 +56,7 @@
         <module>util-moduleloader</module>
         <module>util-naming</module>
         <module>util-process-identifier</module>
-        <module>util-system</module>
+        <module>util-secret</module>
     </modules>
 
     <scm>
@@ -139,7 +139,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.cafapi.util</groupId>
-                <artifactId>util-system</artifactId>
+                <artifactId>util-secret</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>

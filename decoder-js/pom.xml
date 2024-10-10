@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.cafapi.util</groupId>
-            <artifactId>util-system</artifactId>
+            <artifactId>util-secret</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

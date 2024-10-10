@@ -15,16 +15,21 @@
  */
 package com.hpe.caf.decoder;
 
+import java.io.IOException;
+
+import com.hpe.caf.secret.SecretUtil;
+
 /**
- * Provides access to properties requested during decoding.
+ * Provides access to secrets requested during decoding.
  */
-public class PropertyRetriever {
+public class SecretRetriever
+{
     /**
-     * Gets the value to use for the specified property.
-     * @param key Name of property.
-     * @return Value of property specified.
+     * Gets the value to use for the specified secret.
+     * @param key Name of secret.
+     * @return Value of secret specified.
      */
-    public static String getenv(String key){
-        return System.getenv(key);
+    public static String getSecret(final String key) throws IOException {
+        return SecretUtil.getSecret(key);
     }
 }
