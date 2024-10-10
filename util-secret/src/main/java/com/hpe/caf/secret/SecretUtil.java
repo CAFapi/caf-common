@@ -127,7 +127,7 @@ public final class SecretUtil
         final String keyWithFilePostfix = key + FILE_POSTFIX;
         final String filePath = System.getenv(keyWithFilePostfix);
         if (filePath != null) {
-            LOG.debug("Found file path for key '{}' in environment variables", keyWithFilePostfix);
+            LOG.debug("Found value for key '{}' in environment variables", keyWithFilePostfix);
             final String fileContent = Files.readString(Paths.get(filePath)).trim();
             LOG.debug("Successfully read file content for key '{}'", keyWithFilePostfix);
             return fileContent;
