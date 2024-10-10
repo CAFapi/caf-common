@@ -80,6 +80,38 @@ public final class SecretUtil
         return null;
     }
 
+    /**
+     * Retrieves a secret value from various sources in a prescribed order of precedence:
+     * <ol>
+     *   <li>Environment variables (direct value)</li>
+     *   <li>File content (path specified by environment variable with "_FILE" suffix)</li>
+     *   <li>System properties (with "CAF." prefix)</li>
+     * </ol>
+     *
+     * For example, for a key "DATABASE_PASSWORD":
+     * <ul>
+     *   <li>First checks environment variable: DATABASE_PASSWORD</li>
+     *   <li>Then checks file path in environment variable: DATABASE_PASSWORD_FILE</li>
+     *   <li>Finally checks system property: CAF.DATABASE_PASSWORD</li>
+     * </ul>
+     *
+     * @param key The base key to look up the secret value. Must not be null.
+     * @return The secret value if found in any of the sources, or defaultValue if not found.
+     *         If found in a file, the content is trimmed of leading and trailing whitespace.
+     * @throws IOException If there is an error reading the file when using the _FILE variant
+     * @throws NullPointerException If the key parameter is null
+     */
+    public static String getSecret(final String key, final String defaultValue) throws IOException
+    {
+        final String value = getSecret(key);
+        if (value != null) {
+            return value;
+        } else {
+            LOG.debug("Returning default value for key '{}'", key);
+            return defaultValue;
+        }
+    }
+
     private static String getFromEnvironment(final String key)
     {
         final String value = System.getenv(key);
