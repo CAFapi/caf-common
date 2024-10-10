@@ -77,7 +77,6 @@ public final class SecretUtil
             }
         }
 
-        LOG.debug("No value found for key '{}' in any enabled location", key);
         return null;
     }
 
@@ -119,8 +118,10 @@ public final class SecretUtil
         if (value != null) {
             LOG.debug("Found value for key '{}' in environment variables", key);
             return value;
+        } else {
+            LOG.debug("No value found for key '{}' in environment variables", key);
+            return null;
         }
-        return null;
     }
 
     private static String getFromFileViaEnvironment(final String key) throws IOException
@@ -132,7 +133,9 @@ public final class SecretUtil
             final String fileContent = Files.readString(Paths.get(filePath)).trim();
             LOG.debug("Successfully read file content for key '{}'", keyWithFilePostfix);
             return fileContent;
+        } else {
+            LOG.debug("No value found for key '{}' in environment variables", keyWithFilePostfix);
+            return null;
         }
-        return null;
     }
 }
