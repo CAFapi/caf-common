@@ -58,8 +58,8 @@ public final class SecretUtil
         Objects.requireNonNull(key, "key");
 
         // Check if reading from environment is enabled (defaults to true)
-        final boolean readFromEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_GET_SECRETS_FROM_ENV, "true"));
-        if (readFromEnv) {
+        final boolean getFromEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_GET_SECRETS_FROM_ENV, "true"));
+        if (getFromEnv) {
             // Try environment variable
             final String envValue = getFromEnvironment(key);
             if (envValue != null) {
@@ -68,8 +68,8 @@ public final class SecretUtil
         }
 
         // Check if reading from file via environment is enabled (defaults to false)
-        final boolean readFromFileViaEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_GET_SECRETS_FROM_FILE, "false"));
-        if (readFromFileViaEnv) {
+        final boolean getFromFileViaEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_GET_SECRETS_FROM_FILE, "false"));
+        if (getFromFileViaEnv) {
             // Try file reference (via environment variable)
             final String fileValue = getFromFileViaEnvironment(key);
             if (fileValue != null) {
