@@ -68,11 +68,13 @@ public class JavascriptDecoder implements Decoder
                         .option("js.load-from-classpath", "true"))) {
 
 
-            // Define a short-cut for accessing environment variables
+            // Define a short-cut for accessing environment variables and secrets
             // Return the JSON.stringify method so that we can call it later
             final Object fnObj = jsEngine.eval(""
                     + "var PropertyRetriever = Java.type('com.hpe.caf.decoder.PropertyRetriever');"
                     + "getenv = PropertyRetriever.getenv;"
+                    + "var SecretRetriever = Java.type('com.hpe.caf.decoder.SecretRetriever');"
+                    + "getSecret = SecretRetriever.getSecret;"
                     + ""
                     + "({"
                     + "    toJson: JSON.stringify"
