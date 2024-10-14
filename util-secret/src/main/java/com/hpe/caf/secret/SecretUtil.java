@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 public final class SecretUtil
 {
-    private static final Logger LOG = LoggerFactory.getLogger(com.hpe.caf.secret.SecretUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SecretUtil.class);
     private static final String FILE_POSTFIX = "_FILE";
     private static final String CAF_GET_SECRETS_FROM_ENV = "CAF_GET_SECRETS_FROM_ENV";
     private static final String CAF_GET_SECRETS_FROM_FILE = "CAF_GET_SECRETS_FROM_FILE";
@@ -130,7 +130,7 @@ public final class SecretUtil
         final String filePath = System.getenv(keyWithFilePostfix);
         if (filePath != null) {
             LOG.debug("Found value for key '{}' in environment variables, reading file content...", keyWithFilePostfix);
-            final String fileContent = Files.readString(Paths.get(filePath)).trim();
+            final String fileContent = Files.readString(Paths.get(filePath));
             LOG.debug("Successfully read file content for key '{}'", keyWithFilePostfix);
             return fileContent;
         } else {

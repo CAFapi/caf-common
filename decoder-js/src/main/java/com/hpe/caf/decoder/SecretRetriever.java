@@ -28,6 +28,8 @@ public class SecretRetriever
      * Gets the value to use for the specified secret.
      * @param key Name of secret.
      * @return Value of secret specified.
+     * @throws IOException If there is an error reading the file when using the _FILE variant
+     * @throws NullPointerException If the key parameter is null
      */
     public static String getSecret(final String key) throws IOException {
         return SecretUtil.getSecret(key);
