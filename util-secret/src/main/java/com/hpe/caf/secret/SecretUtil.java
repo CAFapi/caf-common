@@ -98,18 +98,21 @@ public final class SecretUtil
      * @return The secret value if found in any of the enabled sources, or defaultValue if not found.
      *         If found in a file, the content is trimmed of leading and trailing whitespace.
      * @throws IOException If there is an error reading the file when using the _FILE variant
-     * @throws NullPointerException If either the key or defaultValue parameters are null
+     * @throws NullPointerException If the key parameter is null
      */
     public static String getSecret(final String key, final String defaultValue) throws IOException
     {
-        Objects.requireNonNull(defaultValue, "defaultValue");
         final String value = getSecret(key);
         if (value != null) {
             return value;
-        } else {
+        }
+
+        if (defaultValue != null) {
             LOG.debug("Returning default value for key '{}'", key);
             return defaultValue;
         }
+
+        return null;
     }
 
     private static String getFromEnvironment(final String key)
