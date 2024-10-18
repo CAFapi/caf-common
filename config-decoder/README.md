@@ -22,7 +22,7 @@ public class TestDecoder implements Decoder{
 }
 ```
 
-Which in its project specifies a META-INF/services resource file 'com.opentext.caf.api.Decoder' containing;
+Which in its project specifies a META-INF/services resource file 'com.hpe.caf.api.Decoder' containing;
 
 ```
 com.hpe.decoders.TestDecoder
