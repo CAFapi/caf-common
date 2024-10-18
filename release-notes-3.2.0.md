@@ -9,7 +9,7 @@ ${version-number}
   - A new `SecretRetriever` class has been added to the `decoder-js` module containing a `getSecret(String key)` method for getting secrets.
   - A new `util-secret` module has been added containing a `SecretUtil` class for getting secrets.
   - Both these retrieve a secret value from configurable sources:
-    - Environment variables (direct value) - enabled via `CAF_GET_SECRETS_FROM_ENV` (defaults to `true`)
-    - File content (path specified by environment variable with `_FILE` suffix) - enabled via `CAF_GET_SECRETS_FROM_FILE` (defaults to `false`)
+    - Environment variables (direct value) - enabled via `CAF_ENV_SECRETS_ENABLED` (defaults to `true`)
+    - File content (path specified by environment variable with `_FILE` suffix) - enabled via `CAF_FILE_SECRETS_ENABLED` (defaults to `false`)
 
 #### Known Issues
