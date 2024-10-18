@@ -27,8 +27,8 @@ public final class SecretUtil
 {
     private static final Logger LOG = LoggerFactory.getLogger(SecretUtil.class);
     private static final String FILE_POSTFIX = "_FILE";
-    private static final String CAF_ENV_SECRETS_ENABLED = "CAF_ENV_SECRETS_ENABLED";
-    private static final String CAF_FILE_SECRETS_ENABLED = "CAF_FILE_SECRETS_ENABLED";
+    private static final String CAF_ENABLE_ENV_SECRETS = "CAF_ENABLE_ENV_SECRETS";
+    private static final String CAF_ENABLE_FILE_SECRETS = "CAF_ENABLE_FILE_SECRETS";
 
     private SecretUtil()
     {
@@ -37,8 +37,8 @@ public final class SecretUtil
     /**
      * Retrieves a secret value from various sources based on configuration:
      * <ol>
-     *   <li>Environment variables (if CAF_ENV_SECRETS_ENABLED is true or not set)</li>
-     *   <li>File content (if CAF_FILE_SECRETS_ENABLED is true and path specified by environment variable with "_FILE" suffix)</li>
+     *   <li>Environment variables (if CAF_ENABLE_ENV_SECRETS is true or not set)</li>
+     *   <li>File content (if CAF_ENABLE_FILE_SECRETS is true and path specified by environment variable with "_FILE" suffix)</li>
      * </ol>
      *
      * For example, for a key "DATABASE_PASSWORD":
@@ -58,7 +58,7 @@ public final class SecretUtil
         Objects.requireNonNull(key, "key");
 
         // Check if reading from environment is enabled (defaults to true)
-        final boolean getFromEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_ENV_SECRETS_ENABLED, "true"));
+        final boolean getFromEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_ENABLE_ENV_SECRETS, "true"));
         if (getFromEnv) {
             // Try environment variable
             final String envValue = getFromEnvironment(key);
@@ -68,7 +68,7 @@ public final class SecretUtil
         }
 
         // Check if reading from file via environment is enabled (defaults to false)
-        final boolean getFromFileViaEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_FILE_SECRETS_ENABLED, "false"));
+        final boolean getFromFileViaEnv = Boolean.parseBoolean(System.getenv().getOrDefault(CAF_ENABLE_FILE_SECRETS, "false"));
         if (getFromFileViaEnv) {
             // Try file reference (via environment variable)
             final String fileValue = getFromFileViaEnvironment(key);
@@ -83,8 +83,8 @@ public final class SecretUtil
     /**
      * Retrieves a secret value from various sources based on configuration:
      * <ol>
-     *   <li>Environment variables (if CAF_ENV_SECRETS_ENABLED is true or not set)</li>
-     *   <li>File content (if CAF_FILE_SECRETS_ENABLED is true and path specified by environment variable with "_FILE" suffix)</li>
+     *   <li>Environment variables (if CAF_ENABLE_ENV_SECRETS is true or not set)</li>
+     *   <li>File content (if CAF_ENABLE_FILE_SECRETS is true and path specified by environment variable with "_FILE" suffix)</li>
      * </ol>
      *
      * For example, for a key "DATABASE_PASSWORD":
