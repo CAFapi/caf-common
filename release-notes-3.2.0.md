@@ -3,6 +3,9 @@
 #### Version Number
 ${version-number}
 
+#### Breaking change
+- US975260: Refactor to remove HPE references in package names
+
 #### New Features
 - US914108: Version Currency: JUnit 5 migration
 - US969005: Add support for getting secrets  

@@ -21,7 +21,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.cafapi</groupId>
+    <groupId>com.github.cafapi.common</groupId>
     <artifactId>caf-common</artifactId>
     <version>3.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -40,15 +40,15 @@
 
     <modules>
         <module>caf-api</module>
-        <module>caf-utils</module>
+        <module>util-tools</module>
         <module>cipher-jasypt</module>
         <module>cipher-null</module>
         <module>codec-json</module>
         <module>codec-json-lzf</module>
-        <module>config-caf</module>
+        <module>config-source</module>
         <module>config-decoder</module>
         <module>config-file</module>
-        <module>config-system</module>
+        <module>bootstrapconfig-system</module>
         <module>decoder-js</module>
         <module>election-null</module>
         <module>util-ref</module>
@@ -103,42 +103,42 @@
                 <version>2.15.3</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi</groupId>
+                <groupId>com.github.cafapi.common.api</groupId>
                 <artifactId>caf-api</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.cipher</groupId>
+                <groupId>com.github.cafapi.common.ciphers</groupId>
                 <artifactId>cipher-null</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.codec</groupId>
+                <groupId>com.github.cafapi.common.codecs</groupId>
                 <artifactId>codec-json</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-caf</artifactId>
+                <groupId>com.github.cafapi.common.config</groupId>
+                <artifactId>config-source</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.config</groupId>
-                <artifactId>config-system</artifactId>
+                <groupId>com.github.cafapi.common.bootstrapconfigs</groupId>
+                <artifactId>bootstrapconfig-system</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.util</groupId>
+                <groupId>com.github.cafapi.common.util</groupId>
                 <artifactId>util-moduleloader</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.util</groupId>
+                <groupId>com.github.cafapi.common.util</groupId>
                 <artifactId>util-naming</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.github.cafapi.util</groupId>
+                <groupId>com.github.cafapi.common.util</groupId>
                 <artifactId>util-secret</artifactId>
                 <version>3.2.0-SNAPSHOT</version>
             </dependency>

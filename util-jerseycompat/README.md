@@ -6,7 +6,7 @@ This project contains a compatibility class to allow Jersey 1 libraries to co-ex
 
 ```
 <dependency>
-  <groupId>com.github.cafapi.util</groupId>
+  <groupId>com.github.cafapi.common.util</groupId>
   <artifactId>util-jerseycompat</artifactId>
   <version>xxx</version>
 </dependency>
