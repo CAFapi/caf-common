@@ -21,7 +21,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.cafapi.common.util.tools</groupId>
     <artifactId>util-tools</artifactId>
 
     <parent>
@@ -32,15 +31,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.cafapi.common.api</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>caf-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.util</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>util-moduleloader</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.bootstrapconfigs</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>bootstrapconfig-system</artifactId>
         </dependency>
     </dependencies>
