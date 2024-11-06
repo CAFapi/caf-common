@@ -31,7 +31,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.cafapi.common.api</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>caf-api</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -40,7 +40,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.config</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>config-source</artifactId>
         </dependency>
         <dependency>
@@ -49,12 +49,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.util</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>util-naming</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.codecs</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>codec-json</artifactId>
             <scope>test</scope>
         </dependency>
@@ -64,7 +64,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.ciphers</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>cipher-null</artifactId>
             <scope>test</scope>
         </dependency>

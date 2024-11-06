@@ -40,7 +40,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.util</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>util-naming</artifactId>
         </dependency>
         <dependency>

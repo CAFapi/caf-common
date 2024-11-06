@@ -31,12 +31,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.cafapi.common.api</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>caf-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.cafapi.common.util</groupId>
+            <groupId>com.github.cafapi.common</groupId>
             <artifactId>util-secret</artifactId>
         </dependency>
         <dependency>
