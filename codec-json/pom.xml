@@ -26,7 +26,7 @@
     <parent>
         <groupId>com.github.cafapi.common</groupId>
         <artifactId>caf-common</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <version>4.0.0-692</version>
     </parent>
 
     <dependencies>
