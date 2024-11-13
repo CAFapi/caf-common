@@ -18,6 +18,7 @@ package com.github.cafapi.common.codecs.jsonlzf;
 import com.github.cafapi.common.api.Codec;
 import com.github.cafapi.common.api.CodecException;
 import com.github.cafapi.common.api.DecodeMethod;
+import com.github.cafapi.common.codecs.json.JsonCodec;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

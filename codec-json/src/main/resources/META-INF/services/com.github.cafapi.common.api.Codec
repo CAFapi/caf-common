@@ -1,1 +1,1 @@
-com.github.cafapi.common.codecs.jsonlzf.JsonCodec
+com.github.cafapi.common.codecs.json.JsonCodec
