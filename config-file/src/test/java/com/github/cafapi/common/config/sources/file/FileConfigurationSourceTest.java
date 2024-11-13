@@ -21,7 +21,7 @@ import com.github.cafapi.common.api.CodecException;
 import com.github.cafapi.common.api.ConfigurationException;
 import com.github.cafapi.common.api.ConfigurationSource;
 import com.github.cafapi.common.ciphers.Null.NullCipher;
-import com.github.cafapi.common.codecs.jsonlzf.JsonCodec;
+import com.github.cafapi.common.codecs.json.JsonCodec;
 import com.github.cafapi.common.util.naming.ServicePath;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
