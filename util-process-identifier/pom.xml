@@ -22,6 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>util-process-identifier</artifactId>
+    <name>util-process-identifier</name>
 
     <parent>
         <groupId>com.github.cafapi.common</groupId>

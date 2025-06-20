@@ -22,6 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>util-ref</artifactId>
+    <name>util-ref</name>
 
     <parent>
         <groupId>com.github.cafapi.common</groupId>
